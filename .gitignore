@@ -6,4 +6,7 @@ state/text/
 state/*.db
 logs/
 site/site/
+site/_build/
+site/docs/
+site/mkdocs.yml
 .DS_Store

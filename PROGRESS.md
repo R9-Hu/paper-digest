@@ -26,11 +26,14 @@ Last updated: 2026-06-15 (✅ COMPLETE — end-to-end verified)
   created; crontab @ 08:00 installed. Bounded full-chain run across all 4 topics:
   8 downloaded, 8 digested, 4 trend reports, deployed. Idempotency confirmed.
 
-## Next step for the user
-- The **first full backfill** (since 2025-01-01, up to 30 papers/topic) has NOT been
-  run — verification used a small bounded window. Either let the 08:00 cron do it
-  tomorrow, or kick it off now with `./run.sh` (heavy: up to ~120 digests via claude).
-- Tune `config.yaml` keywords/topics as desired before the big run.
+## Status: LIVE
+- ✅ **Full backfill complete** (2026-06-15): 128 papers fetched + digested across
+  all 4 topics (vlm 33, med-foundation 31, agentic-ai 32, harness 32), 0 failures,
+  4 trend reports. Site redeployed (HTTP 200), Obsidian vault populated (137 notes).
+- ✅ **Obsidian beautification** shipped: YAML props + extracted tags, callouts
+  (TL;DR/Overview/Predictions), emoji headings, table indexes + Home.
+- ✅ Incremental per-paper DB commits (durable dedup; safe concurrent access).
+- From here the 08:00 cron runs incrementally (only new papers each day).
 
 ## Notes / decisions
 - Hybrid pipeline; local cron @ 08:00; new Obsidian vault `~/Obsidian/PaperDigest`;

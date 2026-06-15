@@ -36,6 +36,7 @@ def parse_args(argv=None):
     p.add_argument("--topic", help="run only this topic slug")
     p.add_argument("--stage", choices=STAGES, help="run only this stage (default: all)")
     p.add_argument("--since", help="override earliest date (YYYY-MM-DD) for the fetch stage")
+    p.add_argument("--max-papers", type=int, help="override max papers per topic per run")
     p.add_argument("--dry-run", action="store_true", help="fetch stage: list matches, don't download")
     p.add_argument("--no-deploy", action="store_true", help="publish stage: build/sync but don't gh-deploy")
     return p.parse_args(argv)
@@ -47,6 +48,8 @@ def main(argv=None) -> int:
     log = logging.getLogger("harness")
 
     cfg = config.load_config()
+    if args.max_papers is not None:
+        cfg.max_papers_per_topic_per_run = args.max_papers
     config.ensure_dirs()
     topics = [cfg.topic(args.topic)] if args.topic else cfg.topics
     if args.topic and topics[0] is None:

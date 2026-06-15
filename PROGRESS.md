@@ -5,7 +5,7 @@ Living checklist. See [PLAN.md](PLAN.md) for the full design.
 
 Legend: ✅ done · 🔄 in progress · ⬜ todo · ⚠️ blocked
 
-Last updated: 2026-06-15 (agents working end-to-end)
+Last updated: 2026-06-15 (infra provisioned; verification running)
 
 ## Milestones
 - ✅ **0. Scaffold + tracking** — git init, dirs, `config.yaml`, `requirements.txt`,
@@ -19,10 +19,12 @@ Last updated: 2026-06-15 (agents working end-to-end)
   (pdftotext + `claude -p`). Verified: produced a faithful structured digest.
 - ✅ **4. Analyst (Agent 3)** — `harness/trends.py`. Verified: produced a grounded
   trend report.
-- 🔄 **5. Publish + orchestrate** — `harness/publish.py`, `harness/orchestrate.py`,
-  `run.sh`, `.claude/skills/paper-digest/SKILL.md`.
-- ⬜ **6. Provision + verify** — create GitHub repo + Obsidian vault, install crontab,
-  run dry-run + full-chain verification.
+- ✅ **5. Publish + orchestrate** — `harness/publish.py`, `harness/orchestrate.py`,
+  `run.sh`, `.claude/skills/paper-digest/SKILL.md`. MkDocs build + Obsidian sync verified.
+- 🔄 **6. Provision + verify** — ✅ GitHub repo `R9-Hu/paper-digest` created + pushed,
+  ✅ Pages live at https://r9-hu.github.io/paper-digest/, ✅ Obsidian vault created,
+  ✅ crontab @ 08:00 installed. 🔄 bounded full-chain verification across all 4 topics
+  running (`--max-papers 2 --since 2026-05-20`).
 
 ## Notes / decisions
 - Hybrid pipeline; local cron @ 08:00; new Obsidian vault `~/Obsidian/PaperDigest`;

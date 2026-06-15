@@ -7,7 +7,9 @@ branch via `mkdocs gh-deploy`.
 from __future__ import annotations
 
 import datetime as dt
+import json
 import logging
+import re
 import shutil
 import subprocess
 
@@ -175,52 +177,212 @@ def _md_link(display: str, target: str) -> str:
     return f"[{display}](<{target}>)"
 
 
+# --- Obsidian beautification ------------------------------------------------- #
+# Generated notes are rewritten into an Obsidian-native style: YAML properties
+# (incl. extracted tags), callouts for TL;DR / Overview / Predictions, and
+# emoji section headers.
+
+_HEADING_EMOJI = [
+    ("key contribution", "⭐"), ("problem", "🎯"), ("method", "🧩"),
+    ("result", "📊"), ("limitation", "⚠️"), ("relevance", "🔗"), ("tag", "🏷️"),
+    ("how the field", "📈"), ("current state", "🗺️"), ("open problem", "❓"),
+    ("key paper", "📌"), ("overview", "🔭"),
+]
+
+
+def _split_fm(md: str):
+    if md.startswith("---"):
+        parts = md.split("---", 2)
+        if len(parts) == 3:
+            try:
+                fm = yaml.safe_load(parts[1]) or {}
+            except yaml.YAMLError:
+                fm = {}
+            return fm, parts[2].lstrip("\n")
+    return {}, md
+
+
+def _quote(text: str) -> str:
+    """Prefix every line with '> ' so it renders inside an Obsidian callout."""
+    return "\n".join((">" if not ln.strip() else f"> {ln}")
+                     for ln in text.rstrip().split("\n"))
+
+
+def _sections(body: str):
+    """Return (head_before_first_h2, [(title, content), ...])."""
+    chunks = re.split(r"(?m)^##[ \t]+", body)
+    head = chunks[0].strip()
+    secs = []
+    for chunk in chunks[1:]:
+        nl = chunk.find("\n")
+        if nl == -1:
+            secs.append((chunk.strip(), ""))
+        else:
+            secs.append((chunk[:nl].strip(), chunk[nl + 1:].strip()))
+    return head, secs
+
+
+def _emoji_heading(title: str) -> str:
+    low = title.lower()
+    for key, em in _HEADING_EMOJI:
+        if key in low:
+            return f"## {em} {title}"
+    return f"## {title}"
+
+
+def _dump_fm(fm: dict) -> str:
+    return yaml.safe_dump(fm, sort_keys=False, allow_unicode=True).strip()
+
+
+def beautify_digest(md: str) -> str:
+    fm, content = _split_fm(md)
+    _, secs = _sections(content)
+    title = fm.get("title") or "Untitled"
+
+    tldr, tags, body_secs = None, [], []
+    for stitle, sbody in secs:
+        low = stitle.lower()
+        if low.startswith(("tl;dr", "tldr")):
+            tldr = sbody
+        elif low.startswith("tag"):
+            tags = re.findall(r"#([\w/-]+)", sbody)
+        else:
+            body_secs.append((stitle, sbody))
+
+    if tags:
+        fm["tags"] = tags
+    fm.setdefault("cssclasses", ["paper-digest"])
+
+    meta = []
+    authors = fm.get("authors") or []
+    if authors:
+        shown = ", ".join(authors[:8]) + (" et al." if len(authors) > 8 else "")
+        meta.append(f"> **Authors:** {shown}")
+    line2 = [f"**{k}:** {fm[v]}" for k, v in
+             (("Venue", "venue"), ("Published", "published"), ("Source", "source"))
+             if fm.get(v)]
+    if line2:
+        meta.append("> " + "  ·  ".join(line2))
+    if fm.get("url"):
+        meta.append(f"> **Link:** [{fm.get('source', 'open')}]({fm['url']})")
+
+    out = [f"---\n{_dump_fm(fm)}\n---", f"# {title}"]
+    if meta:
+        out.append("> [!info]- Metadata\n" + "\n".join(meta))
+    if tldr:
+        out.append("> [!abstract] TL;DR\n" + _quote(tldr))
+    for stitle, sbody in body_secs:
+        out.append(_emoji_heading(stitle))
+        if sbody:
+            out.append(sbody)
+    if tags:
+        out.append("\n".join(["---", " ".join(f"#{t}" for t in tags)]))
+    return "\n\n".join(out) + "\n"
+
+
+def beautify_trend(md: str) -> str:
+    fm, content = _split_fm(md)
+    head, secs = _sections(content)
+
+    overview, nextsteps, body_secs = None, None, []
+    for stitle, sbody in secs:
+        low = stitle.lower()
+        if low.startswith("overview"):
+            overview = sbody
+        elif low.startswith("predicted next"):
+            nextsteps = sbody
+        else:
+            body_secs.append((stitle, sbody))
+
+    if fm.get("topic_slug"):
+        fm["tags"] = [f"trend/{fm['topic_slug']}"]
+    fm.setdefault("cssclasses", ["paper-trend"])
+
+    out = [f"---\n{_dump_fm(fm)}\n---", head or f"# {fm.get('title', 'Trend Analysis')}"]
+    if overview:
+        out.append("> [!abstract] Overview\n" + _quote(overview))
+    for stitle, sbody in body_secs:
+        out.append(_emoji_heading(stitle))
+        if sbody:
+            out.append(sbody)
+    if nextsteps:
+        out.append("> [!tip]+ 🔮 Predicted next steps\n" + _quote(nextsteps))
+    return "\n\n".join(out) + "\n"
+
+
+def _esc(text: str) -> str:
+    return text.replace("|", "\\|")
+
+
 def sync_obsidian(conn, cfg: Config) -> None:
     vault = cfg.obsidian_vault
     vault.mkdir(parents=True, exist_ok=True)
     (vault / ".obsidian").mkdir(exist_ok=True)  # mark as a vault
 
     today = dt.date.today().isoformat()
-    home = ["# 📚 Paper Digest", "", f"_Last updated: {today}._", "", "## Topics", ""]
+    total_papers = 0
+    home_rows = []
 
     for topic in cfg.topics:
         rows = _topic_rows(conn, topic.slug)
+        total_papers += len(rows)
         folder = naming.sanitize_title(topic.name)  # '/' etc. are illegal in paths
         tdir = vault / folder
         tdir.mkdir(parents=True, exist_ok=True)
 
-        index_lines = [f"# {topic.name}", ""]
+        index = [
+            "---", f"title: {json.dumps(topic.name)}", "cssclasses: [paper-index]", "---",
+            f"# {topic.name}", "",
+        ]
 
         trend_src = config.TREND_DIR / f"{topic.slug}.md"
         trend_name = f"_Trend - {folder}.md"
-        if trend_src.exists():
-            (tdir / trend_name).write_text(trend_src.read_text(encoding="utf-8"), encoding="utf-8")
-            index_lines.append("➡️ " + _md_link("Trend analysis", trend_name))
-            index_lines.append("")
+        has_trend = trend_src.exists()
+        if has_trend:
+            (tdir / trend_name).write_text(
+                beautify_trend(trend_src.read_text(encoding="utf-8")), encoding="utf-8")
+            index.append("> [!abstract] Trend analysis")
+            index.append("> ➡️ " + _md_link("Read the trend analysis", trend_name))
+            index.append("")
 
-        index_lines.append(f"## Papers ({len(rows)})")
-        index_lines.append("")
-        for row in rows:
-            src = config.ROOT / (row["digest_path"] or "")
-            if not src.exists():
-                continue
-            fname = src.name
-            (tdir / fname).write_text(src.read_text(encoding="utf-8"), encoding="utf-8")
-            meta = " · ".join(x for x in (row["published"], row["venue"]) if x)
-            line = "- " + _md_link(row["title"], fname)
-            if meta:
-                line += f"  — {meta}"
-            index_lines.append(line)
-        if not rows:
-            index_lines.append("_No digests yet._")
+        index.append(f"## 📄 Papers ({len(rows)})")
+        index.append("")
+        if rows:
+            index.append("| Date | Paper | Venue |")
+            index.append("| --- | --- | --- |")
+            for row in rows:
+                src = config.ROOT / (row["digest_path"] or "")
+                if not src.exists():
+                    continue
+                fname = src.name
+                (tdir / fname).write_text(
+                    beautify_digest(src.read_text(encoding="utf-8")), encoding="utf-8")
+                date = row["published"] or "—"
+                venue = _esc(row["venue"] or "—")
+                link = _md_link(_esc(row["title"]), fname)
+                index.append(f"| {date} | {link} | {venue} |")
+        else:
+            index.append("_No digests yet._")
 
         index_name = f"_Index - {folder}.md"
-        (tdir / index_name).write_text("\n".join(index_lines) + "\n", encoding="utf-8")
-        home.append("- " + _md_link(topic.name, f"{folder}/{index_name}")
-                    + f"  ({len(rows)} papers)")
+        (tdir / index_name).write_text("\n".join(index) + "\n", encoding="utf-8")
+        home_rows.append((topic.name, len(rows), has_trend,
+                          f"{folder}/{index_name}", f"{folder}/{trend_name}"))
 
+    home = [
+        "---", "title: Paper Digest", "cssclasses: [paper-home]", "---",
+        "# 📚 Paper Digest", "",
+        f"> [!note] Daily research radar — {total_papers} papers across {len(cfg.topics)} topics",
+        f"> _Last updated: {today}._", "",
+        "## Topics", "",
+        "| Topic | Papers | Trend |",
+        "| --- | --- | --- |",
+    ]
+    for name, n, has_trend, idx_path, trend_path in home_rows:
+        trend_cell = _md_link("📈 trend", trend_path) if has_trend else "—"
+        home.append(f"| {_md_link(_esc(name), idx_path)} | {n} | {trend_cell} |")
     (vault / "Home.md").write_text("\n".join(home) + "\n", encoding="utf-8")
-    log.info("obsidian vault synced: %s", vault)
+    log.info("obsidian vault synced (beautified): %s", vault)
 
 
 def publish(conn, cfg: Config, deploy: bool = True) -> None:

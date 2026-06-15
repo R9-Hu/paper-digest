@@ -106,9 +106,11 @@ def fetch_topic(conn, cfg: Config, topic: Topic, dry_run: bool = False,
             continue
         rel = dest.relative_to(config.ROOT).as_posix()
         state.record_fetched(conn, p, topic.slug, rel)
+        conn.commit()  # make each download durable/visible immediately
         downloaded.append(p)
         log.info("[%s] saved: %s", topic.slug, dest.name)
 
     state.set_last_run(conn, topic.slug, len(downloaded))
+    conn.commit()
     log.info("[%s] downloaded %d new papers", topic.slug, len(downloaded))
     return {"candidates": len(candidates), "new": fresh, "downloaded": downloaded}

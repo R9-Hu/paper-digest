@@ -48,9 +48,10 @@ CREATE TABLE IF NOT EXISTS topic_state (
 def connect(db_path: Path | str = None):
     db_path = Path(db_path) if db_path else config.DB_PATH
     db_path.parent.mkdir(parents=True, exist_ok=True)
-    conn = sqlite3.connect(db_path)
+    conn = sqlite3.connect(db_path, timeout=30)
     conn.row_factory = sqlite3.Row
     try:
+        conn.execute("PRAGMA busy_timeout=30000")  # tolerate concurrent runs
         conn.executescript(SCHEMA)
         yield conn
         conn.commit()

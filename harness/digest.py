@@ -150,5 +150,6 @@ def digest_topic(conn, cfg: Config, topic: Topic) -> int:
     for row in pending:
         if digest_paper(conn, cfg, topic, row):
             done += 1
+        conn.commit()  # persist each digest (or failure) as it completes
     log.info("[%s] digested %d/%d", topic.slug, done, len(pending))
     return done

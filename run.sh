@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+# Daily entry point for the paper digest meta-harness (invoked by cron at 08:00).
+# Runs the full pipeline: fetch -> digest -> trends -> publish.
+set -euo pipefail
+
+PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+cd "$PROJECT_DIR"
+
+# Ensure CLIs used by sub-stages are on PATH under cron's minimal env.
+export PATH="$HOME/.nvm/versions/node/v20.19.6/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
+
+mkdir -p logs
+echo "=== $(date -Iseconds) starting paper digest ==="
+exec ./.venv/bin/python -m harness.orchestrate "$@"

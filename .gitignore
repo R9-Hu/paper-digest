@@ -1,0 +1,9 @@
+.venv/
+__pycache__/
+*.pyc
+paper/
+state/text/
+state/*.db
+logs/
+site/site/
+.DS_Store

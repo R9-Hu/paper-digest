@@ -1,0 +1,45 @@
+# Paper Digest Meta-Harness — control surface.
+# Edit this file to track different topics / change how far back the search reaches.
+# Add a topic = append a block under `topics`. Change reach = edit `earliest_date`.
+
+global:
+  obsidian_vault: /home/renjiu/Obsidian/PaperDigest
+  github_repo: R9-Hu/paper-digest
+  digest_model: claude-sonnet-4-6      # cheap & good for per-paper summarization
+  trend_model: claude-opus-4-8         # deeper reasoning for trend synthesis
+  max_papers_per_topic_per_run: 30     # safety cap (especially the first backfill)
+  claude_bin: claude                   # path to the Claude Code CLI
+  claude_timeout_sec: 600              # per-call timeout for headless claude -p
+
+topics:
+  - name: "Vision-Language Models"
+    slug: vlm
+    earliest_date: 2025-01-01
+    arxiv_categories: [cs.CV, cs.CL, cs.LG]
+    keywords: ["vision-language", "VLM", "multimodal LLM", "vision language model"]
+    huggingface: true
+    conferences: [CVPR, ICCV, NeurIPS, ICLR]
+
+  - name: "Foundation Models in Medicine"
+    slug: med-foundation
+    earliest_date: 2025-01-01
+    arxiv_categories: [eess.IV, cs.CV, cs.LG]
+    keywords: ["medical foundation model", "clinical LLM", "generalist medical AI", "medical image foundation"]
+    huggingface: true
+    conferences: [MICCAI, CVPR, NeurIPS]
+
+  - name: "Agentic AI / LLM Agents"
+    slug: agentic-ai
+    earliest_date: 2025-01-01
+    arxiv_categories: [cs.AI, cs.CL, cs.LG]
+    keywords: ["LLM agent", "multi-agent", "tool use", "agentic", "autonomous agent"]
+    huggingface: true
+    conferences: [NeurIPS, ICLR, ICML]
+
+  - name: "Harnesses / Meta-Harnesses"
+    slug: harness
+    earliest_date: 2025-01-01
+    arxiv_categories: [cs.AI, cs.CL, cs.SE]
+    keywords: ["agent harness", "agent scaffolding", "agent orchestration", "agent framework", "agentic workflow"]
+    huggingface: true
+    conferences: [NeurIPS, ICLR]

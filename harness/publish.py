@@ -29,25 +29,39 @@ def _emoji(slug: str) -> str:
 
 # Custom theme for the MkDocs Material site (written to docs/stylesheets/extra.css).
 SITE_CSS = """\
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&display=swap');
 :root {
-  --md-primary-fg-color: #2f3e6e;
-  --md-primary-fg-color--light: #4356a0;
-  --md-primary-fg-color--dark: #1e2a52;
-  --md-accent-fg-color: #00a99d;
+  --md-primary-fg-color: #4f46e5;
+  --md-primary-fg-color--light: #6366f1;
+  --md-primary-fg-color--dark: #3730a3;
+  --md-accent-fg-color: #06b6d4;
 }
 [data-md-color-scheme="slate"] {
-  --md-primary-fg-color: #3a4a86;
-  --md-accent-fg-color: #2dd4bf;
-  --md-default-bg-color: #0f1424;
+  --md-primary-fg-color: #6366f1;
+  --md-accent-fg-color: #22d3ee;
+  --md-default-bg-color: #0b1020;
+  --md-default-bg-color--light: #11182f;
 }
-.md-typeset h1, .md-typeset h2 { font-weight: 800; letter-spacing: -.02em; }
-.md-typeset h2 { margin-top: 2rem; padding-bottom: .2rem;
+/* Gradient brand header + tabs */
+.md-header { background: linear-gradient(90deg, #312e81 0%, #4f46e5 55%, #0891b2 100%); }
+.md-tabs { background: rgba(15,18,40,.18); }
+/* Display font + gradient H1 */
+.md-typeset h1, .md-typeset h2, .md-typeset h3 {
+  font-family: "Space Grotesk", var(--md-text-font-family, system-ui), sans-serif;
+  font-weight: 700; letter-spacing: -.02em;
+}
+.md-typeset h1 {
+  background: linear-gradient(90deg, var(--md-primary-fg-color), var(--md-accent-fg-color));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.md-typeset h2 { margin-top: 2rem; padding-bottom: .25rem;
   border-bottom: 2px solid var(--md-default-fg-color--lightest); }
 
 /* Grid cards on the home page — uniform height regardless of title length */
 .md-typeset .grid.cards > ul { align-items: stretch; }
 .md-typeset .grid.cards > ul > li {
   border: 1px solid var(--md-default-fg-color--lightest);
+  border-top: 3px solid var(--md-accent-fg-color);
   border-radius: 14px; padding: 1rem 1.2rem;
   display: flex; flex-direction: column;
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
@@ -310,22 +324,71 @@ def _trend_digest_section(trend_md: str | None, trend_link_md: str | None) -> li
     return out
 
 
-def _site_digest(md: str) -> str:
-    """Website copy of a digest: hoist the body '## Tags' hashtags into front-matter
-    `tags:` (rendered as real chips + a Tags index by the Material tags plugin) and
-    drop the plain-text tag section, which is meaningless on a website."""
-    fm, content = _split_fm(md)
-    head, secs = _sections(content)
-    tags, kept = [], []
+MIN_TAG_FREQ = 3      # a tag needs at least this many papers to be eligible
+MAX_INDEX_TAGS = 60   # ... and only the top-N most common are kept (compact index)
+
+
+def _raw_tags(md: str) -> list[str]:
+    """Hashtags from a digest's '## Tags' section, normalized (lowercase, '-' seps)."""
+    _, secs = _sections(_split_fm(md)[1])
     for title, body in secs:
         if title.lower().startswith("tag"):
-            tags += [t.replace("/", "-") for t in re.findall(r"#([\w/-]+)", body)]
+            return [t.lower().replace("_", "-")
+                    for t in re.findall(r"#([\w/-]+)", body.replace("/", "-"))]
+    return []
+
+
+def build_tag_vocab(conn) -> tuple[dict, set]:
+    """Scan all digests once to build (alias, keep): merge plural→singular when both
+    forms occur, then keep only tags shared by >= MIN_TAG_FREQ papers. Compacts the
+    Tags index from a long tail of one-offs to a reasonable shared vocabulary."""
+    raw = {}
+    for row in conn.execute(
+            "SELECT digest_path FROM papers WHERE digest_status IN ('digested','compacted') "
+            "AND digest_path IS NOT NULL").fetchall():
+        p = config.ROOT / row["digest_path"]
+        if p.exists():
+            for t in set(_raw_tags(p.read_text(encoding="utf-8"))):
+                raw[t] = raw.get(t, 0) + 1
+    # Merge a plural onto its singular only when the singular also exists (safe).
+    present = set(raw)
+    alias = {t: t[:-1] for t in present if t.endswith("s") and t[:-1] in present}
+    counts: dict[str, int] = {}
+    for t, c in raw.items():
+        counts[alias.get(t, t)] = counts.get(alias.get(t, t), 0) + c
+    ranked = sorted(((t, c) for t, c in counts.items() if c >= MIN_TAG_FREQ),
+                    key=lambda kv: (-kv[1], kv[0]))
+    keep = {t for t, _ in ranked[:MAX_INDEX_TAGS]}
+    return alias, keep
+
+
+def _canon_tags(raw: list[str], alias: dict, keep: set) -> list[str]:
+    out = []
+    for t in raw:
+        t = alias.get(t, t)
+        if t in keep and t not in out:
+            out.append(t)
+    return out[:5]
+
+
+def _site_digest(md: str, alias: dict, keep: set) -> str:
+    """Website copy of a digest: hoist the body '## Tags' into canonical front-matter
+    `tags:` (rendered as chips + a compact Tags index by the Material tags plugin) and
+    drop the plain-text tag section."""
+    fm, content = _split_fm(md)
+    head, secs = _sections(content)
+    raw, body_secs = [], []
+    for title, body in secs:
+        if title.lower().startswith("tag"):
+            raw += [t.lower().replace("_", "-")
+                    for t in re.findall(r"#([\w/-]+)", body.replace("/", "-"))]
         else:
-            kept.append((title, body))
+            body_secs.append((title, body))
+    tags = _canon_tags(raw, alias, keep)
     if tags:
-        fm["tags"] = tags[:5]   # cap per-paper tags so chips + the index stay readable
+        fm["tags"] = tags
     parts = [f"---\n{_dump_fm(fm)}\n---", head]
-    for title, body in kept:
+    for title, body in body_secs:
         parts.append(f"## {title}\n\n{body}" if body else f"## {title}")
     return "\n\n".join(parts) + "\n"
 
@@ -372,6 +435,7 @@ def build_site(conn, cfg: Config) -> None:
 
     today = dt.date.today().isoformat()
     nav = [{"Home": "index.md"}, {"Tags": "tags.md"}]
+    tag_alias, tag_keep = build_tag_vocab(conn)   # compact, merged tag vocabulary
     home_cards = []
     grand_total = grand_today = 0
     cur_year = dt.date.today().year
@@ -413,7 +477,8 @@ def build_site(conn, cfg: Config) -> None:
                     i += 1
                 used_slugs.add(pslug)
                 raw = src.read_text(encoding="utf-8")
-                (ydir / "papers" / f"{pslug}.md").write_text(_site_digest(raw), encoding="utf-8")
+                (ydir / "papers" / f"{pslug}.md").write_text(
+                    _site_digest(raw, tag_alias, tag_keep), encoding="utf-8")
                 tldr = (row["tldr"] or "").strip() or _extract_tldr(raw)   # cached TL;DR
                 topic_index[_norm_title(row["title"])] = (row["title"], year, pslug, tldr)
                 if _is_key(row["title"], key_norms):

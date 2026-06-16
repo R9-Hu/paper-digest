@@ -44,10 +44,12 @@ SITE_CSS = """\
 .md-typeset h2 { margin-top: 2rem; padding-bottom: .2rem;
   border-bottom: 2px solid var(--md-default-fg-color--lightest); }
 
-/* Grid cards on the home page */
+/* Grid cards on the home page — uniform height regardless of title length */
+.md-typeset .grid.cards > ul { align-items: stretch; }
 .md-typeset .grid.cards > ul > li {
   border: 1px solid var(--md-default-fg-color--lightest);
   border-radius: 14px; padding: 1rem 1.2rem;
+  display: flex; flex-direction: column;
   transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
 }
 .md-typeset .grid.cards > ul > li:hover {
@@ -55,6 +57,10 @@ SITE_CSS = """\
   box-shadow: 0 10px 26px rgba(0,0,0,.12);
   border-color: var(--md-accent-fg-color);
 }
+/* Reserve two lines for the title so 1- and 2-line cards align identically. */
+.md-typeset .grid.cards > ul > li > :first-child { min-height: 2.7em; margin-bottom: 0; }
+/* Push the button row to the bottom of every card. */
+.md-typeset .grid.cards > ul > li > :last-child { margin-top: auto; padding-top: .4rem; }
 
 /* Tables */
 .md-typeset table:not([class]) {
@@ -83,9 +89,16 @@ SITE_CSS = """\
   font-size: .72rem; border-width: 1.5px;
 }
 .md-typeset .venue {
-  display: inline-block; padding: .05rem .55rem; border-radius: 999px;
-  background: var(--md-accent-fg-color); color: #fff; font-size: .68rem; font-weight: 700;
+  display: inline-block; padding: .1rem .5rem; border-radius: 6px;
+  background: color-mix(in srgb, var(--md-accent-fg-color) 12%, transparent);
+  color: var(--md-accent-fg-color);
+  border: 1px solid color-mix(in srgb, var(--md-accent-fg-color) 30%, transparent);
+  font-size: .7rem; font-weight: 600; white-space: nowrap; letter-spacing: .01em;
 }
+.md-typeset .venue-none { color: var(--md-default-fg-color--lighter); }
+/* Keep Date + Venue columns tidy; let the Paper title take the room. */
+.md-typeset table:not([class]) td:first-child { white-space: nowrap; color: var(--md-default-fg-color--light); font-variant-numeric: tabular-nums; }
+.md-typeset table:not([class]) td:last-child { white-space: nowrap; text-align: right; }
 .md-typeset .new-badge {
   display: inline-block; padding: .05rem .5rem; border-radius: 999px;
   background: #e8590c; color: #fff; font-size: .68rem; font-weight: 700;
@@ -338,7 +351,8 @@ def build_site(conn, cfg: Config) -> None:
                     key_nav.append({row["title"]: f"{topic.slug}/{year}/papers/{pslug}.md"})
                 date = row["published"] or "—"
                 v = row["venue"] or ""
-                venue_cell = f'<span class="venue">{_esc(v)}</span>' if v else "—"
+                venue_cell = (f'<span class="venue">{_esc(v)}</span>' if v
+                              else '<span class="venue-none">—</span>')
                 tr = f"| {date} | [{_esc(row['title'])}](papers/{pslug}.md) | {venue_cell} |"
                 paper_rows.append(tr)
                 if (row["fetched_at"] or "").startswith(today):

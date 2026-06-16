@@ -146,6 +146,28 @@ def digested_for_topic(conn, topic_slug: str) -> list[sqlite3.Row]:
     ).fetchall()
 
 
+def years_for_topic(conn, topic_slug: str) -> list[int]:
+    """Distinct years that have digested papers, newest first."""
+    rows = conn.execute(
+        """SELECT DISTINCT CAST(year AS INTEGER) y FROM papers
+           WHERE topic_slug=? AND digest_status IN ('digested','compacted')
+                 AND year IS NOT NULL
+           ORDER BY y DESC""",
+        (topic_slug,),
+    ).fetchall()
+    return [r["y"] for r in rows]
+
+
+def digested_for_topic_year(conn, topic_slug: str, year: int) -> list[sqlite3.Row]:
+    return conn.execute(
+        """SELECT * FROM papers
+           WHERE topic_slug=? AND CAST(year AS INTEGER)=?
+                 AND digest_status IN ('digested','compacted')
+           ORDER BY published DESC""",
+        (topic_slug, year),
+    ).fetchall()
+
+
 def set_last_run(conn, topic_slug: str, new_count: int) -> None:
     conn.execute(
         """INSERT OR REPLACE INTO topic_state (topic_slug, last_run, last_run_new)

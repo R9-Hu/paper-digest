@@ -79,6 +79,15 @@ Last updated: 2026-06-15 (✅ COMPLETE — end-to-end verified)
   palette, styled tables + venue badges via generated `extra.css`. Obsidian: enabled
   `paper-digest.css` snippet (title banners, styled tables, accent callouts, pill tags).
 
+- ✅ **Per-year website structure** — left nav is now Topic (tab) → **Year**
+  (super-group) → {Trend analysis, Today's/Yearly Digest, Papers}. Trends are
+  generated **per year** (`trends/<slug>/<year>.md`, regenerated only when a
+  year's count changes). Passed years show a **Yearly Digest** (year-in-review:
+  overview + timeline + key papers, assembled from the year trend) instead of
+  Today's Digest; current year keeps Today's Digest. Obsidian mirrors this with
+  per-year subfolders. (Code ready; goes live after the 2025 backfill + per-year
+  trend generation.)
+
 ## Blockers
 - _none yet_
 

@@ -202,6 +202,27 @@ def _timeline_section(trend_md: str | None, rows) -> list[str]:
     return ["## 🕒 Timeline", ""] + (bullets or ["_Not enough data yet._"]) + [""]
 
 
+def _yearly_digest_lines(topic_name: str, year: int, trend_md: str | None,
+                         n_papers: int) -> list[str]:
+    """A compact 'year in review' for a passed year, assembled from that year's
+    trend report (overview + timeline + key papers) — no extra LLM call."""
+    lines = [f"# 🗓️ {year} in Review — {topic_name}", "",
+             f"*Compact conclusion of {n_papers} digested {year} papers.*", ""]
+    overview = _first_paragraph(_extract_section(trend_md, "Overview") or "") if trend_md else ""
+    if overview:
+        lines += ["> [!abstract] The year in one paragraph", _quote(overview), ""]
+    timeline = _extract_section(trend_md, "Timeline") if trend_md else None
+    if timeline:
+        lines += ["## 🕒 Timeline", "", timeline, ""]
+    key = _extract_section(trend_md, "Key papers") if trend_md else None
+    if key:
+        lines += ["## 📌 Key papers", "", key, ""]
+    if not (overview or timeline or key):
+        lines.append("_No trend analysis available for this year yet._")
+    lines += ["", "➡️ **[Read the full trend analysis](trend.md)**"]
+    return lines
+
+
 def _today_page_lines(topic_name: str, day: str, table_rows: list[str]) -> list[str]:
     """Body for a topic's dedicated 'Today's Digest' page — papers/posts collected
     on `day` (by fetched_at)."""
@@ -250,86 +271,109 @@ def build_site(conn, cfg: Config) -> None:
         "",
     ]
 
+    cur_year = dt.date.today().year
     for topic in cfg.topics:
-        rows = _topic_rows(conn, topic.slug)
+        years = state.years_for_topic(conn, topic.slug)  # newest first
         tdir = docs / topic.slug
-        (tdir / "papers").mkdir(parents=True, exist_ok=True)
+        tdir.mkdir(parents=True, exist_ok=True)
 
-        # Trend file (raw) — source for the timeline + trend-digest sections.
-        trend_src = config.TREND_DIR / f"{topic.slug}.md"
-        has_trend = trend_src.exists()
-        trend_md = trend_src.read_text(encoding="utf-8") if has_trend else None
-        if has_trend:
-            (tdir / "trend.md").write_text(trend_md, encoding="utf-8")
+        topic_total = topic_today = 0
+        year_nav = []        # nav groups, one per year (the left super-titles)
+        year_index_lines = []
 
-        # Per-paper pages (slugified filenames for clean URLs) + table rows.
-        paper_nav = []
-        paper_rows = []
-        today_rows = []
-        used_slugs: set[str] = set()
-        for row in rows:
-            src = config.ROOT / (row["digest_path"] or "")
-            if not src.exists():
-                continue
-            pslug = naming.slugify(row["title"])
-            base = pslug
-            i = 2
-            while pslug in used_slugs:
-                pslug = f"{base}-{i}"
-                i += 1
-            used_slugs.add(pslug)
-            (tdir / "papers" / f"{pslug}.md").write_text(
-                src.read_text(encoding="utf-8"), encoding="utf-8"
-            )
-            paper_nav.append({row["title"]: f"{topic.slug}/papers/{pslug}.md"})
-            date = row["published"] or "—"
-            v = row["venue"] or ""
-            venue_cell = f'<span class="venue">{_esc(v)}</span>' if v else "—"
-            tr = f"| {date} | [{_esc(row['title'])}](papers/{pslug}.md) | {venue_cell} |"
-            paper_rows.append(tr)
-            if (row["fetched_at"] or "").startswith(today):
-                today_rows.append(tr)
+        for year in years:
+            rows = state.digested_for_topic_year(conn, topic.slug, year)
+            topic_total += len(rows)
+            ydir = tdir / str(year)
+            (ydir / "papers").mkdir(parents=True, exist_ok=True)
 
-        # Dedicated "Today's Digest" page (sibling to Trend analysis).
-        (tdir / "today.md").write_text(
-            "\n".join(_today_page_lines(topic.name, today, today_rows)) + "\n",
-            encoding="utf-8")
+            tr_src = config.TREND_DIR / topic.slug / f"{year}.md"
+            has_trend = tr_src.exists()
+            trend_md = tr_src.read_text(encoding="utf-8") if has_trend else None
+            if has_trend:
+                (ydir / "trend.md").write_text(trend_md, encoding="utf-8")
 
-        # Topic overview page: intro -> today link -> timeline -> trend digest -> papers.
-        trend_link = "[Read the full trend analysis](trend.md)" if has_trend else None
-        page = [f"# {topic.name}", ""]
-        page += _intro_section(topic)
-        page += [f"🆕 **[Today's Digest](today.md)** — {len(today_rows)} new today", ""]
-        page += _timeline_section(trend_md, rows)
-        page += _trend_digest_section(trend_md, trend_link)
-        page.append(f"## 📄 Papers ({len(paper_rows)})")
-        page.append("")
-        if paper_rows:
-            page += ["| Date | Paper | Venue |", "| --- | --- | --- |"] + paper_rows
-        else:
-            page.append("_No digests yet._")
-        (tdir / "index.md").write_text("\n".join(page) + "\n", encoding="utf-8")
+            paper_nav, paper_rows, today_rows = [], [], []
+            used_slugs: set[str] = set()
+            for row in rows:
+                src = config.ROOT / (row["digest_path"] or "")
+                if not src.exists():
+                    continue
+                pslug = naming.slugify(row["title"])
+                base, i = pslug, 2
+                while pslug in used_slugs:
+                    pslug = f"{base}-{i}"
+                    i += 1
+                used_slugs.add(pslug)
+                (ydir / "papers" / f"{pslug}.md").write_text(
+                    src.read_text(encoding="utf-8"), encoding="utf-8")
+                paper_nav.append({row["title"]: f"{topic.slug}/{year}/papers/{pslug}.md"})
+                date = row["published"] or "—"
+                v = row["venue"] or ""
+                venue_cell = f'<span class="venue">{_esc(v)}</span>' if v else "—"
+                tr = f"| {date} | [{_esc(row['title'])}](papers/{pslug}.md) | {venue_cell} |"
+                paper_rows.append(tr)
+                if (row["fetched_at"] or "").startswith(today):
+                    today_rows.append(tr)
 
-        # Nav: bare index path first => clickable section header (navigation.indexes).
-        topic_children = [f"{topic.slug}/index.md"]
-        if has_trend:
-            topic_children.append({"Trend analysis": f"{topic.slug}/trend.md"})
-        topic_children.append({"Today's Digest": f"{topic.slug}/today.md"})
-        if paper_nav:
-            topic_children.append({"Papers": paper_nav})
-        nav.append({topic.name: topic_children})
+            is_current = year == cur_year
+            if is_current:
+                (ydir / "today.md").write_text(
+                    "\n".join(_today_page_lines(f"{topic.name} ({year})", today, today_rows)) + "\n",
+                    encoding="utf-8")
+                digest_nav = {"Today's Digest": f"{topic.slug}/{year}/today.md"}
+                digest_link = f"🆕 **[Today's Digest](today.md)** — {len(today_rows)} new today"
+                topic_today += len(today_rows)
+            else:
+                (ydir / "yearly.md").write_text(
+                    "\n".join(_yearly_digest_lines(topic.name, year, trend_md, len(rows))) + "\n",
+                    encoding="utf-8")
+                digest_nav = {"Yearly Digest": f"{topic.slug}/{year}/yearly.md"}
+                digest_link = f"🗓️ **[{year} in Review](yearly.md)**"
 
-        # Home grid card per topic.
+            # Year overview page.
+            trend_link = "[Read the full trend analysis](trend.md)" if has_trend else None
+            page = [f"# {topic.name} — {year}", "", digest_link, ""]
+            page += _timeline_section(trend_md, rows)
+            page += _trend_digest_section(trend_md, trend_link)
+            page.append(f"## 📄 Papers ({len(paper_rows)})")
+            page.append("")
+            page += (["| Date | Paper | Venue |", "| --- | --- | --- |"] + paper_rows
+                     if paper_rows else ["_No digests yet._"])
+            (ydir / "index.md").write_text("\n".join(page) + "\n", encoding="utf-8")
+
+            # Year nav group (the super-title) → Trend analysis / digest / Papers.
+            children = [f"{topic.slug}/{year}/index.md"]
+            if has_trend:
+                children.append({"Trend analysis": f"{topic.slug}/{year}/trend.md"})
+            children.append(digest_nav)
+            if paper_nav:
+                children.append({"Papers": paper_nav})
+            year_nav.append({str(year): children})
+
+            badge = f"{len(today_rows)} new today" if is_current else "year in review"
+            year_index_lines.append(
+                f"- **[{year}]({year}/index.md)** — {len(rows)} papers · {badge}")
+
+        # Topic landing: intro + by-year index.
+        landing = [f"# {topic.name}", ""] + _intro_section(topic)
+        landing += ["## 🗓️ By year", ""] + (year_index_lines or ["_No papers yet._"])
+        (tdir / "index.md").write_text("\n".join(landing) + "\n", encoding="utf-8")
+
+        # Topic nav: overview + per-year groups.
+        nav.append({topic.name: [f"{topic.slug}/index.md"] + year_nav})
+
+        # Home grid card.
         links = [f"[Overview]({topic.slug}/index.md){{ .md-button }}"]
-        if has_trend:
-            links.append(f"[Trend]({topic.slug}/trend.md){{ .md-button }}")
-        links.append(f"[Today]({topic.slug}/today.md){{ .md-button }}")
+        if years:
+            links.append(f"[{years[0]}]({topic.slug}/{years[0]}/index.md){{ .md-button }}")
         home_lines += [
             f"-   {_emoji(topic.slug)} **[{topic.name}]({topic.slug}/index.md)**",
             "",
             "    ---",
             "",
-            f"    **{len(paper_rows)}** papers · <span class=\"new-badge\">{len(today_rows)} new today</span>",
+            f"    **{topic_total}** papers · <span class=\"new-badge\">{topic_today} new today</span>"
+            f" · {len(years)} year(s)",
             "",
             "    " + " ".join(links),
             "",
@@ -566,83 +610,102 @@ def sync_obsidian(conn, cfg: Config) -> None:
     appearance.write_text(json.dumps(data, indent=2), encoding="utf-8")
 
     today = dt.date.today().isoformat()
-    total_papers = 0
-    home_rows = []
-
-    for topic in cfg.topics:
-        rows = _topic_rows(conn, topic.slug)
-        total_papers += len(rows)
-        folder = naming.sanitize_title(topic.name)  # '/' etc. are illegal in paths
-        tdir = vault / folder
-        tdir.mkdir(parents=True, exist_ok=True)
-
-        trend_src = config.TREND_DIR / f"{topic.slug}.md"
-        trend_name = f"_Trend - {folder}.md"
-        has_trend = trend_src.exists()
-        trend_md = trend_src.read_text(encoding="utf-8") if has_trend else None
-        if has_trend:
-            (tdir / trend_name).write_text(beautify_trend(trend_md), encoding="utf-8")
-
-        # Paper notes + table rows (full + today's).
-        paper_table = []
-        today_rows = []
-        for row in rows:
-            src = config.ROOT / (row["digest_path"] or "")
-            if not src.exists():
-                continue
-            fname = src.name
-            (tdir / fname).write_text(
-                beautify_digest(src.read_text(encoding="utf-8")), encoding="utf-8")
-            date = row["published"] or "—"
-            venue = _esc(row["venue"] or "—")
-            tr = f"| {date} | {_md_link(_esc(row['title']), fname)} | {venue} |"
-            paper_table.append(tr)
-            if (row["fetched_at"] or "").startswith(today):
-                today_rows.append(tr)
-
-        # Dedicated "Today's Digest" note (sibling to the trend note).
-        today_name = f"_Today - {folder}.md"
-        today_md = ["---", f"title: {json.dumps('Today — ' + topic.name)}",
-                    "cssclasses: [paper-today]", "---"] + \
-            _today_page_lines(topic.name, today, today_rows)
-        (tdir / today_name).write_text("\n".join(today_md) + "\n", encoding="utf-8")
-
-        # Overview note: intro -> today link -> timeline -> trend digest -> papers.
-        index = [
-            "---", f"title: {json.dumps(topic.name)}", "cssclasses: [paper-index]", "---",
-            f"# {topic.name}", "",
-        ]
-        index += _intro_section(topic)
-        index += ["🆕 " + _md_link(f"Today's Digest ({len(today_rows)} new)", today_name), ""]
-        index += _timeline_section(trend_md, rows)
-        trend_link = _md_link("Read the full trend analysis", trend_name) if has_trend else None
-        index += _trend_digest_section(trend_md, trend_link)
-
-        index.append(f"## 📄 Papers ({len(paper_table)})")
-        index.append("")
-        index += (["| Date | Paper | Venue |", "| --- | --- | --- |"] + paper_table) \
-            if paper_table else ["_No digests yet._"]
-
-        index_name = f"_Index - {folder}.md"
-        (tdir / index_name).write_text("\n".join(index) + "\n", encoding="utf-8")
-        home_rows.append((topic.name, len(paper_table), has_trend, len(today_rows),
-                          f"{folder}/{index_name}", f"{folder}/{trend_name}",
-                          f"{folder}/{today_name}"))
-
+    cur_year = dt.date.today().year
     home = [
         "---", "title: Paper Digest", "cssclasses: [paper-home]", "---",
         "# 📚 Paper Digest", "",
-        f"> [!note] Daily research radar — {total_papers} papers across {len(cfg.topics)} topics",
+        f"> [!note] Daily research radar across {len(cfg.topics)} topics",
         f"> _Last updated: {today}._", "",
         "## Topics", "",
     ]
-    # Indented tree — nesting shows the level relations.
-    for name, n, has_trend, n_today, idx_path, trend_path, today_path in home_rows:
-        home.append(f"- **{_md_link(name, idx_path)}** — {n} papers")
-        if has_trend:
-            home.append("    - " + _md_link("📈 Trend analysis", trend_path))
-        home.append("    - " + _md_link(f"🆕 Today's Digest ({n_today})", today_path))
-        home.append("    - " + _md_link("📄 Papers & overview", idx_path))
+
+    for topic in cfg.topics:
+        folder = naming.sanitize_title(topic.name)  # '/' etc. are illegal in paths
+        tdir = vault / folder
+        tdir.mkdir(parents=True, exist_ok=True)
+        # Remove the previous flat layout (notes now live in per-year subfolders).
+        for old in tdir.glob("*.md"):
+            old.unlink()
+        years = state.years_for_topic(conn, topic.slug)
+        topic_total = topic_today = 0
+        year_links = []  # (year, n, rel_from_topic)
+
+        for year in years:
+            rows = state.digested_for_topic_year(conn, topic.slug, year)
+            topic_total += len(rows)
+            ydir = tdir / str(year)
+            ydir.mkdir(parents=True, exist_ok=True)
+
+            tr_src = config.TREND_DIR / topic.slug / f"{year}.md"
+            has_trend = tr_src.exists()
+            trend_md = tr_src.read_text(encoding="utf-8") if has_trend else None
+            trend_name = f"_Trend {year}.md"
+            if has_trend:
+                (ydir / trend_name).write_text(beautify_trend(trend_md), encoding="utf-8")
+
+            paper_table, today_rows = [], []
+            for row in rows:
+                src = config.ROOT / (row["digest_path"] or "")
+                if not src.exists():
+                    continue
+                fname = src.name
+                (ydir / fname).write_text(
+                    beautify_digest(src.read_text(encoding="utf-8")), encoding="utf-8")
+                date = row["published"] or "—"
+                venue = _esc(row["venue"] or "—")
+                tr = f"| {date} | {_md_link(_esc(row['title']), fname)} | {venue} |"
+                paper_table.append(tr)
+                if (row["fetched_at"] or "").startswith(today):
+                    today_rows.append(tr)
+
+            # Digest note: Today (current year) or Year-in-Review (passed year).
+            if year == cur_year:
+                topic_today += len(today_rows)
+                dig_name = f"_Today {year}.md"
+                dig_md = (["---", f"title: {json.dumps(f'Today — {topic.name} ({year})')}",
+                           "cssclasses: [paper-today]", "---"]
+                          + _today_page_lines(f"{topic.name} ({year})", today, today_rows))
+                dig_label = f"🆕 Today's Digest ({len(today_rows)} new)"
+            else:
+                dig_name = f"_{year} in Review.md"
+                dig_md = (["---", f"title: {json.dumps(f'{year} in Review — {topic.name}')}",
+                           "cssclasses: [paper-today]", "---"]
+                          + _yearly_digest_lines(topic.name, year, trend_md, len(rows)))
+                dig_label = f"🗓️ {year} in Review"
+            (ydir / dig_name).write_text("\n".join(dig_md) + "\n", encoding="utf-8")
+
+            # Year index note.
+            yindex = ["---", f"title: {json.dumps(f'{topic.name} ({year})')}",
+                      "cssclasses: [paper-index]", "---", f"# {topic.name} — {year}", "",
+                      "➡️ " + _md_link(dig_label, dig_name), ""]
+            yindex += _timeline_section(trend_md, rows)
+            trend_link = _md_link("Read the full trend analysis", trend_name) if has_trend else None
+            yindex += _trend_digest_section(trend_md, trend_link)
+            yindex.append(f"## 📄 Papers ({len(paper_table)})")
+            yindex.append("")
+            yindex += (["| Date | Paper | Venue |", "| --- | --- | --- |"] + paper_table
+                       if paper_table else ["_No digests yet._"])
+            yindex_name = f"_Index {year}.md"
+            (ydir / yindex_name).write_text("\n".join(yindex) + "\n", encoding="utf-8")
+            year_links.append((year, len(rows), f"{year}/{yindex_name}"))
+
+        # Topic landing: intro + by-year list.
+        tindex = (["---", f"title: {json.dumps(topic.name)}", "cssclasses: [paper-index]",
+                   "---", f"# {topic.name}", ""] + _intro_section(topic)
+                  + ["## 🗓️ By year", ""])
+        for (year, n, rel) in year_links:
+            tindex.append("- " + _md_link(f"{year} — {n} papers", rel))
+        if not year_links:
+            tindex.append("_No papers yet._")
+        tindex_name = f"_Index - {folder}.md"
+        (tdir / tindex_name).write_text("\n".join(tindex) + "\n", encoding="utf-8")
+
+        # Home entry: topic → year sub-links.
+        home.append(f"- **{_md_link(topic.name, f'{folder}/{tindex_name}')}** — "
+                    f"{topic_total} papers · {topic_today} new today")
+        for (year, n, rel) in year_links:
+            home.append("    - " + _md_link(f"{year} ({n})", f"{folder}/{rel}"))
+
     (vault / "Home.md").write_text("\n".join(home) + "\n", encoding="utf-8")
     log.info("obsidian vault synced (beautified): %s", vault)
 

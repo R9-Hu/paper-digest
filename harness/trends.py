@@ -74,11 +74,9 @@ def _strip_front_matter(md: str) -> str:
     return md.strip()
 
 
-def _build_corpus(conn, topic: Topic) -> tuple[str, int]:
-    rows = state.digested_for_topic(conn, topic.slug)[:MAX_PAPERS]
-    chunks: list[str] = []
-    total = 0
-    used = 0
+def _build_corpus_year(conn, topic: Topic, year: int) -> tuple[str, int]:
+    rows = state.digested_for_topic_year(conn, topic.slug, year)[:MAX_PAPERS]
+    chunks, total, used = [], 0, 0
     for row in rows:
         path = config.ROOT / (row["digest_path"] or "")
         if not path.exists():
@@ -97,32 +95,57 @@ def _build_corpus(conn, topic: Topic) -> tuple[str, int]:
     return "\n".join(chunks), used
 
 
-def analyze_topic(conn, cfg: Config, topic: Topic) -> bool:
-    corpus, n = _build_corpus(conn, topic)
-    if n == 0:
-        log.info("[%s] no digests yet; skipping trend analysis", topic.slug)
-        return False
+def trend_path(topic: Topic, year: int):
+    return config.TREND_DIR / topic.slug / f"{year}.md"
 
-    prompt = PROMPT_TMPL.format(topic=topic.name, n=n, corpus=corpus)
+
+def analyze_topic_year(conn, cfg: Config, topic: Topic, year: int) -> bool:
+    corpus, n = _build_corpus_year(conn, topic, year)
+    if n == 0:
+        return False
+    prompt = PROMPT_TMPL.format(topic=f"{topic.name} ({year})", n=n, corpus=corpus)
     try:
         body = llm.strip_code_fence(llm.run_claude(prompt, cfg.trend_model, cfg, system=SYSTEM))
     except llm.LLMError as e:
-        log.warning("[%s] trend analysis failed: %s", topic.slug, e)
+        log.warning("[%s %d] trend analysis failed: %s", topic.slug, year, e)
         return False
 
-    config.TREND_DIR.mkdir(parents=True, exist_ok=True)
-    out_path = config.TREND_DIR / f"{topic.slug}.md"
+    out_path = trend_path(topic, year)
+    out_path.parent.mkdir(parents=True, exist_ok=True)
     today = dt.date.today().isoformat()
     fm = (
         "---\n"
-        f"title: \"Trend Analysis: {topic.name}\"\n"
+        f"title: \"Trend Analysis: {topic.name} ({year})\"\n"
         f"topic: {topic.name}\n"
         f"topic_slug: {topic.slug}\n"
+        f"year: {year}\n"
         f"generated: {today}\n"
         f"papers_analyzed: {n}\n"
         "---\n"
     )
-    note = f"{fm}\n# Trend Analysis — {topic.name}\n\n*Generated {today} from {n} digested papers.*\n\n{body}\n"
+    note = (f"{fm}\n# Trend Analysis — {topic.name} ({year})\n\n"
+            f"*Generated {today} from {n} digested {year} papers.*\n\n{body}\n")
     out_path.write_text(note, encoding="utf-8")
-    log.info("[%s] trend report written (%d papers)", topic.slug, n)
+    log.info("[%s %d] trend report written (%d papers)", topic.slug, year, n)
     return True
+
+
+def analyze_topic(conn, cfg: Config, topic: Topic) -> bool:
+    """Generate per-year trend reports, regenerating a year only when its digested
+    paper count has changed since the last report (saves repeated LLM calls)."""
+    years = state.years_for_topic(conn, topic.slug)
+    if not years:
+        log.info("[%s] no digests yet; skipping trend analysis", topic.slug)
+        return False
+    any_done = False
+    for year in years:
+        n = len(state.digested_for_topic_year(conn, topic.slug, year))
+        key = f"trendN:{topic.slug}:{year}"
+        prev = state.meta_get(conn, key)
+        if prev == str(n) and trend_path(topic, year).exists():
+            continue  # unchanged since last report
+        if analyze_topic_year(conn, cfg, topic, year):
+            state.meta_set(conn, key, str(n))
+            conn.commit()
+            any_done = True
+    return any_done

@@ -60,6 +60,15 @@ CREATE TABLE IF NOT EXISTS shared_digest (
     tldr         TEXT,
     created_at   TEXT
 );
+
+-- Citation/impact cache (Semantic Scholar). Keyed by canonical_id (topic-agnostic);
+-- refreshed on a TTL so high-impact ranking doesn't re-query the API every run.
+CREATE TABLE IF NOT EXISTS impact (
+    canonical_id TEXT PRIMARY KEY,
+    citations    INTEGER,
+    influential  INTEGER,
+    fetched_ts   TEXT
+);
 """
 
 

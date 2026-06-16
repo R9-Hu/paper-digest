@@ -96,11 +96,16 @@ def main(argv=None) -> int:
             if args.compact_months is not None:
                 year = args.compact_months
                 today = dt.date.today()
-                last_month = 12 if year < today.year else today.month - 1
-                log.info("=== monthly compaction for %d (months 1-%d) ===", year, last_month)
-                for m in range(1, last_month + 1):
+                if year < today.year:
+                    months = list(range(1, 13))
+                else:
+                    # Fill THIS month first, then the previous months (newest-first).
+                    months = [today.month] + list(range(today.month - 1, 0, -1))
+                log.info("=== monthly compaction for %d (months %s, this-month first) ===",
+                         year, months)
+                for m in months:
                     if not cont():
-                        log.info("digest window closed — stopping at month %02d", m)
+                        log.info("digest window closed — stopping before month %02d", m)
                         break
                     for topic in topics:
                         if not cont():

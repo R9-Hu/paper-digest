@@ -7,16 +7,16 @@ Policy:
     (default 400) papers per topic.
 
 For a window we:
-  1. Re-query the sources for that window and **pull in any top-tier-conference
-     papers we missed** (the daily 30/topic cap can exclude good papers), then
-     digest them (LLM — runs only inside the digest window).
-  2. Rank the window's digested papers (top-tier venue first, then recency),
+  1. Re-query the sources for that window and **pull in the highest-impact papers
+     we're missing** (the small daily cap excludes good papers), filling the window
+     up to `keep_n`, then digest them (LLM — runs only inside the digest window).
+  2. Rank the window's digested papers by the same high-impact standard,
      **keep the top N** — storage-compacted (digest trimmed to essentials, PDF
      deleted) — and **drop the rest** (digest + PDF removed; row marked `dropped`
      so it no longer appears, and won't be re-fetched).
 
-Ranking uses the heuristic proxy for "highly cited" (top-tier venue + recency);
-no external citation API, per project config.
+Ranking uses high citations (Semantic Scholar, recent-5yr proxy) and top-conference
+awards/acceptance, then recency — see fetch.impact_score().
 
 Run manually:  --compact-month YYYY-MM   |   --compact-year YYYY
 Scheduled: the daily pipeline calls run_scheduled() (fires on the 1st, in-window).
@@ -28,6 +28,7 @@ import logging
 import re
 
 from . import config, digest, fetch, state
+from .sources import impact
 from .config import Config, Topic
 
 log = logging.getLogger("harness.compact")
@@ -97,9 +98,15 @@ def _window_rows(conn, slug: str, start: dt.date, end: dt.date):
     ).fetchall()
 
 
-def _rank_key(row):
-    # Top-tier-venue papers first (proxy for high-impact), then most recent.
-    return (1 if row["venue"] else 0, row["published"] or "")
+def _row_score(row, impacts: dict, year: int) -> float:
+    """High-impact score for an already-stored paper (no `comment` available)."""
+    c, i = impacts.get(row["canonical_id"], (0, 0))
+    pub = None
+    try:
+        pub = dt.date.fromisoformat(row["published"]) if row["published"] else None
+    except (ValueError, TypeError):
+        pub = None
+    return fetch.impact_score(row["venue"], "", c, i, pub, year)
 
 
 def compact_window(conn, cfg: Config, topic: Topic, start: dt.date, end: dt.date,
@@ -113,24 +120,29 @@ def compact_window(conn, cfg: Config, topic: Topic, start: dt.date, end: dt.date
     slug = topic.slug
     added = 0
 
-    # (1) Pull in missed top-tier-conference papers from this window, then digest them.
+    # (1) Fill the window up to keep_n with the highest-impact papers we're missing,
+    #     then digest them. (Citations are ~0 for current-year papers, so award/venue
+    #     leads there; older windows are led by citations.)
     if refetch and not dry_run and (should_continue is None or should_continue()):
         try:
             pool = fetch.gather_candidates(topic, start, keep_n * 3, until=end)
         except Exception as e:  # noqa: BLE001
             log.warning("[%s] compact refetch failed: %s", slug, e)
             pool = []
-        missed = [p for p in pool
-                  if p.venue and state.get_version(conn, p.canonical_id, slug) is None]
+        impact.annotate(pool, conn)
+        have = len(_window_rows(conn, slug, start, end))
+        missed = [p for p in pool if state.get_version(conn, p.canonical_id, slug) is None]
         missed.sort(key=lambda p: fetch._score(p, start.year), reverse=True)
-        if missed:
-            added = len(fetch._download_selected(conn, cfg, topic, missed[:keep_n]))
+        need = max(0, keep_n - have)
+        if missed and need:
+            added = len(fetch._download_selected(conn, cfg, topic, missed[:need]))
         if added:
             digest.digest_topic(conn, cfg, topic, should_continue=should_continue)
 
-    # (2) Rank the window, keep top N (storage-compact), drop the rest.
+    # (2) Rank the window by the same high-impact standard, keep top N, drop the rest.
     rows = _window_rows(conn, slug, start, end)
-    rows = sorted(rows, key=_rank_key, reverse=True)
+    impacts = impact.lookup(conn, [r["canonical_id"] for r in rows])
+    rows = sorted(rows, key=lambda r: _row_score(r, impacts, start.year), reverse=True)
     keep, drop = rows[:keep_n], rows[keep_n:]
     result = {"in_window": len(rows), "keep": len(keep), "drop": len(drop), "added": added}
     if dry_run:

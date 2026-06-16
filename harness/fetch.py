@@ -12,6 +12,8 @@ from __future__ import annotations
 
 import datetime as dt
 import logging
+import math
+import re
 import time
 
 import requests
@@ -19,7 +21,7 @@ import requests
 from . import config, naming, state
 from .config import Config, Topic
 from .models import Paper
-from .sources import arxiv_source, conf_source, hf_source
+from .sources import arxiv_source, conf_source, hf_source, impact
 
 log = logging.getLogger("harness.fetch")
 
@@ -64,16 +66,43 @@ def gather_candidates(topic: Topic, earliest: dt.date, cap: int,
     return _dedup(candidates)
 
 
-def _score(p: Paper, year: int) -> float:
-    """Heuristic 'quality' proxy (no external citation data): top-tier-conference
-    acceptance dominates, then HF upvotes, then recency within the year."""
+# Award/selectivity signals in the arXiv `comment` field (e.g. "Accepted to CVPR
+# 2025 (Oral)", "Best Paper Award"). Higher tiers => stronger high-impact signal.
+_AWARD_RE = re.compile(
+    r"\b(best paper|outstanding paper|award|oral|spotlight|highlight|notable)\b", re.IGNORECASE)
+_AWARD_WEIGHT = {"best paper": 2500, "outstanding paper": 2500, "award": 2000,
+                 "oral": 800, "spotlight": 500, "highlight": 400, "notable": 400}
+
+
+def _award_bonus(comment: str) -> float:
+    best = 0.0
+    for m in _AWARD_RE.finditer(comment or ""):
+        best = max(best, _AWARD_WEIGHT.get(m.group(1).lower(), 0))
+    return best
+
+
+def impact_score(venue: str, comment: str, citations: float, influential: float,
+                 published, year: int) -> float:
+    """High-impact ranking, shared by daily selection and monthly compaction.
+
+    High citations (recent-5yr proxy) and top-conference awards dominate; venue
+    acceptance, then recency within the year, break ties. Citations are 0 for
+    brand-new papers, so for the current year the award/venue signal leads."""
     s = 0.0
-    if p.venue:
+    if venue:
         s += 1000.0
-    s += min(float(p.extra.get("upvotes") or 0), 500.0)
-    if p.published:
-        s += (p.published - dt.date(year, 1, 1)).days * 0.1
+    s += _award_bonus(comment)
+    s += math.log1p(max(0.0, float(citations or 0))) * 150.0   # diminishing returns
+    s += float(influential or 0) * 60.0                        # influential cites weigh more
+    if published:
+        s += (published - dt.date(year, 1, 1)).days * 0.1
     return s
+
+
+def _score(p: Paper, year: int) -> float:
+    return impact_score(p.venue, p.extra.get("comment", ""),
+                        p.extra.get("citations", 0), p.extra.get("influential", 0),
+                        p.published, year)
 
 
 def _is_new_or_newer(conn, p: Paper, topic_slug: str) -> bool:
@@ -140,13 +169,24 @@ def fetch_topic(conn, cfg: Config, topic: Topic, dry_run: bool = False,
     """Daily incremental fetch (newest-first, version-aware)."""
     earliest = since or topic.earliest_date
     cap = cfg.max_papers_per_topic_per_run
-    candidates = gather_candidates(topic, earliest, cap)
+    # Pull a wider pool than `cap` so the high-impact ranking has something to choose from.
+    candidates = gather_candidates(topic, earliest, max(cap * 5, 50))
     fresh = [p for p in candidates if _is_new_or_newer(conn, p, topic.slug)]
-    fresh.sort(key=lambda p: p.published or dt.date.min, reverse=True)
-    fresh = fresh[:cap]
+
+    # When more than `cap` are new, keep the highest-impact ones — and fill the
+    # current month first (so this month's coverage is complete before older months).
+    impact.annotate(fresh, conn)
+    today = dt.date.today()
+    this_month = [p for p in fresh
+                  if p.published and (p.published.year, p.published.month) == (today.year, today.month)]
+    older = [p for p in fresh if p not in this_month]
+    this_month.sort(key=lambda p: _score(p, p.year), reverse=True)
+    older.sort(key=lambda p: _score(p, p.year), reverse=True)
+    fresh = (this_month + older)[:cap]
 
     if dry_run:
-        log.info("[%s] %d candidates, %d new/updated (dry-run)", topic.slug, len(candidates), len(fresh))
+        log.info("[%s] %d candidates, %d selected (this-month %d, cap %d, impact-ranked, dry-run)",
+                 topic.slug, len(candidates), len(fresh), len(this_month), cap)
         return {"candidates": len(candidates), "new": fresh, "downloaded": []}
 
     downloaded = _download_selected(conn, cfg, topic, fresh)
@@ -173,7 +213,9 @@ def backfill_topic(conn, cfg: Config, topic: Topic, year: int, target: int,
         except Exception as e:  # noqa: BLE001
             log.warning("[%s] conf backfill failed: %s", topic.slug, e)
 
-    ranked = sorted(_dedup(pool), key=lambda p: _score(p, year), reverse=True)
+    pool = _dedup(pool)
+    impact.annotate(pool, conn)                       # high-impact (citations/awards) ranking
+    ranked = sorted(pool, key=lambda p: _score(p, year), reverse=True)
     selected, seen_new = [], 0
     for p in ranked:
         if _is_new_or_newer(conn, p, topic.slug):

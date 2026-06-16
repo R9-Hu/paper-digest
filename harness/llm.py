@@ -45,8 +45,10 @@ def run_claude(prompt: str, model: str, cfg: Config,
         )
     except subprocess.TimeoutExpired as e:
         raise LLMError(f"claude timed out after {to}s") from e
-    except FileNotFoundError as e:
-        raise LLMError(f"claude binary not found: {cfg.claude_bin}") from e
+    except OSError as e:
+        # FileNotFoundError, [Errno 8] Exec format error, etc. — never let a flaky
+        # exec of `claude` crash the whole run; fail just this digest.
+        raise LLMError(f"claude exec failed ({cfg.claude_bin}): {e}") from e
     if proc.returncode != 0:
         raise LLMError(f"claude exited {proc.returncode}: {proc.stderr.strip()[:500]}")
     out = proc.stdout.strip()

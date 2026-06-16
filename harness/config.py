@@ -44,6 +44,9 @@ class Config:
     claude_bin: str
     claude_timeout_sec: int
     digest_concurrency: int
+    digest_window_start: int
+    digest_window_end: int
+    auto_compact: bool
     topics: list[Topic]
 
     def topic(self, slug: str) -> Topic | None:
@@ -83,6 +86,9 @@ def load_config(path: Path | str = CONFIG_PATH) -> Config:
         claude_bin=g.get("claude_bin", "claude"),
         claude_timeout_sec=int(g.get("claude_timeout_sec", 600)),
         digest_concurrency=int(g.get("digest_concurrency", 4)),
+        digest_window_start=int(g.get("digest_window_start", 21)),
+        digest_window_end=int(g.get("digest_window_end", 6)),
+        auto_compact=bool(g.get("auto_compact", False)),
         topics=topics,
     )
 

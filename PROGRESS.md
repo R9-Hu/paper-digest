@@ -88,6 +88,16 @@ Last updated: 2026-06-15 (✅ COMPLETE — end-to-end verified)
   per-year subfolders. (Code ready; goes live after the 2025 backfill + per-year
   trend generation.)
 
+- ✅ **Digest time window (21:00–06:00)** — digesting only runs in-window (config
+  `digest_window_start/end`); fetch + publish run anytime so the site keeps updating.
+  `digest_topic` processes in waves and stops when the window closes. New
+  `paper-digest-night.timer` (21:00) does overnight digesting; 08:00 timer = daytime
+  fetch+publish. `--ignore-window` to force. Auto-compaction now opt-in (`auto_compact`).
+- ✅ **Website UX**: home cards = Overview/this-year/last-year buttons + uniform height;
+  left nav per year splits into **Key papers** (expandable) + **Paper list** (table page);
+  **tags** moved to front-matter → Material tags plugin renders chips + a Tags index
+  (raw `#hashtag` text removed); subtle venue chips.
+
 ## Blockers
 - _none yet_
 

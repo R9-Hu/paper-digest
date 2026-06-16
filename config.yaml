@@ -11,6 +11,9 @@ global:
   claude_bin: claude                   # path to the Claude Code CLI
   claude_timeout_sec: 600              # per-call timeout for headless claude -p
   digest_concurrency: 3                # parallel claude -p digests (lower = gentler on rate limits)
+  digest_window_start: 21              # only DIGEST between these hours (24h), to avoid
+  digest_window_end: 6                 # exhausting the rate limit during work time
+  auto_compact: false                  # yearly prior-year compaction (off during active build)
 
 topics:
   - name: "Vision-Language Models"

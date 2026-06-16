@@ -160,10 +160,13 @@ def _produce(cfg: Config, topic: Topic, row):
     return cid, slug, out_path.relative_to(config.ROOT).as_posix(), None
 
 
-def digest_topic(conn, cfg: Config, topic: Topic) -> int:
+def digest_topic(conn, cfg: Config, topic: Topic, should_continue=None) -> int:
     """Digest all pending papers for a topic, running `digest_concurrency`
     LLM calls in parallel. Worker threads do the LLM/file work; this (main)
-    thread owns all sqlite writes — sqlite connections aren't thread-safe."""
+    thread owns all sqlite writes — sqlite connections aren't thread-safe.
+
+    Processed in waves of `digest_concurrency`; `should_continue()` is checked
+    before each wave so the run can stop cleanly when the digest window closes."""
     pending = state.pending_digests(conn, topic.slug)
     log.info("[%s] %d papers to digest (concurrency=%d)",
              topic.slug, len(pending), cfg.digest_concurrency)
@@ -172,15 +175,20 @@ def digest_topic(conn, cfg: Config, topic: Topic) -> int:
     done = 0
     workers = max(1, cfg.digest_concurrency)
     with ThreadPoolExecutor(max_workers=workers) as ex:
-        futures = [ex.submit(_produce, cfg, topic, row) for row in pending]
-        for fut in as_completed(futures):
-            cid, slug, rel, err = fut.result()
-            if err:
-                state.mark_failed(conn, cid, slug, err)
-                log.warning("[%s] digest failed %s: %s", slug, cid, err[:80])
-            else:
-                state.mark_digested(conn, cid, slug, rel)
-                done += 1
-            conn.commit()
+        for i in range(0, len(pending), workers):
+            if should_continue and not should_continue():
+                log.info("[%s] digest window closed; stopping (%d still pending)",
+                         topic.slug, len(pending) - i)
+                break
+            futures = [ex.submit(_produce, cfg, topic, row) for row in pending[i:i + workers]]
+            for fut in as_completed(futures):
+                cid, slug, rel, err = fut.result()
+                if err:
+                    state.mark_failed(conn, cid, slug, err)
+                    log.warning("[%s] digest failed %s: %s", slug, cid, err[:80])
+                else:
+                    state.mark_digested(conn, cid, slug, rel)
+                    done += 1
+                conn.commit()
     log.info("[%s] digested %d/%d", topic.slug, done, len(pending))
     return done

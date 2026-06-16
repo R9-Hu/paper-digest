@@ -15,6 +15,14 @@ from . import compact, config, digest, fetch, modelcheck, publish, state, trends
 STAGES = ["fetch", "digest", "trends", "publish"]
 
 
+def _in_digest_window(cfg) -> bool:
+    """True if the current local hour is inside the configured digest window
+    (which may wrap past midnight, e.g. 21:00–06:00)."""
+    h = dt.datetime.now().hour
+    s, e = cfg.digest_window_start, cfg.digest_window_end
+    return (s <= h < e) if s < e else (h >= s or h < e)
+
+
 def setup_logging() -> None:
     config.LOG_DIR.mkdir(parents=True, exist_ok=True)
     logfile = config.LOG_DIR / f"run-{dt.date.today().isoformat()}.log"
@@ -49,6 +57,8 @@ def parse_args(argv=None):
                    help="compact (trim digest + delete PDF) all papers from this year, then exit")
     p.add_argument("--no-compact", action="store_true",
                    help="skip the automatic prior-year compaction step")
+    p.add_argument("--ignore-window", action="store_true",
+                   help="digest now even outside the configured digest window")
     return p.parse_args(argv)
 
 
@@ -91,6 +101,14 @@ def main(argv=None) -> int:
         report = modelcheck.check_and_resolve(cfg)
         log.info("model check:\n%s", modelcheck.report_str(report))
 
+    # Digesting (LLM-heavy) is confined to the digest window so it doesn't burn the
+    # rate limit during work hours; fetch + publish run anytime so the site keeps updating.
+    digest_ok = args.ignore_window or _in_digest_window(cfg)
+    can_llm = lambda: args.ignore_window or _in_digest_window(cfg)
+    if ("digest" in stages or "trends" in stages) and not args.dry_run and not digest_ok:
+        log.info("outside digest window %02d:00-%02d:00 — skipping digest/trends "
+                 "(fetch + publish still run)", cfg.digest_window_start, cfg.digest_window_end)
+
     totals = {"downloaded": 0, "digested": 0}
     with state.connect() as conn:
         for topic in topics:
@@ -105,13 +123,13 @@ def main(argv=None) -> int:
                 if args.dry_run:
                     for p in res["new"]:
                         log.info("  NEW [%s %s] %s", p.source, p.year, p.title[:90])
-            if "digest" in stages and not args.dry_run:
-                totals["digested"] += digest.digest_topic(conn, cfg, topic)
-            if "trends" in stages and not args.dry_run:
+            if "digest" in stages and not args.dry_run and digest_ok:
+                totals["digested"] += digest.digest_topic(conn, cfg, topic, should_continue=can_llm)
+            if "trends" in stages and not args.dry_run and digest_ok:
                 trends.analyze_topic(conn, cfg, topic)
 
-        # Auto-compaction of prior-year papers (storage saver) — daily runs only.
-        if not args.dry_run and not args.no_compact and not args.stage:
+        # Auto-compaction of prior-year papers (storage saver) — opt-in, daily runs only.
+        if not args.dry_run and not args.no_compact and not args.stage and cfg.auto_compact:
             totals["compacted"] = compact.maybe_autocompact(conn, cfg)
 
         if "publish" in stages and not args.dry_run:

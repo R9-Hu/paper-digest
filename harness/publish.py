@@ -96,6 +96,11 @@ SITE_CSS = """\
   font-size: .7rem; font-weight: 600; white-space: nowrap; letter-spacing: .01em;
 }
 .md-typeset .venue-none { color: var(--md-default-fg-color--lighter); }
+/* Tag chips (Material tags plugin) */
+.md-typeset .md-tag {
+  border-radius: 6px; font-size: .68rem; font-weight: 600;
+  background: color-mix(in srgb, var(--md-primary-fg-color) 10%, transparent);
+}
 /* Keep Date + Venue columns tidy; let the Paper title take the room. */
 .md-typeset table:not([class]) td:first-child { white-space: nowrap; color: var(--md-default-fg-color--light); font-variant-numeric: tabular-nums; }
 .md-typeset table:not([class]) td:last-child { white-space: nowrap; text-align: right; }
@@ -289,6 +294,26 @@ def _trend_digest_section(trend_md: str | None, trend_link_md: str | None) -> li
     return out
 
 
+def _site_digest(md: str) -> str:
+    """Website copy of a digest: hoist the body '## Tags' hashtags into front-matter
+    `tags:` (rendered as real chips + a Tags index by the Material tags plugin) and
+    drop the plain-text tag section, which is meaningless on a website."""
+    fm, content = _split_fm(md)
+    head, secs = _sections(content)
+    tags, kept = [], []
+    for title, body in secs:
+        if title.lower().startswith("tag"):
+            tags += [t.replace("/", "-") for t in re.findall(r"#([\w/-]+)", body)]
+        else:
+            kept.append((title, body))
+    if tags:
+        fm["tags"] = tags
+    parts = [f"---\n{_dump_fm(fm)}\n---", head]
+    for title, body in kept:
+        parts.append(f"## {title}\n\n{body}" if body else f"## {title}")
+    return "\n\n".join(parts) + "\n"
+
+
 # ----------------------------------------------------------------------------- #
 # GitHub Pages (MkDocs Material)
 # ----------------------------------------------------------------------------- #
@@ -299,7 +324,7 @@ def build_site(conn, cfg: Config) -> None:
     docs.mkdir(parents=True, exist_ok=True)
 
     today = dt.date.today().isoformat()
-    nav = [{"Home": "index.md"}]
+    nav = [{"Home": "index.md"}, {"Tags": "tags.md"}]
     home_lines = [
         "# 📚 Paper Digest",
         "",
@@ -346,7 +371,7 @@ def build_site(conn, cfg: Config) -> None:
                     i += 1
                 used_slugs.add(pslug)
                 (ydir / "papers" / f"{pslug}.md").write_text(
-                    src.read_text(encoding="utf-8"), encoding="utf-8")
+                    _site_digest(src.read_text(encoding="utf-8")), encoding="utf-8")
                 if _is_key(row["title"], key_norms):
                     key_nav.append({row["title"]: f"{topic.slug}/{year}/papers/{pslug}.md"})
                 date = row["published"] or "—"
@@ -432,7 +457,9 @@ def build_site(conn, cfg: Config) -> None:
     home_lines.append("</div>")
     (docs / "index.md").write_text("\n".join(home_lines) + "\n", encoding="utf-8")
 
-    # Custom theme assets.
+    # Tags index page (Material tags plugin populates it) + custom theme assets.
+    (docs / "tags.md").write_text(
+        "# 🏷️ Tags\n\nBrowse digested papers by tag.\n", encoding="utf-8")
     (docs / "stylesheets").mkdir(parents=True, exist_ok=True)
     (docs / "stylesheets" / "extra.css").write_text(SITE_CSS, encoding="utf-8")
 
@@ -460,7 +487,7 @@ def build_site(conn, cfg: Config) -> None:
             "pymdownx.details", "pymdownx.superfences", "pymdownx.tasklist",
             {"toc": {"permalink": True}},
         ],
-        "plugins": ["callouts", "search"],
+        "plugins": ["callouts", "search", {"tags": {"tags_file": "tags.md"}}],
         "nav": nav,
     }
     (config.SITE_DIR / "mkdocs.yml").write_text(

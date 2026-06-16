@@ -40,6 +40,8 @@ class Config:
     github_repo: str
     digest_model: str
     trend_model: str
+    rank_model: str
+    llm_rank: bool
     max_papers_per_topic_per_run: int
     claude_bin: str
     claude_timeout_sec: int
@@ -84,6 +86,8 @@ def load_config(path: Path | str = CONFIG_PATH) -> Config:
         github_repo=g["github_repo"],
         digest_model=g.get("digest_model", "claude-sonnet-4-6"),
         trend_model=g.get("trend_model", "claude-opus-4-8"),
+        rank_model=g.get("rank_model", g.get("digest_model", "claude-sonnet-4-6")),
+        llm_rank=bool(g.get("llm_rank", True)),
         max_papers_per_topic_per_run=int(g.get("max_papers_per_topic_per_run", 30)),
         claude_bin=g.get("claude_bin", "claude"),
         claude_timeout_sec=int(g.get("claude_timeout_sec", 600)),

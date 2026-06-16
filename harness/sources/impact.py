@@ -91,6 +91,12 @@ def lookup(conn, canonical_ids, max_age_days: int = TTL_DAYS) -> dict:
         if _s2_id(cid):
             need.append(cid)
 
+    # Network lookups are OPT-IN: only when an API key is configured. Without a key
+    # we serve whatever is cached and skip S2 entirely (no rate-limit noise) — paper
+    # selection relies on the LLM impact ranker + venue/recency instead.
+    if not _API_KEY:
+        return out
+
     for chunk in _chunks(need, CHUNK):
         recs = _batch([_s2_id(c) for c in chunk])
         if recs is None:

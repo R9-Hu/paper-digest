@@ -120,9 +120,8 @@ def compact_window(conn, cfg: Config, topic: Topic, start: dt.date, end: dt.date
     slug = topic.slug
     added = 0
 
-    # (1) Fill the window up to keep_n with the highest-impact papers we're missing,
-    #     then digest them. (Citations are ~0 for current-year papers, so award/venue
-    #     leads there; older windows are led by citations.)
+    # (1) Fill the window up to keep_n with the highest-impact papers we're missing
+    #     (the LLM judges which groups/papers matter; heuristic fallback), then digest.
     if refetch and not dry_run and (should_continue is None or should_continue()):
         try:
             pool = fetch.gather_candidates(topic, start, keep_n * 3, until=end)
@@ -132,10 +131,10 @@ def compact_window(conn, cfg: Config, topic: Topic, start: dt.date, end: dt.date
         impact.annotate(pool, conn)
         have = len(_window_rows(conn, slug, start, end))
         missed = [p for p in pool if state.get_version(conn, p.canonical_id, slug) is None]
-        missed.sort(key=lambda p: fetch._score(p, start.year), reverse=True)
         need = max(0, keep_n - have)
         if missed and need:
-            added = len(fetch._download_selected(conn, cfg, topic, missed[:need]))
+            chosen = fetch.select_top(cfg, topic, missed, need)
+            added = len(fetch._download_selected(conn, cfg, topic, chosen))
         if added:
             digest.digest_topic(conn, cfg, topic, should_continue=should_continue)
 

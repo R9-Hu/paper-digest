@@ -18,7 +18,7 @@ import time
 
 import requests
 
-from . import config, naming, state
+from . import config, llm, naming, state
 from .config import Config, Topic
 from .models import Paper
 from .sources import arxiv_source, conf_source, hf_source, impact
@@ -105,6 +105,78 @@ def _score(p: Paper, year: int) -> float:
                         p.published, year)
 
 
+RANK_SYSTEM = (
+    "You are a meticulous research curator with broad, current knowledge of AI/ML "
+    "research groups, labs, authors, and venues. You judge which new papers are most "
+    "likely to be high-impact and worth a busy researcher's attention."
+)
+
+
+# Bounds so a single ranking call stays cheap: never feed the LLM more than
+# RANK_POOL_MAX candidates, and skip LLM curation when we're keeping a large set
+# (k high) — there the heuristic is fine and the call would be huge.
+RANK_POOL_MAX = 200
+RANK_K_MAX = 150
+
+
+def _llm_rank(cfg: Config, topic: Topic, papers: list[Paper], k: int) -> list[Paper] | None:
+    """Ask the LLM to pick the `k` highest-impact papers from `papers`.
+
+    The model weighs the reputation/track record of the authors and their group,
+    the venue, and the novelty/significance of the work — i.e. "whose paper should
+    we download". Returns the chosen papers (most important first), or None on any
+    failure so the caller can fall back to the deterministic heuristic."""
+    if len(papers) <= k:
+        return papers
+    lines = []
+    for i, p in enumerate(papers):
+        authors = ", ".join(p.authors[:5]) + (" et al." if len(p.authors) > 5 else "")
+        abstract = " ".join((p.abstract or "").split())[:240]
+        venue = f" [{p.venue}]" if p.venue else ""
+        lines.append(f"{i}. {p.title}{venue} — {authors}. {abstract}")
+    prompt = (
+        f"Topic: \"{topic.name}\".\n"
+        f"From the {len(papers)} candidate papers below, choose the {k} MOST likely to be "
+        f"high-impact and influential for a researcher tracking this topic. Weigh: the "
+        f"reputation and track record of the authors and their research group/lab, the "
+        f"venue (top-tier acceptance/awards), and the novelty and significance of the work.\n"
+        f"Return ONLY a JSON array of the {k} chosen candidate numbers, most important first, "
+        f"e.g. [3, 0, 12]. No prose.\n\n" + "\n".join(lines)
+    )
+    try:
+        out = llm.run_claude(prompt, cfg.rank_model, cfg, system=RANK_SYSTEM)
+    except llm.LLMError as e:
+        log.warning("[%s] LLM rank failed (%s); using heuristic", topic.slug, e)
+        return None
+    m = re.search(r"\[[\d,\s]*\]", out or "")
+    if not m:
+        log.warning("[%s] LLM rank returned no index list; using heuristic", topic.slug)
+        return None
+    chosen, seen = [], set()
+    for idx in (int(x) for x in re.findall(r"\d+", m.group(0))):
+        if 0 <= idx < len(papers) and idx not in seen:
+            seen.add(idx)
+            chosen.append(papers[idx])
+    return chosen[:k] if chosen else None
+
+
+def select_top(cfg: Config, topic: Topic, papers: list[Paper], k: int) -> list[Paper]:
+    """Pick the top-`k` papers by impact: LLM judgment when enabled, else the
+    deterministic venue/award/(citation)/recency heuristic (also the fallback)."""
+    if k <= 0 or not papers:
+        return []
+    if len(papers) <= k:
+        return papers
+    year = papers[0].year
+    heur = sorted(papers, key=lambda p: _score(p, year), reverse=True)
+    if cfg.llm_rank and k <= RANK_K_MAX:
+        pool = heur[:RANK_POOL_MAX] if len(heur) > RANK_POOL_MAX else heur
+        ranked = _llm_rank(cfg, topic, pool, k)
+        if ranked is not None:
+            return ranked
+    return heur[:k]
+
+
 def _is_new_or_newer(conn, p: Paper, topic_slug: str) -> bool:
     """New paper, or a newer version of one we already have (→ re-digest)."""
     sv = state.get_version(conn, p.canonical_id, topic_slug)
@@ -175,19 +247,24 @@ def fetch_topic(conn, cfg: Config, topic: Topic, dry_run: bool = False,
 
     # When more than `cap` are new, keep the highest-impact ones — and fill the
     # current month first (so this month's coverage is complete before older months).
-    impact.annotate(fresh, conn)
+    impact.annotate(fresh, conn)   # enriches the heuristic fallback if an S2 key is set; else a no-op
     today = dt.date.today()
     this_month = [p for p in fresh
                   if p.published and (p.published.year, p.published.month) == (today.year, today.month)]
     older = [p for p in fresh if p not in this_month]
-    this_month.sort(key=lambda p: _score(p, p.year), reverse=True)
-    older.sort(key=lambda p: _score(p, p.year), reverse=True)
-    fresh = (this_month + older)[:cap]
 
-    if dry_run:
-        log.info("[%s] %d candidates, %d selected (this-month %d, cap %d, impact-ranked, dry-run)",
+    if dry_run:                    # preview: deterministic only (no LLM calls)
+        this_month.sort(key=lambda p: _score(p, p.year), reverse=True)
+        older.sort(key=lambda p: _score(p, p.year), reverse=True)
+        fresh = (this_month + older)[:cap]
+        log.info("[%s] %d candidates, %d selected (this-month %d, cap %d, dry-run)",
                  topic.slug, len(candidates), len(fresh), len(this_month), cap)
         return {"candidates": len(candidates), "new": fresh, "downloaded": []}
+
+    # LLM judges which papers/groups are worth downloading (heuristic fallback).
+    selected = select_top(cfg, topic, this_month, cap)
+    selected += select_top(cfg, topic, older, cap - len(selected))
+    fresh = selected[:cap]
 
     downloaded = _download_selected(conn, cfg, topic, fresh)
     state.set_last_run(conn, topic.slug, len(downloaded))
@@ -214,23 +291,19 @@ def backfill_topic(conn, cfg: Config, topic: Topic, year: int, target: int,
             log.warning("[%s] conf backfill failed: %s", topic.slug, e)
 
     pool = _dedup(pool)
-    impact.annotate(pool, conn)                       # high-impact (citations/awards) ranking
-    ranked = sorted(pool, key=lambda p: _score(p, year), reverse=True)
-    selected, seen_new = [], 0
-    for p in ranked:
-        if _is_new_or_newer(conn, p, topic.slug):
-            selected.append(p)
-            seen_new += 1
-        if seen_new >= target:
-            break
+    impact.annotate(pool, conn)                       # enriches heuristic if an S2 key is set
+    new = [p for p in pool if _is_new_or_newer(conn, p, topic.slug)]
+    if dry_run:                                        # preview: deterministic, no LLM
+        selected = sorted(new, key=lambda p: _score(p, year), reverse=True)[:target]
+        log.info("[%s] backfill %d: pool=%d, selected=%d (dry-run)",
+                 topic.slug, year, len(pool), len(selected))
+        return {"pool": len(pool), "new": selected, "downloaded": []}
 
-    log.info("[%s] backfill %d: pool=%d, selected=%d (top-tier first)",
-             topic.slug, year, len(ranked), len(selected))
-    if dry_run:
-        return {"pool": len(ranked), "new": selected, "downloaded": []}
+    selected = select_top(cfg, topic, new, target)     # LLM-judged when target is selective
+    log.info("[%s] backfill %d: pool=%d, selected=%d", topic.slug, year, len(pool), len(selected))
 
     downloaded = _download_selected(conn, cfg, topic, selected)
     state.set_last_run(conn, topic.slug, len(downloaded))
     conn.commit()
     log.info("[%s] backfill %d downloaded %d papers", topic.slug, year, len(downloaded))
-    return {"pool": len(ranked), "new": selected, "downloaded": downloaded}
+    return {"pool": len(pool), "new": selected, "downloaded": downloaded}

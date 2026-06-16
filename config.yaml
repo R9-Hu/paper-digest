@@ -7,6 +7,8 @@ global:
   github_repo: R9-Hu/paper-digest
   digest_model: claude-sonnet-4-6      # cheap & good for per-paper summarization
   trend_model: claude-sonnet-4-6       # trend synthesis (Sonnet for lower cost; was Opus)
+  rank_model: claude-sonnet-4-6        # picks which papers/groups to download (impact ranking)
+  llm_rank: true                       # use the LLM's knowledge to select high-impact papers (vs venue/recency heuristic)
   max_papers_per_topic_per_run: 10     # daily cap/topic; if more are new, keep highest-impact (citations/awards), this month first
   claude_bin: claude                   # path to the Claude Code CLI
   claude_timeout_sec: 600              # per-call timeout for headless claude -p

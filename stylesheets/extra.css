@@ -58,9 +58,16 @@
   font-size: .72rem; border-width: 1.5px;
 }
 .md-typeset .venue {
-  display: inline-block; padding: .05rem .55rem; border-radius: 999px;
-  background: var(--md-accent-fg-color); color: #fff; font-size: .68rem; font-weight: 700;
+  display: inline-block; padding: .1rem .5rem; border-radius: 6px;
+  background: color-mix(in srgb, var(--md-accent-fg-color) 12%, transparent);
+  color: var(--md-accent-fg-color);
+  border: 1px solid color-mix(in srgb, var(--md-accent-fg-color) 30%, transparent);
+  font-size: .7rem; font-weight: 600; white-space: nowrap; letter-spacing: .01em;
 }
+.md-typeset .venue-none { color: var(--md-default-fg-color--lighter); }
+/* Keep Date + Venue columns tidy; let the Paper title take the room. */
+.md-typeset table:not([class]) td:first-child { white-space: nowrap; color: var(--md-default-fg-color--light); font-variant-numeric: tabular-nums; }
+.md-typeset table:not([class]) td:last-child { white-space: nowrap; text-align: right; }
 .md-typeset .new-badge {
   display: inline-block; padding: .05rem .5rem; border-radius: 999px;
   background: #e8590c; color: #fff; font-size: .68rem; font-weight: 700;

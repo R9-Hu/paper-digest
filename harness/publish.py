@@ -114,7 +114,9 @@ SITE_CSS = """\
 SITE_JS = """\
 (function () {
   function mark() {
-    document.querySelectorAll('.md-content a[href*="papers/"]').forEach(function (a) {
+    // Any link to an individual paper page (content tables/digests AND the
+    // 'Key papers' entries in the left nav). 'papers-list' is left as-is.
+    document.querySelectorAll('a[href*="papers/"]').forEach(function (a) {
       a.target = '_blank';
       a.rel = 'noopener';
     });
@@ -321,7 +323,7 @@ def _site_digest(md: str) -> str:
         else:
             kept.append((title, body))
     if tags:
-        fm["tags"] = tags
+        fm["tags"] = tags[:5]   # cap per-paper tags so chips + the index stay readable
     parts = [f"---\n{_dump_fm(fm)}\n---", head]
     for title, body in kept:
         parts.append(f"## {title}\n\n{body}" if body else f"## {title}")
@@ -370,16 +372,8 @@ def build_site(conn, cfg: Config) -> None:
 
     today = dt.date.today().isoformat()
     nav = [{"Home": "index.md"}, {"Tags": "tags.md"}]
-    home_lines = [
-        "# 📚 Paper Digest",
-        "",
-        f"_An auto-generated radar of newly published research — digested and "
-        f"trend-analyzed daily. Updated {today}._",
-        "",
-        '<div class="grid cards" markdown>',
-        "",
-    ]
-
+    home_cards = []
+    grand_total = grand_today = 0
     cur_year = dt.date.today().year
     for topic in cfg.topics:
         years = state.years_for_topic(conn, topic.slug)  # newest first
@@ -510,7 +504,9 @@ def build_site(conn, cfg: Config) -> None:
         for yr in (cur_year, cur_year - 1):
             if yr in years:
                 links.append(f"[{yr}]({topic.slug}/{yr}/index.md){{ .md-button }}")
-        home_lines += [
+        grand_total += topic_total
+        grand_today += topic_today
+        home_cards += [
             f"-   {_emoji(topic.slug)} **[{topic.name}]({topic.slug}/index.md)**",
             "",
             "    ---",
@@ -522,11 +518,20 @@ def build_site(conn, cfg: Config) -> None:
             "",
         ]
 
-    home_lines.append("</div>")
+    home_lines = [
+        "---", "hide:", "  - navigation", "  - toc", "---",
+        "# 📚 Paper Digest", "",
+        "_An auto-generated radar of newly published research — fetched, digested, "
+        "and trend-analyzed daily._", "",
+        f"`{grand_total} papers`  ·  `{len(cfg.topics)} topics`  ·  "
+        f"`{grand_today} new today`  ·  _updated {today}_", "",
+        '<div class="grid cards" markdown>', "",
+    ] + home_cards + ["</div>"]
     (docs / "index.md").write_text("\n".join(home_lines) + "\n", encoding="utf-8")
 
     # Tags index page (Material tags plugin populates it) + custom theme assets.
     (docs / "tags.md").write_text(
+        "---\nhide:\n  - navigation\n  - toc\n---\n"
         "# 🏷️ Tags\n\nBrowse digested papers by tag.\n", encoding="utf-8")
     (docs / "stylesheets").mkdir(parents=True, exist_ok=True)
     (docs / "stylesheets" / "extra.css").write_text(SITE_CSS, encoding="utf-8")

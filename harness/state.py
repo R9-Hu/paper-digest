@@ -50,6 +50,16 @@ CREATE TABLE IF NOT EXISTS meta (
     key   TEXT PRIMARY KEY,
     value TEXT
 );
+
+-- Topic-agnostic digest body, generated once per paper and reused across topics
+-- (only the per-topic "Relevance" section is generated separately). Saves tokens
+-- for papers tracked under more than one topic.
+CREATE TABLE IF NOT EXISTS shared_digest (
+    canonical_id TEXT PRIMARY KEY,
+    body         TEXT,
+    tldr         TEXT,
+    created_at   TEXT
+);
 """
 
 
@@ -102,6 +112,8 @@ def record_fetched(conn, paper: Paper, topic_slug: str, pdf_path: str) -> None:
             paper.year, pdf_path, _now(),
         ),
     )
+    # A (re-)fetch may be a newer version — invalidate any cached shared body.
+    conn.execute("DELETE FROM shared_digest WHERE canonical_id=?", (paper.canonical_id,))
 
 
 def get_version(conn, canonical_id: str, topic_slug: str) -> int | None:
@@ -195,6 +207,24 @@ def get_last_run(conn, topic_slug: str) -> str | None:
         "SELECT last_run FROM topic_state WHERE topic_slug=?", (topic_slug,)
     ).fetchone()
     return row["last_run"] if row else None
+
+
+def get_shared_digest(conn, canonical_id: str):
+    row = conn.execute(
+        "SELECT body, tldr FROM shared_digest WHERE canonical_id=?", (canonical_id,)
+    ).fetchone()
+    return (row["body"], row["tldr"]) if row else None
+
+
+def set_shared_digest(conn, canonical_id: str, body: str, tldr: str) -> None:
+    conn.execute(
+        "INSERT OR REPLACE INTO shared_digest (canonical_id, body, tldr, created_at) "
+        "VALUES (?,?,?,?)", (canonical_id, body, tldr, _now()),
+    )
+
+
+def clear_shared_digest(conn, canonical_id: str) -> None:
+    conn.execute("DELETE FROM shared_digest WHERE canonical_id=?", (canonical_id,))
 
 
 def meta_get(conn, key: str) -> str | None:

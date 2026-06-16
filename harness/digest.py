@@ -174,36 +174,71 @@ def _front_matter(row, topic: Topic, digest_body: str) -> str:
     return "\n".join(lines)
 
 
+REL_SYSTEM = "You explain, concisely and concretely, why a paper matters to a specific research topic."
+
+
 def _tldr_of(body: str) -> str:
     m = re.search(r"(?ims)^##\s*TL;DR\s*\n(.+?)(?=^##\s|\Z)", body)
     return " ".join(m.group(1).split()) if m else ""
 
 
-def _produce(cfg: Config, topic: Topic, row):
+def _split_relevance(body: str):
+    """Split the LLM digest into (topic-agnostic body, the 'Relevance' section text)."""
+    m = re.search(r"(?ims)^##\s*Relevance[^\n]*\n(.*?)(?=^##\s|\Z)", body)
+    if not m:
+        return body.strip(), ""
+    return (body[:m.start()] + body[m.end():]).strip(), m.group(1).strip()
+
+
+def _relevance(cfg: Config, topic: Topic, title: str, tldr: str) -> str:
+    prompt = (f"Paper: {title}\nTL;DR: {tldr}\n\nIn 2-4 sentences, explain this paper's "
+              f"relevance to the research topic \"{topic.name}\" — why it matters for someone "
+              f"tracking it and how it connects to the broader line of work. Output only prose.")
+    return llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=REL_SYSTEM))
+
+
+def _produce(cfg: Config, topic: Topic, row, shared=None):
     """Heavy, DB-free digest work (runs in a worker thread).
-    Returns (canonical_id, topic_slug, digest_rel_path | None, error | None, tldr)."""
+
+    If `shared` (body, tldr) is given, the paper was already digested under another
+    topic — reuse that body and only generate the per-topic Relevance (a tiny call,
+    saving the full paper text). Otherwise produce the full digest and return the
+    topic-agnostic body to cache.
+    Returns (canonical_id, topic_slug, rel_path|None, error|None, tldr, shared_body|None)."""
     cid, slug = row["canonical_id"], topic.slug
-    pdf_path = config.ROOT / (row["pdf_path"] or "")
-    if not pdf_path.exists():
-        return cid, slug, None, "pdf missing", None
-    cap = cfg.digest_max_chars
-    text = extract_text(pdf_path, cid)
-    if len(text) < 500:
-        text = (row["abstract"] or "")[:cap]
-    text = text[:cap]
-    if not text.strip():
-        return cid, slug, None, "no extractable text", None
-    prompt = PROMPT_TMPL.format(topic=topic.name, title=row["title"], text=text)
     try:
-        body = llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=SYSTEM))
+        if shared:
+            body, tldr = shared
+            relevance = _relevance(cfg, topic, row["title"], tldr or (row["abstract"] or "")[:1500])
+            shared_out = None
+        else:
+            pdf_path = config.ROOT / (row["pdf_path"] or "")
+            if not pdf_path.exists():
+                return cid, slug, None, "pdf missing", None, None
+            cap = cfg.digest_max_chars
+            text = extract_text(pdf_path, cid)
+            if len(text) < 500:
+                text = (row["abstract"] or "")[:cap]
+            text = text[:cap]
+            if not text.strip():
+                return cid, slug, None, "no extractable text", None, None
+            prompt = PROMPT_TMPL.format(topic=topic.name, title=row["title"], text=text)
+            full = llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=SYSTEM))
+            body, relevance = _split_relevance(full)
+            tldr = _tldr_of(body)
+            shared_out = body
     except llm.LLMError as e:
-        return cid, slug, None, str(e), None
+        return cid, slug, None, str(e), None, None
+
     out_dir = config.DIGEST_DIR / slug
     out_dir.mkdir(parents=True, exist_ok=True)
-    out_path = out_dir / f"{Path(row['pdf_path']).stem}.md"
-    note = f"{_front_matter(row, topic, body)}\n\n# {row['title']}\n\n{visible_meta_line(row)}\n\n{body}\n"
+    stem = Path(row["pdf_path"]).stem if row["pdf_path"] else cid.replace(":", "_")
+    out_path = out_dir / f"{stem}.md"
+    rel_block = f"\n\n## Relevance to {topic.name}\n\n{relevance}" if relevance else ""
+    note = (f"{_front_matter(row, topic, body)}\n\n# {row['title']}\n\n"
+            f"{visible_meta_line(row)}\n\n{body}{rel_block}\n")
     out_path.write_text(note, encoding="utf-8")
-    return cid, slug, out_path.relative_to(config.ROOT).as_posix(), None, _tldr_of(body)
+    return cid, slug, out_path.relative_to(config.ROOT).as_posix(), None, tldr, shared_out
 
 
 def digest_topic(conn, cfg: Config, topic: Topic, should_continue=None) -> int:
@@ -218,7 +253,13 @@ def digest_topic(conn, cfg: Config, topic: Topic, should_continue=None) -> int:
              topic.slug, len(pending), cfg.digest_concurrency)
     if not pending:
         return 0
-    done = 0
+    # Reuse a topic-agnostic body already produced for this paper under another topic.
+    shared_map = {}
+    for r in pending:
+        s = state.get_shared_digest(conn, r["canonical_id"])
+        if s:
+            shared_map[r["canonical_id"]] = s
+    done = reused = 0
     workers = max(1, cfg.digest_concurrency)
     with ThreadPoolExecutor(max_workers=workers) as ex:
         for i in range(0, len(pending), workers):
@@ -226,15 +267,20 @@ def digest_topic(conn, cfg: Config, topic: Topic, should_continue=None) -> int:
                 log.info("[%s] digest window closed; stopping (%d still pending)",
                          topic.slug, len(pending) - i)
                 break
-            futures = [ex.submit(_produce, cfg, topic, row) for row in pending[i:i + workers]]
+            futures = [ex.submit(_produce, cfg, topic, row, shared_map.get(row["canonical_id"]))
+                       for row in pending[i:i + workers]]
             for fut in as_completed(futures):
-                cid, slug, rel, err, tldr = fut.result()
+                cid, slug, rel, err, tldr, shared_out = fut.result()
                 if err:
                     state.mark_failed(conn, cid, slug, err)
                     log.warning("[%s] digest failed %s: %s", slug, cid, err[:80])
                 else:
                     state.mark_digested(conn, cid, slug, rel, tldr)
+                    if shared_out is not None:
+                        state.set_shared_digest(conn, cid, shared_out, tldr or "")
+                    else:
+                        reused += 1
                     done += 1
                 conn.commit()
-    log.info("[%s] digested %d/%d", topic.slug, done, len(pending))
+    log.info("[%s] digested %d/%d (%d reused a shared body)", topic.slug, done, len(pending), reused)
     return done

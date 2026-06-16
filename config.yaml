@@ -6,7 +6,7 @@ global:
   obsidian_vault: /home/renjiu/Obsidian/PaperDigest
   github_repo: R9-Hu/paper-digest
   digest_model: claude-sonnet-4-6      # cheap & good for per-paper summarization
-  trend_model: claude-opus-4-8         # deeper reasoning for trend synthesis
+  trend_model: claude-sonnet-4-6       # trend synthesis (Sonnet for lower cost; was Opus)
   max_papers_per_topic_per_run: 30     # safety cap (especially the first backfill)
   claude_bin: claude                   # path to the Claude Code CLI
   claude_timeout_sec: 600              # per-call timeout for headless claude -p

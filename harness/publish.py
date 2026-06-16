@@ -20,6 +20,97 @@ from .config import Config
 
 log = logging.getLogger("harness.publish")
 
+TOPIC_EMOJI = {"vlm": "👁️", "med-foundation": "🩺", "agentic-ai": "🤖", "harness": "🛠️"}
+
+
+def _emoji(slug: str) -> str:
+    return TOPIC_EMOJI.get(slug, "📚")
+
+
+# Custom theme for the MkDocs Material site (written to docs/stylesheets/extra.css).
+SITE_CSS = """\
+:root {
+  --md-primary-fg-color: #2f3e6e;
+  --md-primary-fg-color--light: #4356a0;
+  --md-primary-fg-color--dark: #1e2a52;
+  --md-accent-fg-color: #00a99d;
+}
+[data-md-color-scheme="slate"] {
+  --md-primary-fg-color: #3a4a86;
+  --md-accent-fg-color: #2dd4bf;
+  --md-default-bg-color: #0f1424;
+}
+.md-typeset h1, .md-typeset h2 { font-weight: 800; letter-spacing: -.02em; }
+.md-typeset h2 { margin-top: 2rem; padding-bottom: .2rem;
+  border-bottom: 2px solid var(--md-default-fg-color--lightest); }
+
+/* Grid cards on the home page */
+.md-typeset .grid.cards > ul > li {
+  border: 1px solid var(--md-default-fg-color--lightest);
+  border-radius: 14px; padding: 1rem 1.2rem;
+  transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+}
+.md-typeset .grid.cards > ul > li:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 26px rgba(0,0,0,.12);
+  border-color: var(--md-accent-fg-color);
+}
+
+/* Tables */
+.md-typeset table:not([class]) {
+  border-radius: 10px; overflow: hidden; border: none;
+  box-shadow: 0 1px 4px rgba(0,0,0,.10);
+}
+.md-typeset table:not([class]) th {
+  background: var(--md-primary-fg-color); color: #fff; font-weight: 600;
+}
+.md-typeset table:not([class]) tbody tr:nth-child(2n) td {
+  background: var(--md-default-fg-color--lightest);
+}
+.md-typeset table:not([class]) tbody tr:hover td {
+  background: var(--md-accent-fg-color--transparent);
+}
+
+/* Admonitions / callouts (rendered from [!info] etc. by mkdocs-callouts) */
+.md-typeset .admonition, .md-typeset details {
+  border-radius: 12px; border-width: 0 0 0 .25rem;
+  box-shadow: 0 1px 4px rgba(0,0,0,.08);
+}
+
+/* Buttons + venue badges */
+.md-typeset .md-button {
+  border-radius: 999px; padding: .25rem .9rem; margin: .2rem .35rem .2rem 0;
+  font-size: .72rem; border-width: 1.5px;
+}
+.md-typeset .venue {
+  display: inline-block; padding: .05rem .55rem; border-radius: 999px;
+  background: var(--md-accent-fg-color); color: #fff; font-size: .68rem; font-weight: 700;
+}
+.md-typeset .new-badge {
+  display: inline-block; padding: .05rem .5rem; border-radius: 999px;
+  background: #e8590c; color: #fff; font-size: .68rem; font-weight: 700;
+}
+"""
+
+# Obsidian CSS snippet (written to <vault>/.obsidian/snippets/paper-digest.css).
+OBSIDIAN_CSS = """\
+/* Paper Digest — vault styling (auto-generated) */
+.paper-home h1, .paper-index h1, .paper-today h1, .paper-trend h1 {
+  background: linear-gradient(90deg, var(--color-accent), var(--color-accent-2, #00a99d));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+  font-weight: 800; letter-spacing: -.02em;
+}
+.paper-index h2, .paper-trend h2, .paper-today h2 {
+  border-bottom: 2px solid var(--background-modifier-border); padding-bottom: .2em;
+}
+.markdown-rendered table { width: 100%; }
+.markdown-rendered thead th { background: var(--background-secondary-alt); }
+.markdown-rendered tbody tr:nth-child(2n) { background: var(--background-secondary); }
+.paper-today .callout[data-callout="success"] { --callout-color: 34, 160, 90; }
+.paper-trend .callout[data-callout="tip"] { --callout-color: 14, 120, 220; }
+.markdown-rendered .tag { border-radius: 999px; }
+"""
+
 
 # ----------------------------------------------------------------------------- #
 # Helpers
@@ -150,13 +241,12 @@ def build_site(conn, cfg: Config) -> None:
     today = dt.date.today().isoformat()
     nav = [{"Home": "index.md"}]
     home_lines = [
-        "# Paper Digest",
+        "# 📚 Paper Digest",
         "",
-        f"_Last updated: {today}._",
+        f"_An auto-generated radar of newly published research — digested and "
+        f"trend-analyzed daily. Updated {today}._",
         "",
-        "An auto-generated radar of newly published research, digested and trend-analyzed daily.",
-        "",
-        "## Topics",
+        '<div class="grid cards" markdown>',
         "",
     ]
 
@@ -193,8 +283,9 @@ def build_site(conn, cfg: Config) -> None:
             )
             paper_nav.append({row["title"]: f"{topic.slug}/papers/{pslug}.md"})
             date = row["published"] or "—"
-            venue = _esc(row["venue"] or "—")
-            tr = f"| {date} | [{_esc(row['title'])}](papers/{pslug}.md) | {venue} |"
+            v = row["venue"] or ""
+            venue_cell = f'<span class="venue">{_esc(v)}</span>' if v else "—"
+            tr = f"| {date} | [{_esc(row['title'])}](papers/{pslug}.md) | {venue_cell} |"
             paper_rows.append(tr)
             if (row["fetched_at"] or "").startswith(today):
                 today_rows.append(tr)
@@ -228,32 +319,54 @@ def build_site(conn, cfg: Config) -> None:
             topic_children.append({"Papers": paper_nav})
         nav.append({topic.name: topic_children})
 
-        # Home tree — indentation shows the level relations.
-        home_lines.append(f"- **[{topic.name}]({topic.slug}/index.md)** — {len(paper_rows)} papers")
+        # Home grid card per topic.
+        links = [f"[Overview]({topic.slug}/index.md){{ .md-button }}"]
         if has_trend:
-            home_lines.append(f"    - [📈 Trend analysis]({topic.slug}/trend.md)")
-        home_lines.append(f"    - [🆕 Today's Digest ({len(today_rows)})]({topic.slug}/today.md)")
-        home_lines.append(f"    - [📄 Browse papers]({topic.slug}/index.md)")
+            links.append(f"[Trend]({topic.slug}/trend.md){{ .md-button }}")
+        links.append(f"[Today]({topic.slug}/today.md){{ .md-button }}")
+        home_lines += [
+            f"-   {_emoji(topic.slug)} **[{topic.name}]({topic.slug}/index.md)**",
+            "",
+            "    ---",
+            "",
+            f"    **{len(paper_rows)}** papers · <span class=\"new-badge\">{len(today_rows)} new today</span>",
+            "",
+            "    " + " ".join(links),
+            "",
+        ]
 
+    home_lines.append("</div>")
     (docs / "index.md").write_text("\n".join(home_lines) + "\n", encoding="utf-8")
+
+    # Custom theme assets.
+    (docs / "stylesheets").mkdir(parents=True, exist_ok=True)
+    (docs / "stylesheets" / "extra.css").write_text(SITE_CSS, encoding="utf-8")
 
     mkdocs_cfg = {
         "site_name": "Paper Digest",
         "site_description": "Daily auto-generated research paper digests and trend analysis",
         "theme": {
             "name": "material",
-            "features": ["navigation.indexes", "navigation.top", "navigation.tracking",
-                         "toc.follow", "content.code.copy", "search.suggest"],
+            "font": {"text": "Inter", "code": "JetBrains Mono"},
+            "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes",
+                         "navigation.top", "navigation.tracking", "toc.follow",
+                         "content.code.copy", "search.suggest", "search.highlight"],
             "palette": [
-                {"scheme": "default", "primary": "indigo", "accent": "indigo",
+                {"media": "(prefers-color-scheme: light)", "scheme": "default",
+                 "primary": "indigo", "accent": "teal",
                  "toggle": {"icon": "material/weather-night", "name": "Dark mode"}},
-                {"scheme": "slate", "primary": "indigo", "accent": "indigo",
+                {"media": "(prefers-color-scheme: dark)", "scheme": "slate",
+                 "primary": "indigo", "accent": "teal",
                  "toggle": {"icon": "material/weather-sunny", "name": "Light mode"}},
             ],
         },
-        "markdown_extensions": ["admonition", "pymdownx.details", "pymdownx.superfences",
-                                "toc", "tables"],
-        "plugins": ["search"],
+        "extra_css": ["stylesheets/extra.css"],
+        "markdown_extensions": [
+            "admonition", "attr_list", "md_in_html", "tables",
+            "pymdownx.details", "pymdownx.superfences", "pymdownx.tasklist",
+            {"toc": {"permalink": True}},
+        ],
+        "plugins": ["callouts", "search"],
         "nav": nav,
     }
     (config.SITE_DIR / "mkdocs.yml").write_text(
@@ -437,7 +550,20 @@ def _esc(text: str) -> str:
 def sync_obsidian(conn, cfg: Config) -> None:
     vault = cfg.obsidian_vault
     vault.mkdir(parents=True, exist_ok=True)
-    (vault / ".obsidian").mkdir(exist_ok=True)  # mark as a vault
+    obs = vault / ".obsidian"
+    obs.mkdir(exist_ok=True)  # mark as a vault
+    # Install + enable the styling snippet (merge, don't clobber user settings).
+    (obs / "snippets").mkdir(exist_ok=True)
+    (obs / "snippets" / "paper-digest.css").write_text(OBSIDIAN_CSS, encoding="utf-8")
+    appearance = obs / "appearance.json"
+    try:
+        data = json.loads(appearance.read_text(encoding="utf-8")) if appearance.exists() else {}
+    except (json.JSONDecodeError, OSError):
+        data = {}
+    snips = set(data.get("enabledCssSnippets", []))
+    snips.add("paper-digest")
+    data["enabledCssSnippets"] = sorted(snips)
+    appearance.write_text(json.dumps(data, indent=2), encoding="utf-8")
 
     today = dt.date.today().isoformat()
     total_papers = 0

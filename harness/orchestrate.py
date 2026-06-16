@@ -10,7 +10,7 @@ import datetime as dt
 import logging
 import sys
 
-from . import config, digest, fetch, modelcheck, publish, state, trends
+from . import compact, config, digest, fetch, modelcheck, publish, state, trends
 
 STAGES = ["fetch", "digest", "trends", "publish"]
 
@@ -43,6 +43,12 @@ def parse_args(argv=None):
                    help="probe configured models (with fallback report) and exit")
     p.add_argument("--skip-model-check", action="store_true",
                    help="skip the pre-flight model availability check")
+    p.add_argument("--backfill-year", type=int,
+                   help="fetch stage: pull top --max-papers papers for this year (ranked)")
+    p.add_argument("--compact-year", type=int,
+                   help="compact (trim digest + delete PDF) all papers from this year, then exit")
+    p.add_argument("--no-compact", action="store_true",
+                   help="skip the automatic prior-year compaction step")
     return p.parse_args(argv)
 
 
@@ -60,6 +66,13 @@ def main(argv=None) -> int:
         report = modelcheck.check_and_resolve(cfg)
         log.info("model check:\n%s", modelcheck.report_str(report))
         return 0 if all(r["status"] != "unavailable" for r in report) else 1
+
+    if args.compact_year is not None:
+        with state.connect() as conn:
+            n = compact.compact_year(conn, cfg, args.compact_year)
+            publish.publish(conn, cfg, deploy=not args.no_deploy)
+        log.info("=== compacted %d papers from %d ===", n, args.compact_year)
+        return 0
 
     topics = [cfg.topic(args.topic)] if args.topic else cfg.topics
     if args.topic and topics[0] is None:
@@ -82,7 +95,12 @@ def main(argv=None) -> int:
     with state.connect() as conn:
         for topic in topics:
             if "fetch" in stages:
-                res = fetch.fetch_topic(conn, cfg, topic, dry_run=args.dry_run, since=since)
+                if args.backfill_year is not None:
+                    res = fetch.backfill_topic(conn, cfg, topic, args.backfill_year,
+                                               cfg.max_papers_per_topic_per_run,
+                                               dry_run=args.dry_run)
+                else:
+                    res = fetch.fetch_topic(conn, cfg, topic, dry_run=args.dry_run, since=since)
                 totals["downloaded"] += len(res["downloaded"])
                 if args.dry_run:
                     for p in res["new"]:
@@ -92,11 +110,15 @@ def main(argv=None) -> int:
             if "trends" in stages and not args.dry_run:
                 trends.analyze_topic(conn, cfg, topic)
 
+        # Auto-compaction of prior-year papers (storage saver) — daily runs only.
+        if not args.dry_run and not args.no_compact and not args.stage:
+            totals["compacted"] = compact.maybe_autocompact(conn, cfg)
+
         if "publish" in stages and not args.dry_run:
             publish.publish(conn, cfg, deploy=not args.no_deploy)
 
-    log.info("=== run done | downloaded=%d digested=%d ===",
-             totals["downloaded"], totals["digested"])
+    log.info("=== run done | downloaded=%d digested=%d compacted=%d ===",
+             totals["downloaded"], totals["digested"], totals.get("compacted", 0))
     return 0
 
 

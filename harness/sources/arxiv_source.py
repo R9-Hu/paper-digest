@@ -2,6 +2,10 @@
 
 Built on the `arxiv` package (the official export API wrapper, which rate-limits
 politely). Returns source-agnostic Paper objects.
+
+Captures version + DOI so the harness can (a) link to the newest version and the
+published/conference version when one exists, and (b) re-digest when a newer
+version appears.
 """
 from __future__ import annotations
 
@@ -21,21 +25,21 @@ _VENUES = [
 _VENUE_RE = re.compile(r"\b(" + "|".join(_VENUES) + r")\b", re.IGNORECASE)
 
 
-def _detect_venue(comment: str | None) -> str:
-    if not comment:
-        return ""
-    m = _VENUE_RE.search(comment)
-    if not m:
-        return ""
-    venue = m.group(1).upper()
-    # Try to capture a trailing year, e.g. "Accepted to CVPR 2025".
-    ym = re.search(re.escape(m.group(1)) + r"\s*'?(\d{2,4})", comment, re.IGNORECASE)
-    if ym:
-        venue += " " + ym.group(1)
-    return venue
+def _detect_venue(comment: str | None, journal_ref: str | None = None) -> str:
+    for text in (comment, journal_ref):
+        if not text:
+            continue
+        m = _VENUE_RE.search(text)
+        if m:
+            venue = m.group(1).upper()
+            ym = re.search(re.escape(m.group(1)) + r"\s*'?(\d{2,4})", text, re.IGNORECASE)
+            if ym:
+                venue += " " + ym.group(1)
+            return venue
+    return ""
 
 
-def _build_query(categories: list[str], keywords: list[str]) -> str:
+def _build_query(categories, keywords, start: dt.date | None, until: dt.date | None) -> str:
     cat_clause = " OR ".join(f"cat:{c}" for c in categories)
     kw_clause = " OR ".join(f'all:"{k}"' for k in keywords)
     parts = []
@@ -43,7 +47,14 @@ def _build_query(categories: list[str], keywords: list[str]) -> str:
         parts.append(f"({cat_clause})")
     if kw_clause:
         parts.append(f"({kw_clause})")
+    if start and until:
+        parts.append(f"submittedDate:[{start:%Y%m%d}0000 TO {until:%Y%m%d}2359]")
     return " AND ".join(parts)
+
+
+def _version(short_id: str) -> int:
+    m = re.search(r"v(\d+)$", short_id)
+    return int(m.group(1)) if m else 1
 
 
 def search(
@@ -51,29 +62,38 @@ def search(
     keywords: list[str],
     earliest: dt.date,
     max_results: int,
+    until: dt.date | None = None,
 ) -> list[Paper]:
-    query = _build_query(categories, keywords)
+    """Return up to `max_results` papers submitted in [earliest, until].
+
+    When `until` is given the date window is pushed into the query itself
+    (year-bounded backfill); otherwise it's an open-ended 'since earliest' search.
+    """
+    query = _build_query(categories, keywords, earliest if until else None, until)
     if not query:
         return []
 
-    client = arxiv.Client(page_size=100, delay_seconds=3.0, num_retries=3)
-    # Over-fetch a bit so the date filter still yields up to max_results.
-    search = arxiv.Search(
+    client = arxiv.Client(page_size=100, delay_seconds=3.0, num_retries=5)
+    s = arxiv.Search(
         query=query,
-        max_results=max_results * 5,
+        max_results=max_results if until else max_results * 5,
         sort_by=arxiv.SortCriterion.SubmittedDate,
         sort_order=arxiv.SortOrder.Descending,
     )
 
     papers: list[Paper] = []
-    for r in client.results(search):
-        # r.published is the datetime the ORIGINAL (v1) version was submitted —
-        # i.e. the earliest version's timestamp, exactly what we want.
+    for r in client.results(s):
+        # r.published = datetime the ORIGINAL (v1) version was submitted (earliest).
         pub = r.published.date()
+        if until and pub > until:
+            continue
         if pub < earliest:
-            break  # results are newest-first, so we can stop here
-        short_id = r.get_short_id()             # e.g. "2501.01234v2"
-        base_id = re.sub(r"v\d+$", "", short_id)  # drop version suffix
+            break  # newest-first → nothing older remains we want
+        short_id = r.get_short_id()              # e.g. "2501.01234v2"
+        base_id = re.sub(r"v\d+$", "", short_id)
+        doi = (r.doi or "").strip()
+        # Newest/conference link: DOI (published version) if present, else latest abs.
+        best_url = f"https://doi.org/{doi}" if doi else f"https://arxiv.org/abs/{base_id}"
         papers.append(
             Paper(
                 canonical_id=f"arxiv:{base_id}",
@@ -82,11 +102,15 @@ def search(
                 authors=[a.name for a in r.authors],
                 abstract=r.summary.strip(),
                 pdf_url=r.pdf_url,
-                abs_url=r.entry_id,
+                abs_url=best_url,
                 published=pub,
                 published_ts=r.published.isoformat(),
-                venue=_detect_venue(r.comment),
-                extra={"comment": r.comment or "", "primary_category": r.primary_category},
+                version=_version(short_id),
+                doi=doi,
+                venue=_detect_venue(r.comment, r.journal_ref),
+                extra={"comment": r.comment or "", "journal_ref": r.journal_ref or "",
+                       "primary_category": r.primary_category,
+                       "arxiv_abs": f"https://arxiv.org/abs/{base_id}"},
             )
         )
         if len(papers) >= max_results:

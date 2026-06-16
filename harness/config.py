@@ -43,6 +43,7 @@ class Config:
     max_papers_per_topic_per_run: int
     claude_bin: str
     claude_timeout_sec: int
+    digest_concurrency: int
     topics: list[Topic]
 
     def topic(self, slug: str) -> Topic | None:
@@ -81,6 +82,7 @@ def load_config(path: Path | str = CONFIG_PATH) -> Config:
         max_papers_per_topic_per_run=int(g.get("max_papers_per_topic_per_run", 30)),
         claude_bin=g.get("claude_bin", "claude"),
         claude_timeout_sec=int(g.get("claude_timeout_sec", 600)),
+        digest_concurrency=int(g.get("digest_concurrency", 4)),
         topics=topics,
     )
 

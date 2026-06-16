@@ -3,3 +3,4 @@ feedparser>=6.0.0
 requests>=2.25.0
 PyYAML>=6.0
 mkdocs-material>=9.5.0
+mkdocs-callouts>=1.13.0

@@ -64,6 +64,21 @@ Last updated: 2026-06-15 (✅ COMPLETE — end-to-end verified)
   metadata callout. Backfilled 130/137 existing digests via `harness.backfill_published`
   (re-queried arXiv, rate-limit resilient).
 
+- ✅ **Version-aware links/digests** — capture arXiv version + DOI; link prefers the
+  published/conference (DOI) version, else latest arXiv; a newer version re-triggers
+  a digest. (`models`, `arxiv_source`, `state` cols version/doi, `fetch` dedup.)
+- ✅ **Year backfill** — `--backfill-year YYYY` pulls top `--max-papers`/topic ranked by
+  heuristic (top-tier-conference → HF upvotes → recency). (`fetch.backfill_topic`.)
+- ✅ **Concurrent digesting** — `digest_concurrency` (default 4) parallel `claude -p`
+  calls; workers do LLM/file work, main thread owns sqlite writes.
+- ✅ **Yearly compaction** — `--compact-year` + auto prior-year compaction in daily
+  runs: trim digest to TL;DR/Contributions/Results + delete PDF to save storage
+  (still listed on pages). (`compact.py`, `state` meta/compacted status.)
+- ✅ **Fancier UI** — site: `mkdocs-callouts` (renders `[!info]` etc. as admonitions,
+  no literal tags), card-grid home, nav tabs, Inter/JetBrains fonts, indigo+teal
+  palette, styled tables + venue badges via generated `extra.css`. Obsidian: enabled
+  `paper-digest.css` snippet (title banners, styled tables, accent callouts, pill tags).
+
 ## Blockers
 - _none yet_
 

@@ -9,6 +9,7 @@ from __future__ import annotations
 import json
 import logging
 import subprocess
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from . import config, llm, state
@@ -133,51 +134,53 @@ def _front_matter(row, topic: Topic, digest_body: str) -> str:
     return "\n".join(lines)
 
 
-def digest_paper(conn, cfg: Config, topic: Topic, row) -> bool:
-    pdf_path = config.ROOT / row["pdf_path"]
+def _produce(cfg: Config, topic: Topic, row):
+    """Heavy, DB-free digest work (runs in a worker thread).
+    Returns (canonical_id, topic_slug, digest_rel_path | None, error | None)."""
+    cid, slug = row["canonical_id"], topic.slug
+    pdf_path = config.ROOT / (row["pdf_path"] or "")
     if not pdf_path.exists():
-        state.mark_failed(conn, row["canonical_id"], topic.slug, "pdf missing")
-        return False
-
+        return cid, slug, None, "pdf missing"
     text = extract_text(pdf_path)
     if len(text) < 500:
-        # Fall back to the abstract so we still produce something useful.
         text = (row["abstract"] or "")[:MAX_TEXT_CHARS]
     text = text[:MAX_TEXT_CHARS]
     if not text.strip():
-        state.mark_failed(conn, row["canonical_id"], topic.slug, "no extractable text")
-        return False
-
+        return cid, slug, None, "no extractable text"
     prompt = PROMPT_TMPL.format(topic=topic.name, title=row["title"], text=text)
     try:
         body = llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=SYSTEM))
     except llm.LLMError as e:
-        log.warning("[%s] digest failed for %s: %s", topic.slug, row["title"][:60], e)
-        state.mark_failed(conn, row["canonical_id"], topic.slug, str(e))
-        return False
-
-    out_dir = config.DIGEST_DIR / topic.slug
+        return cid, slug, None, str(e)
+    out_dir = config.DIGEST_DIR / slug
     out_dir.mkdir(parents=True, exist_ok=True)
-    stem = Path(row["pdf_path"]).stem
-    out_path = out_dir / f"{stem}.md"
-
-    fm = _front_matter(row, topic, body)
-    note = f"{fm}\n\n# {row['title']}\n\n{visible_meta_line(row)}\n\n{body}\n"
+    out_path = out_dir / f"{Path(row['pdf_path']).stem}.md"
+    note = f"{_front_matter(row, topic, body)}\n\n# {row['title']}\n\n{visible_meta_line(row)}\n\n{body}\n"
     out_path.write_text(note, encoding="utf-8")
-
-    rel = out_path.relative_to(config.ROOT).as_posix()
-    state.mark_digested(conn, row["canonical_id"], topic.slug, rel)
-    log.info("[%s] digested: %s", topic.slug, out_path.name)
-    return True
+    return cid, slug, out_path.relative_to(config.ROOT).as_posix(), None
 
 
 def digest_topic(conn, cfg: Config, topic: Topic) -> int:
+    """Digest all pending papers for a topic, running `digest_concurrency`
+    LLM calls in parallel. Worker threads do the LLM/file work; this (main)
+    thread owns all sqlite writes — sqlite connections aren't thread-safe."""
     pending = state.pending_digests(conn, topic.slug)
-    log.info("[%s] %d papers to digest", topic.slug, len(pending))
+    log.info("[%s] %d papers to digest (concurrency=%d)",
+             topic.slug, len(pending), cfg.digest_concurrency)
+    if not pending:
+        return 0
     done = 0
-    for row in pending:
-        if digest_paper(conn, cfg, topic, row):
-            done += 1
-        conn.commit()  # persist each digest (or failure) as it completes
+    workers = max(1, cfg.digest_concurrency)
+    with ThreadPoolExecutor(max_workers=workers) as ex:
+        futures = [ex.submit(_produce, cfg, topic, row) for row in pending]
+        for fut in as_completed(futures):
+            cid, slug, rel, err = fut.result()
+            if err:
+                state.mark_failed(conn, cid, slug, err)
+                log.warning("[%s] digest failed %s: %s", slug, cid, err[:80])
+            else:
+                state.mark_digested(conn, cid, slug, rel)
+                done += 1
+            conn.commit()
     log.info("[%s] digested %d/%d", topic.slug, done, len(pending))
     return done

@@ -27,6 +27,8 @@ CREATE TABLE IF NOT EXISTS papers (
     venue          TEXT,
     published      TEXT,          -- ISO date (earliest version)
     published_ts   TEXT,          -- ISO datetime of the earliest version (v1)
+    version        INTEGER,       -- latest known version (arXiv vN)
+    doi            TEXT,          -- published/conference DOI, if any
     year           INTEGER,
     pdf_path       TEXT,          -- relative to project root
     digest_path    TEXT,          -- relative to project root
@@ -42,6 +44,11 @@ CREATE TABLE IF NOT EXISTS topic_state (
     last_run     TEXT,
     last_run_new INTEGER
 );
+
+CREATE TABLE IF NOT EXISTS meta (
+    key   TEXT PRIMARY KEY,
+    value TEXT
+);
 """
 
 
@@ -54,10 +61,11 @@ def connect(db_path: Path | str = None):
     try:
         conn.execute("PRAGMA busy_timeout=30000")  # tolerate concurrent runs
         conn.executescript(SCHEMA)
-        # Migrate older DBs that predate published_ts.
+        # Migrate older DBs that predate added columns.
         cols = {r[1] for r in conn.execute("PRAGMA table_info(papers)")}
-        if "published_ts" not in cols:
-            conn.execute("ALTER TABLE papers ADD COLUMN published_ts TEXT")
+        for col, decl in (("published_ts", "TEXT"), ("version", "INTEGER"), ("doi", "TEXT")):
+            if col not in cols:
+                conn.execute(f"ALTER TABLE papers ADD COLUMN {col} {decl}")
         yield conn
         conn.commit()
     finally:
@@ -80,17 +88,26 @@ def record_fetched(conn, paper: Paper, topic_slug: str, pdf_path: str) -> None:
     conn.execute(
         """INSERT OR REPLACE INTO papers
            (canonical_id, topic_slug, source, title, authors, abstract, pdf_url,
-            abs_url, venue, published, published_ts, year, pdf_path, digest_status, fetched_at)
-           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?, 'fetched', ?)""",
+            abs_url, venue, published, published_ts, version, doi, year, pdf_path,
+            digest_status, fetched_at)
+           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'fetched', ?)""",
         (
             paper.canonical_id, topic_slug, paper.source, paper.title,
             json.dumps(paper.authors), paper.abstract, paper.pdf_url,
             paper.abs_url, paper.venue,
             paper.published.isoformat() if paper.published else None,
-            paper.published_ts or None,
+            paper.published_ts or None, paper.version, paper.doi or None,
             paper.year, pdf_path, _now(),
         ),
     )
+
+
+def get_version(conn, canonical_id: str, topic_slug: str) -> int | None:
+    row = conn.execute(
+        "SELECT version FROM papers WHERE canonical_id=? AND topic_slug=?",
+        (canonical_id, topic_slug),
+    ).fetchone()
+    return (row["version"] if row and row["version"] is not None else None) if row else None
 
 
 def mark_digested(conn, canonical_id: str, topic_slug: str, digest_path: str) -> None:
@@ -122,7 +139,8 @@ def pending_digests(conn, topic_slug: str = None) -> list[sqlite3.Row]:
 
 def digested_for_topic(conn, topic_slug: str) -> list[sqlite3.Row]:
     return conn.execute(
-        """SELECT * FROM papers WHERE topic_slug=? AND digest_status='digested'
+        """SELECT * FROM papers
+           WHERE topic_slug=? AND digest_status IN ('digested','compacted')
            ORDER BY published DESC""",
         (topic_slug,),
     ).fetchall()
@@ -141,3 +159,30 @@ def get_last_run(conn, topic_slug: str) -> str | None:
         "SELECT last_run FROM topic_state WHERE topic_slug=?", (topic_slug,)
     ).fetchone()
     return row["last_run"] if row else None
+
+
+def meta_get(conn, key: str) -> str | None:
+    row = conn.execute("SELECT value FROM meta WHERE key=?", (key,)).fetchone()
+    return row["value"] if row else None
+
+
+def meta_set(conn, key: str, value: str) -> None:
+    conn.execute("INSERT OR REPLACE INTO meta (key, value) VALUES (?,?)", (key, value))
+
+
+def prior_year_digested(conn, before_year: int):
+    """Digested (not yet compacted) papers published before `before_year`."""
+    return conn.execute(
+        """SELECT * FROM papers
+           WHERE digest_status='digested' AND CAST(year AS INTEGER) < ?
+           ORDER BY year, topic_slug""",
+        (before_year,),
+    ).fetchall()
+
+
+def mark_compacted(conn, canonical_id: str, topic_slug: str, digest_path: str) -> None:
+    conn.execute(
+        """UPDATE papers SET digest_status='compacted', digest_path=?, pdf_path=NULL
+           WHERE canonical_id=? AND topic_slug=?""",
+        (digest_path, canonical_id, topic_slug),
+    )

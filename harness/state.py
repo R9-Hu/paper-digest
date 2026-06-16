@@ -158,6 +158,17 @@ def years_for_topic(conn, topic_slug: str) -> list[int]:
     return [r["y"] for r in rows]
 
 
+def latest_digest_date(conn, topic_slug: str) -> str | None:
+    """The most recent date (YYYY-MM-DD) on which this topic had a paper digested."""
+    row = conn.execute(
+        """SELECT MAX(substr(digested_at,1,10)) d FROM papers
+           WHERE topic_slug=? AND digest_status IN ('digested','compacted')
+                 AND digested_at IS NOT NULL""",
+        (topic_slug,),
+    ).fetchone()
+    return row["d"] if row and row["d"] else None
+
+
 def digested_for_topic_year(conn, topic_slug: str, year: int) -> list[sqlite3.Row]:
     return conn.execute(
         """SELECT * FROM papers

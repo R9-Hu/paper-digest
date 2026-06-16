@@ -127,6 +127,7 @@ def main(argv=None) -> int:
                 totals["digested"] += digest.digest_topic(conn, cfg, topic, should_continue=can_llm)
             if "trends" in stages and not args.dry_run and digest_ok:
                 trends.analyze_topic(conn, cfg, topic)
+                trends.summarize_today(conn, cfg, topic)
 
         # Auto-compaction of prior-year papers (storage saver) — opt-in, daily runs only.
         if not args.dry_run and not args.no_compact and not args.stage and cfg.auto_compact:

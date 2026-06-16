@@ -314,6 +314,37 @@ def _site_digest(md: str) -> str:
     return "\n\n".join(parts) + "\n"
 
 
+def _extract_tldr(digest_md: str) -> str:
+    return (_extract_section(digest_md, "TL;DR") or "").strip()
+
+
+def _rich_today_lines(topic_name: str, day: str, brief: str | None, items: list) -> list[str]:
+    """Today's Digest: short whole-day overview, then a per-paper TL;DR (with
+    expandable links to any cited corpus papers), then the table."""
+    lines = [f"# 🆕 Today's Digest — {topic_name}", "",
+             f"*New papers/posts collected {day}.*", ""]
+    if not items:
+        return lines + ["> [!note] Nothing new today", "",
+                        "_The next overnight run will refresh this._"]
+    lines += [f"> [!success] {len(items)} new today", ""]
+    lines += ["## 📋 In brief", "",
+              brief or "_The whole-day overview is written during the overnight run._", ""]
+    lines += ["## 📝 Today's papers", ""]
+    for it in items:
+        vb = f'  <span class="venue">{_esc(it["venue"])}</span>' if it["venue"] else ""
+        lines += [f'### [{it["title"]}](papers/{it["pslug"]}.md){vb}', "",
+                  it["tldr"] or "_(no TL;DR)_", ""]
+        if it.get("cites"):
+            lines.append(f'??? quote "🔗 Cites {len(it["cites"])} paper(s) in this corpus"')
+            for (ct, rel, ctldr) in it["cites"]:
+                snippet = " ".join((ctldr or "").split())[:160]
+                lines.append(f"    - [{_esc(ct)}]({rel}) — {snippet}")
+            lines.append("")
+    lines += ["## 📄 Table", "", "| Date | Paper | Venue |", "| --- | --- | --- |"]
+    lines += [it["row"] for it in items]
+    return lines
+
+
 # ----------------------------------------------------------------------------- #
 # GitHub Pages (MkDocs Material)
 # ----------------------------------------------------------------------------- #
@@ -344,9 +375,12 @@ def build_site(conn, cfg: Config) -> None:
         topic_total = topic_today = 0
         year_nav = []        # nav groups, one per year (the left super-titles)
         year_index_lines = []
+        topic_index, today_items, cur_ydir = {}, [], None
+        latest_dd = state.latest_digest_date(conn, topic.slug)  # most recent digested batch
 
         for year in years:
             rows = state.digested_for_topic_year(conn, topic.slug, year)
+            is_current = year == cur_year
             topic_total += len(rows)
             ydir = tdir / str(year)
             (ydir / "papers").mkdir(parents=True, exist_ok=True)
@@ -358,7 +392,7 @@ def build_site(conn, cfg: Config) -> None:
                 (ydir / "trend.md").write_text(trend_md, encoding="utf-8")
 
             key_norms = _key_titles(trend_md)
-            key_nav, paper_rows, today_rows = [], [], []
+            key_nav, paper_rows = [], []
             used_slugs: set[str] = set()
             for row in rows:
                 src = config.ROOT / (row["digest_path"] or "")
@@ -370,8 +404,10 @@ def build_site(conn, cfg: Config) -> None:
                     pslug = f"{base}-{i}"
                     i += 1
                 used_slugs.add(pslug)
-                (ydir / "papers" / f"{pslug}.md").write_text(
-                    _site_digest(src.read_text(encoding="utf-8")), encoding="utf-8")
+                raw = src.read_text(encoding="utf-8")
+                (ydir / "papers" / f"{pslug}.md").write_text(_site_digest(raw), encoding="utf-8")
+                tldr = _extract_tldr(raw)
+                topic_index[_norm_title(row["title"])] = (row["title"], year, pslug, tldr)
                 if _is_key(row["title"], key_norms):
                     key_nav.append({row["title"]: f"{topic.slug}/{year}/papers/{pslug}.md"})
                 date = row["published"] or "—"
@@ -380,8 +416,10 @@ def build_site(conn, cfg: Config) -> None:
                               else '<span class="venue-none">—</span>')
                 tr = f"| {date} | [{_esc(row['title'])}](papers/{pslug}.md) | {venue_cell} |"
                 paper_rows.append(tr)
-                if (row["fetched_at"] or "").startswith(today):
-                    today_rows.append(tr)
+                if is_current and latest_dd and (row["digested_at"] or "").startswith(latest_dd):
+                    today_items.append({"title": row["title"], "pslug": pslug,
+                                        "venue": v, "row": tr, "tldr": tldr,
+                                        "text_norm": _norm_title(raw)})
 
             # Full paper-list page (the leaf 'Paper list' nav item opens this table).
             plist = [f"# {topic.name} — {year} · Paper list ({len(paper_rows)})", ""]
@@ -389,14 +427,11 @@ def build_site(conn, cfg: Config) -> None:
                       if paper_rows else ["_No papers yet._"])
             (ydir / "papers-list.md").write_text("\n".join(plist) + "\n", encoding="utf-8")
 
-            is_current = year == cur_year
             if is_current:
-                (ydir / "today.md").write_text(
-                    "\n".join(_today_page_lines(f"{topic.name} ({year})", today, today_rows)) + "\n",
-                    encoding="utf-8")
+                cur_ydir = ydir   # rich today.md is written after the loop (needs full index)
                 digest_nav = {"Today's Digest": f"{topic.slug}/{year}/today.md"}
-                digest_link = f"🆕 **[Today's Digest](today.md)** — {len(today_rows)} new today"
-                topic_today += len(today_rows)
+                digest_link = f"🆕 **[Today's Digest](today.md)** — {len(today_items)} in the latest batch"
+                topic_today += len(today_items)
             else:
                 (ydir / "yearly.md").write_text(
                     "\n".join(_yearly_digest_lines(topic.name, year, trend_md, len(rows))) + "\n",
@@ -425,9 +460,28 @@ def build_site(conn, cfg: Config) -> None:
             children.append({"Paper list": f"{topic.slug}/{year}/papers-list.md"})  # leaf → table
             year_nav.append({str(year): children})
 
-            badge = f"{len(today_rows)} new today" if is_current else "year in review"
+            badge = f"{len(today_items)} in latest batch" if is_current else "year in review"
             year_index_lines.append(
                 f"- **[{year}]({year}/index.md)** — {len(rows)} papers · {badge}")
+
+        # Rich Today's Digest (built after the loop so cross-links can reference the
+        # whole topic corpus). A paper "cites" another when that paper's title appears
+        # in this one's digest text.
+        if cur_ydir is not None:
+            for it in today_items:
+                cites = []
+                for nt, (ct, cy, cpslug, ctldr) in topic_index.items():
+                    if len(nt) >= 30 and ct != it["title"] and nt in it["text_norm"]:
+                        rel = (f"papers/{cpslug}.md" if cy == cur_year
+                               else f"../{cy}/papers/{cpslug}.md")
+                        cites.append((ct, rel, ctldr))
+                it["cites"] = cites[:8]
+            brief = (state.meta_get(conn, f"today_brief:{topic.slug}")
+                     if state.meta_get(conn, f"today_brief_date:{topic.slug}") == latest_dd else None)
+            (cur_ydir / "today.md").write_text(
+                "\n".join(_rich_today_lines(topic.name, latest_dd or today, brief or None,
+                                           today_items)) + "\n",
+                encoding="utf-8")
 
         # Topic landing: intro + by-year index.
         landing = [f"# {topic.name}", ""] + _intro_section(topic)

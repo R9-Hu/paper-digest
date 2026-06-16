@@ -130,6 +130,44 @@ def analyze_topic_year(conn, cfg: Config, topic: Topic, year: int) -> bool:
     return True
 
 
+def _tldr_of(md: str) -> str:
+    m = re.search(r"(?ims)^##\s*TL;DR\s*\n(.+?)(?=^##\s|\Z)", md)
+    return " ".join(m.group(1).split()) if m else ""
+
+
+def summarize_today(conn, cfg: Config, topic: Topic) -> bool:
+    """Write a short whole-batch overview of the most recently digested papers
+    (the 'In brief' on the Today's Digest page). Cached in meta, keyed by batch date."""
+    day = state.latest_digest_date(conn, topic.slug)
+    if not day or state.meta_get(conn, f"today_brief_date:{topic.slug}") == day:
+        return False  # nothing digested, or this batch already summarized
+    rows = [r for r in state.digested_for_topic(conn, topic.slug)
+            if (r["digested_at"] or "").startswith(day)]
+    if not rows:
+        return False
+    chunks = []
+    for r in rows[:60]:
+        p = config.ROOT / (r["digest_path"] or "")
+        if p.exists():
+            chunks.append(f"- {r['title']}: {_tldr_of(p.read_text(encoding='utf-8'))}")
+    prompt = (f"Below are the TL;DRs of {len(rows)} papers just added for the topic "
+              f"'{topic.name}'. In 3-4 sentences, summarize what this batch is collectively "
+              f"about — the dominant themes and threads. Output only the prose paragraph.\n\n"
+              + "\n".join(chunks)[:60000])
+    try:
+        text = llm.strip_code_fence(llm.run_claude(
+            prompt, cfg.digest_model, cfg,
+            system="You are a research news editor writing a crisp daily briefing."))
+    except llm.LLMError as e:
+        log.warning("[%s] today brief failed: %s", topic.slug, e)
+        return False
+    state.meta_set(conn, f"today_brief:{topic.slug}", text.strip())
+    state.meta_set(conn, f"today_brief_date:{topic.slug}", day)
+    conn.commit()
+    log.info("[%s] today brief written (%d papers)", topic.slug, len(rows))
+    return True
+
+
 def analyze_topic(conn, cfg: Config, topic: Topic) -> bool:
     """Generate per-year trend reports, regenerating a year only when its digested
     paper count has changed since the last report (saves repeated LLM calls)."""

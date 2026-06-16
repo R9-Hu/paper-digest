@@ -5608,7 +5608,7 @@
 <p><strong>Dynamic Fisher Weight Guard (DFG):</strong> Fisher Information Matrix (FIM) diagonals are computed from the combined distillation+alignment loss gradient (excluding CE), yielding dynamically updated per-parameter importance weights that modulate an L2 regularization penalty, outperforming static EWC.</p>
 </li>
 </ol>
-<p>Total training loss: $\mathcal{L} = \mathcal{L}<em CKT="CKT">{CE} + \alpha\mathcal{L}</em>} + \beta\mathcal{L<em DFG="DFG">{CMC} + \mathcal{L}</em>$.</p>
+<p>Total training loss: <span class="arithmatex">\(\mathcal{L} = \mathcal{L}_{CE} + \alpha\mathcal{L}_{CKT} + \beta\mathcal{L}_{CMC} + \mathcal{L}_{DFG}\)</span>.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>18M-entry multimodal medical retrieval database from PubMed processed with Qwen3-Embedding-8B, paired with a 3,000-entry hierarchical medical question pool enabling fine-grained domain/task/lesion-level queries.</li>
@@ -5700,6 +5700,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

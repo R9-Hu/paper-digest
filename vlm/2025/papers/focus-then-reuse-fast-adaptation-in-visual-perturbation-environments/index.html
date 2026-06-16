@@ -5576,9 +5576,9 @@
 <p>Policies trained in clean simulation degrade severely when deployed in environments with distracting video backgrounds. Existing approaches either train directly in visually perturbed environments (costly, low generalization), rely on data augmentation (fails on unseen disturbances), or use adaptation methods (PAD) that cannot recover clean-environment performance in complex, near-real-world video backgrounds.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>FTR is a two-stage hierarchical framework:</p>
-<p><strong>Focus stage:</strong> At each timestep, a frozen SAM 2 segmentation model decomposes the disturbed observation into $k$ binary-masked segments. A trainable segment selector $\pi^h$ (Gaussian policy over segment indices) picks which segments are task-relevant, outputting a union mask $o_t^{\text{sel}}$. Between selection calls (interval $T_{\text{sel}}=20$ steps), a frozen SAM 2 tracker propagates the previously selected masks for temporal consistency, preventing unstable RL signals from frame-by-frame re-selection.</p>
-<p><strong>Reuse stage:</strong> The frozen, DrQ-v2-pretrained source policy $\pi^l$ receives the last 3 frames of $o_t^{\text{sel}}$ and outputs actions. $\pi^l$ is never updated.</p>
-<p><strong>Segment selector training:</strong> $\pi^h$ is trained with a combined loss $L = \eta_{\text{SL}} L_{\text{SL}} + \eta_{\text{RL}} L_{\text{RL}}$. $L_{\text{SL}}$ uses Qwen-VL-Max labels (which segments are task-relevant) with a margin-regularized loss instead of BCE, to avoid hard binarization that conflicts with subsequent RL optimization. $L_{\text{RL}}$ is PPO using cumulative reward over the $T_{\text{sel}}$-step interval as the high-level reward. A dynamic schedule transitions from pure supervised learning ($t &lt; T_1 = 5000$) through a linear blend to pure RL ($t &gt; T_2 = 10000$), restricting VLM calls to only 250 total.</p>
+<p><strong>Focus stage:</strong> At each timestep, a frozen SAM 2 segmentation model decomposes the disturbed observation into <span class="arithmatex">\(k\)</span> binary-masked segments. A trainable segment selector <span class="arithmatex">\(\pi^h\)</span> (Gaussian policy over segment indices) picks which segments are task-relevant, outputting a union mask <span class="arithmatex">\(o_t^{\text{sel}}\)</span>. Between selection calls (interval <span class="arithmatex">\(T_{\text{sel}}=20\)</span> steps), a frozen SAM 2 tracker propagates the previously selected masks for temporal consistency, preventing unstable RL signals from frame-by-frame re-selection.</p>
+<p><strong>Reuse stage:</strong> The frozen, DrQ-v2-pretrained source policy <span class="arithmatex">\(\pi^l\)</span> receives the last 3 frames of <span class="arithmatex">\(o_t^{\text{sel}}\)</span> and outputs actions. <span class="arithmatex">\(\pi^l\)</span> is never updated.</p>
+<p><strong>Segment selector training:</strong> <span class="arithmatex">\(\pi^h\)</span> is trained with a combined loss <span class="arithmatex">\(L = \eta_{\text{SL}} L_{\text{SL}} + \eta_{\text{RL}} L_{\text{RL}}\)</span>. <span class="arithmatex">\(L_{\text{SL}}\)</span> uses Qwen-VL-Max labels (which segments are task-relevant) with a margin-regularized loss instead of BCE, to avoid hard binarization that conflicts with subsequent RL optimization. <span class="arithmatex">\(L_{\text{RL}}\)</span> is PPO using cumulative reward over the <span class="arithmatex">\(T_{\text{sel}}\)</span>-step interval as the high-level reward. A dynamic schedule transitions from pure supervised learning (<span class="arithmatex">\(t &lt; T_1 = 5000\)</span>) through a linear blend to pure RL (<span class="arithmatex">\(t &gt; T_2 = 10000\)</span>), restricting VLM calls to only 250 total.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Focus-Then-Reuse hierarchical framework: decoupled focus (trainable) and reuse (frozen) stages, compatible with arbitrary base RL algorithms.</li>
@@ -5602,7 +5602,7 @@
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>FTR fails under additional distributional shifts beyond background distraction, specifically <strong>camera pose variations</strong>.</li>
-<li>Selection interval $T_{\text{sel}}$ requires manual tuning; no adaptive scheduler.</li>
+<li>Selection interval <span class="arithmatex">\(T_{\text{sel}}\)</span> requires manual tuning; no adaptive scheduler.</li>
 <li>Performance is bounded by the quality of the underlying segmentation (SAM 2) and tracking models, which are not specialized for RL tasks.</li>
 <li>VLM (Qwen-VL-Max) latency (several seconds per call) is unacceptable at inference; it is restricted to the supervised pretraining phase only, limiting online adaptability.</li>
 <li>Evaluation uses only 5 fixed background videos; real-world diversity may be broader.</li>
@@ -5671,6 +5671,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5583,7 +5583,7 @@
 <p>Standard VIT trains MLLMs solely to predict response tokens given image + instruction, creating an incentive to exploit language priors while ignoring visual input — a shortcut learning failure demonstrated by showing a pure LLM (no image) achieves correct answers on many VQA samples. This leads to overfitting, degraded visual grounding, and hallucinations.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>L2T modifies the VIT fine-tuning loss to jointly maximize likelihood of both the instruction and the response conditioned on the image:</p>
-<p>$$\mathcal{L} = -\log p_\theta(X_I, X_A | X_V) = \underbrace{-\sum_i \log p_\theta(X_{I,i}|X_V, X_{I,&lt;i})}<em>{\text{Learn to Instruct}} \underbrace{-\sum_i \log p</em>\theta(X_{A,i}|X_V, X_I, X_{A,&lt;i})}_{\text{Learn to Respond}}$$</p>
+<div class="arithmatex">\[\mathcal{L} = -\log p_\theta(X_I, X_A | X_V) = \underbrace{-\sum_i \log p_\theta(X_{I,i}|X_V, X_{I,&lt;i})}_{\text{Learn to Instruct}} \underbrace{-\sum_i \log p_\theta(X_{A,i}|X_V, X_I, X_{A,&lt;i})}_{\text{Learn to Respond}}\]</div>
 <p><strong>Template removal</strong> filters two classes of tokens from the instruction learning signal: (1) system templates (USER/ASSISTANT role markers, assistant persona tokens) and (2) task templates — high-frequency boilerplate sentences identified by corpus-wide frequency counting (e.g., "Answer the question using a single word or phrase"). Only semantically image-relevant instruction content is learned. The method is applied exclusively during fine-tuning, not pre-training, and requires no new training data.</p>
 <p>To verify the mechanism, the authors define <em>visual contribution</em> (VC) = log p(XA|XV, XI) − log p(XA|XV=∅, XI), showing L2T achieves a 9% higher VC, confirmed by attention weight visualizations showing stronger activation on visual tokens.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5677,6 +5677,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

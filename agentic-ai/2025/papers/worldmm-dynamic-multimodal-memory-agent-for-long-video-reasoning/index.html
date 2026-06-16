@@ -5560,13 +5560,13 @@
 <p>WorldMM operates in three stages:</p>
 <ol>
 <li><strong>Multimodal Memory Construction</strong> — three parallel memories are built offline from the video stream:</li>
-<li><em>Episodic memory</em> $\mathcal{M}<em t_0="t_0">e = {G</em>}$: a hierarchy of knowledge graphs (factual entity–action–entity triplets) at increasing temporal granularities (e.g., 30 s, 3 min, 10 min, 1 hr for EgoLifeQA).}, \ldots, G_{t_N</li>
-<li><em>Semantic memory</em> $\mathcal{M}_s$: a single continuously evolving KG that merges relational/habitual triplets via an LLM-driven consolidation process that identifies outdated or conflicting edges and applies targeted updates.</li>
+<li><em>Episodic memory</em> <span class="arithmatex">\(\mathcal{M}_e = \{G_{t_0}, \ldots, G_{t_N}\}\)</span>: a hierarchy of knowledge graphs (factual entity–action–entity triplets) at increasing temporal granularities (e.g., 30 s, 3 min, 10 min, 1 hr for EgoLifeQA).</li>
+<li><em>Semantic memory</em> <span class="arithmatex">\(\mathcal{M}_s\)</span>: a single continuously evolving KG that merges relational/habitual triplets via an LLM-driven consolidation process that identifies outdated or conflicting edges and applies targeted updates.</li>
 <li>
-<p><em>Visual memory</em> $\mathcal{M}_v = \mathcal{M}_v^f \cup \mathcal{M}_v^I$: dense visual embeddings per fixed-length segment (VLM2Vec-V2 encoder) for keyword-based cosine retrieval, plus a frame-timestamp index for direct temporal access.</p>
+<p><em>Visual memory</em> <span class="arithmatex">\(\mathcal{M}_v = \mathcal{M}_v^f \cup \mathcal{M}_v^I\)</span>: dense visual embeddings per fixed-length segment (VLM2Vec-V2 encoder) for keyword-based cosine retrieval, plus a frame-timestamp index for direct temporal access.</p>
 </li>
 <li>
-<p><strong>Adaptive Memory Retrieval</strong> — a retrieval agent $\mathcal{R}(q, r_{&lt;i})$ iterates, at each step selecting one memory type $m_i \in {\mathcal{M}_e, \mathcal{M}_s, \mathcal{M}_v}$ and a query $q_i$, or emitting STOP when sufficient information is gathered. Episodic retrieval uses Personalized PageRank (PPR) across all temporal scales followed by an LLM cross-scale reranker to pick the optimal time range. Semantic retrieval uses edge-weighted PPR. Visual retrieval uses either cosine similarity over embeddings or direct timestamp lookup.</p>
+<p><strong>Adaptive Memory Retrieval</strong> — a retrieval agent <span class="arithmatex">\(\mathcal{R}(q, r_{&lt;i})\)</span> iterates, at each step selecting one memory type <span class="arithmatex">\(m_i \in \{\mathcal{M}_e, \mathcal{M}_s, \mathcal{M}_v\}\)</span> and a query <span class="arithmatex">\(q_i\)</span>, or emitting STOP when sufficient information is gathered. Episodic retrieval uses Personalized PageRank (PPR) across all temporal scales followed by an LLM cross-scale reranker to pick the optimal time range. Semantic retrieval uses edge-weighted PPR. Visual retrieval uses either cosine similarity over embeddings or direct timestamp lookup.</p>
 </li>
 <li>
 <p><strong>Response Generation</strong> — a separate response agent receives the full retrieval history (selected memories, queries, retrieved content) and generates the final answer, keeping retrieval and generation cleanly separated.</p>
@@ -5667,6 +5667,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

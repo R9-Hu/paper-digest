@@ -5576,7 +5576,7 @@
 <p>Existing parallel LLM inference methods (Self-Consistency, Skeleton-of-Thought, PASTA) impose a fixed collaboration structure (vote, plan-then-execute, spawn-subtasks) that fails when the initial decomposition is wrong, when one thread becomes a straggler, or when the problem cannot be cleanly split ahead of time. No single framework is universally effective, and all prior methods incur re-encoding overhead when sharing context between workers.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>Multiple instances of the same LLM run as a batch sharing a single KV cache partitioned into three regions per worker: (1) a <strong>common cache</strong> holding the system prompt and completed reasoning steps from all workers; (2) <strong>other-worker blocks</strong> containing the latest in-progress paragraph of each peer; (3) the <strong>current-worker block</strong> for the active worker's unfinished step.</p>
-<p>Because the same KV entries appear at different sequence positions for each worker, the paper avoids re-encoding by rotating only the <strong>current-token query</strong> rather than all cached keys. For a query at position $i_q$ attending to a cache block starting at $i_k$, the query is rotated by $i_q - i_k$; this is done independently per cache block using a Flash-Decoding–style tiled attention kernel that holds one copy of each block and applies the appropriate query offsets per worker.</p>
+<p>Because the same KV entries appear at different sequence positions for each worker, the paper avoids re-encoding by rotating only the <strong>current-token query</strong> rather than all cached keys. For a query at position <span class="arithmatex">\(i_q\)</span> attending to a cache block starting at <span class="arithmatex">\(i_k\)</span>, the query is rotated by <span class="arithmatex">\(i_q - i_k\)</span>; this is done independently per cache block using a Flash-Decoding–style tiled attention kernel that holds one copy of each block and applies the appropriate query offsets per worker.</p>
 <p>When a worker finishes a paragraph (<code>\n\n</code>), its KV block is moved—with proper RoPE rotation—into the shared common history, so workers always see each other's latest output as recent tokens. Workers are zero-shot prompted with the collaboration rules; every ~1000 generated tokens a random worker is injected with a redundancy-check prompt ("Wait, am I doing redundant work?") to prevent tunnel-vision.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5669,6 +5669,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

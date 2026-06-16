@@ -5575,11 +5575,11 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Designing state encoders for RL environments with heterogeneous multi-source observations (sensors, time-series, images, text) is typically done by manual expert design. Existing NAS methods target single-modality supervised learning tasks, ignore the composite multi-module structure of RL encoders, and discard useful intermediate signals (e.g., representation quality of each source-specific module), leading to poor sample efficiency when evaluation requires thousands of costly RL simulator interactions.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>LACER formalizes multi-source RL state encoding as <strong>composite NAS</strong>: jointly searching over per-source encoder modules $f_{\theta_i}$ (CNN, Transformer, GRU, FFN depending on modality) and a fusion module $g_\phi$, optimizing the downstream RL performance $\mathcal{M}(\pi \circ g_\phi \circ (f_{\theta_1},\ldots,f_{\theta_M}); \mathcal{E})$.</p>
-<p>The LLM (Claude Sonnet 4.0, temperature=1.0) acts as an iterative architecture design agent in a closed loop: given a pruned conversation history containing the initial architecture, search space definition, and multi-signal performance feedback, the LLM proposes one (LACER-1) or five (LACER-5) new composite architecture candidates per iteration. Candidates are parsed from LLM output via regex, trained end-to-end with PPO for 200k steps, then evaluated for 50k steps. Performance feedback fed back to the LLM comprises three signals: (i) <strong>task metric</strong> (average traffic speed), (ii) <strong>average RL reward</strong>, and (iii) <strong>feature information</strong> — mutual information $I(X;Y)$ and redundancy $R(X;Y)$ between inputs/outputs of each encoder module, quantifying per-module representation quality.</p>
+<p>LACER formalizes multi-source RL state encoding as <strong>composite NAS</strong>: jointly searching over per-source encoder modules <span class="arithmatex">\(f_{\theta_i}\)</span> (CNN, Transformer, GRU, FFN depending on modality) and a fusion module <span class="arithmatex">\(g_\phi\)</span>, optimizing the downstream RL performance <span class="arithmatex">\(\mathcal{M}(\pi \circ g_\phi \circ (f_{\theta_1},\ldots,f_{\theta_M}); \mathcal{E})\)</span>.</p>
+<p>The LLM (Claude Sonnet 4.0, temperature=1.0) acts as an iterative architecture design agent in a closed loop: given a pruned conversation history containing the initial architecture, search space definition, and multi-signal performance feedback, the LLM proposes one (LACER-1) or five (LACER-5) new composite architecture candidates per iteration. Candidates are parsed from LLM output via regex, trained end-to-end with PPO for 200k steps, then evaluated for 50k steps. Performance feedback fed back to the LLM comprises three signals: (i) <strong>task metric</strong> (average traffic speed), (ii) <strong>average RL reward</strong>, and (iii) <strong>feature information</strong> — mutual information <span class="arithmatex">\(I(X;Y)\)</span> and redundancy <span class="arithmatex">\(R(X;Y)\)</span> between inputs/outputs of each encoder module, quantifying per-module representation quality.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Formal definition of <strong>composite NAS for multi-source RL state encoding</strong> as a search over $\Theta_1 \times \cdots \times \Theta_M \times \Phi$.</li>
+<li>Formal definition of <strong>composite NAS for multi-source RL state encoding</strong> as a search over <span class="arithmatex">\(\Theta_1 \times \cdots \times \Theta_M \times \Phi\)</span>.</li>
 <li><strong>LACER pipeline</strong>: LLM-as-agent with enriched multi-signal feedback (task metric + RL reward + feature mutual information/redundancy), contrasting with GENIUS which uses only task metric.</li>
 <li>Structured prompt engineering with strategic history pruning to mitigate LLM context/forgetting issues across many iterations.</li>
 <li>Ablation study confirming each feedback component (feature information, average reward, initial architecture evaluation) is individually necessary.</li>
@@ -5663,6 +5663,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

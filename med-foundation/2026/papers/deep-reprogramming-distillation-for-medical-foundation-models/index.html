@@ -5589,12 +5589,12 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Standard knowledge distillation (KD) assumes teacher and student share the same task, model family, and training strategy — a condition violated when a large self- or weakly-supervised medical foundation model is the teacher and a heterogeneous lightweight CNN is the student. PEFT methods reduce training cost but do not reduce inference-time memory or latency. Naïve PEFT+KD composition ignores structural and strategy mismatch, empirically causing negative transfer (e.g., up to −11.8pp on FIVES when distilling ViT→CNN without DRD).</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Reprogramming Module.</strong> For each of $N$ coarse stages, a lightweight three-layer convolutional projector $\phi_i$ maps teacher feature maps $f_i^T \in \mathbb{R}^{C\times H\times W}$ to student-compatible dimensions: $f_i^{T\to S} = \phi_i(f_i^T)$.</p>
-<p><strong>Deep Co-training Reprogramming.</strong> The reprogrammed feature from stage $i$ is injected into the student at block $B_{i+1}^S$, propagating through the remaining student blocks to produce <em>hybrid logits</em> $z_i^{T\to S}$. Loss is computed on both hybrid and pure-student logits against ground truth (CE/Dice), plus KL divergence $L_{KD} = \sum_i \text{KL}(z_i^{T\to S}, z^S)$, jointly optimizing $\phi_i$ and the student end-to-end.</p>
+<p><strong>Reprogramming Module.</strong> For each of <span class="arithmatex">\(N\)</span> coarse stages, a lightweight three-layer convolutional projector <span class="arithmatex">\(\phi_i\)</span> maps teacher feature maps <span class="arithmatex">\(f_i^T \in \mathbb{R}^{C\times H\times W}\)</span> to student-compatible dimensions: <span class="arithmatex">\(f_i^{T\to S} = \phi_i(f_i^T)\)</span>.</p>
+<p><strong>Deep Co-training Reprogramming.</strong> The reprogrammed feature from stage <span class="arithmatex">\(i\)</span> is injected into the student at block <span class="arithmatex">\(B_{i+1}^S\)</span>, propagating through the remaining student blocks to produce <em>hybrid logits</em> <span class="arithmatex">\(z_i^{T\to S}\)</span>. Loss is computed on both hybrid and pure-student logits against ground truth (CE/Dice), plus KL divergence <span class="arithmatex">\(L_{KD} = \sum_i \text{KL}(z_i^{T\to S}, z^S)\)</span>, jointly optimizing <span class="arithmatex">\(\phi_i\)</span> and the student end-to-end.</p>
 <p><strong>CKA Distillation.</strong> Feature-level alignment uses the normalized HSIC-based CKA loss:
-$$L_i^{CKA} = -\frac{\text{HSIC}(K_i, L_i)}{\sqrt{\text{HSIC}(K_i,K_i)\cdot\text{HSIC}(L_i,L_i)}}$$
-where $K_i = f_i^{T\to S}(f_i^{T\to S})^\top$ and $L_i = f_i^S(f_i^S)^\top$. CKA is invariant to orthogonal transforms and robust to random-seed/width variation.</p>
-<p><strong>Total loss:</strong> $L_\text{train} = L_\text{sup} + \alpha L_\text{hybrid} + \beta L_{KD} + L_{CKA}$, with $\alpha,\beta$ decayed linearly to relax reprogramming constraints as training progresses.</p>
+$<span class="arithmatex">\(L_i^{CKA} = -\frac{\text{HSIC}(K_i, L_i)}{\sqrt{\text{HSIC}(K_i,K_i)\cdot\text{HSIC}(L_i,L_i)}}\)</span>$
+where <span class="arithmatex">\(K_i = f_i^{T\to S}(f_i^{T\to S})^\top\)</span> and <span class="arithmatex">\(L_i = f_i^S(f_i^S)^\top\)</span>. CKA is invariant to orthogonal transforms and robust to random-seed/width variation.</p>
+<p><strong>Total loss:</strong> <span class="arithmatex">\(L_\text{train} = L_\text{sup} + \alpha L_\text{hybrid} + \beta L_{KD} + L_{CKA}\)</span>, with <span class="arithmatex">\(\alpha,\beta\)</span> decayed linearly to relax reprogramming constraints as training progresses.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>DRD framework: single-stage, one-framework solution addressing task/domain gap, teacher–student structural heterogeneity, and lightweight deployment simultaneously.</li>
@@ -5615,7 +5615,7 @@ where $K_i = f_i^{T\to S}(f_i^{T\to S})^\top$ and $L_i = f_i^S(f_i^S)^\top$. CKA
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Requires a fixed number of coarse stages to be shared between teacher and student; architecturally very dissimilar models (e.g., ViT vs. lightweight CNN with fewer stages) need manual partitioning.</li>
-<li>CKA is computed over full batch Gram matrices, scaling $O(n^2)$ in batch size — limits batch size in memory-constrained 3D settings (batch 4 used).</li>
+<li>CKA is computed over full batch Gram matrices, scaling <span class="arithmatex">\(O(n^2)\)</span> in batch size — limits batch size in memory-constrained 3D settings (batch 4 used).</li>
 <li>Foundation model backbone is fully frozen during adaptation; no mechanism to selectively unfreeze for severely out-of-domain tasks.</li>
 <li>Requires downstream labeled data; does not address the zero-shot or few-shot regime.</li>
 <li>Evaluation is restricted to image-based foundation models; text-vision or report-grounded models (e.g., BioViL, LLaVA-Med) are not covered.</li>
@@ -5684,6 +5684,10 @@ where $K_i = f_i^{T\to S}(f_i^{T\to S})^\top$ and $L_i = f_i^S(f_i^S)^\top$. CKA
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

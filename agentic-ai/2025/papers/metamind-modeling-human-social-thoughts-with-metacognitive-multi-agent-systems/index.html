@@ -5585,13 +5585,13 @@
 <p>MetaMind implements a staged metacognitive pipeline via three specialized agents:</p>
 <ol>
 <li>
-<p><strong>ToM Agent (Stage 1):</strong> Given user prompt $u_t$, conversational context $C_t$, and a dynamic social memory $M_t$, it generates $k$ candidate mental-state hypotheses $H_t = {h_1, \ldots, h_k}$ labeled by type $T = {\text{Belief, Desire, Intention, Emotion, Thought}}$ via four steps: commonsense hypothesis generation, cross-reference with social memory, ToM marker identification, and candidate enumeration.</p>
+<p><strong>ToM Agent (Stage 1):</strong> Given user prompt <span class="arithmatex">\(u_t\)</span>, conversational context <span class="arithmatex">\(C_t\)</span>, and a dynamic social memory <span class="arithmatex">\(M_t\)</span>, it generates <span class="arithmatex">\(k\)</span> candidate mental-state hypotheses <span class="arithmatex">\(H_t = \{h_1, \ldots, h_k\}\)</span> labeled by type <span class="arithmatex">\(T = \{\text{Belief, Desire, Intention, Emotion, Thought}\}\)</span> via four steps: commonsense hypothesis generation, cross-reference with social memory, ToM marker identification, and candidate enumeration.</p>
 </li>
 <li>
-<p><strong>Moral Agent (Stage 2):</strong> Takes $H_t$ plus a constraint set $D$ (cultural norms, ethical rules, role-based expectations) and produces revised hypotheses $\tilde{h}_i$. Selects the optimal hypothesis via a composite score balancing contextual plausibility and information gain: $\tilde{h}^* = \arg\max_i [\lambda \cdot P(\tilde{h}_i | u_t, C_t, M_t) + (1-\lambda) \cdot \log \frac{P(\tilde{h}_i | u_t, C_t, M_t)}{P(\tilde{h}_i)}]$.</p>
+<p><strong>Moral Agent (Stage 2):</strong> Takes <span class="arithmatex">\(H_t\)</span> plus a constraint set <span class="arithmatex">\(D\)</span> (cultural norms, ethical rules, role-based expectations) and produces revised hypotheses <span class="arithmatex">\(\tilde{h}_i\)</span>. Selects the optimal hypothesis via a composite score balancing contextual plausibility and information gain: <span class="arithmatex">\(\tilde{h}^* = \arg\max_i [\lambda \cdot P(\tilde{h}_i | u_t, C_t, M_t) + (1-\lambda) \cdot \log \frac{P(\tilde{h}_i | u_t, C_t, M_t)}{P(\tilde{h}_i)}]\)</span>.</p>
 </li>
 <li>
-<p><strong>Response Agent (Stage 3):</strong> Generates response $o_t$ conditioned on $\tilde{h}^<em>$ and $M_t$, then self-validates with a utility score $U(o_t) = \beta \cdot \text{Empathy}(o_t, u_t, M_t) + (1-\beta) \cdot \text{Coherence}(o_t, C_t, \tilde{h}^</em>)$, triggering regeneration if the score is too low. Social memory is updated after each interaction.</p>
+<p><strong>Response Agent (Stage 3):</strong> Generates response <span class="arithmatex">\(o_t\)</span> conditioned on <span class="arithmatex">\(\tilde{h}^*\)</span> and <span class="arithmatex">\(M_t\)</span>, then self-validates with a utility score <span class="arithmatex">\(U(o_t) = \beta \cdot \text{Empathy}(o_t, u_t, M_t) + (1-\beta) \cdot \text{Coherence}(o_t, C_t, \tilde{h}^*)\)</span>, triggering regeneration if the score is too low. Social memory is updated after each interaction.</p>
 </li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5614,7 +5614,7 @@
 <li>Performance is contingent on backbone LLM capability; absolute gaps between small and large models persist after MetaMind enhancement.</li>
 <li>Social memory and domain-knowledge coverage require adaptation for diverse cultural norms and evolving social expectations at deployment scale.</li>
 <li>Benchmarks are text-only; real-world social interaction involves multimodal cues (tone, facial expressions), complex group dynamics, and long-term relationship building not captured here.</li>
-<li>Constraint set $D$ for the Moral Agent must be manually specified; generalization to novel or culturally unfamiliar norms is not evaluated.</li>
+<li>Constraint set <span class="arithmatex">\(D\)</span> for the Moral Agent must be manually specified; generalization to novel or culturally unfamiliar norms is not evaluated.</li>
 </ul>
 <h2 id="relevance-to-agentic-ai-llm-agents">Relevance to Agentic AI / LLM Agents<a class="headerlink" href="#relevance-to-agentic-ai-llm-agents" title="Permanent link">&para;</a></h2>
 <p>MetaMind is a direct instance of structured multi-agent reasoning pipelines where agents have distinct, complementary roles—relevant to any agentic system that must model user intent rather than just execute instructions. The metacognitive loop (hypothesize → constrain → validate/regenerate) is a reusable design pattern for agentic systems operating in socially complex or ambiguous environments such as empathetic dialogue, negotiation, or collaborative task planning. The explicit social memory component addresses a key open problem in long-horizon agentic interaction: maintaining coherent, personalized context across turns. The model-agnostic design and demonstrated gains even on frontier reasoning models (o3, DeepSeek-R1) suggest this pipeline is a lightweight, drop-in enhancement for existing agent architectures.</p>
@@ -5680,6 +5680,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

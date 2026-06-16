@@ -5584,14 +5584,14 @@
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>FLYT frames data selection as <strong>learned data re-weighting</strong> via bilevel optimization:</p>
 <ol>
-<li>A <strong>scoring model</strong> $q_\phi$ takes extracted features $\Psi(z)$ from an upstream image-text pair and outputs a scalar score $s$. Scores are converted to per-example weights via softmax over the batch.</li>
-<li>A <strong>reference CLIP model</strong> $f_\theta$ is updated using a <strong>weighted CLIP loss</strong> $L_\text{up}$ (standard contrastive loss where both the numerator and denominator terms are modulated by the example weights $w_i$).</li>
-<li>The updated reference model $f_{\theta^+}$ is then evaluated on a <strong>downstream batch</strong> (ImageNet training set), computing a downstream loss $\hat{L}_\text{down}$ (cross-entropy or CLIP loss).</li>
-<li>Gradients flow from $\hat{L}<em _theta_="\theta^+">\text{down}$ back through $f</em>$, through the weights, to $\phi$, training the scoring model to upweight examples that reduce downstream loss.</li>
+<li>A <strong>scoring model</strong> <span class="arithmatex">\(q_\phi\)</span> takes extracted features <span class="arithmatex">\(\Psi(z)\)</span> from an upstream image-text pair and outputs a scalar score <span class="arithmatex">\(s\)</span>. Scores are converted to per-example weights via softmax over the batch.</li>
+<li>A <strong>reference CLIP model</strong> <span class="arithmatex">\(f_\theta\)</span> is updated using a <strong>weighted CLIP loss</strong> <span class="arithmatex">\(L_\text{up}\)</span> (standard contrastive loss where both the numerator and denominator terms are modulated by the example weights <span class="arithmatex">\(w_i\)</span>).</li>
+<li>The updated reference model <span class="arithmatex">\(f_{\theta^+}\)</span> is then evaluated on a <strong>downstream batch</strong> (ImageNet training set), computing a downstream loss <span class="arithmatex">\(\hat{L}_\text{down}\)</span> (cross-entropy or CLIP loss).</li>
+<li>Gradients flow from <span class="arithmatex">\(\hat{L}_\text{down}\)</span> back through <span class="arithmatex">\(f_{\theta^+}\)</span>, through the weights, to <span class="arithmatex">\(\phi\)</span>, training the scoring model to upweight examples that reduce downstream loss.</li>
 </ol>
-<p><strong>Mixing-FLYT (M-FLYT)</strong>: Instantiates the feature extractor as a vector of 12 existing filtering scores (ViT-B/32 CLIP score, ViT-L/14, DFN-Base, DFN-FT, HYPE's $-d_L$/$\epsilon_i$/$\epsilon_t$, s-CLIPLoss, NormSim$_\infty$, two binary classifiers, E-FLYT). A linear scoring model learns optimal combination weights, outperforming all individual scores and heuristic aggregations.</p>
+<p><strong>Mixing-FLYT (M-FLYT)</strong>: Instantiates the feature extractor as a vector of 12 existing filtering scores (ViT-B/32 CLIP score, ViT-L/14, DFN-Base, DFN-FT, HYPE's <span class="arithmatex">\(-d_L\)</span>/<span class="arithmatex">\(\epsilon_i\)</span>/<span class="arithmatex">\(\epsilon_t\)</span>, s-CLIPLoss, NormSim<span class="arithmatex">\(_\infty\)</span>, two binary classifiers, E-FLYT). A linear scoring model learns optimal combination weights, outperforming all individual scores and heuristic aggregations.</p>
 <p><strong>Embedding-FLYT (E-FLYT)</strong>: Uses a pretrained CLIP model to produce image+text embeddings as features. Contributes positively to M-FLYT but does not match M-FLYT alone.</p>
-<p><strong>Soft Cap Sampling (SCS)</strong>: Rather than threshold-selecting the top-$k\%$, samples from the FLYT probability distribution iteratively in batches of $G=100K$, subtracting a repetition penalty $\alpha$ from each sampled example's score after selection. This prevents over-representation (top example appears up to 56 times in the best dataset) while preserving the probabilistic structure that pure top-$k$ discards.</p>
+<p><strong>Soft Cap Sampling (SCS)</strong>: Rather than threshold-selecting the top-<span class="arithmatex">\(k\%\)</span>, samples from the FLYT probability distribution iteratively in batches of <span class="arithmatex">\(G=100K\)</span>, subtracting a repetition penalty <span class="arithmatex">\(\alpha\)</span> from each sampled example's score after selection. This prevents over-representation (top example appears up to 56 times in the best dataset) while preserving the probabilistic structure that pure top-<span class="arithmatex">\(k\)</span> discards.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>FLYT</strong>: First data filtering method for CLIP that directly optimizes a downstream task objective via meta-gradient descent through a bilevel loop (scoring model ↔ reference model ↔ downstream loss).</li>
@@ -5608,7 +5608,7 @@
 <li><strong>DataComp medium, VTAB</strong>: 0.396 vs. 0.392 (best non-public).</li>
 <li><strong>M-FLYT alone (top-20% threshold)</strong>: 35.9% ImageNet, 37.1% average — already outperforms best public-resource baseline.</li>
 <li><strong>SCS applied to IN-weighted baseline</strong>: +2.6% ImageNet, −0.3% average; applied to M-FLYT: +4.2% ImageNet, +0.6% average — showing FLYT's probabilistic output is synergistic with SCS.</li>
-<li><strong>M-FLYT vs. heuristic aggregations</strong>: Outperforms standardized sum by 1.1% ImageNet, IN-weighted sum (best $r$) by 0.5% ImageNet.</li>
+<li><strong>M-FLYT vs. heuristic aggregations</strong>: Outperforms standardized sum by 1.1% ImageNet, IN-weighted sum (best <span class="arithmatex">\(r\)</span>) by 0.5% ImageNet.</li>
 <li><strong>DataComp small scale</strong>: M-FLYT+SCS <strong>8.0% ImageNet</strong>, <strong>18.5% average</strong> — outperforms all prior small-scale methods including HYPE (6.3%) and EcoDatum (5.3%).</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
@@ -5684,6 +5684,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

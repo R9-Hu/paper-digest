@@ -5582,7 +5582,7 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing jailbreak methods suffer from at least one of: (1) requiring white-box gradient access (GCG), (2) unguided search with large query budgets (PAIR, TAP), (3) resource-intensive per-model strategy library pretraining (AutoDAN-Turbo), or (4) heavy multi-turn interaction (X-Teaming). On strongly aligned models like Llama-2, the best prior single-turn methods top out around 35–47% ASR, leaving a false impression of safety.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>CoP uses three LLMs in a pipeline: a <strong>Red-Teaming Agent</strong> (default: Grok-2), a <strong>Target LLM</strong>, and a <strong>Judge LLM</strong> (default: GPT-4). Given a harmful query, the Red-Teaming Agent first generates an initial seed prompt $P_\text{init}$ to avoid direct refusal, then iteratively selects and composes principles from a human-curated <strong>Principle Inventory</strong> (7 principles including Generate, Expand, Phrase Insertion, Style Change) using in-context demonstrations. The resulting composite strategy (e.g., Expand ⊕ Phrase Insertion) is applied to produce a jailbreak prompt. The Judge LLM scores both jailbreak effectiveness (1–10) and semantic similarity to the original query (1–10); prompts that drift below similarity threshold $\tau$ are discarded. The best-scoring prompt is updated iteratively for up to $N$ attempts, with early stopping when the jailbreak score exceeds threshold $\eta$. No gradient access or target-model pretraining is required (black-box only).</p>
+<p>CoP uses three LLMs in a pipeline: a <strong>Red-Teaming Agent</strong> (default: Grok-2), a <strong>Target LLM</strong>, and a <strong>Judge LLM</strong> (default: GPT-4). Given a harmful query, the Red-Teaming Agent first generates an initial seed prompt <span class="arithmatex">\(P_\text{init}\)</span> to avoid direct refusal, then iteratively selects and composes principles from a human-curated <strong>Principle Inventory</strong> (7 principles including Generate, Expand, Phrase Insertion, Style Change) using in-context demonstrations. The resulting composite strategy (e.g., Expand ⊕ Phrase Insertion) is applied to produce a jailbreak prompt. The Judge LLM scores both jailbreak effectiveness (1–10) and semantic similarity to the original query (1–10); prompts that drift below similarity threshold <span class="arithmatex">\(\tau\)</span> are discarded. The best-scoring prompt is updated iteratively for up to <span class="arithmatex">\(N\)</span> attempts, with early stopping when the jailbreak score exceeds threshold <span class="arithmatex">\(\eta\)</span>. No gradient access or target-model pretraining is required (black-box only).</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Unified, extensible Composition-of-Principles agentic framework that orchestrates human-authored attack principles without retraining per target model.</li>
@@ -5674,6 +5674,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5712,7 +5712,7 @@
 <p>Two injection strategies improve over naive prompting: (1) <em>removal-only</em>—removing code hunks/files while ensuring runnability; (2) <em>removal + history</em>—randomly mixing removal with reversion of historical git commits.</p>
 <p><strong>Bug-solving agent:</strong> Receives the buggy codebase plus the reversed test-weakening patch as a formal specification (not natural language). Produces a repair patch validated against the restored oracle tests.</p>
 <p><strong>Higher-order bugs:</strong> Failed solver attempts become new bug artifacts, extending the training distribution to multi-step, layered failures.</p>
-<p><strong>Reward design:</strong> Injector reward $r_{\text{inject}}$ penalizes artifacts failing consistency checks (−1.0), penalizes degenerate solve rates $s=0$ or $s=1$ (−α, α=0.8), and rewards intermediate difficulty via $1-(1+\alpha)s$. Solver reward is binary: +1 if all tests pass, −1 otherwise. Both signals jointly update the shared policy.</p>
+<p><strong>Reward design:</strong> Injector reward <span class="arithmatex">\(r_{\text{inject}}\)</span> penalizes artifacts failing consistency checks (−1.0), penalizes degenerate solve rates <span class="arithmatex">\(s=0\)</span> or <span class="arithmatex">\(s=1\)</span> (−α, α=0.8), and rewards intermediate difficulty via <span class="arithmatex">\(1-(1+\alpha)s\)</span>. Solver reward is binary: +1 if all tests pass, −1 otherwise. Both signals jointly update the shared policy.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First self-play RL framework for software engineering that requires only raw sandboxed Docker images—no issue descriptions, test suites, or test commands.</li>
@@ -5804,6 +5804,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

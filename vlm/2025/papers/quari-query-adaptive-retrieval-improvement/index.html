@@ -5589,7 +5589,7 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Contrastively pretrained VLMs like CLIP and SigLIP produce global embeddings effective for coarse retrieval but insufficient for fine-grained instance-level discrimination. Existing remedies — static domain adaptation (a single learned projection) and re-ranking methods using local feature descriptors or VLMs — either fail to capture query-specific nuance or impose prohibitive computational costs at scale (millions of gallery images).</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>QuARI trains a transformer-based hypernetwork $H_\theta$ that takes a query embedding $q \in \mathbb{R}^E$ and outputs (1) a refined query embedding $q'$ and (2) a low-rank transformation matrix $T \in \mathbb{R}^{E \times E}$ (rank $r=64$) parameterized as $T = \sum_{j=1}^r u_j v_j^\top$. The hypernetwork iteratively refines $2r$ U/V tokens over $L$ steps using a shared transformer encoder conditioned on the query via an MLP-encoded control token with sinusoidal positional encodings. At inference, the same $T$ linearly transforms all precomputed gallery embeddings, so retrieval requires only one forward pass through $H_\theta$ per query. Training uses a symmetric contrastive loss with two key regularizations: (a) uniform noise added to query embeddings to bridge the text-image modality gap and enable image queries; (b) semi-positive mining — the top-2 of 100 nearest neighbors per target are treated as soft positives with KL-target logits, preventing overfitting to exact query-target pairs.</p>
+<p>QuARI trains a transformer-based hypernetwork <span class="arithmatex">\(H_\theta\)</span> that takes a query embedding <span class="arithmatex">\(q \in \mathbb{R}^E\)</span> and outputs (1) a refined query embedding <span class="arithmatex">\(q'\)</span> and (2) a low-rank transformation matrix <span class="arithmatex">\(T \in \mathbb{R}^{E \times E}\)</span> (rank <span class="arithmatex">\(r=64\)</span>) parameterized as <span class="arithmatex">\(T = \sum_{j=1}^r u_j v_j^\top\)</span>. The hypernetwork iteratively refines <span class="arithmatex">\(2r\)</span> U/V tokens over <span class="arithmatex">\(L\)</span> steps using a shared transformer encoder conditioned on the query via an MLP-encoded control token with sinusoidal positional encodings. At inference, the same <span class="arithmatex">\(T\)</span> linearly transforms all precomputed gallery embeddings, so retrieval requires only one forward pass through <span class="arithmatex">\(H_\theta\)</span> per query. Training uses a symmetric contrastive loss with two key regularizations: (a) uniform noise added to query embeddings to bridge the text-image modality gap and enable image queries; (b) semi-positive mining — the top-2 of 100 nearest neighbors per target are treated as soft positives with KL-target logits, preventing overfitting to exact query-target pairs.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Identifies failure modes of global VLM embeddings for instance retrieval and shows that static task adaptation is substantially inferior to query-specific adaptation.</li>
@@ -5677,6 +5677,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

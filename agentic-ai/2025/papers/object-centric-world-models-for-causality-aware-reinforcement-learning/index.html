@@ -5585,19 +5585,19 @@
 <p>STICA has three components:</p>
 <ol>
 <li>
-<p><strong>Slot-based AutoEncoder</strong>: Slot Attention extracts $n$ categorical latent slots $(z_t^1,\ldots,z_t^n)$ per timestep. A learnable time-independent token $z_{BG}$ absorbs static background, freeing object slots to capture only dynamic entities. A spatial broadcast decoder reconstructs per-object RGB images and masks, which are softmax-blended into the full observation.</p>
+<p><strong>Slot-based AutoEncoder</strong>: Slot Attention extracts <span class="arithmatex">\(n\)</span> categorical latent slots <span class="arithmatex">\((z_t^1,\ldots,z_t^n)\)</span> per timestep. A learnable time-independent token <span class="arithmatex">\(z_{BG}\)</span> absorbs static background, freeing object slots to capture only dynamic entities. A spatial broadcast decoder reconstructs per-object RGB images and masks, which are softmax-blended into the full observation.</p>
 </li>
 <li>
 <p><strong>Transformer-XL Dynamics Model</strong>: Takes object slots, action, and reward as separate tokens; predicts next-slot distributions (categorical), reward (Gaussian), and discount (Bernoulli) via per-token MLPs. Cross-entropy alignment loss couples the autoencoder and dynamics model end-to-end without pretraining.</p>
 </li>
 <li>
-<p><strong>Causal Policy and Value Networks</strong>: Each uses a Transformer that replaces standard self-attention with <em>causal attention</em>. An MLP estimates a per-slot causality score $p_t^k \in [0,1]$. A weight matrix $W_t$ built from these scores is used to modulate attention weights via element-wise multiplication with a fixed causal graph $G$, amplifying influence from causal objects and suppressing irrelevant ones. Policy learning uses A2C with GAE in imagination rollouts.</p>
+<p><strong>Causal Policy and Value Networks</strong>: Each uses a Transformer that replaces standard self-attention with <em>causal attention</em>. An MLP estimates a per-slot causality score <span class="arithmatex">\(p_t^k \in [0,1]\)</span>. A weight matrix <span class="arithmatex">\(W_t\)</span> built from these scores is used to modulate attention weights via element-wise multiplication with a fixed causal graph <span class="arithmatex">\(G\)</span>, amplifying influence from causal objects and suppressing irrelevant ones. Policy learning uses A2C with GAE in imagination rollouts.</p>
 </li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First MBRL agent achieving end-to-end object-centric representation learning without random exploration, supervision, or pretraining.</li>
-<li>Background removal via a time-independent latent $z_{BG}$ that separates static scene structure from object dynamics.</li>
+<li>Background removal via a time-independent latent <span class="arithmatex">\(z_{BG}\)</span> that separates static scene structure from object dynamics.</li>
 <li>Causal attention mechanism in both policy and value networks that learns to attend selectively to task-relevant objects via differentiable causality scores.</li>
 <li>Unified framework where world model, policy, and value networks are all object-centric Transformers.</li>
 </ul>
@@ -5617,10 +5617,10 @@
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>"Causality" is token-level attention dependency, not interventional causality; the paper explicitly disclaims causal inference semantics.</li>
-<li>Object-slot count $n$ is fixed and must be set a priori; handling scenes with variable or unknown object counts is unaddressed.</li>
+<li>Object-slot count <span class="arithmatex">\(n\)</span> is fixed and must be set a priori; handling scenes with variable or unknown object counts is unaddressed.</li>
 <li>Evaluated only on Safety Gym and OCVRL; no real-robot or pixel-diverse (e.g., Atari, DMControl) validation.</li>
 <li>Performance advantage on PointGoal1 (simplest task) is absent, suggesting diminishing returns when holistic representations suffice.</li>
-<li>Scalability to large $n$ or very high-resolution inputs is not analyzed.</li>
+<li>Scalability to large <span class="arithmatex">\(n\)</span> or very high-resolution inputs is not analyzed.</li>
 </ul>
 <h2 id="relevance-to-agentic-ai-llm-agents">Relevance to Agentic AI / LLM Agents<a class="headerlink" href="#relevance-to-agentic-ai-llm-agents" title="Permanent link">&para;</a></h2>
 <p>Object-centric world models are a structural prior for agents operating in cluttered, multi-entity environments — a key challenge for embodied and robotic agents. STICA's causality-aware attention provides a differentiable mechanism for agents to identify which entities in the scene are action-relevant, directly addressing the perception bottleneck in complex agentic tasks. The end-to-end training without pretraining or supervision makes this approach more practical for deployment in novel environments. For LLM-based agents, the decompose-then-reason paradigm (slot → causal score → selective attention) mirrors structured reasoning over entity graphs, suggesting potential integration with tool-use or scene-graph representations in vision-language agents.</p>
@@ -5686,6 +5686,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

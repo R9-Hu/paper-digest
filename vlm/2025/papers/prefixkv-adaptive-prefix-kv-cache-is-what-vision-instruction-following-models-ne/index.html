@@ -5575,14 +5575,14 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing KV cache compression methods (H2O, StreamingLLM, Elastic Cache, PyramidKV) apply a uniform per-layer cache size, ignoring that different transformer layers have markedly different importance distributions (characterized via Lorenz curves and Gini coefficients). Layers with dispersed importance distributions lose disproportionate contextual information under uniform allocation, degrading generation quality. Even manually designed non-uniform schemes (PyramidKV) use fixed hand-crafted patterns rather than data-driven optimal allocation.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Importance metric:</strong> Attention scores are averaged across heads per token per layer to yield per-KV-vector importance $I_l^n$. Within each layer, KV vectors are sorted by descending importance to form a priority sequence; the prefix of this sequence (top-$R_l$ fraction) constitutes the retained cache.</p>
-<p><strong>Global prefix configuration:</strong> The set ${R_1, \ldots, R_L}$ of per-layer retention ratios, subject to $\sum_l R_l = rL$ (compression budget $r$), defines the search space. PrefixKV finds a scalar information-retention threshold $p$ such that for each layer $l$, $R_l = \min({o \mid P_l^o \geq p})$, where $P_l^o$ is the cumulative priority (fraction of total importance) when retaining the top-$o$ fraction.</p>
-<p><strong>Binary search:</strong> $p \in [0,1]$ is found via binary search (converges in 7–12 steps) until $\sum_l R_l \approx rL$.</p>
-<p><strong>Offline estimation:</strong> Because per-layer importance distributions are empirically stable across samples (low std ≈0.01–0.024), the configuration ${R_l}$ is estimated offline from as few as 1–10 random training samples and applied at inference without per-sample overhead. During decoding, newly generated tokens' KV vectors are pruned at a fixed distance from the latest token to maintain the configured ratios (following Elastic Cache).</p>
+<p><strong>Importance metric:</strong> Attention scores are averaged across heads per token per layer to yield per-KV-vector importance <span class="arithmatex">\(I_l^n\)</span>. Within each layer, KV vectors are sorted by descending importance to form a priority sequence; the prefix of this sequence (top-<span class="arithmatex">\(R_l\)</span> fraction) constitutes the retained cache.</p>
+<p><strong>Global prefix configuration:</strong> The set <span class="arithmatex">\(\{R_1, \ldots, R_L\}\)</span> of per-layer retention ratios, subject to <span class="arithmatex">\(\sum_l R_l = rL\)</span> (compression budget <span class="arithmatex">\(r\)</span>), defines the search space. PrefixKV finds a scalar information-retention threshold <span class="arithmatex">\(p\)</span> such that for each layer <span class="arithmatex">\(l\)</span>, <span class="arithmatex">\(R_l = \min(\{o \mid P_l^o \geq p\})\)</span>, where <span class="arithmatex">\(P_l^o\)</span> is the cumulative priority (fraction of total importance) when retaining the top-<span class="arithmatex">\(o\)</span> fraction.</p>
+<p><strong>Binary search:</strong> <span class="arithmatex">\(p \in [0,1]\)</span> is found via binary search (converges in 7–12 steps) until <span class="arithmatex">\(\sum_l R_l \approx rL\)</span>.</p>
+<p><strong>Offline estimation:</strong> Because per-layer importance distributions are empirically stable across samples (low std ≈0.01–0.024), the configuration <span class="arithmatex">\(\{R_l\}\)</span> is estimated offline from as few as 1–10 random training samples and applied at inference without per-sample overhead. During decoding, newly generated tokens' KV vectors are pruned at a fixed distance from the latest token to maintain the configured ratios (following Elastic Cache).</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Empirical demonstration that KV importance distributions differ substantially across layers (Lorenz curve / Gini coefficient analysis), motivating adaptive per-layer budgeting.</li>
-<li>Global prefix configuration formulation: reduces layer-wise cache sizing to finding a single scalar threshold $p$ via binary search.</li>
+<li>Global prefix configuration formulation: reduces layer-wise cache sizing to finding a single scalar threshold <span class="arithmatex">\(p\)</span> via binary search.</li>
 <li>Offline calibration procedure requiring only ~10 samples, adding no online inference overhead.</li>
 <li>State-of-the-art performance on LLaVA-Description and MM-Vet across compression ratios 10%–90%, and generalization to Qwen-VL and LLaMA-3-8B on LongBench/Needle-in-a-Haystack.</li>
 </ul>
@@ -5668,6 +5668,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

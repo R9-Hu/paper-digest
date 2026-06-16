@@ -5590,7 +5590,7 @@
 <p>Multimodal DPO—naively extending text-based DPO with image-conditioned preference pairs—fails to (1) bring image and ground-truth text representations close in the LLM's embedding space, and (2) push hallucinated descriptions away from ground-truth descriptions. Response-level preference optimization is also too coarse: it assigns a single reward to an entire generation, making it hard to attribute credit to specific hallucinated spans and increasing susceptibility to reward hacking.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>CHiP combines two modules trained jointly via:
-$$L_{\text{CHiP}} = L_{\text{DPO}<em _text_DPO="\text{DPO">v} + L</em><em _text_DPO="\text{DPO">r} + \lambda L</em><em _text_PO="\text{PO">s} + \gamma L</em>$$}_k</p>
+$<span class="arithmatex">\(L_{\text{CHiP}} = L_{\text{DPO}_v} + L_{\text{DPO}_r} + \lambda L_{\text{DPO}_s} + \gamma L_{\text{PO}_k}\)</span>$</p>
 <p><strong>Hierarchical Textual Preference Optimization (HDPO):</strong>
 - <em>Response-level</em> (<code>L_DPO_r</code>): standard multimodal DPO objective over full response.
 - <em>Segment-level</em> (<code>L_DPO_s</code>): up-weights tokens belonging to segments that differ between chosen and rejected responses (identified as hallucinated spans absent in the accepted response), with normalization to prevent length bias (weight λ=1 for Muffin, λ=3 for LLaVA).
@@ -5690,6 +5690,10 @@ $$L_{\text{CHiP}} = L_{\text{DPO}<em _text_DPO="\text{DPO">v} + L</em><em _text_
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5582,10 +5582,10 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing VLA models process each visual observation independently, implicitly treating robot manipulation as a Markov Decision Process. This is mismatched to reality: robot manipulation is partially observable, prior actions alter the visual scene, and relevant objects may be occluded or only transiently visible. Without historical context, visual attention is guided solely by static language instructions and cannot suppress temporally redundant tokens or focus on regions made salient by past actions.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>POMDP reformulation:</strong> Policy is conditioned on both current observation $x_t$ and a recurrent state $r_{t-1}$ (a neural approximation to the POMDP belief $b_{t-1}$), instead of $x_t$ alone.</p>
-<p><strong>Recurrent state:</strong> Extracted via an MLP $B$ from the action-related hidden states of the final decoder layer at $t{-}1$: $r^{t-1} = B(h^{t-1}_M) \in \mathbb{R}^{L_A \times d}$. It is also used to initialize action placeholder embeddings (replacing the zero vector in OpenVLA-OFT).</p>
-<p><strong>AVA module:</strong> Takes current visual tokens $z^t_I$ and $r^{t-1}$ as input. FiLM conditions visual features on language. Cross-attention is computed with visual tokens as queries and the recurrent state as keys/values, followed by self-attention and an FFN+linear+Softmax head that produces per-token soft importance scores $\omega^t \in \mathbb{R}^{L_I \times 2}$ (enhance/weaken logits). These scores modulate all LLM attention matrices by scaling attention weights on visual token columns, enabling history-aware visual focus throughout the backbone.</p>
-<p><strong>Training:</strong> Truncated BPTT with horizon $T{=}4$; MAE action loss plus an L2 regularizer on the mean of $\omega^t$ to prevent degenerate attention spreading. Built on OpenVLA-OFT (DINOv2+SigLIP vision encoder, LLaMA2-7B backbone).</p>
+<p><strong>POMDP reformulation:</strong> Policy is conditioned on both current observation <span class="arithmatex">\(x_t\)</span> and a recurrent state <span class="arithmatex">\(r_{t-1}\)</span> (a neural approximation to the POMDP belief <span class="arithmatex">\(b_{t-1}\)</span>), instead of <span class="arithmatex">\(x_t\)</span> alone.</p>
+<p><strong>Recurrent state:</strong> Extracted via an MLP <span class="arithmatex">\(B\)</span> from the action-related hidden states of the final decoder layer at <span class="arithmatex">\(t{-}1\)</span>: <span class="arithmatex">\(r^{t-1} = B(h^{t-1}_M) \in \mathbb{R}^{L_A \times d}\)</span>. It is also used to initialize action placeholder embeddings (replacing the zero vector in OpenVLA-OFT).</p>
+<p><strong>AVA module:</strong> Takes current visual tokens <span class="arithmatex">\(z^t_I\)</span> and <span class="arithmatex">\(r^{t-1}\)</span> as input. FiLM conditions visual features on language. Cross-attention is computed with visual tokens as queries and the recurrent state as keys/values, followed by self-attention and an FFN+linear+Softmax head that produces per-token soft importance scores <span class="arithmatex">\(\omega^t \in \mathbb{R}^{L_I \times 2}\)</span> (enhance/weaken logits). These scores modulate all LLM attention matrices by scaling attention weights on visual token columns, enabling history-aware visual focus throughout the backbone.</p>
+<p><strong>Training:</strong> Truncated BPTT with horizon <span class="arithmatex">\(T{=}4\)</span>; MAE action loss plus an L2 regularizer on the mean of <span class="arithmatex">\(\omega^t\)</span> to prevent degenerate attention spreading. Built on OpenVLA-OFT (DINOv2+SigLIP vision encoder, LLaMA2-7B backbone).</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First VLA framework to explicitly address the MDP/POMDP mismatch via a recurrent belief-state approximation.</li>
@@ -5605,7 +5605,7 @@
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Recurrent state introduces sequential dependency at inference—each step requires the previous forward pass output, precluding trivial parallelism across timesteps.</li>
-<li>Full backpropagation through time is computationally intractable; truncated BPTT ($T{=}4$) may underfit long-horizon temporal dependencies.</li>
+<li>Full backpropagation through time is computationally intractable; truncated BPTT (<span class="arithmatex">\(T{=}4\)</span>) may underfit long-horizon temporal dependencies.</li>
 <li>Framework is built on and evaluated relative to OpenVLA-OFT; generality to non-parallel-decoding or non-LLaMA-backbone VLAs is untested.</li>
 <li>Real-world evaluation is limited to a single robot platform (dual-arm cobot magic) with small demonstration sets (30–450 per task), leaving broader sim-to-real generalization unverified.</li>
 <li>Token pruning analysis is exploratory (greedy ranking at inference, not trained end-to-end), so efficiency gains are not fully realized.</li>
@@ -5674,6 +5674,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

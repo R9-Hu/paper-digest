@@ -5596,11 +5596,11 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Video-based VLMs applied to monocular VLN suffer three compounding failures: (1) they cannot capture fine-grained 3D geometry and spatial semantics, hampering large-scale exploration and error correction; (2) they lack structured scene memory, precluding pre-exploration and lifelong learning; (3) they are brittle to dynamic environments where objects or people move, because historical frames become stale with no principled update mechanism.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>3D Feature Extraction.</strong> CLIP-ViT-L/14@336px encodes RGB frames into 576 patch features (24×24), which are back-projected into 3D world coordinates using depth maps and camera intrinsics/extrinsics to form a growing feature-point set $M$.</p>
+<p><strong>3D Feature Extraction.</strong> CLIP-ViT-L/14@336px encodes RGB frames into 576 patch features (24×24), which are back-projected into 3D world coordinates using depth maps and camera intrinsics/extrinsics to form a growing feature-point set <span class="arithmatex">\(M\)</span>.</p>
 <p><strong>Frustum Culling Update.</strong> When a new RGB-D frame arrives, existing feature points whose 3D coordinates project inside the current camera frustum at a depth shallower than the observed surface are discarded; new patch features are then added. This removes moved or occluded objects without touching regions outside the current field-of-view (which serve as long-term memory).</p>
 <p><strong>Instance Encoding &amp; Merging.</strong> FastSAM segments the RGB image into 2D instance masks. A transformer-based InstanceEncoder aggregates patch features within each mask (with 3D relative-position embeddings) into a compact instance vector via a learnable query token. A Merging Discriminator MLP evaluates candidate 2D→3D instance pairs using semantic similarity, 3D instance features, and Euclidean distance to decide whether to merge or create a new 3D instance, trained on ScanNet/HM3D/Matterport3D/3RScan with binary classification loss.</p>
 <p><strong>Zone Encoding.</strong> 3D space is partitioned into uniform cubic zones; a Zone Encoder aggregates 3D instance features within each zone into a coarse spatial-layout representation capturing room-level context (kitchen, bedroom, etc.).</p>
-<p><strong>CLIP Alignment.</strong> Instance and zone representations are aligned to CLIP's semantic space via contrastive learning on SceneVerse/g3D-LF 3D-language pairs. To mitigate per-view feature bias (ground-truth 2D CLIP averages differ across viewpoints), <strong>Subspace Contrastive Learning</strong> subtracts the view-mean (semantic center $V_j$) before computing cosine similarity, anchoring contrastive learning in a shared subspace rather than the global CLIP origin.</p>
+<p><strong>CLIP Alignment.</strong> Instance and zone representations are aligned to CLIP's semantic space via contrastive learning on SceneVerse/g3D-LF 3D-language pairs. To mitigate per-view feature bias (ground-truth 2D CLIP averages differ across viewpoints), <strong>Subspace Contrastive Learning</strong> subtracts the view-mean (semantic center <span class="arithmatex">\(V_j\)</span>) before computing cosine similarity, anchoring contrastive learning in a shared subspace rather than the global CLIP origin.</p>
 <p><strong>3D-VLM.</strong> A generalizable feature field renders panoramic 3D patch tokens on 12×48 rays (90° vertical × 360° horizontal) around the agent. These patch tokens, plus instance tokens and zone tokens (sorted by distance), are concatenated with instruction and 4-step history tokens and fed into LLaVA-Phi-3-mini (3.8B) for autoregressive action prediction (turn θ°, forward d cm, stop).</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5694,6 +5694,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

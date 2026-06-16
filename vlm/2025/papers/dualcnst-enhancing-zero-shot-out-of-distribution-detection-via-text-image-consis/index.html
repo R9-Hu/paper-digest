@@ -5592,16 +5592,16 @@
 <p>DualCnst operates in two stages:</p>
 <ol>
 <li>
-<p><strong>Synthesis</strong>: Given ID labels $Y^{id}$, NegLabel mines OOD labels $Y^{ood}$. Stable Diffusion XL-Turbo generates one synthetic image per label from the combined space $Y^{id} \cup Y^{ood}$ using a standard prompt "A photo of a \&lt;label&gt;".</p>
+<p><strong>Synthesis</strong>: Given ID labels <span class="arithmatex">\(Y^{id}\)</span>, NegLabel mines OOD labels <span class="arithmatex">\(Y^{ood}\)</span>. Stable Diffusion XL-Turbo generates one synthetic image per label from the combined space <span class="arithmatex">\(Y^{id} \cup Y^{ood}\)</span> using a standard prompt "A photo of a \&lt;label&gt;".</p>
 </li>
 <li>
-<p><strong>Dual-consistency scoring</strong>: For a test image $x$, two signals are computed:</p>
+<p><strong>Dual-consistency scoring</strong>: For a test image <span class="arithmatex">\(x\)</span>, two signals are computed:</p>
 </li>
-<li><em>Image-to-text similarity</em> $s_{i,\text{text}}(x)$: cosine similarity between CLIP image embedding and each label's text embedding.</li>
-<li><em>Image-to-image similarity</em> $s_{i,\text{img}}(x)$: weighted sum of cosine similarities between $x$'s intermediate ViT features (layers 3, 6, 9, 12 for ViT-B/16, weight 0.25 each) and the corresponding synthetic image embeddings.</li>
+<li><em>Image-to-text similarity</em> <span class="arithmatex">\(s_{i,\text{text}}(x)\)</span>: cosine similarity between CLIP image embedding and each label's text embedding.</li>
+<li><em>Image-to-image similarity</em> <span class="arithmatex">\(s_{i,\text{img}}(x)\)</span>: weighted sum of cosine similarities between <span class="arithmatex">\(x\)</span>'s intermediate ViT features (layers 3, 6, 9, 12 for ViT-B/16, weight 0.25 each) and the corresponding synthetic image embeddings.</li>
 </ol>
-<p>These are fused as $\tilde{s}<em i_text_img="i,\text{img">i(x) = \alpha \cdot s</em>(x)$ summed over ID indices. Detection threshold $\lambda$ is set at 95% TPR.}} + (1-\alpha) \cdot s_{i,\text{text}}$ with $\alpha=0.2$, then aggregated into a softmax-based ID score $S_{\text{DualCnst}</p>
-<p>A theoretical analysis via CLT shows that augmenting the negative label space with $N$ multimodal signals reduces score variance by a factor $N'(N) = N(N-1)/(a^2 + N - 2a)$, monotonically decreasing FPR95 as $N$ grows.</p>
+<p>These are fused as <span class="arithmatex">\(\tilde{s}_i(x) = \alpha \cdot s_{i,\text{img}} + (1-\alpha) \cdot s_{i,\text{text}}\)</span> with <span class="arithmatex">\(\alpha=0.2\)</span>, then aggregated into a softmax-based ID score <span class="arithmatex">\(S_{\text{DualCnst}}(x)\)</span> summed over ID indices. Detection threshold <span class="arithmatex">\(\lambda\)</span> is set at 95% TPR.</p>
+<p>A theoretical analysis via CLT shows that augmenting the negative label space with <span class="arithmatex">\(N\)</span> multimodal signals reduces score variance by a factor <span class="arithmatex">\(N'(N) = N(N-1)/(a^2 + N - 2a)\)</span>, monotonically decreasing FPR95 as <span class="arithmatex">\(N\)</span> grows.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Dual-consistency scoring framework that combines CLIP semantic similarity with multi-layer visual similarity to synthesized exemplars for zero-shot OOD detection.</li>
@@ -5624,7 +5624,7 @@
 <ul>
 <li>Requires running Stable Diffusion to pre-generate one synthetic image per class label; this is a one-time cost but introduces a dependency on a generative model and storage.</li>
 <li>Sensitive to the quality of mined OOD labels (relies on NegLabel); if negative label mining fails, visual synthesis may not cover the relevant OOD manifold.</li>
-<li>Hyperparameters $\alpha$ and layer weights $w$ require validation on ID-only data; generalization across all dataset granularities is assumed but not proven for truly novel domains.</li>
+<li>Hyperparameters <span class="arithmatex">\(\alpha\)</span> and layer weights <span class="arithmatex">\(w\)</span> require validation on ID-only data; generalization across all dataset granularities is assumed but not proven for truly novel domains.</li>
 <li>Theoretical analysis assumes i.i.d. similarity scores across modalities—an idealization that may not hold when synthetic images are visually correlated.</li>
 <li>Evaluation uses a single generated image per label; diversity of synthesized exemplars and the effect of random seed variation is acknowledged but only partially ablated.</li>
 </ul>
@@ -5692,6 +5692,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5568,9 +5568,9 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing open-vocabulary NeRF methods (LERF, LangSplat, N2F2) either treat scenes as flat feature fields ignoring hierarchy, require multiple rendering passes at different scales (LERF, LangSplat), or fix the number of hierarchical levels to the embedding dimensionality (N2F2/Matryoshka). These constraints make them brittle for compositional queries (e.g., "door of a washing machine") and real-world environments where hierarchies are continuous and open-ended.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Hyperbolic auto-encoder.</strong> A contrastive auto-encoder maps CLIP features (extracted from Semantic SAM mask crops per image) into the Lorentz hyperboloid $\mathcal{L}^n$. The loss combines geodesic distance contrastive learning ($L_d$), exterior angle contrastive learning ($L_a$), and MSE reconstruction ($L_r$). Leaf nodes (object parts) land near the boundary; root nodes land near the origin; co-hierarchy items share a geodesic path.</p>
+<p><strong>Hyperbolic auto-encoder.</strong> A contrastive auto-encoder maps CLIP features (extracted from Semantic SAM mask crops per image) into the Lorentz hyperboloid <span class="arithmatex">\(\mathcal{L}^n\)</span>. The loss combines geodesic distance contrastive learning (<span class="arithmatex">\(L_d\)</span>), exterior angle contrastive learning (<span class="arithmatex">\(L_a\)</span>), and MSE reconstruction (<span class="arithmatex">\(L_r\)</span>). Leaf nodes (object parts) land near the boundary; root nodes land near the origin; co-hierarchy items share a geodesic path.</p>
 <p><strong>NeRF training.</strong> A standard NeRF MLP is extended to additionally output a hyperbolic feature vector. Supervision uses a geodesic distance loss between predicted and target hyperbolic features, plus a norm-regularization term. Target features are extrapolated to the boundary to resolve per-image multi-view inconsistency.</p>
-<p><strong>Hierarchy traversal at inference.</strong> For a text query, $T$ evenly-spaced points are sampled along the geodesic from the rendered boundary feature toward the hyperboloid origin. Each point is decoded to CLIP space and cosine-similarity-scored against the text prompt. A softmax-weighted sum aggregates the $T$ scores into a final segmentation relevancy per pixel.</p>
+<p><strong>Hierarchy traversal at inference.</strong> For a text query, <span class="arithmatex">\(T\)</span> evenly-spaced points are sampled along the geodesic from the rendered boundary feature toward the hyperboloid origin. Each point is decoded to CLIP space and cosine-similarity-scored against the text prompt. A softmax-weighted sum aggregates the <span class="arithmatex">\(T\)</span> scores into a final segmentation relevancy per pixel.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Continuous hyperbolic embedding of scene hierarchies in NeRF, replacing discrete scale levels with geodesic interpolation.</li>
@@ -5664,6 +5664,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

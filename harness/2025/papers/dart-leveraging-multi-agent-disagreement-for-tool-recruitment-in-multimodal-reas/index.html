@@ -5586,7 +5586,7 @@
 <ol>
 <li><strong>Initial Answer Generation</strong> — each VLM agent produces an answer, CoT reasoning chain, and self-reported confidence; outputs are grouped by unique answer with vote counts.</li>
 <li><strong>Tool-Based Disagreement Resolution</strong> — a dedicated recruitment agent (Qwen2.5-7B) reads the grouped answers, identifies specific perceptual conflicts (e.g., color discrepancy), and selects which tools to invoke with what query parameters. Tools include GroundingDINO, YOLOv11, SpaceLLaVA, OCR-Qwen, and InternVL-2.5 (captioning/attribute/reasoning).</li>
-<li><strong>Tool-Based Agreement Scoring</strong> — for each (agent output, tool output) pair, a scorer LLM produces a binary agreement score $s_{ij} \in {0,1}$; the per-agent score $S_i$ is the mean across all invoked tools, serving as an expert-calibrated confidence proxy.</li>
+<li><strong>Tool-Based Agreement Scoring</strong> — for each (agent output, tool output) pair, a scorer LLM produces a binary agreement score <span class="arithmatex">\(s_{ij} \in \{0,1\}\)</span>; the per-agent score <span class="arithmatex">\(S_i\)</span> is the mean across all invoked tools, serving as an expert-calibrated confidence proxy.</li>
 <li><strong>Discussion</strong> — agents receive the grouped initial answers, tool outputs, and agreement scores; they are instructed to prioritize expert tool outputs over peer claims and refine their answers accordingly.</li>
 <li><strong>Aggregation</strong> — an aggregator VLM (Ovis2) selects the final answer via CoT using post-discussion grouped answers, tool outputs, and recalculated agreement scores.</li>
 </ol>
@@ -5681,6 +5681,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

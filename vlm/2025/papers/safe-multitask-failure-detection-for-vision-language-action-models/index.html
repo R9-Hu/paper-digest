@@ -5585,18 +5585,18 @@
 <p>SAFE operates in three stages:</p>
 <ol>
 <li>
-<p><strong>Feature extraction</strong>: At each inference timestep $t$, extract the hidden state vector $e_t$ from the last layer of the VLA (before token logit decoding or diffusion velocity field output).</p>
+<p><strong>Feature extraction</strong>: At each inference timestep <span class="arithmatex">\(t\)</span>, extract the hidden state vector <span class="arithmatex">\(e_t\)</span> from the last layer of the VLA (before token logit decoding or diffusion velocity field output).</p>
 </li>
 <li>
 <p><strong>Failure score prediction</strong>: Two backbone options:</p>
 </li>
-<li><strong>SAFE-MLP</strong>: Independent per-timestep MLP $g(e_t)$ with sigmoid activation; failure score accumulates as $s_t = \sum_{\tau \leq t} \sigma(g(e_\tau))$; trained with L1 loss pushing scores up for failures, down for successes.</li>
+<li><strong>SAFE-MLP</strong>: Independent per-timestep MLP <span class="arithmatex">\(g(e_t)\)</span> with sigmoid activation; failure score accumulates as <span class="arithmatex">\(s_t = \sum_{\tau \leq t} \sigma(g(e_\tau))\)</span>; trained with L1 loss pushing scores up for failures, down for successes.</li>
 <li>
-<p><strong>SAFE-LSTM</strong>: Sequential LSTM over $e_{0:t}$; outputs $s_t = \sigma(\text{LSTM}(e_{0:t}))$; trained with binary cross-entropy.
+<p><strong>SAFE-LSTM</strong>: Sequential LSTM over <span class="arithmatex">\(e_{0:t}\)</span>; outputs <span class="arithmatex">\(s_t = \sigma(\text{LSTM}(e_{0:t}))\)</span>; trained with binary cross-entropy.
    Both backbones are kept shallow (1–2 layers) to avoid overfitting.</p>
 </li>
 <li>
-<p><strong>Threshold calibration via functional conformal prediction (CP)</strong>: A time-varying upper band $\delta_t = \mu_t + h_t$ is calibrated on successful rollouts from <em>seen</em> tasks. If $s_t &gt; \delta_t$ at any timestep, a failure flag is raised with nominal false-positive rate $\leq \alpha$.</p>
+<p><strong>Threshold calibration via functional conformal prediction (CP)</strong>: A time-varying upper band <span class="arithmatex">\(\delta_t = \mu_t + h_t\)</span> is calibrated on successful rollouts from <em>seen</em> tasks. If <span class="arithmatex">\(s_t &gt; \delta_t\)</span> at any timestep, a failure flag is raised with nominal false-positive rate <span class="arithmatex">\(\leq \alpha\)</span>.</p>
 </li>
 </ol>
 <p>The motivation is a t-SNE visualization showing that VLA internal features from <em>different tasks</em> converge to the same "failure zone" when the policy is failing, enabling cross-task generalization.</p>
@@ -5693,6 +5693,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

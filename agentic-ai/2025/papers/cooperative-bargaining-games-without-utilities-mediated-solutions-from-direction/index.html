@@ -5576,20 +5576,20 @@
 <p>Standard bargaining solutions like NBS and KSBS assume the mediator can read cardinal utility values and gradients—assumptions that fail when agents are humans or LLM-based proxies that cannot report numerical utilities, when utilities are scaled via unknown nonaffine transformations (e.g., RLHF reward models, prospect theory), or when agents withhold utilities for privacy. Moreover, the paper proves (Proposition 1) that <em>no</em> direction-oracle-only algorithm can recover NBS or KSBS for all standard bargaining games, because those solutions are sensitive to exactly the nonaffine transformations that direction oracles cannot distinguish.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>DiBS replaces utility-weighted gradient steps with direction-oracle-weighted steps scaled by each agent's distance to their individually preferred state:</p>
-<p>$$x^{k+1} = x^k - \alpha_k \sum_{i=1}^N |x^k - x^{*,i}|_2 \cdot \frac{\nabla \ell^i(x^k)}{|\nabla \ell^i(x^k)|_2}$$</p>
-<p>Each agent's contribution is the normalized gradient (direction oracle output) multiplied by that agent's Euclidean distance from its optimum, making agents farther from their preferred states more influential—a proxy for "urgency" that is computable without utility values. Direction oracles can themselves be approximated via binary comparison oracles (yes/no/indifferent queries), reducing the required information to pairwise preference comparisons. Agent preferred states $x^{*,i}$ are precomputed via zeroth-order optimization on the comparison oracle.</p>
+<div class="arithmatex">\[x^{k+1} = x^k - \alpha_k \sum_{i=1}^N \|x^k - x^{*,i}\|_2 \cdot \frac{\nabla \ell^i(x^k)}{\|\nabla \ell^i(x^k)\|_2}\]</div>
+<p>Each agent's contribution is the normalized gradient (direction oracle output) multiplied by that agent's Euclidean distance from its optimum, making agents farther from their preferred states more influential—a proxy for "urgency" that is computable without utility values. Direction oracles can themselves be approximated via binary comparison oracles (yes/no/indifferent queries), reducing the required information to pairwise preference comparisons. Agent preferred states <span class="arithmatex">\(x^{*,i}\)</span> are precomputed via zeroth-order optimization on the comparison oracle.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Impossibility result (Proposition 1):</strong> Proves NBS and KSBS cannot be recovered by any direction-oracle-only mediator for all standard bargaining games.</li>
 <li><strong>DiBS algorithm:</strong> Iterative, linear-complexity-per-step bargaining algorithm using only direction oracles and preferred-state distances.</li>
-<li><strong>Convergence guarantee (Theorem 1):</strong> Under strong convexity and smoothness, DiBS globally asymptotically converges to its (Pareto stationary) fixed points with diminishing step sizes satisfying $\sum \alpha_k = \infty$, $\sum \alpha_k^2 &lt; \infty$.</li>
+<li><strong>Convergence guarantee (Theorem 1):</strong> Under strong convexity and smoothness, DiBS globally asymptotically converges to its (Pareto stationary) fixed points with diminishing step sizes satisfying <span class="arithmatex">\(\sum \alpha_k = \infty\)</span>, <span class="arithmatex">\(\sum \alpha_k^2 &lt; \infty\)</span>.</li>
 <li><strong>Axiom satisfaction (Theorem 2):</strong> DiBS satisfies Pareto stationarity, invariance to strictly monotonically increasing nonaffine transformations, symmetry, and (under unique fixed-point conditions) independence of irrelevant alternatives.</li>
 <li><strong>Comparison oracle implementation:</strong> Shows direction oracles can be estimated to arbitrary accuracy from binary pairwise comparisons using existing sign-gradient estimators (e.g., Sign-OPT).</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Multi-agent formation (N=10, nonconvex costs):</strong> DiBS, NBS, and KSBS all reach qualitatively balanced formations. Under monotone nonaffine cost scaling of odd agents, NBS and KSBS produce skewed solutions favoring scaled agents; DiBS retains a fair, symmetric formation.</li>
-<li><strong>Portfolio allocation (N=10 investors, 5/10/20/50 stocks, 100 scenarios):</strong> With 10,000 comparisons per agent per iteration, DiBS-via-comparisons achieves median relative error below $10^{-2}$ relative to DiBS-via-exact-directions for 5 stocks. Even with comparisons far fewer than the problem dimension, median relative error remains below 1 (i.e., comparison-based DiBS still improves over initialization). Accuracy degrades gracefully as stock count grows.</li>
+<li><strong>Portfolio allocation (N=10 investors, 5/10/20/50 stocks, 100 scenarios):</strong> With 10,000 comparisons per agent per iteration, DiBS-via-comparisons achieves median relative error below <span class="arithmatex">\(10^{-2}\)</span> relative to DiBS-via-exact-directions for 5 stocks. Even with comparisons far fewer than the problem dimension, median relative error remains below 1 (i.e., comparison-based DiBS still improves over initialization). Accuracy degrades gracefully as stock count grows.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5663,6 +5663,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

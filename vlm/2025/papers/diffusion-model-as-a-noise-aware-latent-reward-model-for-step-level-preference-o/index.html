@@ -5589,9 +5589,9 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing preference optimization for diffusion models relies on VLMs (CLIP, BLIP) as pixel-level reward models (PRMs). When applied step-by-step during denoising, PRMs suffer from three compounding issues: (1) they require full denoising and VAE decoding at each timestep to produce a clean image for evaluation; (2) highly noisy latent images at large timesteps create severe distribution shift from VLM training data (clean images), making reward predictions unreliable; and (3) PRMs lack explicit timestep conditioning, making them insensitive to the varying role of noise level during generation.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Latent Reward Model (LRM):</strong> The frozen U-Net backbone and text encoder of the diffusion model being aligned are repurposed for reward prediction. Given a noisy latent $x_t$ and prompt $p$, U-Net features from down-blocks and mid-block are average-pooled into multi-scale visual representations. A <strong>Visual Feature Enhancement (VFE)</strong> module improves text-image alignment sensitivity by injecting classifier-free guidance contrast: $V_{enh} = V_{mid} + (g_s - 1)(V_{mid} - V_{mid_ucond})$, amplifying text-conditional signal. A dot-product score $S(p, x_t) = \tau \cdot \ell_2(V) \cdot \ell_2(T)$ is used with Bradley-Terry loss for training on preference pairs.</p>
-<p><strong>Multi-Preference Consistent Filtering (MPCF):</strong> Pick-a-Pic v1 pairs where the "winner" underperforms in CLIP score or VQAScore (≈40% of pairs) are filtered out, retaining only pairs where winners dominate on text-image alignment while allowing a small aesthetic gap ($G_A \geq -0.5$). This keeps 168k of 511k win-lose pairs.</p>
-<p><strong>Latent Preference Optimization (LPO):</strong> At each denoising step $t$, $K=4$ candidates ${x_t^i}$ are sampled from $x_{t+1}$. LRM scores them directly in latent space—no VAE decode needed—and the highest/lowest-scoring pair becomes the $(x_t^w, x_t^l)$ training signal for the SPO-style DPO loss. A <strong>dynamic threshold</strong> $th_t = \frac{\sigma_t - \sigma_{min}}{\sigma_{max} - \sigma_{min}}(th_{max} - th_{min}) + th_{min}$ adapts the selection gap to noise level, enabling reliable sampling across the full range $t \in [0, 950]$.</p>
+<p><strong>Latent Reward Model (LRM):</strong> The frozen U-Net backbone and text encoder of the diffusion model being aligned are repurposed for reward prediction. Given a noisy latent <span class="arithmatex">\(x_t\)</span> and prompt <span class="arithmatex">\(p\)</span>, U-Net features from down-blocks and mid-block are average-pooled into multi-scale visual representations. A <strong>Visual Feature Enhancement (VFE)</strong> module improves text-image alignment sensitivity by injecting classifier-free guidance contrast: <span class="arithmatex">\(V_{enh} = V_{mid} + (g_s - 1)(V_{mid} - V_{mid\_ucond})\)</span>, amplifying text-conditional signal. A dot-product score <span class="arithmatex">\(S(p, x_t) = \tau \cdot \ell_2(V) \cdot \ell_2(T)\)</span> is used with Bradley-Terry loss for training on preference pairs.</p>
+<p><strong>Multi-Preference Consistent Filtering (MPCF):</strong> Pick-a-Pic v1 pairs where the "winner" underperforms in CLIP score or VQAScore (≈40% of pairs) are filtered out, retaining only pairs where winners dominate on text-image alignment while allowing a small aesthetic gap (<span class="arithmatex">\(G_A \geq -0.5\)</span>). This keeps 168k of 511k win-lose pairs.</p>
+<p><strong>Latent Preference Optimization (LPO):</strong> At each denoising step <span class="arithmatex">\(t\)</span>, <span class="arithmatex">\(K=4\)</span> candidates <span class="arithmatex">\(\{x_t^i\}\)</span> are sampled from <span class="arithmatex">\(x_{t+1}\)</span>. LRM scores them directly in latent space—no VAE decode needed—and the highest/lowest-scoring pair becomes the <span class="arithmatex">\((x_t^w, x_t^l)\)</span> training signal for the SPO-style DPO loss. A <strong>dynamic threshold</strong> <span class="arithmatex">\(th_t = \frac{\sigma_t - \sigma_{min}}{\sigma_{max} - \sigma_{min}}(th_{max} - th_{min}) + th_{min}\)</span> adapts the selection gap to noise level, enabling reliable sampling across the full range <span class="arithmatex">\(t \in [0, 950]\)</span>.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>LRM</strong>: First use of the diffusion model itself as a step-level reward model, natively handling noisy latents at arbitrary timesteps without pixel-space transformation.</li>
@@ -5611,7 +5611,7 @@
 <li><strong>Training speed (SD1.5):</strong> LPO 23 A100-hours vs. Diffusion-DPO 240h (10×), SPO 80h (3.5×).</li>
 <li><strong>Training speed (SDXL):</strong> LPO 92h vs. Diffusion-DPO 2,560h (28×), SPO 234h (2.5×).</li>
 <li><strong>Sampling step time:</strong> LRM 0.039s vs. SPM 0.243s per step (6.2× faster at K=4).</li>
-<li><strong>Ablation—timestep range:</strong> $t \in [750, 950]$ alone achieves GenEval 48.28, nearly matching full-range 48.39; low-noise-only $[0, 200]$ achieves only 40.11.</li>
+<li><strong>Ablation—timestep range:</strong> <span class="arithmatex">\(t \in [750, 950]\)</span> alone achieves GenEval 48.28, nearly matching full-range 48.39; low-noise-only <span class="arithmatex">\([0, 200]\)</span> achieves only 40.11.</li>
 <li><strong>Heterogeneous:</strong> LRM-1.5 fine-tuning SD2.1 improves GenEval from 48.59→56.01; fails on SDXL (different VAE).</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
@@ -5685,6 +5685,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

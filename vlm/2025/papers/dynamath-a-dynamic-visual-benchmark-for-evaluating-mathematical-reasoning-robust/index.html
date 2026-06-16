@@ -5589,7 +5589,7 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing visual math benchmarks (MATHVISTA, MATHVERSE, MATH-V) are static: each question has exactly one instance, so models can exploit memorized patterns to inflate scores and genuine reasoning robustness cannot be measured. There is no prior benchmark that tests whether VLMs generalize a solution procedure across semantically equivalent but visually/numerically varied instances.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>Each of the 501 seed questions is implemented as a hand-crafted Python program with a parameterized sampling space and a drawing function (Matplotlib/Pyglet) that synthesizes the visual context. Running the program with different sampled parameters yields arbitrarily many concrete question–image pairs with algorithmically computed ground-truth answers. During evaluation, 10 variants per seed (5,010 total) are generated. Variation types include: (1) numerical value substitutions, (2) geometric transformations (shape/angle/position), (3) function type variants (linear→quadratic etc.), (4) color variants, (5) symbolic substitutions (operator changes), (6) graph structure variants (topology/layout), and (7) real-life context variants (calendars, poker). Three metrics are reported: average-case accuracy $A_\text{avg}$ (mean over all variants), worst-case accuracy $A_\text{wst}$ (fraction of seeds answered correctly on every variant), and reasoning robustness $\text{RR} = A_\text{wst}/A_\text{avg}$. Repetition consistency (RC, 5 repeated generations of the same variant) controls for output randomness.</p>
+<p>Each of the 501 seed questions is implemented as a hand-crafted Python program with a parameterized sampling space and a drawing function (Matplotlib/Pyglet) that synthesizes the visual context. Running the program with different sampled parameters yields arbitrarily many concrete question–image pairs with algorithmically computed ground-truth answers. During evaluation, 10 variants per seed (5,010 total) are generated. Variation types include: (1) numerical value substitutions, (2) geometric transformations (shape/angle/position), (3) function type variants (linear→quadratic etc.), (4) color variants, (5) symbolic substitutions (operator changes), (6) graph structure variants (topology/layout), and (7) real-life context variants (calendars, poker). Three metrics are reported: average-case accuracy <span class="arithmatex">\(A_\text{avg}\)</span> (mean over all variants), worst-case accuracy <span class="arithmatex">\(A_\text{wst}\)</span> (fraction of seeds answered correctly on every variant), and reasoning robustness <span class="arithmatex">\(\text{RR} = A_\text{wst}/A_\text{avg}\)</span>. Repetition consistency (RC, 5 repeated generations of the same variant) controls for output randomness.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First systematic study of VLM robustness on visual mathematical reasoning via dynamically generated benchmarks.</li>
@@ -5682,6 +5682,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

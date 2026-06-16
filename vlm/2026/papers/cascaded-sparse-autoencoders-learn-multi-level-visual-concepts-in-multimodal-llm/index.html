@@ -5752,17 +5752,17 @@
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>CSAE is a jointly trained two-level sparse dictionary system:</p>
 <ul>
-<li><strong>Level-1 SAE</strong> applies a standard SAE (encoder $g_1$, decoder $h_1$) to MLLM activation vectors $x \in \mathbb{R}^d$, learning low-level atomic concept directions encoded as decoder weight columns $w_j \in \mathbb{R}^d$.</li>
-<li><strong>Level-2 SAE</strong> treats each column $w_j$ of the Level-1 decoder $W_{\text{dec}}^{(1)}$ as an input data point, learning higher-order abstractions (groups of Level-1 concepts) via its own encoder-decoder $(g_2, h_2)$.</li>
-<li>The joint objective is $\mathcal{L}<em _text_dec="\text{dec">{\text{final}} = \mathbb{E}_x[\mathcal{L}_1(x, \theta_1)] + \alpha \mathcal{L}_2(W</em>, \theta_2)$, where $\alpha$ balances the two levels.}}^{(1)</li>
+<li><strong>Level-1 SAE</strong> applies a standard SAE (encoder <span class="arithmatex">\(g_1\)</span>, decoder <span class="arithmatex">\(h_1\)</span>) to MLLM activation vectors <span class="arithmatex">\(x \in \mathbb{R}^d\)</span>, learning low-level atomic concept directions encoded as decoder weight columns <span class="arithmatex">\(w_j \in \mathbb{R}^d\)</span>.</li>
+<li><strong>Level-2 SAE</strong> treats each column <span class="arithmatex">\(w_j\)</span> of the Level-1 decoder <span class="arithmatex">\(W_{\text{dec}}^{(1)}\)</span> as an input data point, learning higher-order abstractions (groups of Level-1 concepts) via its own encoder-decoder <span class="arithmatex">\((g_2, h_2)\)</span>.</li>
+<li>The joint objective is <span class="arithmatex">\(\mathcal{L}_{\text{final}} = \mathbb{E}_x[\mathcal{L}_1(x, \theta_1)] + \alpha \mathcal{L}_2(W_{\text{dec}}^{(1)}, \theta_2)\)</span>, where <span class="arithmatex">\(\alpha\)</span> balances the two levels.</li>
 <li>A dynamic masking scheme restricts Level-2 training to Level-1 atoms active in the current mini-batch, reducing computation.</li>
 <li>Crucially, Level-2 operates over concept directions (weight space), not over sparse sample codes, avoiding the bottleneck proven in Theorem 4.1, and each Level-1 atom has exactly one Level-2 parent, avoiding the shared-prefix error amplification proven in Theorem 4.2.</li>
 </ul>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Novel CSAE architecture that trains a second SAE on Level-1 decoder weight columns, enabling "concepts of concepts" without prefix sharing or sparse code re-compression.</li>
-<li>Formal proof (Theorem 4.1) that stacked SAEs face a geometric bottleneck: uniform reconstruction of $k_1$-sparse codes through a $k_2 &lt; k_1$ sparse bottleneck is impossible for sufficiently large dictionaries.</li>
-<li>Formal proof (Theorem 4.2) that Matryoshka shared-prefix reuse amplifies semantic errors, with normalized mismatch bounded below by $2\sum_i C_{\text{MSAE}}(p_i)$, which exceeds the CSAE error $E^{\text{CSAE}}$ under the same local error budget.</li>
+<li>Formal proof (Theorem 4.1) that stacked SAEs face a geometric bottleneck: uniform reconstruction of <span class="arithmatex">\(k_1\)</span>-sparse codes through a <span class="arithmatex">\(k_2 &lt; k_1\)</span> sparse bottleneck is impossible for sufficiently large dictionaries.</li>
+<li>Formal proof (Theorem 4.2) that Matryoshka shared-prefix reuse amplifies semantic errors, with normalized mismatch bounded below by <span class="arithmatex">\(2\sum_i C_{\text{MSAE}}(p_i)\)</span>, which exceeds the CSAE error <span class="arithmatex">\(E^{\text{CSAE}}\)</span> under the same local error budget.</li>
 <li>Hierarchical Mono-Semanticity (HMS) metric for measuring whether Level-1 concepts sharing a Level-2 parent are semantically coherent (cosine similarity of top-activating image embeddings).</li>
 <li>Demonstrated group-level concept steering via simultaneous intervention on all Level-1 members of a Level-2 concept cluster.</li>
 </ul>
@@ -5849,6 +5849,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

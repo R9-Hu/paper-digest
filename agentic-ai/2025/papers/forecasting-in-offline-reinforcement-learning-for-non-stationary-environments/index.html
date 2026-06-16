@@ -5585,13 +5585,13 @@
 <p>FORL operates entirely at test time with a fixed offline-trained policy and two components:</p>
 <ol>
 <li>
-<p><strong>FORL Diffusion Model (DM):</strong> A conditional diffusion model trained on stationary offline data to model the multimodal distribution $p(s_t \mid \tau^{(t,w)})$, where $\tau^{(t,w)}$ is a window of (delta-observation, action) pairs. These delta-observations are offset-invariant, allowing the model to generate $k$ candidate states reflecting where the agent plausibly is given its interaction history.</p>
+<p><strong>FORL Diffusion Model (DM):</strong> A conditional diffusion model trained on stationary offline data to model the multimodal distribution <span class="arithmatex">\(p(s_t \mid \tau^{(t,w)})\)</span>, where <span class="arithmatex">\(\tau^{(t,w)}\)</span> is a window of (delta-observation, action) pairs. These delta-observations are offset-invariant, allowing the model to generate <span class="arithmatex">\(k\)</span> candidate states reflecting where the agent plausibly is given its interaction history.</p>
 </li>
 <li>
-<p><strong>Zero-Shot FM (Lag-Llama):</strong> A probabilistic univariate time-series foundation model used zero-shot to forecast the next $P$ episode offsets from $C$ past revealed offsets, producing $l$ samples per episode per state dimension.</p>
+<p><strong>Zero-Shot FM (Lag-Llama):</strong> A probabilistic univariate time-series foundation model used zero-shot to forecast the next <span class="arithmatex">\(P\)</span> episode offsets from <span class="arithmatex">\(C\)</span> past revealed offsets, producing <span class="arithmatex">\(l\)</span> samples per episode per state dimension.</p>
 </li>
 <li>
-<p><strong>Dimension-wise Closest Match (DCM):</strong> A fusion heuristic that, for each state dimension $d$, selects the forecaster sample $y_{j^*(d)}$ whose value is closest (in that dimension) to any diffusion candidate. This approximates the product distribution of the two sources without parametric assumptions. For the first $w$ steps (before enough history), only the forecaster mean is used.</p>
+<p><strong>Dimension-wise Closest Match (DCM):</strong> A fusion heuristic that, for each state dimension <span class="arithmatex">\(d\)</span>, selects the forecaster sample <span class="arithmatex">\(y_{j^*(d)}\)</span> whose value is closest (in that dimension) to any diffusion candidate. This approximates the product distribution of the two sources without parametric assumptions. For the first <span class="arithmatex">\(w\)</span> steps (before enough history), only the forecaster mean is used.</p>
 </li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5686,6 +5686,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

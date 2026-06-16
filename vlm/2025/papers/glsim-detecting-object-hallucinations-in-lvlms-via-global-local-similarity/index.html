@@ -5568,10 +5568,10 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing object hallucination (OH) detection methods rely on one of two perspectives in isolation: global signals (NLL, SVAR) that capture overall semantic context but are fooled by plausible contextual co-occurrences, or local signals (Internal Confidence) that probe specific visual patches but are tricked by visually similar distractors. No prior method integrates both, leaving a systematic reliability gap across diverse hallucination failure modes.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>GLSim assigns each object mention $o$ extracted from LVLM output a scalar score via a weighted sum of two cosine-similarity terms, all computed from internal LVLM representations—no extra model or annotation needed.</p>
-<p><strong>Local score</strong> ($s_\text{local}$): Applies a Visual Logit Lens (VLL)—multiplying each visual token's hidden state $h_l(v_i)$ by the unembedding matrix $W_U$ and softmaxing—to rank image patches by their probability of predicting object token $o$. The Top-$K$ most relevant patches are selected as $I(o)$, and their average cosine similarity with the object token's hidden representation $h_{l'}(o)$ yields $s_\text{local}$.</p>
-<p><strong>Global score</strong> ($s_\text{global}$): Computes cosine similarity between $h_{l'}(o)$ and the hidden state of the final instruction-prompt token $h_l(v,t)$, which acts as a condensed multimodal summary encoding scene-level context.</p>
-<p><strong>Final score</strong>: $s_\text{GLSim} = w \cdot s_\text{global} + (1-w) \cdot s_\text{local}$, with $w=0.6$ found to be near-optimal. Detection threshold $\tau$ then classifies real vs. hallucinated objects.</p>
+<p>GLSim assigns each object mention <span class="arithmatex">\(o\)</span> extracted from LVLM output a scalar score via a weighted sum of two cosine-similarity terms, all computed from internal LVLM representations—no extra model or annotation needed.</p>
+<p><strong>Local score</strong> (<span class="arithmatex">\(s_\text{local}\)</span>): Applies a Visual Logit Lens (VLL)—multiplying each visual token's hidden state <span class="arithmatex">\(h_l(v_i)\)</span> by the unembedding matrix <span class="arithmatex">\(W_U\)</span> and softmaxing—to rank image patches by their probability of predicting object token <span class="arithmatex">\(o\)</span>. The Top-<span class="arithmatex">\(K\)</span> most relevant patches are selected as <span class="arithmatex">\(I(o)\)</span>, and their average cosine similarity with the object token's hidden representation <span class="arithmatex">\(h_{l'}(o)\)</span> yields <span class="arithmatex">\(s_\text{local}\)</span>.</p>
+<p><strong>Global score</strong> (<span class="arithmatex">\(s_\text{global}\)</span>): Computes cosine similarity between <span class="arithmatex">\(h_{l'}(o)\)</span> and the hidden state of the final instruction-prompt token <span class="arithmatex">\(h_l(v,t)\)</span>, which acts as a condensed multimodal summary encoding scene-level context.</p>
+<p><strong>Final score</strong>: <span class="arithmatex">\(s_\text{GLSim} = w \cdot s_\text{global} + (1-w) \cdot s_\text{local}\)</span>, with <span class="arithmatex">\(w=0.6\)</span> found to be near-optimal. Detection threshold <span class="arithmatex">\(\tau\)</span> then classifies real vs. hallucinated objects.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First OH detection method to explicitly integrate both global (scene-level) and local (patch-level) embedding similarity, demonstrating their complementary roles.</li>
@@ -5593,7 +5593,7 @@
 <ul>
 <li>Scope is limited to <strong>object existence</strong> hallucination; attribute and relation hallucinations are not addressed due to lack of suitable benchmarks.</li>
 <li>The VLL-based grounding requires access to intermediate decoder layer activations and the unembedding matrix, making the method intrinsic to transformer LVLMs with accessible internals.</li>
-<li>Weighting parameter $w$ and patch count $K$ require per-model tuning (optimal $K$ varies: 32 for LLaVA-1.5, 16 for Shikra); layer indices $l$, $l'$ also need validation per architecture.</li>
+<li>Weighting parameter <span class="arithmatex">\(w\)</span> and patch count <span class="arithmatex">\(K\)</span> require per-model tuning (optimal <span class="arithmatex">\(K\)</span> varies: 32 for LLaVA-1.5, 16 for Shikra); layer indices <span class="arithmatex">\(l\)</span>, <span class="arithmatex">\(l'\)</span> also need validation per architecture.</li>
 <li>Evaluation is limited to open-description prompts; performance under constrained QA or VQA-style prompts is not reported.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
@@ -5660,6 +5660,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

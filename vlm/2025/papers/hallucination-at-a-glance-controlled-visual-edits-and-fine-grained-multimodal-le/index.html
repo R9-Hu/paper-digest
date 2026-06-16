@@ -5588,7 +5588,7 @@
 3. Apply Gemini Flash 2.0 to produce minimally edited counterpart images.
 4. Discard pairs with CLIP cosine similarity &lt; 0.7 (clip-vit-base-patch32) to retain only subtle edits.
 5. Align captions via a four-step pipeline: complete original caption, generate edited caption, produce difference description (Qwen3-32B), and human-verify 1,000 samples with iterative prompt refinement.</p>
-<p><strong>SFT objective:</strong> Given an original image $x_i$ and its edited counterpart $\hat{x}<em>i$, the loss is the captioning cross-entropy applied to the feature-space difference $I</em>\theta(x_i) - I_\theta(\hat{x}<em>i)$ against the ground-truth difference description $S</em>\phi(t_i, \hat{t}_i)$. This implicitly acts as a feature-level consistency regularizer—forcing the encoder to produce stable embeddings for unmodified regions and sensitive embeddings for changed regions. Joint ViT + LLM fine-tuning is performed via LLaMA-Factory.</p>
+<p><strong>SFT objective:</strong> Given an original image <span class="arithmatex">\(x_i\)</span> and its edited counterpart <span class="arithmatex">\(\hat{x}_i\)</span>, the loss is the captioning cross-entropy applied to the feature-space difference <span class="arithmatex">\(I_\theta(x_i) - I_\theta(\hat{x}_i)\)</span> against the ground-truth difference description <span class="arithmatex">\(S_\phi(t_i, \hat{t}_i)\)</span>. This implicitly acts as a feature-level consistency regularizer—forcing the encoder to produce stable embeddings for unmodified regions and sensitive embeddings for changed regions. Joint ViT + LLM fine-tuning is performed via LLaMA-Factory.</p>
 <p><strong>Benchmark (MED):</strong> 165 multiple-choice questions (15 per edit type) on synthetic pairs with CLIP similarity &gt; 0.95; augmented with 50 real-world pairs from MMVP (MED-Real, 215 total) to test generalization beyond synthetic edits. GPT-4o generates correct answers and three distractors; all items are manually verified.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5683,6 +5683,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

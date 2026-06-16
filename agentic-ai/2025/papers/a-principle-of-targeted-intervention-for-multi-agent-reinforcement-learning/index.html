@@ -5577,9 +5577,9 @@
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>The framework uses Multi-Agent Influence Diagrams (MAIDs)—augmented Bayesian networks encoding strategic dependencies—to formally model three interaction paradigms: self-organization, global intervention, and the proposed targeted intervention.</p>
 <p><strong>PSI implementation:</strong>
-1. A new pre-decision variable $D_\text{pre}$ is added as a parent to the targeted agent's decision variable.
-2. A pre-policy $\delta_\text{pre}(\text{obs}, Z) \rightarrow \Delta(\sigma_\text{pre})$ takes the agent's observations and a guidance signal $Z$ (encoded as an intrinsic reward measuring an additional desired outcome) and outputs an embedding passed to the agent's Q-function or critic.
-3. Training maximizes the causal effect $\Delta\text{CE}^\sigma_\text{pre}(U_\text{tot} = u^*)$ (Eq. 2–3), where $U_\text{tot} = U_\text{task} + U_\text{sec}$, selecting a preferred NE from among multiple task-equivalent equilibria.
+1. A new pre-decision variable <span class="arithmatex">\(D_\text{pre}\)</span> is added as a parent to the targeted agent's decision variable.
+2. A pre-policy <span class="arithmatex">\(\delta_\text{pre}(\text{obs}, Z) \rightarrow \Delta(\sigma_\text{pre})\)</span> takes the agent's observations and a guidance signal <span class="arithmatex">\(Z\)</span> (encoded as an intrinsic reward measuring an additional desired outcome) and outputs an embedding passed to the agent's Q-function or critic.
+3. Training maximizes the causal effect <span class="arithmatex">\(\Delta\text{CE}^\sigma_\text{pre}(U_\text{tot} = u^*)\)</span> (Eq. 2–3), where <span class="arithmatex">\(U_\text{tot} = U_\text{task} + U_\text{sec}\)</span>, selecting a preferred NE from among multiple task-equivalent equilibria.
 4. The pre-policy module is a GRU or MLP matching the backbone of the base MARL algorithm (IQL, VDN, IPPO, MAPPO, PQN).</p>
 <p>Relevance graph analysis of MAIDs (s-reachability-based directed graphs) proves that targeted intervention produces acyclic graphs, making the system solvable even under independent learning (IL) without requiring CTDE.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5603,7 +5603,7 @@
 <li>Requires complete or accurately pre-specified MAID structure; learning this structure from data is left as future work.</li>
 <li>Analysis and implementation focus on a single targeted agent; extension to multiple targeted agents is not addressed.</li>
 <li>The optimal criterion for selecting which agent to target and how many agents to target is unresolved.</li>
-<li>The causal effect objective (Eq. 3) requires estimating $P_{\hat{\sigma}}(\hat{\sigma} | \text{do}(\sigma_\text{pre}))$, which may be difficult in complex environments.</li>
+<li>The causal effect objective (Eq. 3) requires estimating <span class="arithmatex">\(P_{\hat{\sigma}}(\hat{\sigma} | \text{do}(\sigma_\text{pre}))\)</span>, which may be difficult in complex environments.</li>
 </ul>
 <h2 id="relevance-to-agentic-ai-llm-agents">Relevance to Agentic AI / LLM Agents<a class="headerlink" href="#relevance-to-agentic-ai-llm-agents" title="Permanent link">&para;</a></h2>
 <p>This work provides a principled, causal-inference-grounded framework for injecting structured guidance into multi-agent systems through a single "leader" agent—directly relevant to architectures where an LLM orchestrator must steer a fleet of specialized sub-agents toward a composite goal (task completion + safety/style constraints). The PSI module operationalizes the idea that an orchestrator need not control every agent directly; influencing one well-chosen node can propagate coordination throughout the system, which has strong implications for scalable LLM-agent hierarchies. The future-work item on integrating LLMs/generative AI as the pre-policy module explicitly frames PSI as a vehicle for LLM-guided convention learning in unknown-teammate settings.</p>
@@ -5669,6 +5669,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

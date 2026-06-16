@@ -5582,9 +5582,9 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Two fundamental incompatibilities block RL post-training for visual generative models: (1) diffusion-based models face intractable diffusion inversion, causing a large mismatch between the behavior policy (linear forward diffusion) and the target policy (non-linear reverse trajectory), yielding poor action-space coverage; (2) standard spatial visual tokens in AR models carry anti-causal dependencies—a later token's policy update can retroactively perturb earlier tokens—which violates the Bellman equation and the policy improvement theorem. Both failures prevent reliable reward signal propagation.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Selftok tokenizer:</strong> Encodes image $I$ into $K$ discrete tokens $V_K = [v_1, \ldots, v_K]$ that explicitly satisfy the AR causal graph. The key insight is to align the AR recursive structure with the ODE decomposition of the reverse diffusion process: given a noisy midpoint $x_t \sim q(x_t|x_1)$, the encoder learns tokens $V_{\geq k(t)}$ needed to reconstruct $x_1$ from $x_t$, with a token schedule $k(t)$ mapping continuous diffusion time to discrete token indices. This grounds the tokens in the diffusion generation trajectory rather than spatial image patches, making them non-spatial and causally ordered.</p>
-<p><strong>VLM pre-training:</strong> A Llama3-8B model is extended with $|\mathcal{C}|=32{,}768$ Selftok visual tokens and pre-trained on interleaved text-image data via standard next-token prediction.</p>
-<p><strong>RL (Selftok-Zero):</strong> A simplified GRPO without importance sampling. For each prompt, $B$ token sequences are sampled; advantages are normalized per-batch. The loss is $\mathcal{L} = -\frac{1}{B}\sum_i [A_i - \lambda D_{\text{KL}}(\pi | \pi_{\text{old}})]$. Two reward types are used: (1) program-based rewards using MM-Detection (confidence-threshold object counting for structured prompts), and (2) QA-based rewards decomposing prompts into semantic tuples and querying InternVL/mPLUG as VQA judges. No pairwise text-image supervision is used during RL.</p>
+<p><strong>Selftok tokenizer:</strong> Encodes image <span class="arithmatex">\(I\)</span> into <span class="arithmatex">\(K\)</span> discrete tokens <span class="arithmatex">\(V_K = [v_1, \ldots, v_K]\)</span> that explicitly satisfy the AR causal graph. The key insight is to align the AR recursive structure with the ODE decomposition of the reverse diffusion process: given a noisy midpoint <span class="arithmatex">\(x_t \sim q(x_t|x_1)\)</span>, the encoder learns tokens <span class="arithmatex">\(V_{\geq k(t)}\)</span> needed to reconstruct <span class="arithmatex">\(x_1\)</span> from <span class="arithmatex">\(x_t\)</span>, with a token schedule <span class="arithmatex">\(k(t)\)</span> mapping continuous diffusion time to discrete token indices. This grounds the tokens in the diffusion generation trajectory rather than spatial image patches, making them non-spatial and causally ordered.</p>
+<p><strong>VLM pre-training:</strong> A Llama3-8B model is extended with <span class="arithmatex">\(|\mathcal{C}|=32{,}768\)</span> Selftok visual tokens and pre-trained on interleaved text-image data via standard next-token prediction.</p>
+<p><strong>RL (Selftok-Zero):</strong> A simplified GRPO without importance sampling. For each prompt, <span class="arithmatex">\(B\)</span> token sequences are sampled; advantages are normalized per-batch. The loss is <span class="arithmatex">\(\mathcal{L} = -\frac{1}{B}\sum_i [A_i - \lambda D_{\text{KL}}(\pi \| \pi_{\text{old}})]\)</span>. Two reward types are used: (1) program-based rewards using MM-Detection (confidence-threshold object counting for structured prompts), and (2) QA-based rewards decomposing prompts into semantic tuples and querying InternVL/mPLUG as VQA judges. No pairwise text-image supervision is used during RL.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Formal proof that spatial visual tokens violate the Bellman equation due to anti-causal collider effects, disqualifying them from theoretically sound RL optimization.</li>
@@ -5673,6 +5673,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

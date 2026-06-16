@@ -5578,13 +5578,13 @@
 <p>MedTok operates in three stages over 617,490 codes from eight systems (ICD-9, ICD-10-CM, ICD-10-PCS, SNOMED CT, ATC, NDC, CPT, RxNORM):</p>
 <ol>
 <li>
-<p><strong>Multimodal encoding</strong>: A language model encoder produces text embedding $x_t$ from the code's natural-language description; a graph encoder produces $x_g$ from a local subgraph of PrimeKG. Linear projectors yield modality-specific embeddings ($e^s_t$, $e^s_g$); a cross-attention module yields cross-modality embeddings ($e^c_t$, $e^c_g$).</p>
+<p><strong>Multimodal encoding</strong>: A language model encoder produces text embedding <span class="arithmatex">\(x_t\)</span> from the code's natural-language description; a graph encoder produces <span class="arithmatex">\(x_g\)</span> from a local subgraph of PrimeKG. Linear projectors yield modality-specific embeddings (<span class="arithmatex">\(e^s_t\)</span>, <span class="arithmatex">\(e^s_g\)</span>); a cross-attention module yields cross-modality embeddings (<span class="arithmatex">\(e^c_t\)</span>, <span class="arithmatex">\(e^c_g\)</span>).</p>
 </li>
 <li>
-<p><strong>Vector quantization into partitioned codebook</strong>: A unified codebook $C \in \mathbb{R}^{N \times d}$ is divided into text-specific, graph-specific, and shared regions. Top-$K$ nearest codebook vectors are selected per embedding via Euclidean distance; quantized vectors are computed as distance-weighted sums with straight-through gradient estimation.</p>
+<p><strong>Vector quantization into partitioned codebook</strong>: A unified codebook <span class="arithmatex">\(C \in \mathbb{R}^{N \times d}\)</span> is divided into text-specific, graph-specific, and shared regions. Top-<span class="arithmatex">\(K\)</span> nearest codebook vectors are selected per embedding via Euclidean distance; quantized vectors are computed as distance-weighted sums with straight-through gradient estimation.</p>
 </li>
 <li>
-<p><strong>Token packing loss</strong>: Cross-modality tokens are aligned via KL divergence on distance distributions and InfoNCE mutual information maximization (with redundancy penalty $\beta$). Modality-specific tokens are optimized with InfoNCE plus an orthogonality loss (weight $\lambda$). The full loss is $L = L_{vq} + L_{KL} + L^c_{token} + L^s_{token}$.</p>
+<p><strong>Token packing loss</strong>: Cross-modality tokens are aligned via KL divergence on distance distributions and InfoNCE mutual information maximization (with redundancy penalty <span class="arithmatex">\(\beta\)</span>). Modality-specific tokens are optimized with InfoNCE plus an orthogonality loss (weight <span class="arithmatex">\(\lambda\)</span>). The full loss is <span class="arithmatex">\(L = L_{vq} + L_{KL} + L^c_{token} + L^s_{token}\)</span>.</p>
 </li>
 </ol>
 <p>After pretraining, MedTok is a drop-in tokenizer for any transformer-based EHR model. For medical QA, MedTok tokens are prepended as prefix to LLM input after disease-code extraction and prefix fine-tuning on MedMCQA.</p>
@@ -5602,13 +5602,13 @@
 <li><strong>MIMIC-IV</strong> (5 tasks): average AUPRC +4.78%; drug recommendation ETHOS 0.131→0.240.</li>
 <li><strong>EHRShot</strong> (outpatient, 7 subtasks): average AUPRC +11.32%, driven by mortality prediction; Hyperlipidemia new-diagnosis detection +6.00%.</li>
 <li>MedTok outperforms both BERT tokenizer and VQGraph tokenizer (graph-only baseline) on all tasks and datasets under TransformEHR backbone.</li>
-<li>Ablation: full loss ($L_{vq} + L_{KL} + L^c + L^s$) improves over $L_{vq}$ alone by +3.9%, +5.7%, +9.1% on MIMIC-III, MIMIC-IV, EHRShot respectively.</li>
+<li>Ablation: full loss (<span class="arithmatex">\(L_{vq} + L_{KL} + L^c + L^s\)</span>) improves over <span class="arithmatex">\(L_{vq}\)</span> alone by +3.9%, +5.7%, +9.1% on MIMIC-III, MIMIC-IV, EHRShot respectively.</li>
 <li><strong>Medical QA</strong>: MedTok prefix tokens improve accuracy on MMLU, MedDDx, AfrimedQA for all three LLMs tested (exact numbers from Figure 6, e.g., LLaMA3.1-8B MMLU 0.437→0.494; MMedLM AfrimedQA 0.491→0.618).</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Drug recommendation evaluation restricted to five specific drugs (Vancomycin, Levofloxacin, Heparin Sodium, Metoprolol, Atorvastatin), limiting generalization claims.</li>
-<li>Optimal codebook size is dataset-dependent ($N=12{,}000$ for MIMIC, $N=24{,}000$ for EHRShot); requires hyperparameter tuning per deployment.</li>
+<li>Optimal codebook size is dataset-dependent (<span class="arithmatex">\(N=12{,}000\)</span> for MIMIC, <span class="arithmatex">\(N=24{,}000\)</span> for EHRShot); requires hyperparameter tuning per deployment.</li>
 <li>Relational context sourced exclusively from PrimeKG; codes absent or poorly represented in this KG may receive impoverished graph embeddings.</li>
 <li>Medical QA integration requires a disease-code extraction step before tokenization, introducing a preprocessing dependency not evaluated for noise sensitivity.</li>
 <li>No evaluation on clinical notes or unstructured EHR data; scope limited to structured medical codes.</li>
@@ -5677,6 +5677,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

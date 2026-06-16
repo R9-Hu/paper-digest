@@ -5589,20 +5589,20 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing longitudinal CXR methods either fuse temporal features (cross-attention, alignment connectors) or model inter-study discrepancies (patch-level difference) but fail to capture (1) subtle directional progression semantics overwhelmed by invariant anatomy and pseudo-changes from imaging variability, and (2) the inherently directional nature of disease trajectories (improving vs. worsening), which prior work largely ignores.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>ProTrans inserts a learnable progression feature map $P_I^\rightarrow \in \mathbb{R}^{N_I \times d}$ between prior and current CXR embeddings to form a directed temporal sequence $S^\rightarrow = [H_I^\text{pri}; P_I^\rightarrow; H_I^\text{cur}]$. This sequence is processed by a progression encoder consisting of $L=3$ spatiotemporal blocks, each with interleaved temporal attention (cross-time dependencies), spatial attention (anatomical correspondence), and an FFN.</p>
+<p>ProTrans inserts a learnable progression feature map <span class="arithmatex">\(P_I^\rightarrow \in \mathbb{R}^{N_I \times d}\)</span> between prior and current CXR embeddings to form a directed temporal sequence <span class="arithmatex">\(S^\rightarrow = [H_I^\text{pri}; P_I^\rightarrow; H_I^\text{cur}]\)</span>. This sequence is processed by a progression encoder consisting of <span class="arithmatex">\(L=3\)</span> spatiotemporal blocks, each with interleaved temporal attention (cross-time dependencies), spatial attention (anatomical correspondence), and an FFN.</p>
 <p>Three training objectives jointly supervise the representation:</p>
 <ol>
 <li>
-<p><strong>State contrastive alignment</strong> ($\mathcal{L}^\text{MoD}_\text{state}$): Cross-modal InfoNCE between each CXR embedding and its paired report, treating same-sample cross-timepoint reports as negatives to enforce fine-grained temporal discrimination. Soft targets from a momentum EMA model mix with hard one-hot labels (weight $\alpha=0.8$).</p>
+<p><strong>State contrastive alignment</strong> (<span class="arithmatex">\(\mathcal{L}^\text{MoD}_\text{state}\)</span>): Cross-modal InfoNCE between each CXR embedding and its paired report, treating same-sample cross-timepoint reports as negatives to enforce fine-grained temporal discrimination. Soft targets from a momentum EMA model mix with hard one-hot labels (weight <span class="arithmatex">\(\alpha=0.8\)</span>).</p>
 </li>
 <li>
-<p><strong>Transition contrastive alignment</strong> ($\mathcal{L}^\text{MoD}_\text{trans}$): Aligns the progression feature $\tilde{P}_I^\rightarrow$ to structured text descriptions in the form "[finding] at [position] [progression]" from Chest ImaGenome annotations; reversed-direction descriptions (e.g., "improved"↔"worsened") serve as hard negatives, enforcing directionality.</p>
+<p><strong>Transition contrastive alignment</strong> (<span class="arithmatex">\(\mathcal{L}^\text{MoD}_\text{trans}\)</span>): Aligns the progression feature <span class="arithmatex">\(\tilde{P}_I^\rightarrow\)</span> to structured text descriptions in the form "[finding] at [position] [progression]" from Chest ImaGenome annotations; reversed-direction descriptions (e.g., "improved"↔"worsened") serve as hard negatives, enforcing directionality.</p>
 </li>
 <li>
-<p><strong>Bidirectional reconstruction</strong> ($\mathcal{L}_\text{recon}$): A reversed progression map $P_I^\leftarrow$ is also learned. A lightweight decoder reconstructs each state from the opposite state plus its progression representation; token-level InfoNCE loss enforces consistency. This disentangles directional semantics and ensures forward/backward coherence.</p>
+<p><strong>Bidirectional reconstruction</strong> (<span class="arithmatex">\(\mathcal{L}_\text{recon}\)</span>): A reversed progression map <span class="arithmatex">\(P_I^\leftarrow\)</span> is also learned. A lightweight decoder reconstructs each state from the opposite state plus its progression representation; token-level InfoNCE loss enforces consistency. This disentangles directional semantics and ensures forward/backward coherence.</p>
 </li>
 </ol>
-<p>Overall objective: $\mathcal{L} = \mathcal{L}^\text{MoD}<em>\text{state} + \mathcal{L}^\text{MoD}</em>\text{trans} + \lambda_r \mathcal{L}_\text{recon}$ ($\lambda_r=0.5$). Backbone: ViT-B/16 + BioClinicalBERT; pretrained on 98,940 bi-temporal MIMIC-CXR-JPG pairs with Chest ImaGenome progression annotations.</p>
+<p>Overall objective: <span class="arithmatex">\(\mathcal{L} = \mathcal{L}^\text{MoD}_\text{state} + \mathcal{L}^\text{MoD}_\text{trans} + \lambda_r \mathcal{L}_\text{recon}\)</span> (<span class="arithmatex">\(\lambda_r=0.5\)</span>). Backbone: ViT-B/16 + BioClinicalBERT; pretrained on 98,940 bi-temporal MIMIC-CXR-JPG pairs with Chest ImaGenome progression annotations.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Formulation of longitudinal CXR analysis as directional semantic transition learning via a learnable progression feature map inserted into the temporal sequence.</li>
@@ -5622,9 +5622,9 @@
 - RadGraph-F1: 0.126 vs. Libra 0.081 (+56%)
 - CheXbert: 0.386 vs. LLaVA-Rad 0.383 (marginal)</p>
 <p><strong>Ablation (SVM avg. accuracy):</strong>
-- Removing $\mathcal{L}^\text{MoD}<em>\text{trans}$: largest drop, 53.65% (−10pp)
-- Removing $\mathcal{L}^\text{MoD}</em>\text{state}$: 60.64%
-- Removing $\mathcal{L}_\text{recon}$: 61.70%
+- Removing <span class="arithmatex">\(\mathcal{L}^\text{MoD}_\text{trans}\)</span>: largest drop, 53.65% (−10pp)
+- Removing <span class="arithmatex">\(\mathcal{L}^\text{MoD}_\text{state}\)</span>: 60.64%
+- Removing <span class="arithmatex">\(\mathcal{L}_\text{recon}\)</span>: 61.70%
 - Removing bidirectional: 61.98%
 - Full model: 63.54%</p>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
@@ -5699,6 +5699,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5577,13 +5577,13 @@
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p><strong>Stage 1 — Diverse Expert Generation:</strong> Four VLM backbones (Qwen2.5-VL-3B, LLaVA-OneVision, Gemma 3 4B, Phi-4-multimodal) each run with a distinct prompting strategy (Chain-of-Thought, Self-Ask, Search-Augmented, GENREAD). Outputs are semantically clustered into K unique stances using GPT-3.5 as a judge, yielding per-stance frequency and mean confidence.</p>
 <p><strong>Stage 2 — Generalist Debate:</strong> Generalist agents are instantiated, each probabilistically assigned a stance proportional to Stage 1 frequencies. Agents argue for their stance, receive Chain-of-Verification-style for/against feedback from all other agents (factuality-checked via search), then revise their answer and confidence. Final prediction is majority vote; final confidence is mean confidence of supporting agents.</p>
-<p><strong>AlignCal Loss:</strong> A differentiable surrogate loss that minimizes the Upper Bound Calibration Error (UBCE). Given softmax output $p_y$ (true class probability) and $p_{\max}$ (top confidence):
-$$\mathcal{L}<em _max="\max">{\text{AlignCal}} = p_y(1 - p</em>$$
-Combined with focal loss ($\mathcal{L}}) + (1 - p_y)p_{\max<em FL="FL">{tot} = \mathcal{L}</em>} + \lambda \mathcal{L<em _max="\max">{AlignCal}$), this fine-tunes the specialized agents. The gradient drives $p_y \to 1$ when correct and $p</em> \to 0$ when wrong.</p>
+<p><strong>AlignCal Loss:</strong> A differentiable surrogate loss that minimizes the Upper Bound Calibration Error (UBCE). Given softmax output <span class="arithmatex">\(p_y\)</span> (true class probability) and <span class="arithmatex">\(p_{\max}\)</span> (top confidence):
+$<span class="arithmatex">\(\mathcal{L}_{\text{AlignCal}} = p_y(1 - p_{\max}) + (1 - p_y)p_{\max}\)</span>$
+Combined with focal loss (<span class="arithmatex">\(\mathcal{L}_{tot} = \mathcal{L}_{FL} + \lambda \mathcal{L}_{AlignCal}\)</span>), this fine-tunes the specialized agents. The gradient drives <span class="arithmatex">\(p_y \to 1\)</span> when correct and <span class="arithmatex">\(p_{\max} \to 0\)</span> when wrong.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>AlignVQA framework</strong>: two-stage agentic debate (specialist generation + generalist deliberation) for post-hoc calibration in MCQ VQA, model-agnostic over VLM backbones.</li>
-<li><strong>AlignCal loss</strong>: closed-form differentiable surrogate to UBCE; hyperparameter-light (only $\lambda$); no kernel choice or binning required unlike MMCE.</li>
+<li><strong>AlignCal loss</strong>: closed-form differentiable surrogate to UBCE; hyperparameter-light (only <span class="arithmatex">\(\lambda\)</span>); no kernel choice or binning required unlike MMCE.</li>
 <li>Demonstrates that combining calibration-aware fine-tuning with the debate framework compounds improvements beyond either technique alone.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
@@ -5671,6 +5671,10 @@ Combined with focal loss ($\mathcal{L}}) + (1 - p_y)p_{\max<em FL="FL">{tot} = \
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

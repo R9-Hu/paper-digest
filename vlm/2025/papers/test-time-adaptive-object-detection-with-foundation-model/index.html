@@ -5576,10 +5576,10 @@
 <p>Existing TTAOD methods (e.g., STFAR, CTTAOD) require source-domain statistical characteristics (feature mean/variance) during adaptation, violating the source-free TTA principle. They also assume identical category spaces between source and target domains (closed-set), precluding adaptation to novel categories encountered at test time.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>The method builds on Grounding DINO (Swin-Tiny backbone) and has two main components:</p>
-<p><strong>Multi-modal Prompt-based Mean-Teacher (MPMT):</strong> Introduces learnable text prompts $P_T$ (added to text encoder output tokens) and visual prompts $P_{I,i}$ (prepended to image tokens at each Transformer layer $i$). A Mean-Teacher framework uses weak/strong augmentation pairs; only prompts are optimized; teacher prompts are updated via exponential moving average ($\gamma = 0.999$). A <strong>Test-time Warm-start (TTWS)</strong> initializes visual prompts by average-pooling image tokens from the first test sample ($P_{I,i} = \text{AvgPool}(E_{I,i})$), preventing catastrophic failure from zero/random initialization.</p>
-<p><strong>Instance Dynamic Memory (IDM):</strong> Maintains a per-category queue $Q_c$ (capacity 20) of triplets (cropped image, DINOv2 feature, score) for pseudo-labels exceeding threshold $th_{pl}=0.3$. The queue replaces the lowest-scoring entry when full. Two strategies leverage IDM:
-- <strong>Memory Enhancement:</strong> Computes per-category DINOv2 feature prototypes from $Q_c$; refines prediction scores via an affinity function $A(x) = \alpha \exp(-\beta(1-x))$ applied to cosine similarity with the prototype. Applied only to high-confidence predictions ($th_{me}=0.3$).
-- <strong>Memory Hallucination:</strong> For test images that yield no pseudo-labels, samples instances from IDM and composites them onto the negative image (up to 3 instances, random placement with IoU check, Beta-distributed mixing coefficient $\lambda$) to create synthetic positives for training.</p>
+<p><strong>Multi-modal Prompt-based Mean-Teacher (MPMT):</strong> Introduces learnable text prompts <span class="arithmatex">\(P_T\)</span> (added to text encoder output tokens) and visual prompts <span class="arithmatex">\(P_{I,i}\)</span> (prepended to image tokens at each Transformer layer <span class="arithmatex">\(i\)</span>). A Mean-Teacher framework uses weak/strong augmentation pairs; only prompts are optimized; teacher prompts are updated via exponential moving average (<span class="arithmatex">\(\gamma = 0.999\)</span>). A <strong>Test-time Warm-start (TTWS)</strong> initializes visual prompts by average-pooling image tokens from the first test sample (<span class="arithmatex">\(P_{I,i} = \text{AvgPool}(E_{I,i})\)</span>), preventing catastrophic failure from zero/random initialization.</p>
+<p><strong>Instance Dynamic Memory (IDM):</strong> Maintains a per-category queue <span class="arithmatex">\(Q_c\)</span> (capacity 20) of triplets (cropped image, DINOv2 feature, score) for pseudo-labels exceeding threshold <span class="arithmatex">\(th_{pl}=0.3\)</span>. The queue replaces the lowest-scoring entry when full. Two strategies leverage IDM:
+- <strong>Memory Enhancement:</strong> Computes per-category DINOv2 feature prototypes from <span class="arithmatex">\(Q_c\)</span>; refines prediction scores via an affinity function <span class="arithmatex">\(A(x) = \alpha \exp(-\beta(1-x))\)</span> applied to cosine similarity with the prototype. Applied only to high-confidence predictions (<span class="arithmatex">\(th_{me}=0.3\)</span>).
+- <strong>Memory Hallucination:</strong> For test images that yield no pseudo-labels, samples instances from IDM and composites them onto the negative image (up to 3 instances, random placement with IoU check, Beta-distributed mixing coefficient <span class="arithmatex">\(\lambda\)</span>) to create synthetic positives for training.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First source-free, open-vocabulary TTAOD method; no source data or closed-set assumption required.</li>
@@ -5593,15 +5593,15 @@
 <li><strong>COCO-C (mAP):</strong> Ours 26.0% vs. Mean-Teacher on Grounding DINO 24.1%; state-of-the-art on 8/15 corruption types; no source data used, unlike competing methods initialized with SoftTeacher COCO-pretrained weights.</li>
 <li><strong>ODinW-13 cross-dataset (mAP):</strong> Ours 54.2% vs. Direct Test 52.8% (+1.4%); Mean-Teacher gains only +0.3%. Consistent improvement across 11/13 sub-datasets (failures on Mu/Pa with ≤5 test images).</li>
 <li><strong>Ablation (Pascal-C avg AP50):</strong> TPT alone +0.6%; VPT alone −3.4%; TPT+VPT+TTWS 53.4%; adding ME 53.9%; adding MH 56.2%.</li>
-<li>Optimal visual prompt count: $m=10$ (performance degrades beyond $m=30$); optimal IDM capacity: $|Q_c|_{max}=20$.</li>
+<li>Optimal visual prompt count: <span class="arithmatex">\(m=10\)</span> (performance degrades beyond <span class="arithmatex">\(m=30\)</span>); optimal IDM capacity: <span class="arithmatex">\(|Q_c|_{max}=20\)</span>.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Performance degrades on extremely small test sets (Mu: 5 images, Pa: 4 images), as insufficient samples prevent effective adaptation.</li>
 <li>Relies on DINOv2 (ViT-L) as a feature extractor in IDM, adding computational overhead beyond the Grounding DINO backbone.</li>
-<li>Memory Hallucination requires careful tuning of capacity $|Q_c|_{max}$; too small causes overfitting to few hallucinated images, too large admits noisy pseudo-labels.</li>
+<li>Memory Hallucination requires careful tuning of capacity <span class="arithmatex">\(|Q_c|_{max}\)</span>; too small causes overfitting to few hallucinated images, too large admits noisy pseudo-labels.</li>
 <li>Comparison with Faster R-CNN-based baselines is acknowledged as not fully fair due to detector architecture differences.</li>
-<li>Hyperparameters ($\alpha, \beta$) differ between Pascal-C and COCO-C, suggesting sensitivity to domain type.</li>
+<li>Hyperparameters (<span class="arithmatex">\(\alpha, \beta\)</span>) differ between Pascal-C and COCO-C, suggesting sensitivity to domain type.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>This work directly demonstrates how VLMs (specifically Grounding DINO, built on CLIP-style language grounding) can be adapted at test time via parameter-efficient prompt tuning, which is a core challenge in deploying VLMs under distribution shift. The multimodal prompt tuning strategy—combining text and visual prompts within a Mean-Teacher self-training loop—extends the prompt-learning paradigm (CoOp, VPT) to the online, streaming inference setting. For VLM researchers, the Test-time Warm-start finding highlights a previously underappreciated failure mode of visual prompt initialization unique to the test-time (no held-out validation) regime. The IDM-based pseudo-label refinement via DINOv2 prototypes also illustrates how auxiliary foundation models can compensate for VLM weaknesses under severe domain shift.</p>
@@ -5667,6 +5667,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

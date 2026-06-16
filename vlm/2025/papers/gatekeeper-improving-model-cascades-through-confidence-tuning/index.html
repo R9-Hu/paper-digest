@@ -5582,23 +5582,23 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing model cascade systems rely on off-the-shelf confidence signals from small models that are poorly calibrated for the deferral decision—small models are often overconfident on errors, causing excessive or incorrect deferrals and suboptimal compute/accuracy tradeoffs. Prior white-box methods either require auxiliary architectures or static data partitioning; no principled loss existed to train a small model to know what it does not know.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>Gatekeeper introduces a hybrid fine-tuning loss $\mathcal{L} = \alpha \mathcal{L}<em>\text{corr} + (1-\alpha)\mathcal{L}</em>\text{incorr}$:
-- $\mathcal{L}<em>\text{corr}$: standard cross-entropy applied only to correctly predicted samples (reinforces confident correct predictions).
-- $\mathcal{L}</em>\text{incorr}$: KL divergence between the model's predicted distribution and the uniform distribution $U$, applied only to incorrectly predicted samples (pushes incorrect predictions toward maximum entropy).</p>
-<p>Binary masks (correct/incorrect) are computed on-the-fly in a single forward pass via $\hat{y} = \arg\max_c z_c$, adding negligible overhead ($O(N \times C)$). The hyperparameter $\alpha \in (0,1)$ controls the accuracy–deferral tradeoff. For token-based models (LLMs, VLMs), the loss extends per-token. At inference, classification models use max softmax; sequence models use negative predictive entropy averaged over tokens as the gating signal $g(x)$; inputs below threshold $\tau$ are deferred to the large model.</p>
+<p>Gatekeeper introduces a hybrid fine-tuning loss <span class="arithmatex">\(\mathcal{L} = \alpha \mathcal{L}_\text{corr} + (1-\alpha)\mathcal{L}_\text{incorr}\)</span>:
+- <span class="arithmatex">\(\mathcal{L}_\text{corr}\)</span>: standard cross-entropy applied only to correctly predicted samples (reinforces confident correct predictions).
+- <span class="arithmatex">\(\mathcal{L}_\text{incorr}\)</span>: KL divergence between the model's predicted distribution and the uniform distribution <span class="arithmatex">\(U\)</span>, applied only to incorrectly predicted samples (pushes incorrect predictions toward maximum entropy).</p>
+<p>Binary masks (correct/incorrect) are computed on-the-fly in a single forward pass via <span class="arithmatex">\(\hat{y} = \arg\max_c z_c\)</span>, adding negligible overhead (<span class="arithmatex">\(O(N \times C)\)</span>). The hyperparameter <span class="arithmatex">\(\alpha \in (0,1)\)</span> controls the accuracy–deferral tradeoff. For token-based models (LLMs, VLMs), the loss extends per-token. At inference, classification models use max softmax; sequence models use negative predictive entropy averaged over tokens as the gating signal <span class="arithmatex">\(g(x)\)</span>; inputs below threshold <span class="arithmatex">\(\tau\)</span> are deferred to the large model.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Novel Gatekeeper loss that jointly optimizes correct-prediction confidence and incorrect-prediction uncertainty within a standard training loop, requiring no architectural changes.</li>
 <li>Extension of the loss to token-level sequence models (decoder-only LLMs, encoder-decoder VLMs).</li>
-<li>Explicit hyperparameter $\alpha$ that provides a controllable knob trading small-model accuracy against deferral performance.</li>
+<li>Explicit hyperparameter <span class="arithmatex">\(\alpha\)</span> that provides a controllable knob trading small-model accuracy against deferral performance.</li>
 <li>Evaluation across three architecture families (encoder-only CNNs/ResNets, decoder-only Gemma 2B/7B, encoder-decoder PaliGemma 1B/7B) and multiple task types including VLM captioning with LLM-based factuality scoring.</li>
-<li>Two new deferral evaluation metrics: distributional overlap $s_o$ (overlap of confidence PDFs for correct vs. incorrect predictions; lower is better) and deferral performance $s_d$ (fraction of potential improvement over random deferral achieved; higher is better).</li>
+<li>Two new deferral evaluation metrics: distributional overlap <span class="arithmatex">\(s_o\)</span> (overlap of confidence PDFs for correct vs. incorrect predictions; lower is better) and deferral performance <span class="arithmatex">\(s_d\)</span> (fraction of potential improvement over random deferral achieved; higher is better).</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Image classification (CIFAR-100, TinyImageNet200):</strong> Gatekeeper improves deferral performance $s_d$ by 0.72× on CIFAR-100 and 2× on TinyImageNet200 over the untuned baseline.</li>
+<li><strong>Image classification (CIFAR-100, TinyImageNet200):</strong> Gatekeeper improves deferral performance <span class="arithmatex">\(s_d\)</span> by 0.72× on CIFAR-100 and 2× on TinyImageNet200 over the untuned baseline.</li>
 <li><strong>Language modeling (ARC-e/c):</strong> 7× improvement on ARC-e and 10× on ARC-c over the baseline; outperforms Gupta et al. (2024) and uncertainty-prompting baselines ("Reduce Confidence", "Answer N") on correct/incorrect separation and deferral.</li>
-<li><strong>VLM classification (VQAv2, AI2D):</strong> Consistent improvement in distributional overlap and deferral performance at lower $\alpha$.</li>
+<li><strong>VLM classification (VQAv2, AI2D):</strong> Consistent improvement in distributional overlap and deferral performance at lower <span class="arithmatex">\(\alpha\)</span>.</li>
 <li><strong>VLM captioning (COCOcap, Screen2Words):</strong> Increased Pearson correlation between negative predictive entropy and factuality score; improved factuality-adapted deferral metric.</li>
 <li>Baseline from Narasimhan et al. (2022) preserves accuracy better but requires an explicit estimate of the large model's correctness and architectural modifications; Gatekeeper achieves stronger deferral with simpler deployment.</li>
 </ul>
@@ -5609,7 +5609,7 @@
 <li>Evaluation of LLM/VLM settings uses only one model family (Gemma/PaliGemma); generalization across diverse families is not established.</li>
 <li>Only two-stage cascades are evaluated; multi-stage extension is left to an appendix without empirical results.</li>
 <li>Factuality evaluation for captioning uses Gemini as an LLM judge, which is itself imperfect.</li>
-<li>Lower $\alpha$ values that maximize deferral performance cause the small model to "unlearn" harder examples, degrading raw accuracy on the full distribution.</li>
+<li>Lower <span class="arithmatex">\(\alpha\)</span> values that maximize deferral performance cause the small model to "unlearn" harder examples, degrading raw accuracy on the full distribution.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>Gatekeeper directly targets encoder-decoder VLMs (PaliGemma 1B/7B) for cascade-based efficient inference, demonstrating that confidence tuning transfers to multimodal sequence generation beyond classification. For researchers tracking VLMs, this addresses the practical deployment problem of when a cheap local VLM should invoke an expensive API model, offering a principled alternative to post-hoc confidence thresholding. The token-level extension and factuality-based evaluation pipeline (using an LLM judge for caption quality) are reusable patterns for VLM deferral evaluation. This connects to the broader line of work on efficient VLM inference alongside model compression and speculative decoding.</p>
@@ -5675,6 +5675,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

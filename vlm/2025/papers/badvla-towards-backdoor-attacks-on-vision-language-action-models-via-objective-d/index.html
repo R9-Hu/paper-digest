@@ -5596,9 +5596,9 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing backdoor and data-poisoning attacks designed for unimodal systems fail in VLA settings due to three obstacles: (1) long-horizon sequential dynamics that dilute single-step perturbations, (2) cross-modal entanglement between vision, language, and action that prevents unilateral manipulation, and (3) the difficulty of curating poisoned multimodal data at scale. No prior work had systematically investigated backdoor vulnerabilities in end-to-end VLA models, despite their increasing deployment in safety-critical robotics and the openness of large-scale pretrained VLA checkpoints under TaaS.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>BadVLA decomposes a VLA model into a perception module $f_p$, backbone $f_b$, and action head $f_a$, then applies two sequential training stages:</p>
-<p><strong>Stage I – Trigger Injection via Reference-Aligned Optimization.</strong> Only $\theta_p$ is trainable. A frozen reference model $f_\text{ref}$ provides stable clean-input embeddings. The loss $\mathcal{L}<em>\text{trig}$ enforces two simultaneous objectives: (a) cosine/L2 alignment between $f</em>\theta(x_i)$ and $f_\text{ref}(x_i)$ to preserve clean semantics ("Restrict" term), and (b) maximized L2 distance between $f_\theta(T(x_i,\delta))$ and $f_\theta(x_i)$ to push triggered representations into an orthogonal subspace ("Trigger Separation" term, weighted by $\alpha$). The trigger $\delta$ is a small visual patch learned jointly with $\theta_p$.</p>
-<p><strong>Stage II – Clean Task Enhancement.</strong> $\theta_p$ is frozen (locking in the latent separation), and $\theta_b, \theta_a$ are fine-tuned on clean data via standard negative log-likelihood over autoregressive action decoding. Because the backbone and action head see only clean-aligned features during training, triggered inputs at inference produce out-of-distribution perceptual embeddings that cause behavioral divergence without the model explicitly learning adversarial outputs.</p>
+<p>BadVLA decomposes a VLA model into a perception module <span class="arithmatex">\(f_p\)</span>, backbone <span class="arithmatex">\(f_b\)</span>, and action head <span class="arithmatex">\(f_a\)</span>, then applies two sequential training stages:</p>
+<p><strong>Stage I – Trigger Injection via Reference-Aligned Optimization.</strong> Only <span class="arithmatex">\(\theta_p\)</span> is trainable. A frozen reference model <span class="arithmatex">\(f_\text{ref}\)</span> provides stable clean-input embeddings. The loss <span class="arithmatex">\(\mathcal{L}_\text{trig}\)</span> enforces two simultaneous objectives: (a) cosine/L2 alignment between <span class="arithmatex">\(f_\theta(x_i)\)</span> and <span class="arithmatex">\(f_\text{ref}(x_i)\)</span> to preserve clean semantics ("Restrict" term), and (b) maximized L2 distance between <span class="arithmatex">\(f_\theta(T(x_i,\delta))\)</span> and <span class="arithmatex">\(f_\theta(x_i)\)</span> to push triggered representations into an orthogonal subspace ("Trigger Separation" term, weighted by <span class="arithmatex">\(\alpha\)</span>). The trigger <span class="arithmatex">\(\delta\)</span> is a small visual patch learned jointly with <span class="arithmatex">\(\theta_p\)</span>.</p>
+<p><strong>Stage II – Clean Task Enhancement.</strong> <span class="arithmatex">\(\theta_p\)</span> is frozen (locking in the latent separation), and <span class="arithmatex">\(\theta_b, \theta_a\)</span> are fine-tuned on clean data via standard negative log-likelihood over autoregressive action decoding. Because the backbone and action head see only clean-aligned features during training, triggered inputs at inference produce out-of-distribution perceptual embeddings that cause behavioral divergence without the model explicitly learning adversarial outputs.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First formalization of backdoor attack surfaces in end-to-end VLA models under the TaaS threat model.</li>
@@ -5690,6 +5690,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5575,23 +5575,23 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Traditional agent-based epidemic models rely on fixed, hand-coded behavioral rules rather than learned policies. Prior RL-for-epidemics work focuses on macro-level intervention optimization and does not systematically investigate how reward formulation affects the resulting individual-level learned behavior—leaving reward engineering in this domain largely unexplored.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>A single RL agent operates on a toroidal G×G grid populated by N non-learning humans, all governed by SIRS+D compartmental dynamics (S→I transition probability decays exponentially with distance: $P_{\text{inf}} = 1 - \exp(-\beta \sum_i e^{-k_d d_i})$). The agent's continuous action space is $(\Delta x, \Delta y, \alpha)$ where $\alpha \in [0,1]$ is an NPI adherence level that modulates effective infection rate via $\beta_{\text{eff}} = \beta(\epsilon_\alpha + (1-\epsilon_\alpha)(1-\alpha))$. Five reward functions span sparse-to-dense: Constant, Reduce Infection Probability, Combined, Max Nearest Distance, and a Potential Field that exerts repulsive force vectors from infected neighbors and adds health/adherence terms. Policies are learned with PPO, SAC, and A2C (stable-baselines3). POMDP variants restrict observations to a visibility radius $r$ while the potential field reward retains global-state access during training (privileged critic). Ablations remove one Potential Field component at a time. Statistical tests use Mann-Whitney U with Bonferroni correction across 3 seeds × 100 evaluation episodes.</p>
+<p>A single RL agent operates on a toroidal G×G grid populated by N non-learning humans, all governed by SIRS+D compartmental dynamics (S→I transition probability decays exponentially with distance: <span class="arithmatex">\(P_{\text{inf}} = 1 - \exp(-\beta \sum_i e^{-k_d d_i})\)</span>). The agent's continuous action space is <span class="arithmatex">\((\Delta x, \Delta y, \alpha)\)</span> where <span class="arithmatex">\(\alpha \in [0,1]\)</span> is an NPI adherence level that modulates effective infection rate via <span class="arithmatex">\(\beta_{\text{eff}} = \beta(\epsilon_\alpha + (1-\epsilon_\alpha)(1-\alpha))\)</span>. Five reward functions span sparse-to-dense: Constant, Reduce Infection Probability, Combined, Max Nearest Distance, and a Potential Field that exerts repulsive force vectors from infected neighbors and adds health/adherence terms. Policies are learned with PPO, SAC, and A2C (stable-baselines3). POMDP variants restrict observations to a visibility radius <span class="arithmatex">\(r\)</span> while the potential field reward retains global-state access during training (privileged critic). Ablations remove one Potential Field component at a time. Statistical tests use Mann-Whitney U with Bonferroni correction across 3 seeds × 100 evaluation episodes.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>ContagionRL: open-source Gymnasium environment unifying spatial SIRS+D epidemic dynamics with continuous-action RL, supporting MDP and POMDP formulations.</li>
 <li>Systematic five-way reward comparison demonstrating the Potential Field reward achieves significantly longer survival than all alternatives.</li>
 <li>Ablation study isolating directional guidance and explicit adherence incentives as the critical components; magnitude and susceptible-repulsion terms are dispensable.</li>
-<li>Demonstration that partial observability (POMDP, $r \in {10,15,20}$) paradoxically outperforms full observability, attributed to reduced observation noise and implicit information bottleneck robustness.</li>
-<li>Population-level analysis showing trained agents reduce non-agent S→I transition rates by 10–21% relative to baselines, with Potential Field achieving the largest reduction ($p &lt; 0.01$).</li>
+<li>Demonstration that partial observability (POMDP, <span class="arithmatex">\(r \in \{10,15,20\}\)</span>) paradoxically outperforms full observability, attributed to reduced observation noise and implicit information bottleneck robustness.</li>
+<li>Population-level analysis showing trained agents reduce non-agent S→I transition rates by 10–21% relative to baselines, with Potential Field achieving the largest reduction (<span class="arithmatex">\(p &lt; 0.01\)</span>).</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
-<li>All three RL algorithms (PPO, SAC, A2C) significantly outperform Random and Stationary baselines in episode duration ($p &lt; 0.001$, Mann-Whitney U).</li>
+<li>All three RL algorithms (PPO, SAC, A2C) significantly outperform Random and Stationary baselines in episode duration (<span class="arithmatex">\(p &lt; 0.001\)</span>, Mann-Whitney U).</li>
 <li>Greedy heuristic achieves statistically superior median episode duration versus all RL agents, but mean episode durations overlap (95% CI), indicating RL approaches comparable mean performance without hand-coded rules.</li>
-<li>Potential Field reward yields significantly longer episode durations than Constant ($p &lt; 0.001$), Reduce Infection ($p &lt; 0.01$), Max Nearest Distance ($p &lt; 0.001$), and Combined ($p &lt; 0.05$) rewards (PPO, Bonferroni-corrected).</li>
-<li>Ablations: removing Direction, Movement, or Adherence components causes statistically significant performance degradation ($p &lt; 0.001$); removing Magnitude, Health, or Susceptible Repulsion does not.</li>
-<li>POMDP agents ($r=10,15,20$) outperform the full-observability trained model on average reward, episode length, and infections/step; differences among the three radii are not statistically significant.</li>
-<li>Population infection rate reductions: Potential Field −21.4% vs Random, −20.6% vs Static ($p &lt; 0.01$); Constant −15.0%/−14.2% (n.s.); Reduce Infection −11.1% (n.s.).</li>
+<li>Potential Field reward yields significantly longer episode durations than Constant (<span class="arithmatex">\(p &lt; 0.001\)</span>), Reduce Infection (<span class="arithmatex">\(p &lt; 0.01\)</span>), Max Nearest Distance (<span class="arithmatex">\(p &lt; 0.001\)</span>), and Combined (<span class="arithmatex">\(p &lt; 0.05\)</span>) rewards (PPO, Bonferroni-corrected).</li>
+<li>Ablations: removing Direction, Movement, or Adherence components causes statistically significant performance degradation (<span class="arithmatex">\(p &lt; 0.001\)</span>); removing Magnitude, Health, or Susceptible Repulsion does not.</li>
+<li>POMDP agents (<span class="arithmatex">\(r=10,15,20\)</span>) outperform the full-observability trained model on average reward, episode length, and infections/step; differences among the three radii are not statistically significant.</li>
+<li>Population infection rate reductions: Potential Field −21.4% vs Random, −20.6% vs Static (<span class="arithmatex">\(p &lt; 0.01\)</span>); Constant −15.0%/−14.2% (n.s.); Reduce Infection −11.1% (n.s.).</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5665,6 +5665,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

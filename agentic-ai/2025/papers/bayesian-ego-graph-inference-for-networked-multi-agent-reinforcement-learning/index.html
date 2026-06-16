@@ -5575,13 +5575,13 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Networked MARL agents operating over fixed physical graphs are constrained to communicate with all immediate neighbors indiscriminately, regardless of contextual relevance. Existing dynamic-graph methods (DGN, variational coordination graphs) require centralized training with global state access, making them inapplicable in fully decentralized, physically constrained networked systems.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>Each agent $i$ defines an ego-graph over its physical neighborhood $\mathcal{V}<em _mathcal_V="\mathcal{V">i$. A latent binary edge mask $Z_i \in {0,1}^{|\mathcal{V}_i| \times |\mathcal{V}_i|}$ is treated as a posterior variable: $p(Z_i \mid G^{\text{env}}</em><em _in="\in" _mathcal_N="\mathcal{N" j="j">i}, D_i)$, where $D_i$ is agent-local data (neighbor states, policy fingerprints, RNN trajectory embeddings). The intractable posterior is approximated by a factored Bernoulli variational distribution $q(Z_i; \phi_i) = \prod</em><em ij="ij">i} \text{Bern}(z</em>))$, with Gumbel-Softmax reparameterization for gradient flow through discrete edge samples.}; \sigma(\phi_{ij</p>
+<p>Each agent <span class="arithmatex">\(i\)</span> defines an ego-graph over its physical neighborhood <span class="arithmatex">\(\mathcal{V}_i\)</span>. A latent binary edge mask <span class="arithmatex">\(Z_i \in \{0,1\}^{|\mathcal{V}_i| \times |\mathcal{V}_i|}\)</span> is treated as a posterior variable: <span class="arithmatex">\(p(Z_i \mid G^{\text{env}}_{\mathcal{V}_i}, D_i)\)</span>, where <span class="arithmatex">\(D_i\)</span> is agent-local data (neighbor states, policy fingerprints, RNN trajectory embeddings). The intractable posterior is approximated by a factored Bernoulli variational distribution <span class="arithmatex">\(q(Z_i; \phi_i) = \prod_{j \in \mathcal{N}_i} \text{Bern}(z_{ij}; \sigma(\phi_{ij}))\)</span>, with Gumbel-Softmax reparameterization for gradient flow through discrete edge samples.</p>
 <p>The full training objective is an ELBO that combines:
 1. The graph-conditioned A2C actor loss (instantiates the likelihood term)
-2. A KL term between $q(Z_i)$ and a Bernoulli prior (mask sparsity regularization)
+2. A KL term between <span class="arithmatex">\(q(Z_i)\)</span> and a Bernoulli prior (mask sparsity regularization)
 3. A mask entropy term preventing premature collapse to deterministic graphs
 4. A standard A2C critic loss</p>
-<p>The effective subgraph $G^*<em _mathcal_V="\mathcal{V">i = Z_i \odot G^{\text{env}}</em>$ is used for masked GCN message passing over observations, policy fingerprints, and trajectory features to form the agent's input representation.}_i</p>
+<p>The effective subgraph <span class="arithmatex">\(G^*_i = Z_i \odot G^{\text{env}}_{\mathcal{V}_i}\)</span> is used for masked GCN message passing over observations, policy fingerprints, and trajectory features to form the agent's input representation.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Stochastic graph-based policy formulation for networked MARL, conditioning decisions on a sampled subgraph restricted to the physical topology</li>
@@ -5601,7 +5601,7 @@
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Evaluated exclusively on adaptive traffic signal control (ATSC); generalization to other networked MARL domains (power grids, wireless, robotics) is not empirically validated</li>
-<li>The variational distribution $q(Z_i; \phi_i)$ is conditioned on fixed learnable logits $\phi_{ij}$, not dynamically input-dependent at inference time (the mask uses neighbor states/trajectories during training but the logit parameters are static per edge pair)</li>
+<li>The variational distribution <span class="arithmatex">\(q(Z_i; \phi_i)\)</span> is conditioned on fixed learnable logits <span class="arithmatex">\(\phi_{ij}\)</span>, not dynamically input-dependent at inference time (the mask uses neighbor states/trajectories during training but the logit parameters are static per edge pair)</li>
 <li>Communication overhead analysis (message complexity, bandwidth) is not provided, despite the claimed efficiency</li>
 <li>Does not establish theoretical convergence guarantees under the learned stochastic graph, unlike prior sampling-based networked MARL works (Lin et al., Qu et al.)</li>
 <li>Restricted to 1-hop ego-graphs; multi-hop or hierarchical coordination is not addressed</li>
@@ -5670,6 +5670,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

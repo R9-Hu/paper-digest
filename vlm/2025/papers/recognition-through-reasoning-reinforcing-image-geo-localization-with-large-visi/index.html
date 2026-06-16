@@ -5598,10 +5598,10 @@
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p><strong>Dataset (MP16-Reason):</strong> Raw MP-16 social media images are processed through three strong VLMs (Qwen2.5-VL-72B, InternVL3-78B, GeoCLIP) via knowledge distillation to produce localizability scores, step-by-step reasoning trajectories, and location predictions. Multi-dimensional verification filters outputs via: (1) threshold-based localizability filtering, (2) cross-model self-verification (city/country-level agreement + semantic reasoning alignment), and (3) visual-semantic consistency using a semantic segmentation model to check that entities mentioned in reasoning actually appear in the image. This yields 33K clean training samples.</p>
 <p><strong>GRPO Fine-tuning (GLOBE):</strong> A Qwen2.5-VL-7B backbone is fine-tuned directly with GRPO (no SFT cold start) using three composite rewards:
-- <strong>Localizability reward</strong> $R_\text{loc}$: LLM-based reward model scoring the probability that image–reasoning pair is localizable.
-- <strong>Visual grounding consistency reward</strong> $R_\text{vis}$: soft entity-matching ratio between reasoning-mentioned entities and segmentation-detected visual elements.
-- <strong>Geo-localization accuracy reward</strong> $R_\text{geo}$: hierarchical classification reward — 0 for wrong country, partial $(1-\alpha)$ for correct country/wrong city, 1 for both correct.</p>
-<p>The composite reward $r = \lambda_1 R_\text{loc} + \lambda_2 R_\text{vis} + \lambda_3 R_\text{geo}$ drives GRPO's group-normalized advantage optimization with a KL penalty against the reference policy.</p>
+- <strong>Localizability reward</strong> <span class="arithmatex">\(R_\text{loc}\)</span>: LLM-based reward model scoring the probability that image–reasoning pair is localizable.
+- <strong>Visual grounding consistency reward</strong> <span class="arithmatex">\(R_\text{vis}\)</span>: soft entity-matching ratio between reasoning-mentioned entities and segmentation-detected visual elements.
+- <strong>Geo-localization accuracy reward</strong> <span class="arithmatex">\(R_\text{geo}\)</span>: hierarchical classification reward — 0 for wrong country, partial <span class="arithmatex">\((1-\alpha)\)</span> for correct country/wrong city, 1 for both correct.</p>
+<p>The composite reward <span class="arithmatex">\(r = \lambda_1 R_\text{loc} + \lambda_2 R_\text{vis} + \lambda_3 R_\text{geo}\)</span> drives GRPO's group-normalized advantage optimization with a KL penalty against the reference policy.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>MP16-Reason dataset</strong>: 33K training + 12K test samples from social media imagery (134/145 countries, 1944/3012 cities) with multi-model distilled and verified reasoning supervision.</li>
@@ -5691,6 +5691,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

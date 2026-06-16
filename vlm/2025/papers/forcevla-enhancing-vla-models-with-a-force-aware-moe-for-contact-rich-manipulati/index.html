@@ -5723,9 +5723,9 @@
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>ForceVLA extends the π0 framework (PaliGemma VLM backbone + flow-based action decoding) with FVLMoE, a post-VLM Mixture-of-Experts fusion module:</p>
 <ol>
-<li><strong>Input encoding</strong>: Visual and language inputs are processed by a frozen SigLIP/PaliGemma VLM to produce embeddings $E_{VL} \in \mathbb{R}^{N_{VL} \times D}$. The 6D force-torque reading $f_{raw} \in \mathbb{R}^6$ is linearly projected to a single force token $E_F \in \mathbb{R}^D$.</li>
-<li><strong>FVLMoE fusion</strong>: Concatenated sequence $E_{in} = [E_{VL}; E_F]$ passes through a shared self-attention encoder layer, then a sparse MoE layer with $E=4$ expert MLPs and top-$k=1$ routing per token. A learned gating network dispatches each token to the most relevant expert subnetwork.</li>
-<li><strong>Action injection</strong>: The final $H_{action}$ fused tokens from FVLMoE are element-wise added to the proprioceptive/noisy-action suffix tokens in the flow matching denoiser, directly modulating trajectory generation at each denoising step.</li>
+<li><strong>Input encoding</strong>: Visual and language inputs are processed by a frozen SigLIP/PaliGemma VLM to produce embeddings <span class="arithmatex">\(E_{VL} \in \mathbb{R}^{N_{VL} \times D}\)</span>. The 6D force-torque reading <span class="arithmatex">\(f_{raw} \in \mathbb{R}^6\)</span> is linearly projected to a single force token <span class="arithmatex">\(E_F \in \mathbb{R}^D\)</span>.</li>
+<li><strong>FVLMoE fusion</strong>: Concatenated sequence <span class="arithmatex">\(E_{in} = [E_{VL}; E_F]\)</span> passes through a shared self-attention encoder layer, then a sparse MoE layer with <span class="arithmatex">\(E=4\)</span> expert MLPs and top-<span class="arithmatex">\(k=1\)</span> routing per token. A learned gating network dispatches each token to the most relevant expert subnetwork.</li>
+<li><strong>Action injection</strong>: The final <span class="arithmatex">\(H_{action}\)</span> fused tokens from FVLMoE are element-wise added to the proprioceptive/noisy-action suffix tokens in the flow matching denoiser, directly modulating trajectory generation at each denoising step.</li>
 </ol>
 <p>The key architectural decision—introducing force <em>after</em> the VLM, not before or concurrently—preserves pretrained visual-linguistic feature distributions while enabling specialized force-context routing.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5814,6 +5814,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

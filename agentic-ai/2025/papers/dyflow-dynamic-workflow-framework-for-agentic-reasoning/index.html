@@ -5575,12 +5575,12 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing LLM agent workflows are either fully static (MetaGPT, AutoGen, CAMEL) or apply workflow optimization offline at the dataset level (AFlow via MCTS, ADAS via meta-search), then execute the resulting plan rigidly without revision. Methods that introduce query-level configurability (DyLAN, MaAS) still do not adapt subgoal decomposition in response to runtime execution signals. This limits robustness when intermediate results are wrong or incomplete, and reduces cross-domain generalization since workflows are tuned to specific distributions.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>DyFlow models task execution as a dynamic sequence of <em>stage subgraphs</em> $G_t = (V_t, E_t, v^t_\text{start}, C^t_\text{end})$, where $V_t$ contains operator instances drawn from a finite template set $O$.</p>
-<p><strong>Designer:</strong> A policy $\pi_\theta$ that, at each step $t$, receives a GPT-4o-mini-condensed summary of the current state $s_t$ (including task spec, prior subgraphs, intermediate outputs, errors) and samples the next stage subgraph $G_t \sim \pi_\theta(\cdot \mid f_\text{summary}(s_t))$. Control flow (branching, loops, backtracking) is handled implicitly by the designer replanning rather than by hardcoded edge logic in the graph.</p>
-<p><strong>Executor:</strong> Any frozen LLM $\pi_\text{exec}$ that runs operator instances in topological order, retrieving inputs from and writing outputs to a global key–value memory buffer $M$.</p>
+<p>DyFlow models task execution as a dynamic sequence of <em>stage subgraphs</em> <span class="arithmatex">\(G_t = (V_t, E_t, v^t_\text{start}, C^t_\text{end})\)</span>, where <span class="arithmatex">\(V_t\)</span> contains operator instances drawn from a finite template set <span class="arithmatex">\(O\)</span>.</p>
+<p><strong>Designer:</strong> A policy <span class="arithmatex">\(\pi_\theta\)</span> that, at each step <span class="arithmatex">\(t\)</span>, receives a GPT-4o-mini-condensed summary of the current state <span class="arithmatex">\(s_t\)</span> (including task spec, prior subgraphs, intermediate outputs, errors) and samples the next stage subgraph <span class="arithmatex">\(G_t \sim \pi_\theta(\cdot \mid f_\text{summary}(s_t))\)</span>. Control flow (branching, loops, backtracking) is handled implicitly by the designer replanning rather than by hardcoded edge logic in the graph.</p>
+<p><strong>Executor:</strong> Any frozen LLM <span class="arithmatex">\(\pi_\text{exec}\)</span> that runs operator instances in topological order, retrieving inputs from and writing outputs to a global key–value memory buffer <span class="arithmatex">\(M\)</span>.</p>
 <p><strong>Designer training — two phases:</strong>
-1. <em>Supervised distillation (SFT):</em> Fine-tune on successful $(f_\text{summary}(s_t), G^{\text{expert}}<em>t)$ pairs extracted from GPT-4.1-generated trajectories.
-2. <em>Self-play preference optimization (KTO):</em> Collect self-generated trajectories labeled preferred/discarded by full-trajectory success; optimize with KTO loss against the SFT reference policy $\pi</em>\text{ref}$. Avoids DPO pairwise ranking (infeasible for multi-step execution) and online RL (sparse/delayed rewards).</p>
+1. <em>Supervised distillation (SFT):</em> Fine-tune on successful <span class="arithmatex">\((f_\text{summary}(s_t), G^{\text{expert}}_t)\)</span> pairs extracted from GPT-4.1-generated trajectories.
+2. <em>Self-play preference optimization (KTO):</em> Collect self-generated trajectories labeled preferred/discarded by full-trajectory success; optimize with KTO loss against the SFT reference policy <span class="arithmatex">\(\pi_\text{ref}\)</span>. Avoids DPO pairwise ranking (infeasible for multi-step execution) and online RL (sparse/delayed rewards).</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>DyFlow framework:</strong> execution-adaptive, subgoal-level dynamic replanning via a designer–executor hierarchy with stage subgraph formalism.</li>
@@ -5674,6 +5674,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

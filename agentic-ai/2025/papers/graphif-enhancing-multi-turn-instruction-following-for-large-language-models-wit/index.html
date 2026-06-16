@@ -5578,13 +5578,13 @@
 <p>GraphIF operates in three stages at inference time, with no parameter updates:</p>
 <ol>
 <li>
-<p><strong>Agent-Based Relation Extraction</strong>: Given current instruction $I_t$ and dialogue history $H_t$, an LLM agent iterates between <em>Action Identification</em> (selecting the next relation type from a predefined set: Global Constraint, Context-Anchored, Modify, Summary, New Topic, Done) and <em>Action Execution</em> (locating the specific historical turns satisfying that relation). A dynamic notebook $N = {a_{t,s} \to E_{t,s}}$ accumulates extracted mappings across iterations, building a directed relation graph $G = (V, E, R)$ where nodes are dialogue turns and labeled directed edges encode inter-turn constraints.</p>
+<p><strong>Agent-Based Relation Extraction</strong>: Given current instruction <span class="arithmatex">\(I_t\)</span> and dialogue history <span class="arithmatex">\(H_t\)</span>, an LLM agent iterates between <em>Action Identification</em> (selecting the next relation type from a predefined set: Global Constraint, Context-Anchored, Modify, Summary, New Topic, Done) and <em>Action Execution</em> (locating the specific historical turns satisfying that relation). A dynamic notebook <span class="arithmatex">\(N = \{a_{t,s} \to E_{t,s}\}\)</span> accumulates extracted mappings across iterations, building a directed relation graph <span class="arithmatex">\(G = (V, E, R)\)</span> where nodes are dialogue turns and labeled directed edges encode inter-turn constraints.</p>
 </li>
 <li>
-<p><strong>Relation Graph Prompt Generation</strong>: Each edge in $G$ is verbalized into a natural-language prompt $P_g$ that states the relation type, the constraint it implies for the current response, and the relevant historical dialogue content.</p>
+<p><strong>Relation Graph Prompt Generation</strong>: Each edge in <span class="arithmatex">\(G\)</span> is verbalized into a natural-language prompt <span class="arithmatex">\(P_g\)</span> that states the relation type, the constraint it implies for the current response, and the relevant historical dialogue content.</p>
 </li>
 <li>
-<p><strong>Initial Response Rewrite</strong>: The LLM generates a baseline response $\text{RES}<em>\text{initial} = \text{LLM}([H_t, I_t])$, then a rewrite step $\text{RES}_t = \text{Rewrite}(\text{RES}</em>\text{initial}, P_g)$ uses the graph prompt to enforce all identified constraints.</p>
+<p><strong>Initial Response Rewrite</strong>: The LLM generates a baseline response <span class="arithmatex">\(\text{RES}_\text{initial} = \text{LLM}([H_t, I_t])\)</span>, then a rewrite step <span class="arithmatex">\(\text{RES}_t = \text{Rewrite}(\text{RES}_\text{initial}, P_g)\)</span> uses the graph prompt to enforce all identified constraints.</p>
 </li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5675,6 +5675,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

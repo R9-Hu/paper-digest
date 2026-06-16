@@ -5576,11 +5576,11 @@
 <p>Parameter-efficient continual learning for VLMs—where the LLM and visual encoder are frozen and only lightweight adapters are updated—faces two compounding challenges: (1) <strong>catastrophic forgetting</strong>, where unidirectional answer-prediction training insufficiently anchors cross-modal associations from prior tasks in scarce trainable parameters; and (2) <strong>update conflict</strong>, where heterogeneous gradient signals from diverse video tasks compete for the same bottleneck parameters, causing inter-task interference.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>The backbone is LLaMA-Adapter (LLaMA-2-7B + ViT-L/14), with only projection layers and prompts trainable.</p>
-<p><strong>Multi-directional supervision (rapid binding):</strong> Beyond the standard answer prediction loss $L_A = -\log P(A|V,Q)$, two auxiliary losses enforce bidirectional cross-modal binding:
-- Question prediction: $L_Q = -\log P(Q|V,A)$ — reconstructs the question from video and answer, strengthening causal understanding.
-- Video prediction: $L_V$ via InfoNCE-style mutual information maximization between frame visual tokens $v_{k+1}$ and LLM output representations $h_k$, approximating $-\log P(V|Q,A)$.</p>
-<p><strong>Contrastive prompt learning (pattern separation):</strong> Shared task-aware prompt matrix $P \in \mathbb{R}^{(N_p \times L_p) \times D}$ is injected into transformer layers. A per-task learnable type embedding $e^t \in \mathbb{R}^D$ acts as a non-overlapping subspace. For each training sample, the prompt is reweighted by the mean-pooled question representation $\tilde{p}^t = q^t \cdot P^\top \cdot P$, and a contrastive loss $L_P$ aligns $\tilde{p}^t$ with $e^t$ against all other task embeddings (temperature $\tau$), explicitly separating task-specific knowledge in prompt space.</p>
-<p>Total loss: $L = L_A + L_Q + L_V + \gamma L_P$.</p>
+<p><strong>Multi-directional supervision (rapid binding):</strong> Beyond the standard answer prediction loss <span class="arithmatex">\(L_A = -\log P(A|V,Q)\)</span>, two auxiliary losses enforce bidirectional cross-modal binding:
+- Question prediction: <span class="arithmatex">\(L_Q = -\log P(Q|V,A)\)</span> — reconstructs the question from video and answer, strengthening causal understanding.
+- Video prediction: <span class="arithmatex">\(L_V\)</span> via InfoNCE-style mutual information maximization between frame visual tokens <span class="arithmatex">\(v_{k+1}\)</span> and LLM output representations <span class="arithmatex">\(h_k\)</span>, approximating <span class="arithmatex">\(-\log P(V|Q,A)\)</span>.</p>
+<p><strong>Contrastive prompt learning (pattern separation):</strong> Shared task-aware prompt matrix <span class="arithmatex">\(P \in \mathbb{R}^{(N_p \times L_p) \times D}\)</span> is injected into transformer layers. A per-task learnable type embedding <span class="arithmatex">\(e^t \in \mathbb{R}^D\)</span> acts as a non-overlapping subspace. For each training sample, the prompt is reweighted by the mean-pooled question representation <span class="arithmatex">\(\tilde{p}^t = q^t \cdot P^\top \cdot P\)</span>, and a contrastive loss <span class="arithmatex">\(L_P\)</span> aligns <span class="arithmatex">\(\tilde{p}^t\)</span> with <span class="arithmatex">\(e^t\)</span> against all other task embeddings (temperature <span class="arithmatex">\(\tau\)</span>), explicitly separating task-specific knowledge in prompt space.</p>
+<p>Total loss: <span class="arithmatex">\(L = L_A + L_Q + L_V + \gamma L_P\)</span>.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Neurobiological reframing of continual learning challenges: maps hippocampal rapid binding → multi-directional supervision; dentate gyrus pattern separation → contrastive prompt learning.</li>
@@ -5593,7 +5593,7 @@
 <li><strong>NExT-QA</strong>: 62.37% Acc / 5.34% Fog — vs. ColPro (best prior): 55.14% / 7.43%; vs. backbone: 46.58% / 13.83%.</li>
 <li><strong>DramaQA</strong>: 71.49% Acc / 10.37% Fog — vs. ColPro: 71.24% / 12.64%; vs. backbone: 60.99% / 24.39%.</li>
 <li><strong>STAR</strong>: 52.16% Acc / 7.60% Fog — vs. ColPro: 48.67% / 8.13%; vs. backbone: 46.89% / 11.54%.</li>
-<li>Ablation: $L_Q$ (question prediction) yields the largest single-component gain; all three auxiliary losses contribute positively.</li>
+<li>Ablation: <span class="arithmatex">\(L_Q\)</span> (question prediction) yields the largest single-component gain; all three auxiliary losses contribute positively.</li>
 <li>Scales across LLaMA 1B/7B/13B; consistent improvement with notably reduced forgetting (13B: 4.52% → 3.03%).</li>
 <li>Robust under low-data regimes (outperforms backbone at all training data fractions tested).</li>
 <li>Increasing prompt injection layers from 8 → 32 monotonically improves both Acc and Fog.</li>
@@ -5601,7 +5601,7 @@
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Evaluated only on multiple-choice VideoQA; applicability to open-ended video captioning or grounding tasks is untested.</li>
-<li>Task identity must be known at training time to assign task type embeddings $e^t$; open-world task-agnostic deployment is not addressed.</li>
+<li>Task identity must be known at training time to assign task type embeddings <span class="arithmatex">\(e^t\)</span>; open-world task-agnostic deployment is not addressed.</li>
 <li>Task order for DramaQA is explicitly chosen to maximize forgetting, which may inflate reported gains relative to arbitrary real-world orderings.</li>
 <li>Video prediction loss uses a mutual-information approximation (InfoNCE over frame tokens) rather than actual visual generation; fidelity of cross-modal binding is indirect.</li>
 <li>Backbone is LLaMA-Adapter with ViT-L/14; generalization to more recent VLM architectures (e.g., LLaVA-style or instruction-tuned models) is not demonstrated.</li>
@@ -5670,6 +5670,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

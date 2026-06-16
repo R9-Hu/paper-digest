@@ -5714,16 +5714,16 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>LLM-based data-analytic agents (ReAct, CodeAct) produce linear transcripts that entangle deterministic numerical computation with free-form semantic reasoning, making outputs unauditable: numerical conclusions cannot be reproduced from raw data, and qualitative judgments cannot be distinguished from confabulation. Existing methods optimize only final-answer accuracy and treat evidence construction as outside the learning objective.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>VeriGraph defines the agent's execution state as a heterogeneous DAG $G = (V_{\text{data}} \cup V_{\text{claim}},\ E_{\text{comp}} \cup E_{\text{ground}} \cup E_{\text{derive}})$. Three expansion primitives are embedded directly in the code action space:</p>
+<p>VeriGraph defines the agent's execution state as a heterogeneous DAG <span class="arithmatex">\(G = (V_{\text{data}} \cup V_{\text{claim}},\ E_{\text{comp}} \cup E_{\text{ground}} \cup E_{\text{derive}})\)</span>. Three expansion primitives are embedded directly in the code action space:</p>
 <ol>
-<li><strong>Computational expansion</strong> — automatically traces variable dependencies via pre/post namespace snapshots and AST walks, populating $E_{\text{comp}}$ (data→data edges).</li>
-<li><strong>Grounding expansion (<code>bind</code>)</strong> — anchors a runtime variable to an atomic natural-language claim, creating a $E_{\text{ground}}$ (data→claim) edge; only valid when the variable already exists in the interpreter namespace.</li>
-<li><strong>Derivational expansion (<code>infer</code>)</strong> — records how a higher-level conclusion follows from established claim premises, creating $E_{\text{derive}}$ (claim→claim) edges with an explicit reasoning annotation.</li>
+<li><strong>Computational expansion</strong> — automatically traces variable dependencies via pre/post namespace snapshots and AST walks, populating <span class="arithmatex">\(E_{\text{comp}}\)</span> (data→data edges).</li>
+<li><strong>Grounding expansion (<code>bind</code>)</strong> — anchors a runtime variable to an atomic natural-language claim, creating a <span class="arithmatex">\(E_{\text{ground}}\)</span> (data→claim) edge; only valid when the variable already exists in the interpreter namespace.</li>
+<li><strong>Derivational expansion (<code>infer</code>)</strong> — records how a higher-level conclusion follows from established claim premises, creating <span class="arithmatex">\(E_{\text{derive}}\)</span> (claim→claim) edges with an explicit reasoning annotation.</li>
 </ol>
 <p>A <code>submit_answer</code> primitive designates terminal claims; the ancestor subgraph is extracted as the compact evidence chain. Traceability is reduced to graph reachability from terminal claims back to raw data sources.</p>
 <p>Training uses a two-stage curriculum: (1) cold-start SFT on ~36K synthesized graph-augmented trajectories (atomic primitive samples + full trajectories), then (2) graph-based policy optimization via DAPO with a composite reward:
-$$R = R_{\text{process}} + R_{\text{infer}} + R_{\text{outcome}}$$
-where $R_{\text{process}}$ is mean per-step execution success, $R_{\text{infer}}$ uses an external verifier on each <code>infer</code> edge ($\in{-0.5, +1}$), and $R_{\text{outcome}}$ is an LLM judge score over the terminal evidence subgraph.</p>
+$<span class="arithmatex">\(R = R_{\text{process}} + R_{\text{infer}} + R_{\text{outcome}}\)</span>$
+where <span class="arithmatex">\(R_{\text{process}}\)</span> is mean per-step execution success, <span class="arithmatex">\(R_{\text{infer}}\)</span> uses an external verifier on each <code>infer</code> edge (<span class="arithmatex">\(\in\{-0.5, +1\}\)</span>), and <span class="arithmatex">\(R_{\text{outcome}}\)</span> is an LLM judge score over the terminal evidence subgraph.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Heterogeneous evidence DAG</strong> as the agent's primary action interface, unifying code-space provenance and semantic-space derivations in a single structure.</li>
@@ -5815,6 +5815,10 @@ where $R_{\text{process}}$ is mean per-step execution success, $R_{\text{infer}}
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5589,9 +5589,9 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>LLMs exhibit <em>context unawareness</em>: even when decisive evidence exists in the context (e.g., a single line in an agent trajectory or a subtle visual detail), models fail to ground their predictions in it and instead produce locally plausible but context-inconsistent outputs. Standard outcome-only RL (GRPO) does not supply a signal that differentiates grounded from ungrounded correct answers, leaving this failure mode unaddressed.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>ContextRL adds a <strong>context-awareness loss</strong> $L_{CA}$ as an auxiliary objective inside standard GRPO training. For each contrastive instance $(Q, A, C^+, C^-)$, where $C^+$ is the supporting context and $C^-$ is a minimally perturbed confounding context, the model is shown $Q$, $A$, and both contexts as a two-way multiple-choice prompt. The loss is a clipped margin-sigmoid over the logit difference between the positive and negative option tokens computed via teacher forcing:</p>
-<p>$$L_{CA}(z;\theta) = -\log \sigma(\text{clip}(\Delta_\theta(z), -c, c))$$</p>
-<p>Joint training optimizes $\mathcal{L} = \mathbb{E}<em RL="RL">{x \sim D</em>}}[L_{GRPO}] + \lambda \mathbb{E<em CA="CA">{z \sim D</em>]$.}}[L_{CA</p>
+<p>ContextRL adds a <strong>context-awareness loss</strong> <span class="arithmatex">\(L_{CA}\)</span> as an auxiliary objective inside standard GRPO training. For each contrastive instance <span class="arithmatex">\((Q, A, C^+, C^-)\)</span>, where <span class="arithmatex">\(C^+\)</span> is the supporting context and <span class="arithmatex">\(C^-\)</span> is a minimally perturbed confounding context, the model is shown <span class="arithmatex">\(Q\)</span>, <span class="arithmatex">\(A\)</span>, and both contexts as a two-way multiple-choice prompt. The loss is a clipped margin-sigmoid over the logit difference between the positive and negative option tokens computed via teacher forcing:</p>
+<div class="arithmatex">\[L_{CA}(z;\theta) = -\log \sigma(\text{clip}(\Delta_\theta(z), -c, c))\]</div>
+<p>Joint training optimizes <span class="arithmatex">\(\mathcal{L} = \mathbb{E}_{x \sim D_{RL}}[L_{GRPO}] + \lambda \mathbb{E}_{z \sim D_{CA}}[L_{CA}]\)</span>.</p>
 <p>Contrastive pairs are constructed domain-specifically:
 - <strong>Agentic (1k pairs):</strong> Cascade filtering of 66k SWE-smith trajectories requiring same repo/commit/file/function but distinct issues; patch contents masked; GPT-5.4 verification.
 - <strong>Multimodal (7k pairs):</strong> Generative editing (GPT-5.4 proposes edits → image synthesis → artifact verification, ~65% rejection) for natural images; embedding-based similarity retrieval (cosine ≥ 0.85) for structured/text-rich images.</p>
@@ -5618,7 +5618,7 @@
 <li>Contrastive pair construction relies heavily on GPT-5.4 for verification, introducing cost and a dependency on a proprietary model.</li>
 <li>The mechanism analysis acknowledges residual construction artifacts may influence selection accuracy, though they are argued not to explain end-task gains.</li>
 <li>Evaluated only on 7B–8B-scale base models; behavior at larger scales is unexamined.</li>
-<li>The auxiliary loss weight $\lambda$ requires careful tuning (optimal at 0.001–0.005); larger values degrade performance.</li>
+<li>The auxiliary loss weight <span class="arithmatex">\(\lambda\)</span> requires careful tuning (optimal at 0.001–0.005); larger values degrade performance.</li>
 <li>NIAH and LongBench-v2 OOD gains, while consistent, are moderate in absolute terms.</li>
 </ul>
 <h2 id="relevance-to-agentic-ai-llm-agents">Relevance to Agentic AI / LLM Agents<a class="headerlink" href="#relevance-to-agentic-ai-llm-agents" title="Permanent link">&para;</a></h2>
@@ -5685,6 +5685,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

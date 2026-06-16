@@ -5583,7 +5583,7 @@
 <p>Token pruning in LVLMs has two competing failure modes: attention-based methods (e.g., FastV, PyramidDrop) minimize local output error at each pruned layer but are globally suboptimal because the set of important tokens at layer <em>l</em> does not subsume important tokens at layer <em>l+k</em>; diversity-based methods (e.g., DivPrune) select semantically spread tokens that better cover future-layer needs but fail to preserve local output consistency, accumulating error in deeper layers. Neither approach jointly considers local and global objectives, and pruning layer selection has relied on manual tuning or dataset-specific validation.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>BTP formulates a <strong>local-global objective</strong> (Eq. 7) that combines a local attention-based term (minimize output divergence at the current pruned layer) with a diversity term (maximize semantic spread to anticipate token importance at downstream layers), weighted by a per-stage scalar λᵢ that increases monotonically across stages:</p>
-<p>$$\mathcal{L}<em P_i="P_i" _in="\in" j="j">{local\text{-}global} = -\sum_i \sum</em>(P_i)\right)$$} \left(\lambda_i \cdot \text{Attn}^{(i)}(X_I, X_T) + (1-\lambda_i) \cdot F_{dis</p>
+<div class="arithmatex">\[\mathcal{L}_{local\text{-}global} = -\sum_i \sum_{j \in P_i} \left(\lambda_i \cdot \text{Attn}^{(i)}(X_I, X_T) + (1-\lambda_i) \cdot F_{dis}(P_i)\right)\]</div>
 <ul>
 <li><strong>Early stages</strong> (large λ → more diversity weight): retain spatially diverse tokens to preserve representational quality for subsequent layers.</li>
 <li><strong>Deep stages</strong> (small λ → more attention weight): prioritize task-relevant tokens for local output fidelity.</li>
@@ -5681,6 +5681,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

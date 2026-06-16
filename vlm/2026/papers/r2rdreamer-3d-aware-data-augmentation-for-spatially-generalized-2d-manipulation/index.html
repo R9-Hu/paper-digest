@@ -5575,7 +5575,7 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Imitation-learned manipulation policies require demonstrations across diverse object poses, robot configurations, and camera viewpoints for spatial generalization—expensive to collect at scale. Existing real-to-real augmentation methods (DemoGen, R2RGen) require strong 3D scene parsing and geometry completion, produce pointcloud observations unsuitable for RGB-based 2D policies and VLAs, and struggle with non-rigid/articulated objects where complete geometry is unavailable.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>R2RDreamer operates in two stages: (1) <strong>Lightweight 3D co-editing</strong> — task-relevant objects are segmented and tracked with SAM2; incomplete object pointclouds and end-effector trajectories are jointly transformed in a shared world frame via a rigid transform $T_i$ applied per skill segment, preserving contact-rich interaction geometry while varying spatial layout; (2) <strong>Occlusion-aware projection + dense-control video completion</strong> — the edited scene is projected into 2D control videos with pixels masked for self-occlusion (via backside proxy and local z-buffer patch test) and external occlusion (boundary dilation). These masked control videos condition a WAN IT2V DiT-based model (channel-concatenated with noised latents, flow-matching loss with non-black region weighting $w(q) = 1 + \lambda(1-q)$) to complete temporally coherent RGB observations. The video completion model is trained self-supervisedly on two mask types: projection-consistent masks (augment–occlude–augment-back on real videos) and random object-drop masks.</p>
+<p>R2RDreamer operates in two stages: (1) <strong>Lightweight 3D co-editing</strong> — task-relevant objects are segmented and tracked with SAM2; incomplete object pointclouds and end-effector trajectories are jointly transformed in a shared world frame via a rigid transform <span class="arithmatex">\(T_i\)</span> applied per skill segment, preserving contact-rich interaction geometry while varying spatial layout; (2) <strong>Occlusion-aware projection + dense-control video completion</strong> — the edited scene is projected into 2D control videos with pixels masked for self-occlusion (via backside proxy and local z-buffer patch test) and external occlusion (boundary dilation). These masked control videos condition a WAN IT2V DiT-based model (channel-concatenated with noised latents, flow-matching loss with non-black region weighting <span class="arithmatex">\(w(q) = 1 + \lambda(1-q)\)</span>) to complete temporally coherent RGB observations. The video completion model is trained self-supervisedly on two mask types: projection-consistent masks (augment–occlude–augment-back on real videos) and random object-drop masks.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>A real-to-real augmentation pipeline that decouples 3D geometric consistency (action-observation co-editing) from visual completion (2D video diffusion), eliminating the need for complete 3D object reconstruction.</li>
@@ -5661,6 +5661,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5607,9 +5607,9 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Current VLMs fail at tasks requiring cross-image visual linking — e.g., tracking object identity across views, detecting subtle state changes, inferring camera motion — because they lack the meta-skill of visual comparison. Existing RL-based reasoning approaches (GRPO, MM-Eureka, NoisyRollout) require hand-crafted or model-generated QA pairs, which are expensive to produce for fine-grained multi-image scenarios.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Data construction:</strong> Image pairs $(I_a, I_b)$ are drawn from two sources: (1) video frames sampled 2 seconds apart, filtered by SSIM to avoid near-identical pairs; (2) image editing datasets ("before/after" pairs), filtered by MSE. Each pair is augmented via random crop+resize to produce training triplets $T = {T_1(I_a), T_2(I_a), T_3(I_b)}$, where the first two images are the same and the third is different.</p>
+<p><strong>Data construction:</strong> Image pairs <span class="arithmatex">\((I_a, I_b)\)</span> are drawn from two sources: (1) video frames sampled 2 seconds apart, filtered by SSIM to avoid near-identical pairs; (2) image editing datasets ("before/after" pairs), filtered by MSE. Each pair is augmented via random crop+resize to produce training triplets <span class="arithmatex">\(T = \{T_1(I_a), T_2(I_a), T_3(I_b)\}\)</span>, where the first two images are the same and the third is different.</p>
 <p><strong>Task formulation:</strong> The VLM is prompted to output a CoT <code>&lt;think&gt;</code> block and answer three binary same/different comparisons (image1 vs image2, image2 vs image3, image1 vs image3), encoded as a 3-bit string (e.g., <code>TFT</code>). QA pairs also include image-pair comparisons and 20–50 GPT-4o-generated prompt paraphrases for diversity.</p>
-<p><strong>Augmented GRPO:</strong> Instead of sampling rollouts and optimizing on the same inputs (as in standard GRPO), MiCo samples $G=8$ trajectories under <em>weak</em> augmentations $T^w$ (easier), then optimizes the policy on <em>strong</em> augmentations $T^s$ (harder). Rewards use a binary format reward (tag compliance) and accuracy reward (all three comparisons correct), weighted 1:1. KL regularization ($\beta=0.01$) anchors to the reference policy.</p>
+<p><strong>Augmented GRPO:</strong> Instead of sampling rollouts and optimizing on the same inputs (as in standard GRPO), MiCo samples <span class="arithmatex">\(G=8\)</span> trajectories under <em>weak</em> augmentations <span class="arithmatex">\(T^w\)</span> (easier), then optimizes the policy on <em>strong</em> augmentations <span class="arithmatex">\(T^s\)</span> (harder). Rewards use a binary format reward (tag compliance) and accuracy reward (all three comparisons correct), weighted 1:1. KL regularization (<span class="arithmatex">\(\beta=0.01\)</span>) anchors to the reference policy.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Self-supervised contrastive triplet construction from video frames and image editing data — eliminates need for human/model-annotated QA pairs.</li>
@@ -5705,6 +5705,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

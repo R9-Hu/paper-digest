@@ -5596,13 +5596,13 @@
 <p>EfficientVLA applies three synergistic, training-free strategies:</p>
 <ol>
 <li>
-<p><strong>LLM Layer Pruning</strong>: Each transformer layer's importance score $I^{(\ell)}$ is defined as 1 minus the average cosine similarity between its input and output hidden states across a calibration dataset. Layers with the lowest scores (minimal representational transformation) are removed non-contiguously. Additionally, 25% MLP weight sparsity (via PruneNet) is applied to remaining layers.</p>
+<p><strong>LLM Layer Pruning</strong>: Each transformer layer's importance score <span class="arithmatex">\(I^{(\ell)}\)</span> is defined as 1 minus the average cosine similarity between its input and output hidden states across a calibration dataset. Layers with the lowest scores (minimal representational transformation) are removed non-contiguously. Additionally, 25% MLP weight sparsity (via PruneNet) is applied to remaining layers.</p>
 </li>
 <li>
-<p><strong>Task-Relevance + Diversity Visual Token Pruning</strong>: From $N_\text{total}$ visual tokens, a compact set of $K_\text{final}$ is selected in three stages: (a) $K_\text{key}$ tokens with highest cross-attention scores toward language instruction tokens are unconditionally retained; (b) $K_\text{task} = \lfloor \alpha \cdot K_\text{aug} \rfloor$ additional tokens are selected by task relevance score; (c) $K_\text{div}$ tokens are selected to maximize cosine distance from the already-selected key set, ensuring feature diversity. Empirically: $K_\text{key}=4$, $\alpha=50\%$, starting from the 2nd transformer layer.</p>
+<p><strong>Task-Relevance + Diversity Visual Token Pruning</strong>: From <span class="arithmatex">\(N_\text{total}\)</span> visual tokens, a compact set of <span class="arithmatex">\(K_\text{final}\)</span> is selected in three stages: (a) <span class="arithmatex">\(K_\text{key}\)</span> tokens with highest cross-attention scores toward language instruction tokens are unconditionally retained; (b) <span class="arithmatex">\(K_\text{task} = \lfloor \alpha \cdot K_\text{aug} \rfloor\)</span> additional tokens are selected by task relevance score; (c) <span class="arithmatex">\(K_\text{div}\)</span> tokens are selected to maximize cosine distance from the already-selected key set, ensuring feature diversity. Empirically: <span class="arithmatex">\(K_\text{key}=4\)</span>, <span class="arithmatex">\(\alpha=50\%\)</span>, starting from the 2nd transformer layer.</p>
 </li>
 <li>
-<p><strong>Static N-Step Diffusion Caching</strong>: Intermediate attention and MLP outputs ($h_t^\text{attn}$, $h_t^\text{mlp}$) in DiT blocks are computed once every $N$ denoising timesteps and cached; intervening steps reuse cached values, bypassing the self-attention and MLP computations entirely. Cache interval $N=5$ is used in main experiments.</p>
+<p><strong>Static N-Step Diffusion Caching</strong>: Intermediate attention and MLP outputs (<span class="arithmatex">\(h_t^\text{attn}\)</span>, <span class="arithmatex">\(h_t^\text{mlp}\)</span>) in DiT blocks are computed once every <span class="arithmatex">\(N\)</span> denoising timesteps and cached; intervening steps reuse cached values, bypassing the self-attention and MLP computations entirely. Cache interval <span class="arithmatex">\(N=5\)</span> is used in main experiments.</p>
 </li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5627,7 +5627,7 @@
 <ul>
 <li>Evaluated solely on CogACT in the SIMPLER simulation environment; no real-robot experiments reported in the main paper.</li>
 <li>Layer importance calibration requires a representative sample of VLA training data; not entirely zero-data.</li>
-<li>Static cache interval $N$ is a fixed hyperparameter; dynamic scheduling (adapting $N$ per timestep based on feature drift) is not explored.</li>
+<li>Static cache interval <span class="arithmatex">\(N\)</span> is a fixed hyperparameter; dynamic scheduling (adapting <span class="arithmatex">\(N\)</span> per timestep based on feature drift) is not explored.</li>
 <li>Visual token pruning ratio and cache interval interact with LLM memory-bound vs. compute-bound regimes in a non-trivial way; Table 4 shows saturation effects that complicate principled joint tuning.</li>
 <li>MLP weight sparsity (PruneNet) is bundled into the reported numbers but is a separate compression axis not systematically ablated against the other three components.</li>
 </ul>
@@ -5699,6 +5699,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

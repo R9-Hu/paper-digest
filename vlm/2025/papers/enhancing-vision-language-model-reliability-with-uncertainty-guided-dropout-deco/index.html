@@ -5575,9 +5575,9 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>LVLMs misinterpret or over-attend to ambiguous/noisy visual tokens during autoregressive decoding, producing hallucinated objects. Existing remedies either require expensive fine-tuning or rely on heuristic attention/logit adjustments with no principled uncertainty grounding. Standard dropout cannot be applied to frozen pretrained parameters at inference time.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Text-space projection of visual tokens.</strong> Each visual token $x^v_i$ is forward-passed through the LLM decoder alone (using the logit lens principle), producing a visual-textual distribution $q^{\text{proj}}_i = \text{softmax}(W_V h^v_i)$ over the text vocabulary. The average across all visual tokens gives a "baseline" distribution $\bar{q}^{\text{proj}}$.</p>
-<p><strong>Uncertainty decomposition.</strong> Total perception uncertainty $H(\bar{q}^{\text{proj}})$ decomposes into aleatoric ($H(q^{\text{proj}}<em _text_KL="\text{KL">i)$, entropy of individual token projection) and epistemic ($D</em>)$, divergence from the mean). Epistemic uncertainty is used because it correlates with informative but potentially misinterpreted patches.}}(q^{\text{proj}}_i | \bar{q}^{\text{proj}</p>
-<p><strong>Uncertainty-guided token dropout.</strong> At each decoding step, $K$ dropout masks are sampled; the probability of dropping token $i$ scales with its normalized epistemic uncertainty (Eq. 9, controlled by range parameters $\gamma^{(k)}$ and $\delta^{(k)}$). An optional preliminary forward pass identifies "relevant" tokens for the current generation step (those whose preliminary prediction appears in the token's top-$k$ projected vocabulary), which are then pinned as retained. $K$ masked forward passes are batched and their output tokens aggregated via majority voting; ties go to the least-masked candidate.</p>
+<p><strong>Text-space projection of visual tokens.</strong> Each visual token <span class="arithmatex">\(x^v_i\)</span> is forward-passed through the LLM decoder alone (using the logit lens principle), producing a visual-textual distribution <span class="arithmatex">\(q^{\text{proj}}_i = \text{softmax}(W_V h^v_i)\)</span> over the text vocabulary. The average across all visual tokens gives a "baseline" distribution <span class="arithmatex">\(\bar{q}^{\text{proj}}\)</span>.</p>
+<p><strong>Uncertainty decomposition.</strong> Total perception uncertainty <span class="arithmatex">\(H(\bar{q}^{\text{proj}})\)</span> decomposes into aleatoric (<span class="arithmatex">\(H(q^{\text{proj}}_i)\)</span>, entropy of individual token projection) and epistemic (<span class="arithmatex">\(D_{\text{KL}}(q^{\text{proj}}_i \| \bar{q}^{\text{proj}})\)</span>, divergence from the mean). Epistemic uncertainty is used because it correlates with informative but potentially misinterpreted patches.</p>
+<p><strong>Uncertainty-guided token dropout.</strong> At each decoding step, <span class="arithmatex">\(K\)</span> dropout masks are sampled; the probability of dropping token <span class="arithmatex">\(i\)</span> scales with its normalized epistemic uncertainty (Eq. 9, controlled by range parameters <span class="arithmatex">\(\gamma^{(k)}\)</span> and <span class="arithmatex">\(\delta^{(k)}\)</span>). An optional preliminary forward pass identifies "relevant" tokens for the current generation step (those whose preliminary prediction appears in the token's top-<span class="arithmatex">\(k\)</span> projected vocabulary), which are then pinned as retained. <span class="arithmatex">\(K\)</span> masked forward passes are batched and their output tokens aggregated via majority voting; ties go to the least-masked candidate.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Supervision-free, training-free uncertainty quantification at the visual token level by repurposing the LLM decoder's own projections (logit lens).</li>
@@ -5590,16 +5590,16 @@
 <li><strong>CHAIR (LLaVA-1.5):</strong> CHAIRS 39.80 vs. 42.20 (greedy) and 41.47 (OPERA); CHAIRI 11.73 vs. 12.83 (greedy).</li>
 <li><strong>CHAIR (InstructBLIP):</strong> CHAIRI 6.63 vs. 7.90 (greedy), 6.93 (beam search), 8.23 (OPERA); CHAIRS 24.53 vs. 25.87 (beam), 27.87 (greedy) — 16%/12% improvement over second-best.</li>
 <li><strong>CHAIR (LLaVA-NEXT):</strong> CHAIRS 26.26 vs. 28.80 (greedy); CHAIRI 7.39 vs. 8.10 (greedy).</li>
-<li><strong>THRONE (LLaVA-1.5):</strong> $P_{\text{all}}$ 0.772 vs. 0.759 (greedy); $F^{0.5}_{\text{all}}$ 0.796 vs. 0.784 (greedy).</li>
+<li><strong>THRONE (LLaVA-1.5):</strong> <span class="arithmatex">\(P_{\text{all}}\)</span> 0.772 vs. 0.759 (greedy); <span class="arithmatex">\(F^{0.5}_{\text{all}}\)</span> 0.796 vs. 0.784 (greedy).</li>
 <li><strong>MMBench:</strong> LLaVA-1.5: 74.01 vs. 73.86 (OPERA, second-best); LLaVA-NEXT: 74.31 vs. 74.54 (OPERA, best baseline; DROPOUT DECODING 74.31 — slight under-performance here).</li>
 <li><strong>Efficiency (w/o preliminary pass):</strong> only ~7.8% throughput reduction vs. greedy; GPU memory increase negligible (14.02 → 15.31 GB on HuggingFace Transformers).</li>
-<li>Optimal ensemble size is $K=3$; random masking (ablation) causes repetitive generation and fails THRONE, validating the epistemic uncertainty criterion.</li>
+<li>Optimal ensemble size is <span class="arithmatex">\(K=3\)</span>; random masking (ablation) causes repetitive generation and fails THRONE, validating the epistemic uncertainty criterion.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>The preliminary forward pass (full optional step) roughly doubles per-token inference cost (45.7% throughput reduction, 84.4% wall-time increase).</li>
 <li>Performance gain on LLaVA-NEXT MMBench (74.31) is slightly below OPERA (74.54), suggesting the approach is not universally best across all metrics.</li>
-<li>Hyperparameters ($\gamma^{(k)}$, $\delta^{(k)}$, $K$) require tuning; aggressive dropout ($\gamma^{(4)}=0.9$) degrades InstructBLIP.</li>
+<li>Hyperparameters (<span class="arithmatex">\(\gamma^{(k)}\)</span>, <span class="arithmatex">\(\delta^{(k)}\)</span>, <span class="arithmatex">\(K\)</span>) require tuning; aggressive dropout (<span class="arithmatex">\(\gamma^{(4)}=0.9\)</span>) degrades InstructBLIP.</li>
 <li>Logit-lens projection is a heuristic; visual tokens at positions before the text query are not explicitly trained to produce text distributions, so projection quality may vary by architecture.</li>
 <li>Experiments limited to three LVLMs (LLaVA-1.5, InstructBLIP, LLaVA-NEXT); generalization to newer architectures (e.g., those with interleaved visual tokens) is unverified.</li>
 </ul>
@@ -5667,6 +5667,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

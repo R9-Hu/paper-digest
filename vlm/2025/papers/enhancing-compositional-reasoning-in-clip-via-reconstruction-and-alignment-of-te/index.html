@@ -5592,13 +5592,13 @@
 <p>READ augments the standard contrastive loss with two text-encoder-targeted objectives:</p>
 <ol>
 <li>
-<p><strong>Token-level reconstruction loss</strong>: Given an original caption $T_i$, the text encoder produces embedding $v_i$, which is linearly projected ($h_i = W^\top v_i$) and fed to a <em>frozen</em> pretrained T5 decoder. The decoder is supervised to reconstruct an <em>alternative</em> (paraphrased) caption $y_i^{(k)}$, not the original—this choice prevents overfitting to exact wording and forces the encoder to capture relational structure needed to generalize across phrasings.</p>
+<p><strong>Token-level reconstruction loss</strong>: Given an original caption <span class="arithmatex">\(T_i\)</span>, the text encoder produces embedding <span class="arithmatex">\(v_i\)</span>, which is linearly projected (<span class="arithmatex">\(h_i = W^\top v_i\)</span>) and fed to a <em>frozen</em> pretrained T5 decoder. The decoder is supervised to reconstruct an <em>alternative</em> (paraphrased) caption <span class="arithmatex">\(y_i^{(k)}\)</span>, not the original—this choice prevents overfitting to exact wording and forces the encoder to capture relational structure needed to generalize across phrasings.</p>
 </li>
 <li>
-<p><strong>Sentence-level alignment loss</strong>: LLM-generated paraphrases $T_i'$ of each caption are treated as positives; other batch items' paraphrases are negatives. An InfoNCE-style loss directly aligns paraphrase pairs in the shared embedding space, enforcing semantic consistency across surface-level variation.</p>
+<p><strong>Sentence-level alignment loss</strong>: LLM-generated paraphrases <span class="arithmatex">\(T_i'\)</span> of each caption are treated as positives; other batch items' paraphrases are negatives. An InfoNCE-style loss directly aligns paraphrase pairs in the shared embedding space, enforcing semantic consistency across surface-level variation.</p>
 </li>
 </ol>
-<p>The final loss is $\mathcal{L}<em>\text{READ} = \mathcal{L}</em>\text{Contrastive} + \alpha\,\mathcal{L}<em>\text{Token Recon} + \beta\,\mathcal{L}</em>\text{Sentence Align}$, fine-tuned on 100K MS-COCO samples for 5 epochs with ViT-B/32.</p>
+<p>The final loss is <span class="arithmatex">\(\mathcal{L}_\text{READ} = \mathcal{L}_\text{Contrastive} + \alpha\,\mathcal{L}_\text{Token Recon} + \beta\,\mathcal{L}_\text{Sentence Align}\)</span>, fine-tuned on 100K MS-COCO samples for 5 epochs with ViT-B/32.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Two complementary text-encoder auxiliary objectives (token-level reconstruction, sentence-level alignment) that address compositional reasoning at different granularities.</li>
@@ -5686,6 +5686,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

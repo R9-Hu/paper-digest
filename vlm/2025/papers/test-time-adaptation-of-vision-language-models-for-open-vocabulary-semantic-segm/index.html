@@ -5583,8 +5583,8 @@
 <p>Existing TTA methods address image classification, not dense prediction. OVSS models built on CLIP are brittle under domain shift (corruptions, weather, rendered scenes) but no TTA mechanism existed for this setting — the intersection of TTA and OVSS was entirely unexplored.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>MLMP has two phases, adaptation and evaluation, applied to any OVSS backbone (demonstrated on NACLIP with ViT-L/14):</p>
-<p><strong>Uncertainty-Aware Multi-Level (UAML) Fusion:</strong> Features from all intermediate ViT layers $q^\ell_i$ are aggregated via confidence-weighted averaging $Q = \sum_\ell \alpha_\ell Q^\ell$, where weights $\alpha_\ell \propto \exp(-\beta \cdot h^\ell)$ are derived from per-layer prediction entropy $h^\ell$. During adaptation $\beta=0$ (uniform); during inference $\beta=1$ (sharpened to prefer confident layers).</p>
-<p><strong>Multi-Prompt Local-Global Adaptation:</strong> Seven text-prompt templates are used simultaneously. For each template $T_t$, both a pixel-wise entropy loss $L_\text{UAML}(T_t)$ over patch tokens and a global image-level entropy loss $L_\text{ILE}(T_t)$ over the CLS token are computed. The final loss is $L_\text{final}(\theta) = \frac{1}{T}\sum_t (L_\text{UAML}(T_t) + L_\text{ILE}(T_t))$. Averaging gradients across $T$ templates reduces gradient variance by $1/T$ (proven). Only LayerNorm parameters of the vision encoder are updated; the text encoder is frozen. Adaptation runs for 10 Adam steps (lr=1e-3, batch=2) with full reset per batch.</p>
+<p><strong>Uncertainty-Aware Multi-Level (UAML) Fusion:</strong> Features from all intermediate ViT layers <span class="arithmatex">\(q^\ell_i\)</span> are aggregated via confidence-weighted averaging <span class="arithmatex">\(Q = \sum_\ell \alpha_\ell Q^\ell\)</span>, where weights <span class="arithmatex">\(\alpha_\ell \propto \exp(-\beta \cdot h^\ell)\)</span> are derived from per-layer prediction entropy <span class="arithmatex">\(h^\ell\)</span>. During adaptation <span class="arithmatex">\(\beta=0\)</span> (uniform); during inference <span class="arithmatex">\(\beta=1\)</span> (sharpened to prefer confident layers).</p>
+<p><strong>Multi-Prompt Local-Global Adaptation:</strong> Seven text-prompt templates are used simultaneously. For each template <span class="arithmatex">\(T_t\)</span>, both a pixel-wise entropy loss <span class="arithmatex">\(L_\text{UAML}(T_t)\)</span> over patch tokens and a global image-level entropy loss <span class="arithmatex">\(L_\text{ILE}(T_t)\)</span> over the CLS token are computed. The final loss is <span class="arithmatex">\(L_\text{final}(\theta) = \frac{1}{T}\sum_t (L_\text{UAML}(T_t) + L_\text{ILE}(T_t))\)</span>. Averaging gradients across <span class="arithmatex">\(T\)</span> templates reduces gradient variance by <span class="arithmatex">\(1/T\)</span> (proven). Only LayerNorm parameters of the vision encoder are updated; the text encoder is frozen. Adaptation runs for 10 Adam steps (lr=1e-3, batch=2) with full reset per batch.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First plug-and-play TTA framework for OVSS; compatible with any OVSS backbone without labels or source data</li>
@@ -5676,6 +5676,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

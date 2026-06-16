@@ -5596,11 +5596,11 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing LVLMs perform spatial reasoning purely in text, but spatial details (object positions, trajectories, perspective relationships) are lossy when encoded into textual space. Tool-integrated reasoning approaches that invoke external perception APIs (grounding, OCR) are constrained by those tools' fixed capabilities and produce fragmented, non-reflective reasoning chains. Neither approach supports the iterative self-correction that hard spatial tasks (maze navigation, multi-view, video) demand.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Reasoning paradigm.</strong> At each step $t$, the model generates natural-language reasoning $r_t$ and a set of drawing operations $e_t = {(k, p, l)}$ (bounding-box $T_\text{box}$ or auxiliary-line $T_\text{line}$), executes them to produce annotated images $o_t$, and feeds $(r_t, e_t, o_t)$ back into the next step. The model reasons over its own edited images, not just the originals.</p>
+<p><strong>Reasoning paradigm.</strong> At each step <span class="arithmatex">\(t\)</span>, the model generates natural-language reasoning <span class="arithmatex">\(r_t\)</span> and a set of drawing operations <span class="arithmatex">\(e_t = \{(k, p, l)\}\)</span> (bounding-box <span class="arithmatex">\(T_\text{box}\)</span> or auxiliary-line <span class="arithmatex">\(T_\text{line}\)</span>), executes them to produce annotated images <span class="arithmatex">\(o_t\)</span>, and feeds <span class="arithmatex">\((r_t, e_t, o_t)\)</span> back into the next step. The model reasons over its own edited images, not just the originals.</p>
 <p><strong>Three-stage training on Qwen2.5-VL-7B:</strong>
-1. <strong>Cold-start SFT.</strong> Qwen2.5-72B-VL generates synthetic reasoning paths following the paradigm; paths passing rule-based correctness + format checks form dataset $D_\text{cold}$; standard cross-entropy fine-tuning.
-2. <strong>Reflective rejection sampling.</strong> The cold-started model rolls out paths on $D_\text{reflect}$; only paths that are correct, well-formatted, <em>and</em> exhibit reflection (same semantic label reused with different operation parameters across steps) are kept for continued SFT. This doubles reflection frequency before RL.
-3. <strong>Reinforcement learning (GRPO, no KL penalty).</strong> Reward $S = \mathbf{1}[S_\text{correct}&gt;\beta]\cdot S_\text{correct} + S_\text{format}$; correctness uses exact match for multiple-choice and Mean Relative Accuracy (MRA across thresholds $C={0.50,\ldots,0.95}$) for numerical questions. Rollout early-termination kills circular or tool-free trajectories.</p>
+1. <strong>Cold-start SFT.</strong> Qwen2.5-72B-VL generates synthetic reasoning paths following the paradigm; paths passing rule-based correctness + format checks form dataset <span class="arithmatex">\(D_\text{cold}\)</span>; standard cross-entropy fine-tuning.
+2. <strong>Reflective rejection sampling.</strong> The cold-started model rolls out paths on <span class="arithmatex">\(D_\text{reflect}\)</span>; only paths that are correct, well-formatted, <em>and</em> exhibit reflection (same semantic label reused with different operation parameters across steps) are kept for continued SFT. This doubles reflection frequency before RL.
+3. <strong>Reinforcement learning (GRPO, no KL penalty).</strong> Reward <span class="arithmatex">\(S = \mathbf{1}[S_\text{correct}&gt;\beta]\cdot S_\text{correct} + S_\text{format}\)</span>; correctness uses exact match for multiple-choice and Mean Relative Accuracy (MRA across thresholds <span class="arithmatex">\(C=\{0.50,\ldots,0.95\}\)</span>) for numerical questions. Rollout early-termination kills circular or tool-free trajectories.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>"Drawing to reason in space" paradigm: native visual manipulation (bbox + auxiliary lines) as first-class reasoning tokens, no external tool dependency.</li>
@@ -5617,7 +5617,7 @@
 <li><strong>MMSI-Bench (multi-view):</strong> 30.2% (+3.3 pp); beats LLaVA-OneVision-72B (28.4%).</li>
 <li><strong>Average improvement:</strong> 18.4% over Qwen2.5-VL-7B without reasoning.</li>
 <li><strong>Inference-time scaling (VSI-Bench pass@8):</strong> 0.461 for ViLaSR vs. 0.328 for cold-start-only model; RL narrows pass@1/pass@8 gap (0.408 vs. 0.461 → gap of 0.053 vs. 0.100 without Stage 3).</li>
-<li>Removing reflective rejection sampling (Stage 2) causes 96.5% drop in reflection exhibition and 85% drop in $T_\text{box}$ usage, disproportionately hurting precise measurement subtasks.</li>
+<li>Removing reflective rejection sampling (Stage 2) causes 96.5% drop in reflection exhibition and 85% drop in <span class="arithmatex">\(T_\text{box}\)</span> usage, disproportionately hurting precise measurement subtasks.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5691,6 +5691,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

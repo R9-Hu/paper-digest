@@ -5598,8 +5598,8 @@
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p><strong>Hallucination Diagnosis:</strong> Co-occurrence statistics are computed on LAION-CC-SBU (558K pairs) by detecting objects via YOLOv5 and interactions via GLIP, then counting their co-occurrence with GPT-generated anomaly/normality phrase sets. Two controlled probe sets (40 samples × 4 object categories = 200 total) test false positive rates (normal scenes with anomalous-looking objects inserted) and false negative rates (anomalous scenes with normal-looking objects).</p>
 <p><strong>VAD-DPO:</strong> Built on standard DPO (Rafailov et al. 2023), the method constructs contrastive preference pairs: video clips that are visually similar (same object/interaction present) but semantically contrasting in anomaly label (e.g., "person hitting another in a boxing ring" [normal] vs. "in a street alley" [anomalous]). Pairs are sourced from HIVAU-70K and supplemented with Wan 2.1-generated synthetic clips. The training objective combines the standard DPO contrastive loss with an anchored term:</p>
-<p>$$L_{\text{total}} = L_{\text{VAD-DPO}} + \gamma \cdot L_{\text{Anc}}$$</p>
-<p>where $L_{\text{Anc}}$ penalizes divergence from the reference model only on the preferred (correct) response, stabilizing training. Base model: Qwen2-VL 2B; $\gamma=1$; single epoch; lr=1e-4.</p>
+<div class="arithmatex">\[L_{\text{total}} = L_{\text{VAD-DPO}} + \gamma \cdot L_{\text{Anc}}\]</div>
+<p>where <span class="arithmatex">\(L_{\text{Anc}}\)</span> penalizes divergence from the reference model only on the preferred (correct) response, stabilizing training. Base model: Qwen2-VL 2B; <span class="arithmatex">\(\gamma=1\)</span>; single epoch; lr=1e-4.</p>
 <p><strong>Inference:</strong> LAVAD-style protocol — 8 uniformly sampled frames scored with a 0–1 suspicion prompt, then temporal attention weights from the decoder propagate sparse scores to neighboring frames for dense per-frame anomaly score sequences.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5625,7 +5625,7 @@
 <li>The co-occurrence analysis is conducted solely on LAION-CC-SBU (558K pairs), which is only part of the pretraining corpus for LLaVA; the bias magnitudes may not generalize to other LVLMs with different pretraining corpora.</li>
 <li>Preference pair construction relies on existing VAD datasets plus synthetic video generation (Wan 2.1); coverage of edge-case co-occurrence patterns is incomplete and not exhaustively characterized.</li>
 <li>Temporal co-occurrence analysis is limited to one scenario (person standing still on a busy road); the interaction between temporal dynamics and shortcut suppression is incompletely explored.</li>
-<li>The method is demonstrated only on Qwen2-VL (2B); it is unclear how VAD-DPO scales to larger LVLMs or whether the same $\gamma$ hyperparameter generalizes.</li>
+<li>The method is demonstrated only on Qwen2-VL (2B); it is unclear how VAD-DPO scales to larger LVLMs or whether the same <span class="arithmatex">\(\gamma\)</span> hyperparameter generalizes.</li>
 <li>Future directions (GRPO-style optimization) are noted but not experimentally validated.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
@@ -5692,6 +5692,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

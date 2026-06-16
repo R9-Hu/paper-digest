@@ -5575,7 +5575,7 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>In modern text-to-image (T2I) pipelines, LLMs act solely as static text encoders: they produce fixed text embeddings once and play no role in the iterative denoising trajectory. VAE latents are too low-dimensional and reconstruction-optimized for LLMs to meaningfully process, leaving the rich priors of pretrained MLLMs unexploited during generation.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>RepFusion operates in the representation autoencoder (RAE) latent space (CLIP/DINO features), which is semantically structured and already familiar to MLLMs. At each denoising step $t$, the noisy RAE latent $z_t$ is projected via a small MLP into the MLLM's input space, timestep-embedded, and concatenated with text tokens. The frozen MLLM processes this joint sequence causally, and its final $N$ hidden states (corresponding to the noisy visual tokens) are used to condition a DiT via token-wise AdaLN-Single modulation—without cross-attention overhead. Because $z_t$ evolves each step, the MLLM conditioning signal is recomputed at every denoising step, making test-time compute expenditure on repeated MLLM calls productive. Only the MLP projector and the DiT are trained; the 7B MLLM backbone remains frozen.</p>
+<p>RepFusion operates in the representation autoencoder (RAE) latent space (CLIP/DINO features), which is semantically structured and already familiar to MLLMs. At each denoising step <span class="arithmatex">\(t\)</span>, the noisy RAE latent <span class="arithmatex">\(z_t\)</span> is projected via a small MLP into the MLLM's input space, timestep-embedded, and concatenated with text tokens. The frozen MLLM processes this joint sequence causally, and its final <span class="arithmatex">\(N\)</span> hidden states (corresponding to the noisy visual tokens) are used to condition a DiT via token-wise AdaLN-Single modulation—without cross-attention overhead. Because <span class="arithmatex">\(z_t\)</span> evolves each step, the MLLM conditioning signal is recomputed at every denoising step, making test-time compute expenditure on repeated MLLM calls productive. Only the MLP projector and the DiT are trained; the 7B MLLM backbone remains frozen.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Demonstrates that frozen pretrained MLLMs can encode noisy RAE latents and provide useful, step-varying denoising priors beyond static text conditioning.</li>
@@ -5587,7 +5587,7 @@
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>GenEval</strong> (primary): RepFusion (7B MLLM + 1.3B DiT, 547 TFLOPs) scores <strong>0.70</strong> vs. TextEmbed-RAE at 0.64 (+30% relative over TextEmbed-VAE at 0.54) and Transfusion-RAE at 0.66.</li>
-<li>RepFusion-SFT (7B MLLM + 3.2B DiT) reaches <strong>0.85–0.87</strong> on GenEval, <strong>0.669–0.707</strong> on GenEval++, <strong>34.9–35.1</strong> on GenEval2 (Soft-TIFA$^{GM}$), and <strong>84.17–85.11</strong> on DPG-Bench—competitive with or exceeding BAGEL (0.82/84.03) and Scale-RAE (0.83/79.70).</li>
+<li>RepFusion-SFT (7B MLLM + 3.2B DiT) reaches <strong>0.85–0.87</strong> on GenEval, <strong>0.669–0.707</strong> on GenEval++, <strong>34.9–35.1</strong> on GenEval2 (Soft-TIFA<span class="arithmatex">\(^{GM}\)</span>), and <strong>84.17–85.11</strong> on DPG-Bench—competitive with or exceeding BAGEL (0.82/84.03) and Scale-RAE (0.83/79.70).</li>
 <li>Learnable query baseline (MetaQuery-style, same training FLOPs, inference matched to 552 TFLOPs): <strong>0.54</strong> GenEval; RepFusion at same budget: <strong>0.70</strong>.</li>
 <li>WISE reasoning-generation benchmark (RepFusion-SFT w/ diffusion decoder): overall <strong>0.64</strong>, matching or exceeding MetaQuery-XL (0.55) and BLIP-3o (0.62).</li>
 <li>Iso-FLOPs (~280T): 1B MLLM + 3.2B DiT achieves <strong>0.70/0.289</strong> GenEval/GenEval++; 3B MLLM + 1.3B DiT reaches only <strong>0.67/0.282</strong>—larger DiT preferred.</li>
@@ -5666,6 +5666,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

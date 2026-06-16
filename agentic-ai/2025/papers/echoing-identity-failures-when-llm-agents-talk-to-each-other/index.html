@@ -5568,7 +5568,7 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing LLM agent evaluation frameworks are designed for single-agent or human-supervised settings. When two LLM agents interact autonomously with private, misaligned objectives, a new class of emergent behavioral failure arises: agents may drift from their assigned identities. No prior work systematically characterizes or measures this AxA-specific failure, and standard task-completion metrics cannot detect it (93% of echoing conversations still complete successfully).</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>The authors formalize AxA interactions as a partially observable stochastic game, where each agent $A_i$ is characterized by identity $I_i$, objective $O_i$, tools $T_i$, utility $U_i$, and LLM policy $\pi_i$. Echoing is defined as the event where agent $A_i$ generates responses whose language or decisions align with the partner's identity $I_j$ rather than its own $I_i$.</p>
+<p>The authors formalize AxA interactions as a partially observable stochastic game, where each agent <span class="arithmatex">\(A_i\)</span> is characterized by identity <span class="arithmatex">\(I_i\)</span>, objective <span class="arithmatex">\(O_i\)</span>, tools <span class="arithmatex">\(T_i\)</span>, utility <span class="arithmatex">\(U_i\)</span>, and LLM policy <span class="arithmatex">\(\pi_i\)</span>. Echoing is defined as the event where agent <span class="arithmatex">\(A_i\)</span> generates responses whose language or decisions align with the partner's identity <span class="arithmatex">\(I_j\)</span> rather than its own <span class="arithmatex">\(I_i\)</span>.</p>
 <p>They run 66 AxA configurations across 4 domains (car sales, hotel booking, supply chain, medical consultation), 22 customer-agent model variants (GPT-4o, GPT-4.1, o3, GPT-5, Gemini-2.5-Flash/Pro, Claude Sonnet-4, Llama-3.1-8B/70B) paired against 3 seller configurations, and 3 prompt formulations (minimal, behavioral, identity boundary). Echoing is detected using an LLM-as-judge (GPT-4o with structured output) that analyzes full conversation histories for identity inconsistency; validated against 150 human-annotated samples (91.1% agreement). Mitigation is tested via a Pydantic-style structured response format that forces agents to declare their role explicitly in every turn.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5661,6 +5661,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

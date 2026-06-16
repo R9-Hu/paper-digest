@@ -5581,7 +5581,7 @@
 <p><strong>Goal Prediction Module (GPM)</strong>: A U-Net decoder ingests past trajectories and a pretrained semantic segmentation map to produce per-agent spatial goal heatmaps. A differentiable softargmax converts heatmaps to continuous 2D goal coordinates. At test time, Test-Time Sampling Trick (TTST) + K-means diversifies candidate goals.</p>
 </li>
 <li>
-<p><strong>Trajectory Prediction Module (TPM)</strong>: A recursive transformer decoder runs from $t = T_\text{obs}+1$ to $T_\text{pred}$. At each step: (a) past positions are embedded with Hybrid Positional Encoding (sinusoidal + learnable offsets); (b) a cross-attention block fuses the goal token $e^i_g$ with the past-trajectory token sequence, keeping trajectory decoding continuously goal-aware; (c) goal-aware features from all $N$ agents are stacked and passed through multi-head self-attention (social attention), producing pairwise attention matrices $A^{(t)} \in \mathbb{R}^{N \times N}$; (d) an MLP decodes per-agent displacement $\Delta\hat{y}^i_t$, and positions are updated autoregressively. Weights are shared across time steps. Training uses a joint BCE loss on goal heatmaps plus MSE on trajectory positions.</p>
+<p><strong>Trajectory Prediction Module (TPM)</strong>: A recursive transformer decoder runs from <span class="arithmatex">\(t = T_\text{obs}+1\)</span> to <span class="arithmatex">\(T_\text{pred}\)</span>. At each step: (a) past positions are embedded with Hybrid Positional Encoding (sinusoidal + learnable offsets); (b) a cross-attention block fuses the goal token <span class="arithmatex">\(e^i_g\)</span> with the past-trajectory token sequence, keeping trajectory decoding continuously goal-aware; (c) goal-aware features from all <span class="arithmatex">\(N\)</span> agents are stacked and passed through multi-head self-attention (social attention), producing pairwise attention matrices <span class="arithmatex">\(A^{(t)} \in \mathbb{R}^{N \times N}\)</span>; (d) an MLP decodes per-agent displacement <span class="arithmatex">\(\Delta\hat{y}^i_t\)</span>, and positions are updated autoregressively. Weights are shared across time steps. Training uses a joint BCE loss on goal heatmaps plus MSE on trajectory positions.</p>
 </li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5669,6 +5669,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5718,7 +5718,7 @@
 <ul>
 <li><strong>Understanding branch</strong>: A VLM with SigLIP-large-patch16-384 visual encoder (1024-dim → 2048-dim via 2-layer MLP) and a 24-layer LM backbone, trained autoregressively with cross-entropy loss over generated report tokens.</li>
 <li><strong>Generation branch</strong>: Latent diffusion operating in a 16× downsampled, 16-channel VAE latent space; minimizes an MSE flow-matching objective over noise-conditioned latent embeddings.</li>
-<li><strong>Cross-modal self-attention</strong>: Performs joint self-attention over a unified sequence $S = [T_{in}, N]$ (understanding text tokens + generation latent embeddings) using modality-specific Q/K/V projection matrices ($W^u_{q,k,v}$ vs. $W^g_{q,k,v}$, selected by binary modality masks). Attention scores are computed globally, allowing understanding features to implicitly condition generation without explicit cross-attention.</li>
+<li><strong>Cross-modal self-attention</strong>: Performs joint self-attention over a unified sequence <span class="arithmatex">\(S = [T_{in}, N]\)</span> (understanding text tokens + generation latent embeddings) using modality-specific Q/K/V projection matrices (<span class="arithmatex">\(W^u_{q,k,v}\)</span> vs. <span class="arithmatex">\(W^g_{q,k,v}\)</span>, selected by binary modality masks). Attention scores are computed globally, allowing understanding features to implicitly condition generation without explicit cross-attention.</li>
 </ul>
 <p><strong>Three-stage training</strong> on MIMIC-CXR (163K understanding pairs; 237K generation pairs):
 1. <strong>Stage 1</strong>: Freeze generation branch; SFT understanding branch at 384×384 with cleaned reports (DeepSeek used to strip non-diagnostic noise).
@@ -5813,6 +5813,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

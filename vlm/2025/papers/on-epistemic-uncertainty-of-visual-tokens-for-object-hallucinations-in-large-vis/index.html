@@ -5575,20 +5575,20 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Prior training-free hallucination mitigations target the language model (decoding strategies, LLM attention) and incur multiple expensive LLM forward passes or yield modest gains; the vision encoder as a source of hallucination is underexplored. No efficient method existed to identify which individual visual tokens are epistemically uncertain without thousands of MC-dropout forward passes.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Uncertainty estimation via adversarial attack.</strong> Given image $x$ and vision encoder $F_V$, the method runs PGD ($k{=}3$, $I{=}200$ steps) to maximise MSE between clean and perturbed features. Hidden states are extracted from early layers $S{=}{1,\ldots,10}$ for both original and attacked images. Layer-wise L2 deviation norms $u^l = |f^l_\text{attk} - f^l_\text{orig}|<em th="th">2$ are min-max normalised and averaged into uncertainty map $U$, then binarised with threshold $\sigma</em>$ to produce binary mask $M$ (0 = uncertain token). Theorem 3.2 proves that the expected squared deviation upper-bounds the differential entropy of each token's representation, and Lemma 3.1 justifies local Gaussianity under small perturbation — grounding the proxy in information theory.</p>
-<p><strong>Masking.</strong> Uncertain tokens (where $M{=}0$) are suppressed by element-wise multiplying the self-attention value output by $M$ in intermediate VE layers (13–17 for LLaVA-1.5/Shikra; 9–16 for MiniGPT-4). The residual connection preserves global semantics while reducing reliance on high-uncertainty tokens. No LLM weights are modified.</p>
+<p><strong>Uncertainty estimation via adversarial attack.</strong> Given image <span class="arithmatex">\(x\)</span> and vision encoder <span class="arithmatex">\(F_V\)</span>, the method runs PGD (<span class="arithmatex">\(k{=}3\)</span>, <span class="arithmatex">\(I{=}200\)</span> steps) to maximise MSE between clean and perturbed features. Hidden states are extracted from early layers <span class="arithmatex">\(S{=}\{1,\ldots,10\}\)</span> for both original and attacked images. Layer-wise L2 deviation norms <span class="arithmatex">\(u^l = \|f^l_\text{attk} - f^l_\text{orig}\|_2\)</span> are min-max normalised and averaged into uncertainty map <span class="arithmatex">\(U\)</span>, then binarised with threshold <span class="arithmatex">\(\sigma_{th}\)</span> to produce binary mask <span class="arithmatex">\(M\)</span> (0 = uncertain token). Theorem 3.2 proves that the expected squared deviation upper-bounds the differential entropy of each token's representation, and Lemma 3.1 justifies local Gaussianity under small perturbation — grounding the proxy in information theory.</p>
+<p><strong>Masking.</strong> Uncertain tokens (where <span class="arithmatex">\(M{=}0\)</span>) are suppressed by element-wise multiplying the self-attention value output by <span class="arithmatex">\(M\)</span> in intermediate VE layers (13–17 for LLaVA-1.5/Shikra; 9–16 for MiniGPT-4). The residual connection preserves global semantics while reducing reliance on high-uncertainty tokens. No LLM weights are modified.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Theoretical proof (Lemma 3.1 + Theorem 3.2) that adversarial representation deviation upper-bounds visual token epistemic uncertainty, with empirical validation against MC dropout.</li>
-<li>Statistical confirmation (Spearman $\rho &gt; 0.7$, $p &lt; 0.05$) that uncertain visual tokens correlate with object hallucination severity on COCO/CHAIR.</li>
+<li>Statistical confirmation (Spearman <span class="arithmatex">\(\rho &gt; 0.7\)</span>, <span class="arithmatex">\(p &lt; 0.05\)</span>) that uncertain visual tokens correlate with object hallucination severity on COCO/CHAIR.</li>
 <li>Training-free, VE-only intervention: PGD proxy + mid-layer attention masking, ~5× faster than MC dropout.</li>
 <li>Demonstrated composability with OPERA, VCD, PAI, and Devils (LLM-side methods), producing additive gains.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>LLaVA-1.5-7B, CHAIR (greedy):</strong> $C_s$ 47.4→29.2 (↓38.4%), $C_i$ 12.2→9.3 (↓23.8%); F1 preserved (77.9→78.2).</li>
-<li><strong>Shikra-7B, CHAIR (greedy):</strong> $C_s$ 58.0→43.2 (↓25.5%), $C_i$ 15.6→11.7 (↓25.0%).</li>
-<li><strong>MiniGPT-4, CHAIR (greedy):</strong> smaller gains ($C_s$ ↓4.2%), attributed to Q-Former bottleneck between VE and LLM.</li>
+<li><strong>LLaVA-1.5-7B, CHAIR (greedy):</strong> <span class="arithmatex">\(C_s\)</span> 47.4→29.2 (↓38.4%), <span class="arithmatex">\(C_i\)</span> 12.2→9.3 (↓23.8%); F1 preserved (77.9→78.2).</li>
+<li><strong>Shikra-7B, CHAIR (greedy):</strong> <span class="arithmatex">\(C_s\)</span> 58.0→43.2 (↓25.5%), <span class="arithmatex">\(C_i\)</span> 15.6→11.7 (↓25.0%).</li>
+<li><strong>MiniGPT-4, CHAIR (greedy):</strong> smaller gains (<span class="arithmatex">\(C_s\)</span> ↓4.2%), attributed to Q-Former bottleneck between VE and LLM.</li>
 <li><strong>POPE:</strong> comparable or slightly improved across all models and splits; no degradation.</li>
 <li><strong>AMBER (LLaVA-1.5-7B, greedy):</strong> CHAIR ↓23.9%, hallucination ↓19.9%, AMBER score 88.2→91.2 (+3.4%).</li>
 <li>Composing with PAI yields up to ↓28.2% CHAIR on AMBER; integration with all four baselines uniformly adds gains.</li>
@@ -5598,8 +5598,8 @@
 <ul>
 <li>Gains on MiniGPT-4 are substantially smaller because its Q-Former compresses visual tokens before the LLM, limiting the propagation of VE-level suppression.</li>
 <li>Requires running a PGD attack (200 steps) at inference time per image, adding latency (~2.4 s vs. ~12.2 s for MC dropout in examples shown, but still non-trivial overhead).</li>
-<li>$\sigma_{th}$ must be tuned per baseline–method pair, reducing plug-and-play simplicity.</li>
-<li>Theoretical analysis assumes small perturbation and $C^2$-smooth networks; validity under very large $k$ or non-standard VE architectures is not analysed.</li>
+<li><span class="arithmatex">\(\sigma_{th}\)</span> must be tuned per baseline–method pair, reducing plug-and-play simplicity.</li>
+<li>Theoretical analysis assumes small perturbation and <span class="arithmatex">\(C^2\)</span>-smooth networks; validity under very large <span class="arithmatex">\(k\)</span> or non-standard VE architectures is not analysed.</li>
 <li>Evaluated only on object hallucination; effects on other hallucination types (attribute, relation) are not addressed.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
@@ -5666,6 +5666,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

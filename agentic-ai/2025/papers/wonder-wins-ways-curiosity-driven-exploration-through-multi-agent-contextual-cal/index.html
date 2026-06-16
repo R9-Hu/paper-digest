@@ -5575,12 +5575,12 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Curiosity-driven exploration in MARL suffers from two compounding failures: (1) the "Noisy-TV" problem—agents confuse environmental stochasticity with genuine novelty—and (2) a uniform novelty bias that ignores peer behavioral signals encoding latent task dynamics. Existing mitigations rely on global state or explicit communication, which are unavailable in decentralized, communication-free, partially observable settings.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>CERMIC frames exploration as Information Bottleneck optimization over a latent representation $x_t \sim g_\phi(s_t, a_t)$: maximize $I(X_t; S_{t+1})$ (novelty-seeking) while minimizing $I(X_t; [S_t, A_t])$ (compression/noise filtering). The compression term is constrained via a <strong>distributionally robust chance constraint</strong> conditioned on an inferred multi-agent context feature $f_n^o$. This feature is produced by a GNN operating on a dynamic intention graph $G_n$ whose nodes are predicted peer state representations and edges encode spatial relationships; the graph is updated only when peers are detected via a learned MLP, enabling partial-observability efficiency. A task-adaptive calibration factor $\gamma = I([r_{t-1}^e, f_{n-1}^o]; f_n^o)$—estimated via InfoNCE—down-weights unreliable peer inferences early in training. The intrinsic reward is a tractable lower-bound Bayesian Surprise: the KL divergence between the conditional latent $R_\phi(x_t|s_t,a_t)$ and a fixed Gaussian marginal, raised to the $\frac{1}{2}$ power. In linear MDPs, this reward is provably sandwiched within $[\rho \cdot r_t^{\text{UCB-DB}},\, 2\rho \cdot r_t^{\text{UCB-DB}}]$, guaranteeing decay as uncertainty resolves.</p>
+<p>CERMIC frames exploration as Information Bottleneck optimization over a latent representation <span class="arithmatex">\(x_t \sim g_\phi(s_t, a_t)\)</span>: maximize <span class="arithmatex">\(I(X_t; S_{t+1})\)</span> (novelty-seeking) while minimizing <span class="arithmatex">\(I(X_t; [S_t, A_t])\)</span> (compression/noise filtering). The compression term is constrained via a <strong>distributionally robust chance constraint</strong> conditioned on an inferred multi-agent context feature <span class="arithmatex">\(f_n^o\)</span>. This feature is produced by a GNN operating on a dynamic intention graph <span class="arithmatex">\(G_n\)</span> whose nodes are predicted peer state representations and edges encode spatial relationships; the graph is updated only when peers are detected via a learned MLP, enabling partial-observability efficiency. A task-adaptive calibration factor <span class="arithmatex">\(\gamma = I([r_{t-1}^e, f_{n-1}^o]; f_n^o)\)</span>—estimated via InfoNCE—down-weights unreliable peer inferences early in training. The intrinsic reward is a tractable lower-bound Bayesian Surprise: the KL divergence between the conditional latent <span class="arithmatex">\(R_\phi(x_t|s_t,a_t)\)</span> and a fixed Gaussian marginal, raised to the <span class="arithmatex">\(\frac{1}{2}\)</span> power. In linear MDPs, this reward is provably sandwiched within <span class="arithmatex">\([\rho \cdot r_t^{\text{UCB-DB}},\, 2\rho \cdot r_t^{\text{UCB-DB}}]\)</span>, guaranteeing decay as uncertainty resolves.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>CERMIC framework</strong>: socially contextualized curiosity calibration using inferred peer intentions, operable without communication.</li>
 <li><strong>Distributional robustness formulation</strong>: converts the intractable IB compression term into a tractable second-order cone loss via Cantelli's inequality, with both upper and lower bound losses for stability.</li>
-<li><strong>Task-adaptive calibration factor</strong> $\gamma$: automatically attenuates unreliable intention estimates early in training and misaligned task contexts.</li>
+<li><strong>Task-adaptive calibration factor</strong> <span class="arithmatex">\(\gamma\)</span>: automatically attenuates unreliable intention estimates early in training and misaligned task contexts.</li>
 <li><strong>Theoretically grounded intrinsic reward</strong>: bounded relative to UCB-DB exploration bonus in linear MDPs, ensuring attenuation at convergence.</li>
 <li><strong>Plug-and-play integration</strong>: compatible with MAPPO and QMIX; operates on local observations only.</li>
 </ul>
@@ -5590,7 +5590,7 @@
 <li>On MeltingPot (emergent inter-agent reward structure), gains are strongest; e.g., CleanUp: MAPPO-CERMIC 78.3 vs. QPLEX-ICES 76.7 vs. MACE 75.2; ChiGam: 10.03 vs. 9.07 vs. 8.94.</li>
 <li>Per-agent contribution in Balance* with 8 agents: MAPPO-CERMIC 17.3 vs. MAPPO-DB 12.1—contextual calibration mitigates scaling degradation.</li>
 <li>Generalization (dense-trained → sparse-tested) performance drop on Balance*: MAPPO-CERMIC −1.7 vs. CPM −2.8 vs. QPLEX-ICES −2.5.</li>
-<li>Ablation: removing $L_{\text{explore}}$ degrades Flocki* from 1.06 to 0.82; removing $L_{\text{exploit}}$ causes variance spike (±0.48 vs. ±0.12).</li>
+<li>Ablation: removing <span class="arithmatex">\(L_{\text{explore}}\)</span> degrades Flocki* from 1.06 to 0.82; removing <span class="arithmatex">\(L_{\text{exploit}}\)</span> causes variance spike (±0.48 vs. ±0.12).</li>
 <li>Pretrained intention modules yield faster convergence (exact numbers deferred to appendix).</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
@@ -5598,7 +5598,7 @@
 <li>Accurate peer intention modeling from local observations alone remains difficult under severe partial observability; early training suffers lower sample efficiency.</li>
 <li>Dynamic graph construction and one-step latent transition model may not scale to high-dimensional or multi-modal observation spaces without hierarchical extensions.</li>
 <li>Theoretical guarantees (Theorem 1) are derived only for linear MDPs; nonlinear generalization is empirical.</li>
-<li>The marginal $p_{\text{margin}}(x_t|D_m)$ is approximated as a fixed Gaussian $\mathcal{N}(0,I)$, which may not capture the true data distribution.</li>
+<li>The marginal <span class="arithmatex">\(p_{\text{margin}}(x_t|D_m)\)</span> is approximated as a fixed Gaussian <span class="arithmatex">\(\mathcal{N}(0,I)\)</span>, which may not capture the true data distribution.</li>
 </ul>
 <h2 id="relevance-to-agentic-ai-llm-agents">Relevance to Agentic AI / LLM Agents<a class="headerlink" href="#relevance-to-agentic-ai-llm-agents" title="Permanent link">&para;</a></h2>
 <p>CERMIC addresses a core bottleneck for deploying autonomous agent teams in unstructured environments: how to explore effectively without hand-crafted rewards, explicit communication channels, or centralized state. The insight that agents should calibrate their own curiosity by modeling peer intent—analogous to social learning in developmental psychology—is directly relevant to multi-agent LLM systems where agents must coordinate under partial information. The plug-and-play design and theoretical grounding make CERMIC a candidate primitive for intrinsic motivation in future hybrid neuro-symbolic or LLM-augmented MARL pipelines. The paper also identifies LLMs as a promising bootstrap for the ad-hoc peer intention model, explicitly connecting this MARL work to the LLM agent ecosystem.</p>
@@ -5664,6 +5664,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

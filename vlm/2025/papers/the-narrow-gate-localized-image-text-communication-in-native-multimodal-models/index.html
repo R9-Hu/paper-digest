@@ -5724,9 +5724,9 @@
 <p>Six decoder-only VLMs are analyzed: Chameleon-7B/34B and Emu3-8B (native, trained from scratch with VQ-GAN discrete image tokens, generate both modalities) versus LLaVA-7B, Pixtral-12B, Janus-1.3B, and VILA-U-7B (non-native, built on pre-trained LLM backbones).</p>
 <p>Four analytical tools are applied:
 1. <strong>Cosine similarity &amp; density-peak clustering</strong> of residual-stream representations to measure the modality gap across layers.
-2. <strong>Cross-modal attention metric</strong> $f_j^l$ — the fraction of total text-on-image attention received by each image-token position at each layer — to identify dominant communication tokens.
-3. <strong>Neighborhood overlap</strong> $\chi_k^{l,\text{gt}}$ between token representations and ImageNet class labels / MS-COCO caption embeddings to measure semantic content carried by each token.
-4. <strong>Attention knockout</strong> (zeroing $A_{\text{text}\to[\text{EOI}]}$ or $A_{\text{text}\to\text{img}}$) and <strong>activation patching</strong> (replacing <code>[EOI]</code> representation from a target-class image into a base-class forward pass) to establish causality.</p>
+2. <strong>Cross-modal attention metric</strong> <span class="arithmatex">\(f_j^l\)</span> — the fraction of total text-on-image attention received by each image-token position at each layer — to identify dominant communication tokens.
+3. <strong>Neighborhood overlap</strong> <span class="arithmatex">\(\chi_k^{l,\text{gt}}\)</span> between token representations and ImageNet class labels / MS-COCO caption embeddings to measure semantic content carried by each token.
+4. <strong>Attention knockout</strong> (zeroing <span class="arithmatex">\(A_{\text{text}\to[\text{EOI}]}\)</span> or <span class="arithmatex">\(A_{\text{text}\to\text{img}}\)</span>) and <strong>activation patching</strong> (replacing <code>[EOI]</code> representation from a target-class image into a base-class forward pass) to establish causality.</p>
 <p>A masked fine-tuning intervention is then applied to Chameleon and Emu3: the <code>[EOI]</code> token is masked during training to force redistribution of visual communication to other image tokens.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5821,6 +5821,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

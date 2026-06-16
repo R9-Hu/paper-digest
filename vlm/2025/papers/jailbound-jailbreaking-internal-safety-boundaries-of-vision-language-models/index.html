@@ -5583,11 +5583,11 @@
 <p>Existing VLM jailbreak methods suffer from two key deficiencies: (1) gradient-based optimization without directional guidance is prone to local optima and produces suboptimal perturbations, and (2) visual and textual modalities are perturbed independently, ignoring cross-modal interactions in the multimodal fusion layers where safety-relevant representations reside.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>JailBound operates in two stages:</p>
-<p><strong>Stage 1 — Safety Boundary Probing:</strong> For each fusion layer $l$, a logistic regression classifier is trained on fused representations $h^{(l)} = \phi^{(l)}(x_v, x_t)$ labeled safe/unsafe. The trained classifier yields a decision hyperplane $\mathcal{B}^{(l)}(w,b)$, from which two geometric parameters are extracted: the unit normal vector $v^{(l)} = w^{(l)}/|w^{(l)}|_2$ and the per-sample minimum crossing distance $\varepsilon^{(i)}$, providing a precise perturbation target region.</p>
-<p><strong>Stage 2 — Safety Boundary Crossing:</strong> Image perturbation $\delta_v^{\text{input}}$ (L∞-constrained, $\epsilon=8/255$) and a discrete text suffix $X_t^{\text{suffix}}$ (length 20) are jointly optimized via a three-term loss:
-- $\mathcal{L}<em _text_target="\text{target">{\text{align}}$: pulls fused representation toward the target point $h^{(l)}</em>$ (across the boundary);
-- $\mathcal{L}}} = h^{(l)} - \varepsilon^{(l)} \cdot v^{(l)<em _text_sem="\text{sem">{\text{geo}}$: penalizes deviation of the perturbation direction from the boundary normal $v^{(l)}$;
-- $\mathcal{L}</em>$: regularizes perturbation magnitude and suffix fluency.}</p>
+<p><strong>Stage 1 — Safety Boundary Probing:</strong> For each fusion layer <span class="arithmatex">\(l\)</span>, a logistic regression classifier is trained on fused representations <span class="arithmatex">\(h^{(l)} = \phi^{(l)}(x_v, x_t)\)</span> labeled safe/unsafe. The trained classifier yields a decision hyperplane <span class="arithmatex">\(\mathcal{B}^{(l)}(w,b)\)</span>, from which two geometric parameters are extracted: the unit normal vector <span class="arithmatex">\(v^{(l)} = w^{(l)}/\|w^{(l)}\|_2\)</span> and the per-sample minimum crossing distance <span class="arithmatex">\(\varepsilon^{(i)}\)</span>, providing a precise perturbation target region.</p>
+<p><strong>Stage 2 — Safety Boundary Crossing:</strong> Image perturbation <span class="arithmatex">\(\delta_v^{\text{input}}\)</span> (L∞-constrained, <span class="arithmatex">\(\epsilon=8/255\)</span>) and a discrete text suffix <span class="arithmatex">\(X_t^{\text{suffix}}\)</span> (length 20) are jointly optimized via a three-term loss:
+- <span class="arithmatex">\(\mathcal{L}_{\text{align}}\)</span>: pulls fused representation toward the target point <span class="arithmatex">\(h^{(l)}_{\text{target}} = h^{(l)} - \varepsilon^{(l)} \cdot v^{(l)}\)</span> (across the boundary);
+- <span class="arithmatex">\(\mathcal{L}_{\text{geo}}\)</span>: penalizes deviation of the perturbation direction from the boundary normal <span class="arithmatex">\(v^{(l)}\)</span>;
+- <span class="arithmatex">\(\mathcal{L}_{\text{sem}}\)</span>: regularizes perturbation magnitude and suffix fluency.</p>
 <p>Visual updates use gradient descent with projection; text suffix tokens are replaced greedily by nearest-neighbor in embedding space. Optimization runs 100–150 iterations on 8×A100 GPUs.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5606,7 +5606,7 @@
 <li>GPT-4o: 75.24% (vs. best prior method UMK: 50.77%)</li>
 <li>Gemini 2.0 Flash: 70.06% (vs. UMK: 51.79%)</li>
 <li>Claude 3.5 Sonnet: 56.55% (vs. FigStep: 47.62%)</li>
-<li><strong>Ablation:</strong> removing $\mathcal{L}<em _text_geo="\text{geo">{\text{align}}$ drops ASR to 82.67%; removing $\mathcal{L}</em>$ slightly raises ASR to 95.21% but degrades semantic preservation score from 4.67 to 3.48.}}$ drops to 85.79%; removing $\mathcal{L}_{\text{sem}</li>
+<li><strong>Ablation:</strong> removing <span class="arithmatex">\(\mathcal{L}_{\text{align}}\)</span> drops ASR to 82.67%; removing <span class="arithmatex">\(\mathcal{L}_{\text{geo}}\)</span> drops to 85.79%; removing <span class="arithmatex">\(\mathcal{L}_{\text{sem}}\)</span> slightly raises ASR to 95.21% but degrades semantic preservation score from 4.67 to 3.48.</li>
 <li>Physical Harm category on MiniGPT-4: 97.22% vs. UMK 66.67%.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
@@ -5680,6 +5680,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5583,14 +5583,14 @@
 <p>Prior work on visual token compression targets moderate reductions (576→144 or 64 tokens) while trying to preserve base-model accuracy, but no principled framework existed to determine the optimal trade-off between LLM size and visual token count under a fixed inference budget. It was unclear whether, e.g., a 4B LLM with 576 tokens outperforms an 8B LLM with 288 tokens at the same FLOP cost.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>The authors formulate a two-factor scaling law for VLM downstream error:</p>
-<p>$$Y(N, T) = \frac{A}{N^\alpha} \cdot \frac{B}{T^\beta} + D$$</p>
-<p>where $N$ is LLM parameter count, $T$ is total inference tokens (visual + text), and ${\alpha, \beta, A, B, D}$ are fit via grid search. They train LLaVA-Next VLMs with Qwen-1.5 backbones ({0.5, 1.8, 4, 7}B) using TokenPacker-compressed visual tokens ({1, 4, 16, 36, 64, 144, 576}) and evaluate on nine visual reasoning benchmarks to fit the law, then validate predictions on a held-out 14B model. A modified TokenPacker variant incorporating the user query prompt (cross-attention over query tokens during compression) is introduced to handle extreme compression (1–16 tokens) without catastrophic loss.</p>
+<div class="arithmatex">\[Y(N, T) = \frac{A}{N^\alpha} \cdot \frac{B}{T^\beta} + D\]</div>
+<p>where <span class="arithmatex">\(N\)</span> is LLM parameter count, <span class="arithmatex">\(T\)</span> is total inference tokens (visual + text), and <span class="arithmatex">\(\{\alpha, \beta, A, B, D\}\)</span> are fit via grid search. They train LLaVA-Next VLMs with Qwen-1.5 backbones ({0.5, 1.8, 4, 7}B) using TokenPacker-compressed visual tokens ({1, 4, 16, 36, 64, 144, 576}) and evaluate on nine visual reasoning benchmarks to fit the law, then validate predictions on a held-out 14B model. A modified TokenPacker variant incorporating the user query prompt (cross-attention over query tokens during compression) is introduced to handle extreme compression (1–16 tokens) without catastrophic loss.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First inference-time compute-optimal scaling laws for VLMs jointly parameterized by LLM size and visual token count.</li>
-<li>Empirical finding that $\alpha \approx 0.077 \gg \beta \approx 0.015$ for visual reasoning: error degrades 5× faster per unit of LLM parameter reduction than per unit of visual token reduction, making token compression strictly preferable to LLM downsizing.</li>
+<li>Empirical finding that <span class="arithmatex">\(\alpha \approx 0.077 \gg \beta \approx 0.015\)</span> for visual reasoning: error degrades 5× faster per unit of LLM parameter reduction than per unit of visual token reduction, making token compression strictly preferable to LLM downsizing.</li>
 <li>Demonstration that the Pareto-optimal inference curve (Q=0) collapses to a single visual token paired with the largest feasible LLM; under Q=50 text tokens, the optimum shifts to ~16 visual tokens (97% reduction from 576).</li>
-<li>Contrasting result for OCR/document tasks: $\alpha = 0.029 &lt; \beta = 0.048$, so token count dominates and compression is harmful.</li>
+<li>Contrasting result for OCR/document tasks: <span class="arithmatex">\(\alpha = 0.029 &lt; \beta = 0.048\)</span>, so token count dominates and compression is harmful.</li>
 <li>Query-aware TokenPacker variant that mitigates performance gaps at 1- and 4-token budgets (e.g., 34% gap reduction on VizWiz, ~12% on POPE and MMBench vs. standard TokenPacker).</li>
 <li>Scaling law generalization verified across a second compression algorithm (LLaVA-PruMerge).</li>
 </ul>
@@ -5600,7 +5600,7 @@
 <li>At matched inference FLOP budgets, switching from 1.8B LLM + 144 tokens → 7B LLM + 36 tokens yields significant relative gains on visual reasoning tasks (GQA, MMBench, MME, MMMU, POPE, ScienceQA), while harming text recognition (DocVQA, TextVQA).</li>
 <li>Query-conditioned compression at 1 token: closes 34% of the VizWiz gap and ~12% of POPE/MMBench gap vs. vanilla LLaVA-1.5.</li>
 <li>Repeating visual tokens multiple times does not improve performance, ruling out test-time compute scaling via token repetition.</li>
-<li>PruMerge-based scaling laws yield $\alpha = 0.069$–$0.077$, $\beta = 0.008$–$0.041$, confirming the same qualitative conclusion across architectures.</li>
+<li>PruMerge-based scaling laws yield <span class="arithmatex">\(\alpha = 0.069\)</span>–<span class="arithmatex">\(0.077\)</span>, <span class="arithmatex">\(\beta = 0.008\)</span>–<span class="arithmatex">\(0.041\)</span>, confirming the same qualitative conclusion across architectures.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5674,6 +5674,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

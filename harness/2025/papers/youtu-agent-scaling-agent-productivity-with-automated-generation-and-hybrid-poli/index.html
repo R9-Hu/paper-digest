@@ -5594,7 +5594,7 @@
 <li>YAML-based modular architecture decoupling Environment/Tools/Agent for automated synthesis and reuse</li>
 <li>Dual-paradigm agent generation (Workflow + Meta-Agent) with automated Python tool synthesis (&gt;81% executability)</li>
 <li>AgentGen-80 benchmark (80 task descriptions) for evaluating automated agent generation quality</li>
-<li>Training-free GRPO (Agent Practice): in-context experience accumulation without gradient updates, ~$18 cost vs. ~$10K for RL baselines</li>
+<li>Training-free GRPO (Agent Practice): in-context experience accumulation without gradient updates, ~<span class="arithmatex">\(18 cost vs. ~\)</span>10K for RL baselines</li>
 <li>Agent RL pipeline: 40% iteration speedup, stable 128-GPU scaling, entropy-explosion mitigations</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
@@ -5602,7 +5602,7 @@
 <li><strong>WebWalkerQA</strong> (680 Qs): 71.47% pass@1 with open-weight DeepSeek-V3 models</li>
 <li><strong>GAIA text-only</strong> (466 Qs): 72.8% pass@1</li>
 <li><strong>AgentGen-80</strong> automated generation: Workflow mode 100% config validity / 81.25% tool executability / 65% task completion; Meta-Agent mode 98.75% / 82.50% / 68.75%</li>
-<li><strong>Agent Practice (DeepSeek-V3.1-Terminus, Mean@32)</strong>: AIME 2024: 80.0% → 82.7% (+2.7%); AIME 2025: 67.9% → 73.3% (+5.4%), using 100 samples, ~$18 cost (vs. ~$10K for ReTool/SimpleTIR on Qwen2.5-32B)</li>
+<li><strong>Agent Practice (DeepSeek-V3.1-Terminus, Mean@32)</strong>: AIME 2024: 80.0% → 82.7% (+2.7%); AIME 2025: 67.9% → 73.3% (+5.4%), using 100 samples, ~<span class="arithmatex">\(18 cost (vs. ~\)</span>10K for ReTool/SimpleTIR on Qwen2.5-32B)</li>
 <li><strong>Agent RL (Qwen2.5-7B)</strong>: AIME 2024: 10% → 45% (+35%); AIME 2025: 9% → 31% (+22%); search QA gains of +8–21% across TriviaQA, PopQA, NaturalQuestions, MuSiQue, HotpotQA, Bamboogle, 2WikiMultiHop; 40% training iteration speedup vs. Agent-Lightning v0.2.2</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
@@ -5678,6 +5678,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

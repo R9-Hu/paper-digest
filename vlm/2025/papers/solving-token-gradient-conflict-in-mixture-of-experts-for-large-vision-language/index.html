@@ -5582,10 +5582,10 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>MoE routers in LVLMs (e.g., MoE-LLaVA) dispatch tokens based on learned routing scores, but offer no mechanism to prevent tokens with opposing parameter-update directions from being co-assigned to the same expert. Prior approaches address data interference at the sample level (via instruction embeddings or task labels), which cannot resolve intra-sample token-level conflicts (e.g., visual vs. text tokens within the same example pulling an expert's weights in opposing directions).</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Conflicting Token Identification:</strong> After a forward pass, STGC performs a backward pass through only the expert layers (no parameter update) to compute per-token gradients $g_n = \nabla_{\theta_{e_i}} L_n$. It computes the mean expert gradient $g_{\text{mean}}$ and flags token $t_n$ as conflicting when $\cos(g_n, g_{\text{mean}}) &lt; \tau$ (default $\tau = 0$). Partial-parameter gradients are used as a proxy to reduce GPU memory overhead.</p>
-<p><strong>Conflict Elimination Loss (LCEL):</strong> For each identified conflicting token $t_n$ currently in expert $e_{id}$, the router logits are inverted ($z' = -z$), softmax is recomputed, and a cross-entropy loss penalizes high routing probability to the current expert, pushing the router toward other experts:
-$$\mathcal{L}<em _text_all="\text{all">{\text{CEL}} = \frac{1}{N</em> \sum_n \sum_i \log(p'}} \cdot E<em _text_moe="\text{moe">{\text{moe}}(t_n)_i) \cdot q</em>(t_n)_i$$}</p>
-<p><strong>Total loss:</strong> $\mathcal{L}<em _text_main="\text{main">{\text{total}} = \mathcal{L}</em>}} + \alpha \mathcal{L<em _text_CEL="\text{CEL">{\text{aux}} + \beta \mathcal{L}</em>$ is the standard load-balancing loss. Applied only during the instruction-tuning stage.}}$, where $\mathcal{L}_{\text{aux}</p>
+<p><strong>Conflicting Token Identification:</strong> After a forward pass, STGC performs a backward pass through only the expert layers (no parameter update) to compute per-token gradients <span class="arithmatex">\(g_n = \nabla_{\theta_{e_i}} L_n\)</span>. It computes the mean expert gradient <span class="arithmatex">\(g_{\text{mean}}\)</span> and flags token <span class="arithmatex">\(t_n\)</span> as conflicting when <span class="arithmatex">\(\cos(g_n, g_{\text{mean}}) &lt; \tau\)</span> (default <span class="arithmatex">\(\tau = 0\)</span>). Partial-parameter gradients are used as a proxy to reduce GPU memory overhead.</p>
+<p><strong>Conflict Elimination Loss (LCEL):</strong> For each identified conflicting token <span class="arithmatex">\(t_n\)</span> currently in expert <span class="arithmatex">\(e_{id}\)</span>, the router logits are inverted (<span class="arithmatex">\(z' = -z\)</span>), softmax is recomputed, and a cross-entropy loss penalizes high routing probability to the current expert, pushing the router toward other experts:
+$<span class="arithmatex">\(\mathcal{L}_{\text{CEL}} = \frac{1}{N_{\text{all}} \cdot E} \sum_n \sum_i \log(p'_{\text{moe}}(t_n)_i) \cdot q_{\text{moe}}(t_n)_i\)</span>$</p>
+<p><strong>Total loss:</strong> <span class="arithmatex">\(\mathcal{L}_{\text{total}} = \mathcal{L}_{\text{main}} + \alpha \mathcal{L}_{\text{aux}} + \beta \mathcal{L}_{\text{CEL}}\)</span>, where <span class="arithmatex">\(\mathcal{L}_{\text{aux}}\)</span> is the standard load-balancing loss. Applied only during the instruction-tuning stage.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Token-level gradient-based definition of conflicting tokens, replacing embedding- or task-label-based sample-level interference proxies.</li>
@@ -5674,6 +5674,10 @@ $$\mathcal{L}<em _text_all="\text{all">{\text{CEL}} = \frac{1}{N</em> \sum_n \su
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

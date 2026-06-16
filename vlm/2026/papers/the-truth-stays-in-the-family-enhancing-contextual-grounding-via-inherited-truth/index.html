@@ -5730,9 +5730,9 @@
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p><strong>Truth Score measurement:</strong> For each attention head, a linear binary probe is trained on activations at the final answer token to classify whether the head output reflects context-faithful (truthful) vs. hallucinated responses, given input structured as {context, question, answer}. Validation accuracy of this probe is the head's Truth Score.</p>
 <p><strong>Inheritance analysis:</strong> Truth Score distributions are compared across model families (Vicuna-7B → LLaVA-1.5/LLaVA-NeXT; Qwen2.5 → Qwen2.5-VL-Instruct/Qwen2.5-VL-Omni) using Pearson correlation, both with matched and mismatched probing datasets/modalities. Layer-wise Frobenius norm of weight differences quantifies parameter drift.</p>
-<p><strong>TruthProbe soft gating:</strong> At each Transformer layer $l$, the output of each attention head $h$ is scaled before the residual addition:
-$$x^{l+1} = x^l + \text{Concat}_{h=1}^{H}(g_h^l \cdot o_h^l), \quad g_h^l = 1 + \lambda \cdot \text{norm}(S)$$
-where $S$ is the head's Truth Score. This amplifies high-truthfulness heads while preserving all heads' contributions. Truth Scores from the base LLM are applied directly ("plug-and-play") to downstream MLLMs without re-probing.</p>
+<p><strong>TruthProbe soft gating:</strong> At each Transformer layer <span class="arithmatex">\(l\)</span>, the output of each attention head <span class="arithmatex">\(h\)</span> is scaled before the residual addition:
+$<span class="arithmatex">\(x^{l+1} = x^l + \text{Concat}_{h=1}^{H}(g_h^l \cdot o_h^l), \quad g_h^l = 1 + \lambda \cdot \text{norm}(S)\)</span>$
+where <span class="arithmatex">\(S\)</span> is the head's Truth Score. This amplifies high-truthfulness heads while preserving all heads' contributions. Truth Scores from the base LLM are applied directly ("plug-and-play") to downstream MLLMs without re-probing.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Defines head-level Context-Truthfulness Scores (Truth Scores) via linear probing on final-token activations.</li>
@@ -5757,7 +5757,7 @@ where $S$ is the head's Truth Score. This amplifies high-truthfulness heads whil
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Does not fully eliminate hallucinations; cautions against high-stakes deployment without human oversight.</li>
-<li>Normalization method for $\lambda$ must be tuned per benchmark (centered normalization for HaluEval/CHAIR, min-max for POPE), introducing a hyperparameter dependency.</li>
+<li>Normalization method for <span class="arithmatex">\(\lambda\)</span> must be tuned per benchmark (centered normalization for HaluEval/CHAIR, min-max for POPE), introducing a hyperparameter dependency.</li>
 <li>Small regression observed in some configurations (e.g., LLaVA-1.5 POPE COCO Acc: 86.9 → 86.7 with TruthProbeLLM; Qwen2.5-VL-Omni CHAIR_I slightly worsens with TruthProbeLLM).</li>
 <li>Probing requires a labeled subset of truthfulness data (292 samples for LLMs, 2,726 for MLLMs), though modest.</li>
 <li>Evaluated on a limited set of benchmarks; broader generalization (e.g., to open-ended VQA or dense captioning) is not demonstrated in the main text.</li>
@@ -5827,6 +5827,10 @@ where $S$ is the head's Truth Score. This amplifies high-truthfulness heads whil
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5585,7 +5585,7 @@
 <h1 id="coffeebench-benchmarking-long-horizon-llm-agents-in-heterogeneous-multi-agent-economies">CoffeeBench: Benchmarking Long-Horizon LLM Agents in Heterogeneous Multi-Agent Economies<a class="headerlink" href="#coffeebench-benchmarking-long-horizon-llm-agents-in-heterogeneous-multi-agent-economies" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-15 12:04 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="https://arxiv.org/abs/2606.16613">link</a></em></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>CoffeeBench is a 90-day multi-agent economic simulation where an evaluated LLM controls a coffee roaster competing against five heterogeneous firms (farmers, roasters, retailers) that also run on LLMs. It tests long-horizon planning, negotiation, and supply-chain coordination in a setting with cash flow, inventory spoilage, and bankruptcy risk. GPT-5.5 achieves the highest net income (+$3,109), while Claude Haiku 4.5 enters a pathological "idle-drift" failure mode averaging −$630.</p>
+<p>CoffeeBench is a 90-day multi-agent economic simulation where an evaluated LLM controls a coffee roaster competing against five heterogeneous firms (farmers, roasters, retailers) that also run on LLMs. It tests long-horizon planning, negotiation, and supply-chain coordination in a setting with cash flow, inventory spoilage, and bankruptcy risk. GPT-5.5 achieves the highest net income (+<span class="arithmatex">\(3,109), while Claude Haiku 4.5 enters a pathological "idle-drift" failure mode averaging −\)</span>630.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing long-horizon agent benchmarks (e.g., Vending-Bench) evaluate either a single autonomous firm or multiple homogeneous agents, missing the heterogeneous role structure of real economies. No prior benchmark requires agents to simultaneously compete horizontally (within supply-chain tier) and coordinate vertically (across tiers) over multi-month horizons with economic constraints like bankruptcy, credit default, and spoilage.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
@@ -5604,12 +5604,12 @@
 <li><strong>Claude Opus 4.7</strong>: +$2,782 ±2,263; 88 ±13 DMs; second-best performer.</li>
 <li><strong>Claude Sonnet 4.6</strong>: +$2,236 ±1,489; 151 ±25 DMs; 0 idle days.</li>
 <li><strong>Gemini 3.1 Pro</strong>: +$1,695 ±508; only 16 DMs but reactive (90 read_message() calls); efficient (lowest spoilage/rev at 1.6%).</li>
-<li><strong>GLM-5.1</strong>: +$1,597 ±1,199; highest revenue ($16,962) but weak margin conversion.</li>
-<li><strong>Kimi K2.6</strong>: +$454 ±1,420; high tool-call volume comparable to top performers but poor profitability from low DMs (14) and weak pricing ($10.8/kg commodity vs. $12.5 for GPT-5.5).</li>
+<li><strong>GLM-5.1</strong>: +<span class="arithmatex">\(1,597 ±1,199; highest revenue (\)</span>16,962) but weak margin conversion.</li>
+<li><strong>Kimi K2.6</strong>: +<span class="arithmatex">\(454 ±1,420; high tool-call volume comparable to top performers but poor profitability from low DMs (14) and weak pricing (\)</span>10.8/kg commodity vs. $12.5 for GPT-5.5).</li>
 <li><strong>Claude Haiku 4.5</strong>: −$630 ±1,745; 40 ±22 idle days; highest spoilage/rev (3.5%); clear outlier.</li>
 <li><strong>HeuristicRoaster</strong> (rule-based): −$1,931 ±429.</li>
 <li><strong>PassiveRoaster</strong> (always wait): −$2,765 ±0.</li>
-<li>Best result (GPT-5.5 +$3,109) reaches only ~13% of estimated loose performance ceiling (~$23,800), indicating substantial headroom.</li>
+<li>Best result (GPT-5.5 +<span class="arithmatex">\(3,109) reaches only ~13% of estimated loose performance ceiling (~\)</span>23,800), indicating substantial headroom.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5683,6 +5683,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

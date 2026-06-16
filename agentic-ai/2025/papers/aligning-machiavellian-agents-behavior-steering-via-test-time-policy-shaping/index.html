@@ -5576,8 +5576,8 @@
 <p>RL agents trained to maximize reward develop Machiavellian behaviors (deception, killing, power-seeking) misaligned with human values. Existing remedies — reward shaping, RLHF, training-time policy shaping (RL-AC) — require retraining for each new alignment target, are environment-specific, and cannot flexibly trade off individual ethical attributes without restarting training. A post-hoc, modular alignment mechanism that works across diverse environments without touching agent weights is absent.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>At test time, fine-tuned ModernBERT classifiers predict the probability that each candidate action in a scenario involves a given ethical attribute (e.g., killing, deception, power-seeking). These classifiers are trained on MACHIAVELLI training-split scenario-action pairs with balanced sampling and are separate per attribute. The shaped policy is a convex interpolation:</p>
-<p>$$\pi(a) = (1-\alpha)\,P_{\text{RL}}(a) + \alpha\,P_{\text{attribute}}(a)$$</p>
-<p>where $P_{\text{RL}}$ is derived from the DRRN Q-values via softmax, and $P_{\text{attribute}}$ is the average softmax over N attribute classifiers (sign-flipped for minimization targets). The scalar $\alpha \in [0,1]$ controls alignment strength; no agent weights are modified. The same classifiers generalize across all 10 test games despite being trained on disjoint training games.</p>
+<div class="arithmatex">\[\pi(a) = (1-\alpha)\,P_{\text{RL}}(a) + \alpha\,P_{\text{attribute}}(a)\]</div>
+<p>where <span class="arithmatex">\(P_{\text{RL}}\)</span> is derived from the DRRN Q-values via softmax, and <span class="arithmatex">\(P_{\text{attribute}}\)</span> is the average softmax over N attribute classifiers (sign-flipped for minimization targets). The scalar <span class="arithmatex">\(\alpha \in [0,1]\)</span> controls alignment strength; no agent weights are modified. The same classifiers generalize across all 10 test games despite being trained on disjoint training games.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Test-time policy shaping via classifier-guided action-probability interpolation — no agent retraining required, generalizes across RL environments.</li>
@@ -5669,6 +5669,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

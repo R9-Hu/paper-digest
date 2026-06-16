@@ -5597,7 +5597,7 @@
 <p><strong>Image-to-Text (I2T) Score:</strong> For tokens where objects first appear (to avoid text-carried context), the ratio of attention concentrated on semantically aligned image regions (for present objects) vs. diffuse attention over the full image (for absent objects) identifies heads that genuinely ground visual content.</p>
 </li>
 <li>
-<p><strong>Multi-path intervention:</strong> Top-ranked T2T and I2T heads are collected into suppression set $Z^-$ (hallucination-promoting T2T heads) and amplification set $Z^+$ (hallucination-suppressing T2T heads ∪ image-grounding I2T heads). During inference, MHA outputs are scaled by $\gamma^- = 0$ or $\gamma^+ = 2$ for heads in each set, with all others unchanged. The pathway selection (I2T input vs. output text heads) is adapted to question format (discriminative vs. generative).</p>
+<p><strong>Multi-path intervention:</strong> Top-ranked T2T and I2T heads are collected into suppression set <span class="arithmatex">\(Z^-\)</span> (hallucination-promoting T2T heads) and amplification set <span class="arithmatex">\(Z^+\)</span> (hallucination-suppressing T2T heads ∪ image-grounding I2T heads). During inference, MHA outputs are scaled by <span class="arithmatex">\(\gamma^- = 0\)</span> or <span class="arithmatex">\(\gamma^+ = 2\)</span> for heads in each set, with all others unchanged. The pathway selection (I2T input vs. output text heads) is adapted to question format (discriminative vs. generative).</p>
 </li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5621,8 +5621,8 @@
 <ul>
 <li>Primary experiments are conducted on LLaVA-v1.5-7B; results for Qwen-VL-Chat and Qwen2.5-VL-7B/72B are in the appendix only.</li>
 <li>The MCQ-POPE benchmark is derived from POPE and shares its object-centric, binary-presence framing; broader question types (e.g., spatial reasoning, counting) are not directly evaluated.</li>
-<li>Hyperparameters ($\xi$, $\zeta$, $\gamma^+$, $\gamma^-$) are chosen per-format class (discriminative vs. generative) rather than per-benchmark, which may leave per-task performance sub-optimal.</li>
-<li>The I2T head identification requires object-presence ground truth and region annotations (e.g., COCO masks) to define aligned regions $M_r$, which may not generalize trivially to datasets without such annotations.</li>
+<li>Hyperparameters (<span class="arithmatex">\(\xi\)</span>, <span class="arithmatex">\(\zeta\)</span>, <span class="arithmatex">\(\gamma^+\)</span>, <span class="arithmatex">\(\gamma^-\)</span>) are chosen per-format class (discriminative vs. generative) rather than per-benchmark, which may leave per-task performance sub-optimal.</li>
+<li>The I2T head identification requires object-presence ground truth and region annotations (e.g., COCO masks) to define aligned regions <span class="arithmatex">\(M_r\)</span>, which may not generalize trivially to datasets without such annotations.</li>
 <li>The hallucination detection used for open-ended T2T scoring (Alg. 2) relies on an external judge to label tokens, introducing a dependency on the quality of that oracle.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
@@ -5689,6 +5689,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

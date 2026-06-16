@@ -5582,11 +5582,11 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Standard offline Q-learning methods require regressing value functions via temporal-difference (TD) error, which is unstable at scale and necessitates separately initialized value heads—discarding the likelihood-based parameterization of pretrained LLMs/VLMs. This mismatch between maximum-likelihood pretraining and Q-value regression causes existing value-based RL methods to underperform SFT on multi-turn language tasks, while SFT itself cannot stitch suboptimal trajectories into a better policy.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>Q-SFT reframes Q-learning as a weighted cross-entropy (WCE) loss over the model's existing token distribution. The key insight: if token probabilities are trained with weights equal to Bellman backup values $\hat{B}^<em> p_{\bar\theta}(a|s) = r + \gamma \max_{a'} \frac{p_{\bar\theta}(a'|s')}{\pi_\beta(a'|s')}$, the resulting likelihoods $\hat{p}_\theta(a|s)$ provably satisfy $Q^</em>(s,a)\pi_\beta(a|s) \leq \hat{p}<em>\theta(a|s) \leq Q^*(s,a)$—i.e., they are conservative Q-value estimates. No new heads or weight resets are needed; the value model is initialized directly from pretrained logits. A separately trained behavior clone $\pi</em>\phi$ (standard SFT) is used for policy extraction at inference time: $\hat\pi(a|s) \propto \pi_\phi(a|s)\exp(\beta \hat{p}_\theta(a|s))$. The label-smoothing structure of the WCE loss (residual weight distributed equally over non-selected actions) provides implicit regularization against out-of-distribution actions.</p>
+<p>Q-SFT reframes Q-learning as a weighted cross-entropy (WCE) loss over the model's existing token distribution. The key insight: if token probabilities are trained with weights equal to Bellman backup values <span class="arithmatex">\(\hat{B}^* p_{\bar\theta}(a|s) = r + \gamma \max_{a'} \frac{p_{\bar\theta}(a'|s')}{\pi_\beta(a'|s')}\)</span>, the resulting likelihoods <span class="arithmatex">\(\hat{p}_\theta(a|s)\)</span> provably satisfy <span class="arithmatex">\(Q^*(s,a)\pi_\beta(a|s) \leq \hat{p}_\theta(a|s) \leq Q^*(s,a)\)</span>—i.e., they are conservative Q-value estimates. No new heads or weight resets are needed; the value model is initialized directly from pretrained logits. A separately trained behavior clone <span class="arithmatex">\(\pi_\phi\)</span> (standard SFT) is used for policy extraction at inference time: <span class="arithmatex">\(\hat\pi(a|s) \propto \pi_\phi(a|s)\exp(\beta \hat{p}_\theta(a|s))\)</span>. The label-smoothing structure of the WCE loss (residual weight distributed equally over non-selected actions) provides implicit regularization against out-of-distribution actions.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First value-based offline RL algorithm that fine-tunes LLMs/VLMs without any architectural modification (no value heads, no weight reinitialization).</li>
-<li>Theoretical proof that the WCE objective produces conservative Q-value estimates bounded by $[\pi_\beta Q^<em>, Q^</em>]$, with performance bounds competitive with state-of-the-art offline RL.</li>
+<li>Theoretical proof that the WCE objective produces conservative Q-value estimates bounded by <span class="arithmatex">\([\pi_\beta Q^*, Q^*]\)</span>, with performance bounds competitive with state-of-the-art offline RL.</li>
 <li>Empirical demonstration across six task types: language games (Chess, Wordle, 20 Questions), WebShop, VLM navigation (ALFWorld with LLaVA-1.6), and robotic manipulation.</li>
 <li>Scaling analysis showing Q-SFT retains pretrained knowledge better than ILQL as model size grows (GPT2-medium → large → xl).</li>
 </ul>
@@ -5602,8 +5602,8 @@
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Inference-time policy extraction requires both $\pi_\phi$ and $\hat{p}_\theta$ to be available simultaneously, doubling memory/compute relative to standard SFT.</li>
-<li>Bellman backup weights require access to $\pi_\beta(a'|s')$ estimates, which must themselves be approximated; errors in the behavior policy clone propagate into value estimates.</li>
+<li>Inference-time policy extraction requires both <span class="arithmatex">\(\pi_\phi\)</span> and <span class="arithmatex">\(\hat{p}_\theta\)</span> to be available simultaneously, doubling memory/compute relative to standard SFT.</li>
+<li>Bellman backup weights require access to <span class="arithmatex">\(\pi_\beta(a'|s')\)</span> estimates, which must themselves be approximated; errors in the behavior policy clone propagate into value estimates.</li>
 <li>Evaluated on GPT2-medium (345M) and LLaVA-1.6; scaling to frontier-scale models (billions+) is not empirically validated.</li>
 <li>Online RL extension is identified as future work; the method is offline-only.</li>
 <li>Chess and Wordle experiments use randomly initialized weights, removing the pretraining advantage the method theoretically provides.</li>
@@ -5672,6 +5672,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

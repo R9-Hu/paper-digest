@@ -5603,8 +5603,8 @@
 </li>
 <li>
 <p><strong>Curiosity-Driven RL.</strong> Standard GRPO with a binary correctness reward causes the warm-started model to revert to textual reasoning ("learning trap") because early visual operation failures yield lower expected return. To break this cycle, a modified reward is used:
-$$r'(x,y) = r(x,y) + \alpha \cdot r_{\text{curiosity}}(x,y) + \beta \cdot r_{\text{penalty}}(y)$$
-where $r_{\text{curiosity}}$ provides intrinsic bonus when the per-query Rate of Pixel-space Reasoning (RaPR) falls below threshold $H$, and $r_{\text{penalty}}$ penalizes responses exceeding $N$ visual operations. This is derived via Lagrangian relaxation of a constrained optimization problem. The curiosity bonus naturally diminishes as RaPR rises, preventing reward hacking.</p>
+$<span class="arithmatex">\(r'(x,y) = r(x,y) + \alpha \cdot r_{\text{curiosity}}(x,y) + \beta \cdot r_{\text{penalty}}(y)\)</span>$
+where <span class="arithmatex">\(r_{\text{curiosity}}\)</span> provides intrinsic bonus when the per-query Rate of Pixel-space Reasoning (RaPR) falls below threshold <span class="arithmatex">\(H\)</span>, and <span class="arithmatex">\(r_{\text{penalty}}\)</span> penalizes responses exceeding <span class="arithmatex">\(N\)</span> visual operations. This is derived via Lagrangian relaxation of a constrained optimization problem. The curiosity bonus naturally diminishes as RaPR rises, preventing reward hacking.</p>
 </li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5627,7 +5627,7 @@ where $r_{\text{curiosity}}$ provides intrinsic bonus when the per-query Rate of
 <ul>
 <li>Only two visual operations implemented (<code>zoom-in</code> for images, <code>select-frame</code> for video); insufficient for tasks requiring depth estimation, image search, OCR tools, or other modalities.</li>
 <li>Training data size is modest (7,500 SFT + 15,000 RL queries); scalability to broader operation sets is asserted but not demonstrated.</li>
-<li>Curiosity hyperparameters ($H$, $N$, $\alpha$, $\beta$) are set manually rather than learned via dual gradient descent, requiring per-dataset tuning.</li>
+<li>Curiosity hyperparameters (<span class="arithmatex">\(H\)</span>, <span class="arithmatex">\(N\)</span>, <span class="arithmatex">\(\alpha\)</span>, <span class="arithmatex">\(\beta\)</span>) are set manually rather than learned via dual gradient descent, requiring per-dataset tuning.</li>
 <li>The "no-correction model" ablation reveals a reward hacking failure mode (visual operations executed superficially while textual reasoning drives the answer), suggesting the framework's robustness depends critically on self-correction data quality.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
@@ -5694,6 +5694,10 @@ where $r_{\text{curiosity}}$ provides intrinsic bonus when the per-query Rate of
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5578,13 +5578,13 @@
 <p>MSTAR is built on a SigLIP ViT-Base-512 vision encoder and a BLIP-2 multi-modal encoder (Q-Former). Three core modules are stacked on top:</p>
 <ol>
 <li>
-<p><strong>Progressive Vision Embedding (PVE):</strong> At each iteration $t$, the cross-attention map $C_{t-1}$ from the Q-Former is binarized via a thresholding + watershed + connected-components pipeline ($\sigma$) and inverted into a binary mask $M_{t-1}$. A masked multi-head self-attention (Salient Attention Shift, SAS) then suppresses the already-attended salient regions in image features $f_{t-1}$, forcing subsequent Q-Former queries onto neglected regions. Vision embeddings from $T+1$ iterations are concatenated: $E_V \in \mathbb{R}^{(T+1)Q \times d}$.</p>
+<p><strong>Progressive Vision Embedding (PVE):</strong> At each iteration <span class="arithmatex">\(t\)</span>, the cross-attention map <span class="arithmatex">\(C_{t-1}\)</span> from the Q-Former is binarized via a thresholding + watershed + connected-components pipeline (<span class="arithmatex">\(\sigma\)</span>) and inverted into a binary mask <span class="arithmatex">\(M_{t-1}\)</span>. A masked multi-head self-attention (Salient Attention Shift, SAS) then suppresses the already-attended salient regions in image features <span class="arithmatex">\(f_{t-1}\)</span>, forcing subsequent Q-Former queries onto neglected regions. Vision embeddings from <span class="arithmatex">\(T+1\)</span> iterations are concatenated: <span class="arithmatex">\(E_V \in \mathbb{R}^{(T+1)Q \times d}\)</span>.</p>
 </li>
 <li>
 <p><strong>Style-aware Instructions:</strong> Each query type (word/phrase/combined/semantic) is prepended with a short type-specific instruction token before encoding with the Q-Former, embedding queries into distinct representation subspaces without separate encoders.</p>
 </li>
 <li>
-<p><strong>Multi-Instance Matching (MIM):</strong> Two parallel branches handle alignment. For single-word queries, Hungarian matching assigns one-to-one correspondences between word embeddings $E_w$ and vision embedding slots. For multi-word queries, a lightweight cross-attention layer aggregates vision features under text constraint. Training uses dual contrastive loss $L_c = \alpha L_{t2v} + L_{v2t}$ (with $\alpha=1.5$ to balance query/image counts) plus image-text matching loss $L_m$. Inference uses cosine similarity ranking followed by re-ranking of top 2% with the full Q-Former.</p>
+<p><strong>Multi-Instance Matching (MIM):</strong> Two parallel branches handle alignment. For single-word queries, Hungarian matching assigns one-to-one correspondences between word embeddings <span class="arithmatex">\(E_w\)</span> and vision embedding slots. For multi-word queries, a lightweight cross-attention layer aggregates vision features under text constraint. Training uses dual contrastive loss <span class="arithmatex">\(L_c = \alpha L_{t2v} + L_{v2t}\)</span> (with <span class="arithmatex">\(\alpha=1.5\)</span> to balance query/image counts) plus image-text matching loss <span class="arithmatex">\(L_m\)</span>. Inference uses cosine similarity ranking followed by re-ranking of top 2% with the full Q-Former.</p>
 </li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5609,7 +5609,7 @@
 <ul>
 <li>Still lags behind box-based methods on extremely small and densely packed text instances, where precise positional supervision provides an irreplaceable advantage.</li>
 <li>Re-ranking the top 2% introduces a secondary inference pass, reducing throughput (14.2 → 6.9 FPS with re-ranking).</li>
-<li>PVE iterative steps beyond $T=1$ improve accuracy but reduce speed; the paper fixes $T=1$ as a trade-off.</li>
+<li>PVE iterative steps beyond <span class="arithmatex">\(T=1\)</span> improve accuracy but reduce speed; the paper fixes <span class="arithmatex">\(T=1\)</span> as a trade-off.</li>
 <li>MQTR semantic subset is small (1,000 images, 25 queries) and manually collected, potentially limiting generalization assessment for semantic retrieval.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
@@ -5676,6 +5676,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

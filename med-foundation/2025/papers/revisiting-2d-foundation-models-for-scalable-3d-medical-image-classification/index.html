@@ -5738,7 +5738,7 @@
 <p>AnyMC3D keeps a single 2D ViT backbone (DaViT-365M, SigLIP-432M, or ViT-L-300M) frozen and attaches task-specific plugins (~1M params each):</p>
 <ul>
 <li><strong>In-plane encoding</strong>: LoRA adapters (rank=8, α=16) applied to patch embedding and all self-attention projections; each 3D slice is encoded independently to produce a CLS-token embedding.</li>
-<li><strong>Slice aggregation</strong>: A learnable task query $\mathbf{q}_t$ performs query-based attention pooling over the stack of slice embeddings in a permutation-invariant manner (no ordered RNN/Transformer), producing a volume embedding fed to a classification head.</li>
+<li><strong>Slice aggregation</strong>: A learnable task query <span class="arithmatex">\(\mathbf{q}_t\)</span> performs query-based attention pooling over the stack of slice embeddings in a permutation-invariant manner (no ordered RNN/Transformer), producing a volume embedding fed to a classification head.</li>
 <li><strong>Multi-view extension</strong>: View-specific LoRA adapters and queries encode each MRI view/sequence separately; a second attention pooling fuses view embeddings for patient-level prediction.</li>
 <li><strong>Auxiliary pixel-level supervision</strong>: Patch tokens from the last ViT block are reshaped into a pseudo-3D feature volume and decoded by a lightweight 3D decoder to pixel-wise logits; segmentation loss is added during training on the subset of labeled volumes, then removed at inference.</li>
 <li><strong>Interpretable heatmaps</strong>: Per-slice class-to-patch attention maps (averaged over heads, upsampled) are weighted by slice importance scores from the task query and stacked to form a 3D saliency map.</li>
@@ -5835,6 +5835,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

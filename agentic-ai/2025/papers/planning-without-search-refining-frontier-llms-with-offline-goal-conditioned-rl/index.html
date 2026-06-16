@@ -5590,7 +5590,7 @@
 <ul>
 <li><strong>WebShop:</strong> Score 78.2 / SR 48% — beats Agent Q n=30 (77.1/44%), LATS n=30 (74.9/44%), ArCHeR (62.3/32%), ReAct (55.1/27%). Inference: 5s vs. 46s for Agent Q n=30.</li>
 <li><strong>AvalonBench (Merlin win rate):</strong> 47% — beats Strategist n=30 (42%), LATS n=30 (38%), Reflexion (26%), ReAct (21%). Inference: 6s vs. 62s for Strategist n=30.</li>
-<li><strong>Persuasion (avg. donation):</strong> $0.87 — beats GDP-Zero n=30 ($0.78), Reflexion ($0.54), ReAct ($0.54). Baseline dataset avg: $0.21.</li>
+<li><strong>Persuasion (avg. donation):</strong> <span class="arithmatex">\(0.87 — beats GDP-Zero n=30 (\)</span>0.78), Reflexion (<span class="arithmatex">\(0.54), ReAct (\)</span>0.54). Baseline dataset avg: $0.21.</li>
 <li><strong>Ablations:</strong> Removing goal-conditioning (scalar Q) drops to ReAct-level performance (78.2→55.4 score, 47→25% win rate). Removing refinement in favor of best-of-5 selection also collapses to near-ReAct performance. Both components are necessary.</li>
 <li>Uses &lt;10% the inference budget of the next-best task-specific methods.</li>
 </ul>
@@ -5665,6 +5665,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

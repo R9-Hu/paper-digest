@@ -5592,13 +5592,13 @@
 <p>DAMO operates in two coupled mechanisms applied during each autoregressive forward pass, with no additional training:</p>
 <ol>
 <li>
-<p><strong>Activation Momentum (AM):</strong> At each transformer layer $j$, instead of directly adding the raw activation $f_j(h_j)$ to the hidden state, DAMO maintains a momentum buffer $v^{j+1} = \beta v^j + (1-\beta)\nabla h^{j+1}$ (where $\nabla h^{j+1} = f_j(h_j)$ is the raw activation). The hidden state update becomes $h^{j+1} = h^j + v^{j+1}$, smoothing layer-to-layer updates and preserving early-layer visual context.</p>
+<p><strong>Activation Momentum (AM):</strong> At each transformer layer <span class="arithmatex">\(j\)</span>, instead of directly adding the raw activation <span class="arithmatex">\(f_j(h_j)\)</span> to the hidden state, DAMO maintains a momentum buffer <span class="arithmatex">\(v^{j+1} = \beta v^j + (1-\beta)\nabla h^{j+1}\)</span> (where <span class="arithmatex">\(\nabla h^{j+1} = f_j(h_j)\)</span> is the raw activation). The hidden state update becomes <span class="arithmatex">\(h^{j+1} = h^j + v^{j+1}\)</span>, smoothing layer-to-layer updates and preserving early-layer visual context.</p>
 </li>
 <li>
-<p><strong>Adaptive Activation Refinement:</strong> Rather than applying AM from layer 0 (which hurts early visual encoding), DAMO monitors the early-exit probability distribution $P^j = \text{softmax}(\phi(h^j))$ and tracks its momentum $\nabla\hat{P}^j$. When the cosine similarity between the current distribution shift $\nabla P^j$ and the momentum $\nabla\hat{P}^j$ falls below threshold $\tau$, a hallucination surge is detected and AM is activated for all remaining layers.</p>
+<p><strong>Adaptive Activation Refinement:</strong> Rather than applying AM from layer 0 (which hurts early visual encoding), DAMO monitors the early-exit probability distribution <span class="arithmatex">\(P^j = \text{softmax}(\phi(h^j))\)</span> and tracks its momentum <span class="arithmatex">\(\nabla\hat{P}^j\)</span>. When the cosine similarity between the current distribution shift <span class="arithmatex">\(\nabla P^j\)</span> and the momentum <span class="arithmatex">\(\nabla\hat{P}^j\)</span> falls below threshold <span class="arithmatex">\(\tau\)</span>, a hallucination surge is detected and AM is activated for all remaining layers.</p>
 </li>
 <li>
-<p><strong>Noise-resistant coefficient switching:</strong> Once the surge is detected, the trade-off coefficient switches from $\beta_1$ (lower, favoring current activations) to $\beta_2 &gt; \beta_1$ (higher, preserving historical momentum) to prevent hallucinatory late-layer activations from corrupting the momentum buffer.</p>
+<p><strong>Noise-resistant coefficient switching:</strong> Once the surge is detected, the trade-off coefficient switches from <span class="arithmatex">\(\beta_1\)</span> (lower, favoring current activations) to <span class="arithmatex">\(\beta_2 &gt; \beta_1\)</span> (higher, preserving historical momentum) to prevent hallucinatory late-layer activations from corrupting the momentum buffer.</p>
 </li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5606,7 +5606,7 @@
 <li>Empirical characterization of hallucinations as <strong>localized late-layer surges</strong>: 75% of hallucinated samples show the correct answer peaking mid-network before being suppressed by the final layers.</li>
 <li><strong>DAMO</strong>: a momentum-based decoding method that corrects hidden states during the forward pass—distinct from all prior logit-contrastive approaches.</li>
 <li><strong>Adaptive activation refinement</strong>: a data-driven, per-sample trigger for when to begin momentum correction, outperforming any fixed starting layer.</li>
-<li><strong>Adaptive coefficient adjustment</strong> ($\beta_1 \to \beta_2$ switching) that makes the momentum buffer resistant to noise injected by hallucinatory layers.</li>
+<li><strong>Adaptive coefficient adjustment</strong> (<span class="arithmatex">\(\beta_1 \to \beta_2\)</span> switching) that makes the momentum buffer resistant to noise injected by hallucinatory layers.</li>
 <li>Demonstrated <strong>transferability to LLMs</strong> (LLaMA2-7B) with gains on TruthfulQA, FACTOR, and GSM8K.</li>
 <li>Near-identical memory footprint to regular greedy decoding (e.g., 14.6 GB vs. 22.5 GB for OPERA on LLaVA1.5).</li>
 </ul>
@@ -5621,11 +5621,11 @@
 <li><strong>LLaVA-Bench (LLaVA1.5):</strong> Overall 78.13 vs. Regular 75.22, DOLA 77.17, OPERA 64.17</li>
 <li><strong>LLaMA2-7B TruthfulQA MC1:</strong> 34.15 vs. Regular 33.66, DOLA 33.29</li>
 <li><strong>FACTOR Wiki:</strong> DAMO 57.48 vs. DOLA 56.51, Regular 56.91</li>
-<li>Adaptive coefficient switching on mPLUG-Owl2 MME: +99.8 total score improvement vs. +48.66 ($\beta_1$ only) and +90.49 ($\beta_2$ only)</li>
+<li>Adaptive coefficient switching on mPLUG-Owl2 MME: +99.8 total score improvement vs. +48.66 (<span class="arithmatex">\(\beta_1\)</span> only) and +90.49 (<span class="arithmatex">\(\beta_2\)</span> only)</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Introduces four hyperparameters ($\tau$, $\beta_1$, $\beta_2$, $\alpha$) that may require per-model tuning despite reported robustness.</li>
+<li>Introduces four hyperparameters (<span class="arithmatex">\(\tau\)</span>, <span class="arithmatex">\(\beta_1\)</span>, <span class="arithmatex">\(\beta_2\)</span>, <span class="arithmatex">\(\alpha\)</span>) that may require per-model tuning despite reported robustness.</li>
 <li>Evaluated only on 7B-parameter LVLMs; scalability to larger models (13B, 70B) is not demonstrated.</li>
 <li>The adaptive trigger relies on cosine similarity of distribution shifts, which may be brittle for models with very different layer-distribution dynamics not studied here.</li>
 <li>On TruthfulQA MC2 and CoT StrQA/GSM8K, DAMO does not consistently improve over DoLA or Regular, suggesting task-specific limitations in the LLM transfer setting.</li>
@@ -5695,6 +5695,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

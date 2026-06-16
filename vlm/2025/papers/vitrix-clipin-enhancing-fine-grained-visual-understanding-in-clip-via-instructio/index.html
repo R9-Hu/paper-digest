@@ -5585,10 +5585,10 @@
 <p><strong>Stage 1 — RoPE text encoder via knowledge distillation.</strong> Absolute positional embeddings in the CLIP text encoder are replaced with Rotary Positional Encodings (RoPE). A student encoder (RoPE) is distilled from a frozen teacher (original CLIP) using cosine-similarity loss on truncated long captions, preserving short-text capability while enabling variable-length input.</p>
 <p><strong>Stage 2 — Joint contrastive training on two complementary data sources:</strong></p>
 <ul>
-<li><em>Instruction editing hard negatives:</em> Each UltraEdit tuple (source image $I^s$, target image $I^t$, source caption $T^s$, target caption $T^t$) yields hard negative pairs $(I^s, T^t)$ and $(I^t, T^s)$. A <strong>symmetric hard negative contrastive loss</strong> $L_{HN}$ penalizes both image-to-text and text-to-image mismatches by augmenting the InfoNCE denominator with these cross-paired negatives, pushing the model to distinguish fine-grained visual-semantic differences in both directions.</li>
+<li><em>Instruction editing hard negatives:</em> Each UltraEdit tuple (source image <span class="arithmatex">\(I^s\)</span>, target image <span class="arithmatex">\(I^t\)</span>, source caption <span class="arithmatex">\(T^s\)</span>, target caption <span class="arithmatex">\(T^t\)</span>) yields hard negative pairs <span class="arithmatex">\((I^s, T^t)\)</span> and <span class="arithmatex">\((I^t, T^s)\)</span>. A <strong>symmetric hard negative contrastive loss</strong> <span class="arithmatex">\(L_{HN}\)</span> penalizes both image-to-text and text-to-image mismatches by augmenting the InfoNCE denominator with these cross-paired negatives, pushing the model to distinguish fine-grained visual-semantic differences in both directions.</li>
 <li><em>Long captions:</em> InternVL2-generated captions (~300 tokens) are used with standard InfoNCE. Original short alt-text captions are retained to preserve zero-shot classification performance.</li>
 </ul>
-<p>Overall loss: $L = \lambda_{short} L_{CL}(X, Y_{short}) + \lambda_{long} L_{CL}(X, Y_{long}) + \lambda_{HN} L_{HN}$, with $\lambda_{short}=1.0$, $\lambda_{long}=0.1$, $\lambda_{HN}=0.1$.</p>
+<p>Overall loss: <span class="arithmatex">\(L = \lambda_{short} L_{CL}(X, Y_{short}) + \lambda_{long} L_{CL}(X, Y_{long}) + \lambda_{HN} L_{HN}\)</span>, with <span class="arithmatex">\(\lambda_{short}=1.0\)</span>, <span class="arithmatex">\(\lambda_{long}=0.1\)</span>, <span class="arithmatex">\(\lambda_{HN}=0.1\)</span>.</p>
 <p>Training uses ~4M UltraEdit samples and ~18M long-caption pairs; 16× A100-80GB GPUs, AdamW, lr=1e-4.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5692,6 +5692,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

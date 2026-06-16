@@ -5575,20 +5575,20 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>In hierarchical Vision-Language-Action (VLA) frameworks, VLM-based planners must be fine-tuned on demonstrations that have been temporally segmented into sub-tasks. Existing segmenters (human annotation or heuristics such as UVD) produce sub-task boundaries that frequently deviate from the distribution of the low-level visuomotor policy's training data. This distribution mismatch causes the fine-tuned planner to issue sub-task instructions the visuomotor policy was never trained to execute, degrading long-horizon task success.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>RDD builds a vector database of sub-task intervals from the visuomotor policy's existing training set using a visual encoder (default: LIV), representing each interval as the concatenation of its start- and end-frame embeddings. Given a new demonstration, it proposes all candidate intervals and retrieves their approximate nearest neighbor in the database via Annoy (random-projection-tree ANNS). Each candidate interval is scored by an interval scoring function $\tilde{J}(I) = |I| \cdot \text{sim}(I, \tilde{I})$, where sim combines visual embedding distance and temporal duration ratio (weighted by $\alpha$). Because $\tilde{J}$ is interval-wise additive, the Principle of Optimality applies and dynamic programming finds the globally optimal partition in $O(N^2)$ (reducible to $O(N)$ when maximum sub-task length $L_{\max}$ is bounded). For OOD sub-tasks, an alternative similarity measure blends retrieval score with a UVD-based general change-point term weighted by $\beta$. Retrieved sub-task intervals are annotated with language instructions by a VLM (Gemini-1.5-flash) and used to LoRA fine-tune the high-level planner (LLaVA-based Llama3-8B) for ~5 minutes on 4 GPUs.</p>
+<p>RDD builds a vector database of sub-task intervals from the visuomotor policy's existing training set using a visual encoder (default: LIV), representing each interval as the concatenation of its start- and end-frame embeddings. Given a new demonstration, it proposes all candidate intervals and retrieves their approximate nearest neighbor in the database via Annoy (random-projection-tree ANNS). Each candidate interval is scored by an interval scoring function <span class="arithmatex">\(\tilde{J}(I) = |I| \cdot \text{sim}(I, \tilde{I})\)</span>, where sim combines visual embedding distance and temporal duration ratio (weighted by <span class="arithmatex">\(\alpha\)</span>). Because <span class="arithmatex">\(\tilde{J}\)</span> is interval-wise additive, the Principle of Optimality applies and dynamic programming finds the globally optimal partition in <span class="arithmatex">\(O(N^2)\)</span> (reducible to <span class="arithmatex">\(O(N)\)</span> when maximum sub-task length <span class="arithmatex">\(L_{\max}\)</span> is bounded). For OOD sub-tasks, an alternative similarity measure blends retrieval score with a UVD-based general change-point term weighted by <span class="arithmatex">\(\beta\)</span>. Retrieved sub-task intervals are annotated with language instructions by a VLM (Gemini-1.5-flash) and used to LoRA fine-tune the high-level planner (LLaVA-based Llama3-8B) for ~5 minutes on 4 GPUs.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First method to explicitly align the planner fine-tuning dataset with the visuomotor policy's training distribution in hierarchical VLAs.</li>
 <li>Formulation of sub-task segmentation as an optimal partitioning problem with a retrieval-grounded, interval-wise additive scoring function enabling exact DP solution.</li>
 <li>Extension to OOD sub-tasks via a hybrid similarity measure that balances retrieval alignment with general change-point detection.</li>
-<li>Demonstrated linear runtime scaling $O(N)$ when sub-task duration is bounded, with GPU-ANNS (FAISS) scalability.</li>
+<li>Demonstrated linear runtime scaling <span class="arithmatex">\(O(N)\)</span> when sub-task duration is bounded, with GPU-ANNS (FAISS) scalability.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>RLBench multi-task (13 tasks, 10 seeds):</strong> RDD 74.9% vs. UVD 71.4% vs. Uniform 71.3% vs. Expert upper bound 75.1%; avg. rank 2.2 vs. 3.0 (UVD).</li>
 <li>RDD with only 1 demonstration/task (77.9%, rank 2.0) outperforms UVD with 3 demonstrations/task (75.6%, rank 2.4), showing strong data efficiency.</li>
 <li><strong>Real-world (AgiBotWorld-Alpha, "supermarket"):</strong> RDD mIoU 0.706 vs. UVD 0.506.</li>
-<li><strong>OOD setting (RoboCerebra):</strong> RDD ($\beta$=0.10) mIoU 0.630 vs. UVD 0.598.</li>
+<li><strong>OOD setting (RoboCerebra):</strong> RDD (<span class="arithmatex">\(\beta\)</span>=0.10) mIoU 0.630 vs. UVD 0.598.</li>
 <li>RDD outperforms Gemini-2.5-pro-based decomposer: 74.9% vs. 72.6% avg. success.</li>
 <li>Robust across 7 visual encoders (LIV, R3M, CLIP, DINOv2, ResNet all outperform baselines; VC-1 and VIP underperform, attributed to lack of language supervision during encoder training).</li>
 </ul>
@@ -5597,7 +5597,7 @@
 <li>Interval representation uses only single start/end frame embeddings, losing temporal dynamics within a sub-task; unsuitable for navigation tasks requiring historical landmark sequences.</li>
 <li>Alignment quality is upper-bounded by the quality of the visuomotor policy's training data; noisy training data propagates to poor decompositions (requires separate curation step).</li>
 <li>Evaluated solely within the RACER hierarchical VLA framework on RLBench/AgiBotWorld/LIBERO; generalizability to other hierarchical systems (e.g., Hi Robot, π0.5) is unverified.</li>
-<li>OOD sub-task handling requires manual tuning of $\beta$ and relies on UVD as a subroutine, partially reintroducing heuristic dependence.</li>
+<li>OOD sub-task handling requires manual tuning of <span class="arithmatex">\(\beta\)</span> and relies on UVD as a subroutine, partially reintroducing heuristic dependence.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>This paper targets a practical bottleneck in deploying VLMs as high-level planners in robotics: the fine-tuning data for the VLM planner must be grounded in what the downstream visuomotor policy can actually do, not what a human annotator or generic change-point detector produces. It demonstrates that retrieval over a visual embedding database—using encoders already common in VLM pipelines (CLIP, DINOv2, LIV)—can substitute for expensive human annotation while outperforming task-agnostic heuristics. For researchers tracking VLMs, RDD is a concrete example of VLM-policy alignment through structured data curation rather than architectural change, and the finding that language-supervised encoders (CLIP, DINOv2, LIV) systematically outperform language-free ones (VC-1, VIP) reinforces the importance of language grounding in visual representations for embodied tasks.</p>
@@ -5663,6 +5663,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

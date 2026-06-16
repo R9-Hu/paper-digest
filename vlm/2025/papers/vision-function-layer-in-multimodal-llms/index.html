@@ -5589,10 +5589,10 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Despite MLLMs' impressive visual capabilities, it is unknown how distinct visual functions (OCR, counting, recognition, grounding) are represented and distributed across the LLM backbone's decoder layers. Existing interpretability work focuses on token importance or cross-modal interaction but does not isolate individual functional roles at the layer level, leaving the internal mechanism a black box.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Visual Token Swapping (VTS):</strong> At decoding layer $k$, the KV-cache vision tokens $U^{(k)}$ are replaced with tokens from a source image $\tilde{U}^{(k)}$ constructed to differ in exactly one visual attribute (e.g., a different word for OCR, a different object count). The "change rate" in model output quantifies how causally influential layer $k$ is for that function. Paired datasets are curated per function: OCR (arXiv word renders on blank canvas), Counting (CLEVR-adapted), Recognition (COCO object-present vs. blank), Grounding (same object at varied positions).</p>
-<p><strong>Visual Token Dropping:</strong> For general benchmarks where controlled pairs are infeasible, all vision tokens from layer $k$ onward are dropped; performance degradation identifies function-critical layer depths.</p>
+<p><strong>Visual Token Swapping (VTS):</strong> At decoding layer <span class="arithmatex">\(k\)</span>, the KV-cache vision tokens <span class="arithmatex">\(U^{(k)}\)</span> are replaced with tokens from a source image <span class="arithmatex">\(\tilde{U}^{(k)}\)</span> constructed to differ in exactly one visual attribute (e.g., a different word for OCR, a different object count). The "change rate" in model output quantifies how causally influential layer <span class="arithmatex">\(k\)</span> is for that function. Paired datasets are curated per function: OCR (arXiv word renders on blank canvas), Counting (CLEVR-adapted), Recognition (COCO object-present vs. blank), Grounding (same object at varied positions).</p>
+<p><strong>Visual Token Dropping:</strong> For general benchmarks where controlled pairs are infeasible, all vision tokens from layer <span class="arithmatex">\(k\)</span> onward are dropped; performance degradation identifies function-critical layer depths.</p>
 <p><strong>VFL-LoRA:</strong> LoRA adapters are applied only to layers identified as VFLs for the target function (e.g., layers 10–17, 20–23 for count-function in Qwen2.5-VL-7B), reducing tunable parameters while avoiding forgetting in non-targeted VFLs.</p>
-<p><strong>VFL-Select:</strong> A data-utility score $R_k(x,y) = P(y|U^{(\leq k)},W) / P(y|U^{(\leq k-1)},W)$ measures per-sample reliance on layer $k$. Data is partitioned by the layer of highest influence and then uniformly sampled per partition to build a balanced, function-diverse training subset. A small proxy model (TinyLLaVA-0.5B) is used for the classification to enable scalability to 20M-sample pools.</p>
+<p><strong>VFL-Select:</strong> A data-utility score <span class="arithmatex">\(R_k(x,y) = P(y|U^{(\leq k)},W) / P(y|U^{(\leq k-1)},W)\)</span> measures per-sample reliance on layer <span class="arithmatex">\(k\)</span>. Data is partitioned by the layer of highest influence and then uniformly sampled per partition to build a balanced, function-diverse training subset. A small proxy model (TinyLLaVA-0.5B) is used for the classification to enable scalability to 20M-sample pools.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Visual Token Swapping framework</strong>: a causal, layer-targeted probing method that replaces KV-cache vision tokens at specific layers to isolate per-function layer contributions.</li>
@@ -5681,6 +5681,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5596,7 +5596,7 @@
 <li><strong>Code generation (Stage II)</strong>: The main VLM writes one Python cell per step (purpose / reasoning / next-goal / code fields), conditioned on all prior stdout, variable summaries, and intermediate images.</li>
 <li><strong>Code execution (Stage III)</strong>: AST-level static checker rejects unsafe modules; validated cell runs in the persistent kernel.</li>
 <li><strong>Feedback assembly (Stage IV)</strong>: stdout, tracebacks, variable type/shape summaries, and <code>show()</code>-registered images are appended to the model context for the next step.</li>
-<li><strong>Answer submission (Stage V)</strong>: Loop terminates when <code>ReturnAnswer()</code> produces a format-valid answer or step count reaches $N_{\max}=30$.</li>
+<li><strong>Answer submission (Stage V)</strong>: Loop terminates when <code>ReturnAnswer()</code> produces a format-valid answer or step count reaches <span class="arithmatex">\(N_{\max}=30\)</span>.</li>
 </ol>
 <p>The system prompt encodes general spatial reasoning discipline (prefer metric computation over pixel-level impression, visually verify masks, sanity-check magnitudes) without benchmark- or model-specific templates.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5623,7 +5623,7 @@
 <li>Gains are smaller on tasks already near-saturated by the backbone (visual recognition: +0.1–1.7 pp over structured tool-call); the interface cannot compensate for perception saturation ceilings.</li>
 <li>Evaluation caps samples at 1,000 per benchmark for large benchmarks, potentially underrepresenting tail distributions.</li>
 <li>Spatial planning and size estimation show small or negative margins over structured tool-call (−1.3 pp and −4.7 pp respectively), suggesting the interface is not universally superior.</li>
-<li>The persistent kernel incurs multi-step inference overhead (up to $N_{\max}=30$ turns), which is not analyzed in terms of latency or cost.</li>
+<li>The persistent kernel incurs multi-step inference overhead (up to <span class="arithmatex">\(N_{\max}=30\)</span> turns), which is not analyzed in terms of latency or cost.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>SpatialClaw directly addresses a known failure mode of VLMs in geometric and spatial reasoning, demonstrating that the action interface—not just model scale or tool availability—determines agent capability. For VLM researchers, this is a clean empirical result: a code-as-interface design yields +11.2 pp over structured tool-call agents across 20 benchmarks and six backbone families without any fine-tuning, isolating the interface as the explanatory variable. The finding that gains are consistent across Qwen3.5/3.6 and Gemma4 architectures (27B–397B) is directly relevant to practitioners evaluating which VLM backbone to deploy for agentic spatial tasks. The work also raises an open question about how future VLMs might internalize similar iterative geometric reasoning natively rather than via external kernel scaffolding.</p>
@@ -5689,6 +5689,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

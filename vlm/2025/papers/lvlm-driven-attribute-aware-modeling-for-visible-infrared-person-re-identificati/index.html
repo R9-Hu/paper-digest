@@ -5584,7 +5584,7 @@
 <p><strong>Explicit-Implicit Attribute Fusion (EAF):</strong> Each cluster is assigned a text prompt of the form <code>"An image of a [X1]…[XM] [male/female] [wearing/without] glasses and [carrying/without] a backpack."</code> Learnable embeddings <code>[Xi]</code> (implicit) are combined with hard attribute tokens (explicit). A frozen CLIP text+image encoder pair optimizes the learnable embeddings via image-to-text contrastive loss, producing <em>static text features</em>.</p>
 </li>
 <li>
-<p><strong>Attribute-Aware Contrastive Learning (AAC):</strong> Dynamic text features are computed as a convex combination of matched-pair static features across modalities: $\hat{t}^v_p = (1-\alpha)t^v_p + \alpha t^r_p$ (α=0.5). The image encoder is then optimized with a text-semantic contrastive loss that pulls image features toward their dynamic (modality-mixed) text feature, promoting modality-invariant representations.</p>
+<p><strong>Attribute-Aware Contrastive Learning (AAC):</strong> Dynamic text features are computed as a convex combination of matched-pair static features across modalities: <span class="arithmatex">\(\hat{t}^v_p = (1-\alpha)t^v_p + \alpha t^r_p\)</span> (α=0.5). The image encoder is then optimized with a text-semantic contrastive loss that pulls image features toward their dynamic (modality-mixed) text feature, promoting modality-invariant representations.</p>
 </li>
 </ol>
 <p>Training runs in three sequential phases: 50 epochs of intra-modality contrastive learning (ResNet-50), 50 epochs of CLIP text embedding optimization, then 50 epochs of full heterogeneous learning with Ltotal = Lintra + 0.5·Linter + 0.5·Ltsc.</p>
@@ -5683,6 +5683,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5575,31 +5575,31 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Knowledge-guided context optimization (KGCO) methods like KgCoOp prevent catastrophic forgetting in CLIP prompt tuning by minimizing the distance between learnable and hand-crafted prompts. This consistency constraint introduces a bias toward the pre-trained distribution, which degrades performance on base (seen) classes when the downstream data distribution differs from pre-training data—creating a tension between generalization to new classes and discriminability on base classes.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>DeKg augments existing KGCO methods with an independence regularization term $\mathcal{L}<em _text_clip="\text{clip">{kd} = \text{HSIC}(W, W</em>}}) = (N_c-1)^{-2}\,\text{tr}(KHK_{\text{clip}}H)$, where $K$ and $K_{\text{clip}}$ are Gram matrices of learnable and crafted textual embeddings, and $H$ is the centering matrix. Using an inner-product kernel ($K_{i,j} = w_i^\top w_j$), minimizing $\mathcal{L<em _text_clip="\text{clip">{kd}$ reduces statistical dependence between the two prompt sets. Crucially, because $K</em>}}$ is fixed (frozen CLIP embeddings), $\mathcal{L<em ce="ce">{kd}$ operates by enhancing inter-class divergence among learnable prompts guided by the inter-class structure of crafted prompts. The full objective is $\mathcal{L} = \mathcal{L}</em>} + \lambda\mathcal{L<em kd="kd">{kg} + \mu\mathcal{L}</em>$ with $\lambda/\mu = 3/1$. DeKg is applied as a module on top of KgCoOp (→ DeKg$<em _text_TCP="\text{TCP">{\text{KgCoOp}}$) and TCP (→ DeKg$</em>$), adding zero extra parameters beyond the TCP embedding module.}</p>
+<p>DeKg augments existing KGCO methods with an independence regularization term <span class="arithmatex">\(\mathcal{L}_{kd} = \text{HSIC}(W, W_{\text{clip}}) = (N_c-1)^{-2}\,\text{tr}(KHK_{\text{clip}}H)\)</span>, where <span class="arithmatex">\(K\)</span> and <span class="arithmatex">\(K_{\text{clip}}\)</span> are Gram matrices of learnable and crafted textual embeddings, and <span class="arithmatex">\(H\)</span> is the centering matrix. Using an inner-product kernel (<span class="arithmatex">\(K_{i,j} = w_i^\top w_j\)</span>), minimizing <span class="arithmatex">\(\mathcal{L}_{kd}\)</span> reduces statistical dependence between the two prompt sets. Crucially, because <span class="arithmatex">\(K_{\text{clip}}\)</span> is fixed (frozen CLIP embeddings), <span class="arithmatex">\(\mathcal{L}_{kd}\)</span> operates by enhancing inter-class divergence among learnable prompts guided by the inter-class structure of crafted prompts. The full objective is <span class="arithmatex">\(\mathcal{L} = \mathcal{L}_{ce} + \lambda\mathcal{L}_{kg} + \mu\mathcal{L}_{kd}\)</span> with <span class="arithmatex">\(\lambda/\mu = 3/1\)</span>. DeKg is applied as a module on top of KgCoOp (→ DeKg<span class="arithmatex">\(_{\text{KgCoOp}}\)</span>) and TCP (→ DeKg<span class="arithmatex">\(_{\text{TCP}}\)</span>), adding zero extra parameters beyond the TCP embedding module.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Identifies pre-training bias as a fundamental failure mode of KGCO methods and frames it as a consistency–divergence contradiction.</li>
-<li>Proposes HSIC-based independence regularization ($\mathcal{L}_{kd}$) that adds zero parameters to the model and complements the existing consistency loss.</li>
+<li>Proposes HSIC-based independence regularization (<span class="arithmatex">\(\mathcal{L}_{kd}\)</span>) that adds zero parameters to the model and complements the existing consistency loss.</li>
 <li>Provides a plug-and-play module compatible with any embedding-aligned KGCO method (demonstrated on KgCoOp and TCP).</li>
-<li>Shows that $\mathcal{L}_{kd}$ implicitly enforces inter-class divergence among learnable prompts, improving discriminability on base classes while retaining generalization on new classes.</li>
+<li>Shows that <span class="arithmatex">\(\mathcal{L}_{kd}\)</span> implicitly enforces inter-class divergence among learnable prompts, improving discriminability on base classes while retaining generalization on new classes.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <p><strong>Base-to-new generalization (16-shot, ViT-B/16, averaged over 11 datasets):</strong>
-- DeKg$<em _text_KgCoOp="\text{KgCoOp">{\text{TCP}}$: Base 84.96% / New 76.38% / H 80.44 vs. TCP: 84.13 / 75.36 / 79.51
-- DeKg$</em>$: H 78.57 vs. KgCoOp H 77.00 (+1.57%), with no added parameters
-- DeKg$_{\text{TCP}}$ outperforms PromptSRC (H 79.97) and TCP (H 79.51) on harmonic mean}</p>
+- DeKg<span class="arithmatex">\(_{\text{TCP}}\)</span>: Base 84.96% / New 76.38% / H 80.44 vs. TCP: 84.13 / 75.36 / 79.51
+- DeKg<span class="arithmatex">\(_{\text{KgCoOp}}\)</span>: H 78.57 vs. KgCoOp H 77.00 (+1.57%), with no added parameters
+- DeKg<span class="arithmatex">\(_{\text{TCP}}\)</span> outperforms PromptSRC (H 79.97) and TCP (H 79.51) on harmonic mean</p>
 <p><strong>Cross-dataset generalization (train on ImageNet, test on 10 datasets):</strong>
-- DeKg$_{\text{TCP}}$: avg 66.64% vs. TCP 66.29%, with +1.60% on Aircraft (25.05% vs. 23.45%)</p>
+- DeKg<span class="arithmatex">\(_{\text{TCP}}\)</span>: avg 66.64% vs. TCP 66.29%, with +1.60% on Aircraft (25.05% vs. 23.45%)</p>
 <p><strong>Few-shot (4-shot, 11 datasets):</strong>
-- DeKg$<em _text_KgCoOp="\text{KgCoOp">{\text{TCP}}$: avg 77.06% vs. TCP 76.72% (+0.34%); DeKg$</em>$: 75.12% vs. KgCoOp 74.48% (+0.64%)}</p>
+- DeKg<span class="arithmatex">\(_{\text{TCP}}\)</span>: avg 77.06% vs. TCP 76.72% (+0.34%); DeKg<span class="arithmatex">\(_{\text{KgCoOp}}\)</span>: 75.12% vs. KgCoOp 74.48% (+0.64%)</p>
 <p><strong>Ablation (base-to-new with KgCoOp backbone):</strong>
-- CoOp alone: H 74.60; +$\mathcal{L}<em kd="kd">{kg}$ only: H 77.00; +$\mathcal{L}</em>$ only: H 75.93; both: H 78.57</p>
+- CoOp alone: H 74.60; +<span class="arithmatex">\(\mathcal{L}_{kg}\)</span> only: H 77.00; +<span class="arithmatex">\(\mathcal{L}_{kd}\)</span> only: H 75.93; both: H 78.57</p>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Evaluated only on classification tasks with ViT-B/16; generalization to other VLM architectures (e.g., LLaVA-style models) or generation tasks is untested.</li>
-<li>DeKg$_{\text{KgCoOp}}$ underperforms PromptSRC and TCP on cross-dataset generalization (65.33% vs. 65.81% / 66.29%), suggesting the baseline's capacity matters.</li>
+<li>DeKg<span class="arithmatex">\(_{\text{KgCoOp}}\)</span> underperforms PromptSRC and TCP on cross-dataset generalization (65.33% vs. 65.81% / 66.29%), suggesting the baseline's capacity matters.</li>
 <li>Incompatible with gradient-aligned methods (ProGrad) and multi-modal prompt methods (PromptSRC) without modification, limiting plug-and-play scope.</li>
-<li>Hyperparameter ratio $\lambda/\mu$ requires grid search; sensitivity analysis shows performance degrades noticeably outside the optimal ratio.</li>
+<li>Hyperparameter ratio <span class="arithmatex">\(\lambda/\mu\)</span> requires grid search; sensitivity analysis shows performance degrades noticeably outside the optimal ratio.</li>
 <li>No evaluation beyond 16-shot for base-to-new; behavior with very large shot counts is unknown.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
@@ -5666,6 +5666,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

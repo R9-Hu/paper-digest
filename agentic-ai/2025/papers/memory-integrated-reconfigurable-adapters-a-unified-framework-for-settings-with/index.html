@@ -5578,7 +5578,7 @@
 <p>MIRA attaches Universal Hopfield Network (UHN) memory modules to every ViT-B/16 layer. Training proceeds in two stages:</p>
 <ol>
 <li><strong>Adaptation</strong>: For each task, LoRA rank-4 adapters are trained on the task data using cross-entropy loss; adapter weight vectors are written into the UHN with randomly initialized placeholder keys.</li>
-<li><strong>Consolidation</strong>: Adapter weights are frozen; only the retrieval keys and lightweight query modules $g_\ell: \mathbb{R}^{d_h} \to \mathbb{R}^{d_k}$ are updated via backpropagation. At each layer $\ell$, the query $q_\ell = g_\ell(h_{\ell-1})$ is matched against stored keys to produce an affine-weighted combination of adapters: $\hat\theta_\ell = \Theta_\ell \cdot \text{sep}(K_\ell^\top q_\ell)$.</li>
+<li><strong>Consolidation</strong>: Adapter weights are frozen; only the retrieval keys and lightweight query modules <span class="arithmatex">\(g_\ell: \mathbb{R}^{d_h} \to \mathbb{R}^{d_k}\)</span> are updated via backpropagation. At each layer <span class="arithmatex">\(\ell\)</span>, the query <span class="arithmatex">\(q_\ell = g_\ell(h_{\ell-1})\)</span> is matched against stored keys to produce an affine-weighted combination of adapters: <span class="arithmatex">\(\hat\theta_\ell = \Theta_\ell \cdot \text{sep}(K_\ell^\top q_\ell)\)</span>.</li>
 </ol>
 <p>At inference, the retrieved adapter ensemble is loaded per-sample with no gradient computation. For CL settings, standard forgetting-mitigation strategies (e.g., DualGPM) are applied during Consolidation. The affine separation function is used as default, allowing negative weights to actively suppress interfering adapters.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5671,6 +5671,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

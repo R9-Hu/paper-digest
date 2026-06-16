@@ -5576,13 +5576,13 @@
 <p>LVLMs generate semantically plausible but visually unfaithful content because autoregressive decoding over-weights language priors and under-attends to visual tokens. Existing decoding-based mitigations manipulate text token distributions empirically, without a principled way to quantify or maximize the dynamic mutual dependency between the visual input and the ongoing generation; moreover, none jointly optimize both visual and textual token contributions to that dependency.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p><strong>Theoretical formulation.</strong> The hallucination objective is recast as maximizing C-PMI(V=v, Y=y | X=x), which decomposes step-wise as:</p>
-<p>$$\sum_{t=0}^{l-1}\bigl[\log p_\theta(y_t \mid v, x, y_{&lt;t}) - \log p_\theta(y_t \mid x, y_{&lt;t})\bigr]$$</p>
+<div class="arithmatex">\[\sum_{t=0}^{l-1}\bigl[\log p_\theta(y_t \mid v, x, y_{&lt;t}) - \log p_\theta(y_t \mid x, y_{&lt;t})\bigr]\]</div>
 <p>This induces a bi-level optimization with two alternating subproblems at each decoding step.</p>
 <p><strong>Inner subproblem — calibrated text sampling.</strong> At each step, the next-token distribution is replaced by:</p>
-<p>$$p_c(\cdot \mid v, x, y_{&lt;t}) = \text{softmax}\bigl[(1+\lambda)f_\theta(\cdot \mid v, x, y_{&lt;t}) - \lambda f_\theta(\cdot \mid x, y_{&lt;t})\bigr]$$</p>
+<div class="arithmatex">\[p_c(\cdot \mid v, x, y_{&lt;t}) = \text{softmax}\bigl[(1+\lambda)f_\theta(\cdot \mid v, x, y_{&lt;t}) - \lambda f_\theta(\cdot \mid x, y_{&lt;t})\bigr]\]</div>
 <p>where λ controls calibration strength (optimal at 0.5). Adaptive token truncation prunes the candidate pool.</p>
 <p><strong>Outer subproblem — visual token purification.</strong> A lightweight purifier network P(·) (a few transformer blocks + MLP) takes concatenated image+text embeddings and outputs per-token retention probabilities. Binary masks are sampled via Gumbel-Softmax for differentiability. Selection also incorporates attention scores from LVLM layer 2 (empirically optimal), balancing C-PMI relevance and attention influence via hyperparameter α. A Frobenius-norm regularization enforces the target retention ratio γ. Training loss:</p>
-<p>$$\mathcal{L} = [\log p_\theta(y_t|v,x,y_{&lt;t}) - \log p_\theta(y_t|x,y_{&lt;t})] + \alpha \cdot \text{Attn}_i(v) + \beta|\text{sum}(M_v)/N - \gamma|_F$$</p>
+<div class="arithmatex">\[\mathcal{L} = [\log p_\theta(y_t|v,x,y_{&lt;t}) - \log p_\theta(y_t|x,y_{&lt;t})] + \alpha \cdot \text{Attn}_i(v) + \beta\|\text{sum}(M_v)/N - \gamma\|_F\]</div>
 <p>The purified visual tokens v* feed into the calibrated text distribution, closing the bi-level loop.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5673,6 +5673,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5575,7 +5575,7 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>JEPA-WMs (planning via optimization in latent embedding space, trained with a predictive JEPA loss, no reconstruction or reward head) have shown promise over pixel-space and generative world models, but the literature lacks a systematic study of which design choices actually drive performance. Prior works (DINO-WM, V-JEPA-2-AC) make different architectural and training decisions without cross-comparison, leaving practitioners without principled guidance on encoder type, predictor architecture, multistep rollout training, context length, planning optimizer, and scaling.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>The authors define JEPA-WMs as a unified family: a frozen visual encoder $E_\phi^{vis}$ produces patch embeddings; a jointly-trained predictor $P_\theta$ autoregressively predicts next-step embeddings conditioned on action embeddings; at plan time, an optimizer minimizes embedding-space distance to the goal embedding over a horizon-H action sequence. They hold the encoder frozen and vary one component at a time from a DINO-WM baseline (ViT-S encoder, depth-6 predictor), testing:
+<p>The authors define JEPA-WMs as a unified family: a frozen visual encoder <span class="arithmatex">\(E_\phi^{vis}\)</span> produces patch embeddings; a jointly-trained predictor <span class="arithmatex">\(P_\theta\)</span> autoregressively predicts next-step embeddings conditioned on action embeddings; at plan time, an optimizer minimizes embedding-space distance to the goal embedding over a horizon-H action sequence. They hold the encoder frozen and vary one component at a time from a DINO-WM baseline (ViT-S encoder, depth-6 predictor), testing:
 - <strong>Planners</strong>: CEM, NeverGrad (NGOpt), Adam, gradient descent × {L1, L2 cost}
 - <strong>Multistep rollout</strong>: 1–6 step loss summation with truncated BPTT
 - <strong>Predictor architecture</strong>: sincos+feature-cond, RoPE+sequence-cond, RoPE+feature-cond, AdaLN+RoPE, AdaLN-zero+RoPE
@@ -5681,6 +5681,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

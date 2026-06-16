@@ -5599,17 +5599,17 @@
 <p>RIL integrates GRPO (specifically Dr.GRPO for unbiased advantage estimation) with GAIL-style adversarial imitation:</p>
 <ol>
 <li>
-<p><strong>Discriminator pre-training</strong>: A discriminator $D_\phi$ is initialised with the same architecture and weights as the student VLM but with the language head replaced by a linear sigmoid head (d→1). It is trained on cached student/teacher responses to output 1 for student outputs and 0 for teacher outputs.</p>
+<p><strong>Discriminator pre-training</strong>: A discriminator <span class="arithmatex">\(D_\phi\)</span> is initialised with the same architecture and weights as the student VLM but with the language head replaced by a linear sigmoid head (d→1). It is trained on cached student/teacher responses to output 1 for student outputs and 0 for teacher outputs.</p>
 </li>
 <li>
-<p><strong>Reward design</strong>: For each student response $o_i$ the total reward is the sum of two binary signals:</p>
+<p><strong>Reward design</strong>: For each student response <span class="arithmatex">\(o_i\)</span> the total reward is the sum of two binary signals:</p>
 </li>
-<li><em>Similarity reward</em>: $\mathbf{1}[D_\phi(q, o_i) &lt; 0.5]$ — low discriminator score means the response resembles teacher style.</li>
+<li><em>Similarity reward</em>: <span class="arithmatex">\(\mathbf{1}[D_\phi(q, o_i) &lt; 0.5]\)</span> — low discriminator score means the response resembles teacher style.</li>
 <li>
 <p><em>Answer reward</em>: LLM-as-a-Judge (Qwen2.5-32B) scoring factual correctness against ground truth (0 or 1).</p>
 </li>
 <li>
-<p><strong>RIL loop</strong>: Each iteration (i) updates $D_\phi$ on the current mixed batch of student and teacher responses, then (ii) updates the student policy $\pi_\theta$ via the Dr.GRPO clipped-ratio objective using the composite reward. Teacher responses are included in the GRPO rollout set to provide direct exemplars of correct answers, stabilising training when the student alone cannot reach correct solutions.</p>
+<p><strong>RIL loop</strong>: Each iteration (i) updates <span class="arithmatex">\(D_\phi\)</span> on the current mixed batch of student and teacher responses, then (ii) updates the student policy <span class="arithmatex">\(\pi_\theta\)</span> via the Dr.GRPO clipped-ratio objective using the composite reward. Teacher responses are included in the GRPO rollout set to provide direct exemplars of correct answers, stabilising training when the student alone cannot reach correct solutions.</p>
 </li>
 <li>
 <p><strong>Multi-teacher extension</strong>: Responses from two heterogeneous large VLMs (Qwen2.5-VL-72B + InternVL3-78B) are pooled, increasing response diversity and discriminator robustness.</p>
@@ -5708,6 +5708,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

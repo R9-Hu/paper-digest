@@ -5596,9 +5596,9 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>MLLMs are bottlenecked on long video understanding by fixed context windows. Uniform frame sampling treats all moments as equally important; static pre-selection (frame selectors) is non-interactive and cannot correct initial errors. Neither approach adapts to per-question complexity or recovers from mis-selected frames.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Framework.</strong> The agent begins with a coarse low-FPS overview $V_\text{low}$ (64 uniformly sampled frames). It can invoke <code>&lt;video_zoom&gt;(t_start, t_end, f_high)</code> up to 4 times per query, each retrieving a high-FPS clip of ≤16 frames from the original video. A per-call frame budget $B$ enforces $f_\text{high} \times (t_\text{end} - t_\text{start}) \le B$; illegal calls return error messages.</p>
+<p><strong>Framework.</strong> The agent begins with a coarse low-FPS overview <span class="arithmatex">\(V_\text{low}\)</span> (64 uniformly sampled frames). It can invoke <code>&lt;video_zoom&gt;(t_start, t_end, f_high)</code> up to 4 times per query, each retrieving a high-FPS clip of ≤16 frames from the original video. A per-call frame budget <span class="arithmatex">\(B\)</span> enforces <span class="arithmatex">\(f_\text{high} \times (t_\text{end} - t_\text{start}) \le B\)</span>; illegal calls return error messages.</p>
 <p><strong>Cold-start SFT.</strong> A dataset of ~11,000 multi-turn trajectories is constructed in two steps: (1) GPT-4o/Gemini-2.5-Pro generate exemplar "golden" trajectories; (2) reflection data is created by having the initial SFT model roll out on hard examples, then having the expert model correct failures into richer, multi-call reasoning paths. Both streams are filtered by a verifier before inclusion.</p>
-<p><strong>RL phase.</strong> GRPO is extended to multi-turn tool-call contexts with a token-level loss mask (only model-generated tokens receive gradient). The reward is $R = R_\text{acc} + R_\text{format} + R_\text{tool}$, where $R_\text{tool}$ is a conditional bonus: awarded only when the model calls the tool <em>and</em> the final answer is correct, preventing degenerate tool-spam.</p>
+<p><strong>RL phase.</strong> GRPO is extended to multi-turn tool-call contexts with a token-level loss mask (only model-generated tokens receive gradient). The reward is <span class="arithmatex">\(R = R_\text{acc} + R_\text{format} + R_\text{tool}\)</span>, where <span class="arithmatex">\(R_\text{tool}\)</span> is a conditional bonus: awarded only when the model calls the tool <em>and</em> the final answer is correct, preventing degenerate tool-spam.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><code>&lt;video_zoom&gt;</code> agentic tool that enables iterative, budget-constrained temporal zoom within a single multi-turn reasoning trajectory</li>
@@ -5614,7 +5614,7 @@
 <li><strong>LongVideoReason-eval</strong>: 80.3 vs. GPT-4o 60.7, Gemini-1.5-Pro 67.3—surpasses both proprietary models</li>
 <li><strong>VideoMMLU / VideoMMMU</strong>: 67.9 / 52.2, highest among open-source</li>
 <li><strong>Efficiency</strong>: on MLVU, achieves 0.64 accuracy at 48 avg frames vs. base 0.581 at 128 frames; on LVBench, 77 frames beats base at 256</li>
-<li><strong>Ablations</strong>: removing RL drops LongVideoReason by −17.0; removing cold-start causes non-convergence; removing reflection data collapses avg tool calls to ~1.0; removing $R_\text{tool}$ drives tool usage to zero</li>
+<li><strong>Ablations</strong>: removing RL drops LongVideoReason by −17.0; removing cold-start causes non-convergence; removing reflection data collapses avg tool calls to ~1.0; removing <span class="arithmatex">\(R_\text{tool}\)</span> drives tool usage to zero</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5622,10 +5622,10 @@
 <li>Initial overview is still uniform sampling by default, which may miss rare events entirely before any zoom opportunity</li>
 <li>Cold-start relies on proprietary teacher models (GPT-4o, Gemini-2.5-Pro) for trajectory generation</li>
 <li>Evaluation is multiple-choice QA; open-ended generation quality is not assessed</li>
-<li>Frame budget $B \times N$ grows linearly with turns; very long videos requiring many zooms may still overflow context</li>
+<li>Frame budget <span class="arithmatex">\(B \times N\)</span> grows linearly with turns; very long videos requiring many zooms may still overflow context</li>
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
-<p>VideoZoomer is a concrete instance of a multi-turn agentic harness built on top of a base VLM: the framework defines the tool contract, observation loop, trajectory format, and reward structure that orchestrate the model's behavior—classic harness concerns. Its two-stage training pipeline (SFT cold-start with curated exemplar+reflection data, then RL policy refinement) is itself a meta-harness over the base model training loop, analogous to how meta-harnesses in language settings coordinate multiple reasoning or retrieval tools. The design of the conditional $R_\text{tool}$ reward and the reflection data generation loop—where a failing agent's trajectories are corrected and fed back—demonstrates a self-improving harness pattern directly applicable to any tool-augmented agentic system. The modular swap of the initial overview (uniform sampling → TSPO frame selector with +2–3 point gains) further illustrates how harness components can be hot-swapped without retraining the core agent.</p>
+<p>VideoZoomer is a concrete instance of a multi-turn agentic harness built on top of a base VLM: the framework defines the tool contract, observation loop, trajectory format, and reward structure that orchestrate the model's behavior—classic harness concerns. Its two-stage training pipeline (SFT cold-start with curated exemplar+reflection data, then RL policy refinement) is itself a meta-harness over the base model training loop, analogous to how meta-harnesses in language settings coordinate multiple reasoning or retrieval tools. The design of the conditional <span class="arithmatex">\(R_\text{tool}\)</span> reward and the reflection data generation loop—where a failing agent's trajectories are corrected and fed back—demonstrates a self-improving harness pattern directly applicable to any tool-augmented agentic system. The modular swap of the initial overview (uniform sampling → TSPO frame selector with +2–3 point gains) further illustrates how harness components can be hot-swapped without retraining the core agent.</p>
 
 
 
@@ -5688,6 +5688,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

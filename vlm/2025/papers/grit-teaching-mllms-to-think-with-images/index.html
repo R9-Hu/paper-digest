@@ -5735,12 +5735,12 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Open-source visual reasoning models generate purely textual chain-of-thought when processing multimodal inputs, failing to explicitly reference visual evidence during reasoning. This produces unverifiable, visually ungrounded rationales. Prior approaches that incorporate visual grounding either require expensive dense annotations linking reasoning steps to bounding boxes (VisCoT, CogCoM) or treat grounding and reasoning as separate phases rather than a unified generative process.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Grounded Reasoning Paradigm.</strong> Given image $I$ and query $q$, the model generates an interleaved output $(c, a)$ where reasoning chain $c$ freely mixes natural language tokens $T$ and bounding box quadruplets $B$ (normalized integer coordinates). Crucially, after generating bounding boxes, the model receives no additional pixel crops—it must internally interpret its own grounding actions to inform subsequent tokens. The chain is structured with <code>&lt;think&gt;…&lt;/think&gt;</code> and <code>&lt;rethink&gt;…&lt;/rethink&gt;</code> token pairs.</p>
-<p><strong>GRPO-GR.</strong> Built on Group-Relative Policy Optimization (GRPO), it optimizes policy $\pi_\theta$ using three reward components:
-- <strong>Format reward</strong> $r_\text{format} = s_\text{st} + s_\text{bf}$: rewards correct use of <code>&lt;think&gt;</code>/<code>&lt;rethink&gt;</code> token pairs (+0.5 each) and presence of ≥1 syntactically valid bounding box (+0.5).
-- <strong>Counting reward</strong> $r_\text{count}$ (optional): +0.5 if the number of generated bounding boxes matches the ground-truth object count.
-- <strong>Answer accuracy reward</strong> $r_\text{ans} = s_\text{GPT} + 0.1 s_\text{BLEU}$: binary GPT-4o judge correctness plus down-weighted BLEU-1.</p>
-<p>Group-normalized advantage $A_i = (r_i - \mu) / (\sigma + \delta)$ drives the standard clipped GRPO objective with KL penalty against a reference policy.</p>
+<p><strong>Grounded Reasoning Paradigm.</strong> Given image <span class="arithmatex">\(I\)</span> and query <span class="arithmatex">\(q\)</span>, the model generates an interleaved output <span class="arithmatex">\((c, a)\)</span> where reasoning chain <span class="arithmatex">\(c\)</span> freely mixes natural language tokens <span class="arithmatex">\(T\)</span> and bounding box quadruplets <span class="arithmatex">\(B\)</span> (normalized integer coordinates). Crucially, after generating bounding boxes, the model receives no additional pixel crops—it must internally interpret its own grounding actions to inform subsequent tokens. The chain is structured with <code>&lt;think&gt;…&lt;/think&gt;</code> and <code>&lt;rethink&gt;…&lt;/rethink&gt;</code> token pairs.</p>
+<p><strong>GRPO-GR.</strong> Built on Group-Relative Policy Optimization (GRPO), it optimizes policy <span class="arithmatex">\(\pi_\theta\)</span> using three reward components:
+- <strong>Format reward</strong> <span class="arithmatex">\(r_\text{format} = s_\text{st} + s_\text{bf}\)</span>: rewards correct use of <code>&lt;think&gt;</code>/<code>&lt;rethink&gt;</code> token pairs (+0.5 each) and presence of ≥1 syntactically valid bounding box (+0.5).
+- <strong>Counting reward</strong> <span class="arithmatex">\(r_\text{count}\)</span> (optional): +0.5 if the number of generated bounding boxes matches the ground-truth object count.
+- <strong>Answer accuracy reward</strong> <span class="arithmatex">\(r_\text{ans} = s_\text{GPT} + 0.1 s_\text{BLEU}\)</span>: binary GPT-4o judge correctness plus down-weighted BLEU-1.</p>
+<p>Group-normalized advantage <span class="arithmatex">\(A_i = (r_i - \mu) / (\sigma + \delta)\)</span> drives the standard clipped GRPO objective with KL penalty against a reference policy.</p>
 <p>Models trained: Qwen2.5-VL-3B and InternVL3-2B, using 20 triplets from VSR and TallyQA, 200 steps, batch 128, 8×A100 80GB, ~12 hours per model.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5837,6 +5837,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

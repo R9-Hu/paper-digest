@@ -5589,13 +5589,13 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Prior LVLM adversarial attacks (e.g., PGD, CroPA, UniAtt) optimize perturbations against a specific model and prompt, so the generated adversarial examples fail when transferred to different architectures or different task-aware prompts. Cross-prompt methods like CroPA require complex multi-prompt joint training and still do not address cross-model transfer; no existing method simultaneously achieves both model- and prompt-transferability efficiently.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>The core insight is that the mixed mutual information between an adversarial image $x_v^{adv}$ and LVLM logits $L'$ linearly decomposes (Theorem 1 + Assumption 1) into benign MI $I(x_v; L')$ and adversarial MI $I(\Delta; L')$:
-$$I(x_v^{adv}; L') \approx I(x_v; L') + I(\Delta; L')$$</p>
-<p>Two lightweight MI estimator networks are trained separately using the Donsker-Varadhan (KL-divergence) lower bound via Deep InfoMax: one for adversarial MI (encoder $C_{\psi_A}$ + discriminator $T_{\omega_A}$), one for benign MI ($C_{\psi_B}$, $T_{\omega_B}$). Each estimator is trained with a joint max-min objective: the adversarial MI estimator maximizes $I(\Delta; L')$ (targeted output) while minimizing $I(\Delta; L)$ (benign output), and vice versa for the benign estimator.</p>
+<p>The core insight is that the mixed mutual information between an adversarial image <span class="arithmatex">\(x_v^{adv}\)</span> and LVLM logits <span class="arithmatex">\(L'\)</span> linearly decomposes (Theorem 1 + Assumption 1) into benign MI <span class="arithmatex">\(I(x_v; L')\)</span> and adversarial MI <span class="arithmatex">\(I(\Delta; L')\)</span>:
+$<span class="arithmatex">\(I(x_v^{adv}; L') \approx I(x_v; L') + I(\Delta; L')\)</span>$</p>
+<p>Two lightweight MI estimator networks are trained separately using the Donsker-Varadhan (KL-divergence) lower bound via Deep InfoMax: one for adversarial MI (encoder <span class="arithmatex">\(C_{\psi_A}\)</span> + discriminator <span class="arithmatex">\(T_{\omega_A}\)</span>), one for benign MI (<span class="arithmatex">\(C_{\psi_B}\)</span>, <span class="arithmatex">\(T_{\omega_B}\)</span>). Each estimator is trained with a joint max-min objective: the adversarial MI estimator maximizes <span class="arithmatex">\(I(\Delta; L')\)</span> (targeted output) while minimizing <span class="arithmatex">\(I(\Delta; L)\)</span> (benign output), and vice versa for the benign estimator.</p>
 <p>During adversarial perturbation generation, the optimization jointly:
-1. Minimizes cross-entropy loss $l_{ce}$ toward the target text $y_{tar}$
-2. Maximizes the MI loss $l_{mi}$ = adversarial MI − benign MI, forcing the LVLM to attend to the perturbation pattern rather than the benign image content</p>
-<p>Total loss: $J = w_1 \cdot l_{ce} - w_2 \cdot l_{mi}$, with $w_1 = w_2 = 1$, $\epsilon = 16/255$ ($\ell_\infty$), 1000 epochs.</p>
+1. Minimizes cross-entropy loss <span class="arithmatex">\(l_{ce}\)</span> toward the target text <span class="arithmatex">\(y_{tar}\)</span>
+2. Maximizes the MI loss <span class="arithmatex">\(l_{mi}\)</span> = adversarial MI − benign MI, forcing the LVLM to attend to the perturbation pattern rather than the benign image content</p>
+<p>Total loss: <span class="arithmatex">\(J = w_1 \cdot l_{ce} - w_2 \cdot l_{mi}\)</span>, with <span class="arithmatex">\(w_1 = w_2 = 1\)</span>, <span class="arithmatex">\(\epsilon = 16/255\)</span> (<span class="arithmatex">\(\ell_\infty\)</span>), 1000 epochs.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First unified attack achieving simultaneous model- and prompt-transferability for LVLMs within a single adversarial optimization.</li>
@@ -5619,7 +5619,7 @@ $$I(x_v^{adv}; L') \approx I(x_v; L') + I(\Delta; L')$$</p>
 <li>MI estimators are initialized using PGD-generated adversarial examples, creating a bootstrapping dependency on an existing attack.</li>
 <li>Experiments use open-source models from 2023–2024 (LLaVA-1.5, MiniGPT-4, BLIP-2, InstructBLIP); transferability to more recent, larger-scale VLMs (beyond the limited GPT-4o/Claude-3.5 spot-check) is not systematically evaluated.</li>
 <li>The bijection assumption (Assumption 1) required for MI decomposition is an approximation whose validity in high-dimensional image spaces is justified empirically and via appendix proofs but not guaranteed in general.</li>
-<li>The disentanglement theorem assumes negligible interaction MI $I(x_v; \Delta; L')$, which is asserted without a formal bound.</li>
+<li>The disentanglement theorem assumes negligible interaction MI <span class="arithmatex">\(I(x_v; \Delta; L')\)</span>, which is asserted without a formal bound.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>This paper directly exposes a practical security vulnerability in the multimodal integration layer of LVLMs: because visual encoders and language models are jointly conditioned, adversarial perturbations can exploit this coupling to hijack model reasoning in a model-agnostic way. The information-theoretic framing—measuring how much the model's output depends on perturbation vs. benign content—provides a principled diagnostic for LVLM robustness that complements standard attack/defense benchmarks. For researchers tracking VLMs, this work establishes that cross-architecture transferability is achievable with moderate compute, raising the practical risk bar for deployed multimodal systems and motivating adversarially robust LVLM training and pre-processing defenses that go beyond single-model hardening.</p>
@@ -5685,6 +5685,10 @@ $$I(x_v^{adv}; L') \approx I(x_v; L') + I(\Delta; L')$$</p>
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

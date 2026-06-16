@@ -5719,7 +5719,7 @@
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>GTR-Turbo eliminates the dependency on expensive external teacher models (GPT-4o, Gemini) in multi-turn VLM agent RL training by using TIES-merged historical checkpoints from the ongoing training run as a "free" teacher. It matches or surpasses the original GTR framework while cutting wall-clock training time by ~50% and compute cost by ~60%.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
-<p>Multi-turn RL for VLM agents suffers from sparse rewards and long-horizon credit assignment, leading to "thought collapse" (repetitive, incoherent outputs). Prior process-guidance methods like GTR densify rewards using external teacher models (GPT-4o, Gemini), but these impose prohibitive API costs (~$150–$300 per training run), introduce network latency, create data-privacy risks, and are sometimes inaccessible, severely limiting reproducibility and scalability.</p>
+<p>Multi-turn RL for VLM agents suffers from sparse rewards and long-horizon credit assignment, leading to "thought collapse" (repetitive, incoherent outputs). Prior process-guidance methods like GTR densify rewards using external teacher models (GPT-4o, Gemini), but these impose prohibitive API costs (~<span class="arithmatex">\(150–\)</span>300 per training run), introduce network latency, create data-privacy risks, and are sometimes inaccessible, severely limiting reproducibility and scalability.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>At each RL update step, GTR-Turbo saves the current checkpoint into a rolling buffer. It then merges all buffered checkpoints using TIES-merging (trim low-magnitude parameter deltas, elect a consensus sign per parameter via majority vote, average only sign-consistent parameters) to produce a composite teacher model that is strictly stronger and more stable than any individual checkpoint. This merged teacher guides subsequent PPO training via one of two objectives:</p>
 <ol>
@@ -5814,6 +5814,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

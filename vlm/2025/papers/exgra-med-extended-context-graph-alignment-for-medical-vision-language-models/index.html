@@ -5568,14 +5568,14 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Standard medical MLLMs (e.g., LLaVA-Med, BioMedGPT) rely on autoregressive objectives that are highly data-dependent: reducing pretraining instruction-following data from 100% to 10% causes LLaVA-Med to drop from 72.64% to 52.39% on VQA-RAD. Scaling model size or data volume is the default fix, but weak vision-language alignment persists without sufficient instruction-tuning data. No prior work addresses the fundamental alignment weakness of autoregressive pretraining in the medical domain.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>ExGra-Med constructs three modality-specific graphs per training batch: $G_v$ (visual patch embeddings from CLIP-ViT-L), $G_a$ (LLM token embeddings of original instruction answers), and $G_{ae}$ (LLM embeddings of GPT-4-extended answers). Extended answers are generated offline by prompting GPT-4 to add conceptual elaboration to each original answer without changing intent.</p>
-<p>A barycenter graph $G_{br}$ is defined with nodes averaging features across the three modalities. Multi-graph alignment is then reduced to $K=3$ pairwise second-order graph alignment (SGA) problems between each modality graph and $G_{br}$, formulated as quadratic assignment problems minimizing joint vertex+edge affinity. Because SGA is NP-hard and non-differentiable, the authors use Lagrange decomposition heuristic solvers for forward passes and Implicit Maximum Likelihood Estimation (IMLE) with Gumbel noise perturbations for black-box gradient estimation in backpropagation. A 2-layer GCN performs message passing on each graph to enrich node representations. The multi-graph alignment loss (Hamming between predicted and true barycenter assignments) is jointly optimized with the standard autoregressive language modeling loss, weighted by coefficient $\alpha$. The LLM (LLaMA-7B) and projector are trained end-to-end; the vision encoder (CLIP-ViT-L/14) is frozen.</p>
+<p>ExGra-Med constructs three modality-specific graphs per training batch: <span class="arithmatex">\(G_v\)</span> (visual patch embeddings from CLIP-ViT-L), <span class="arithmatex">\(G_a\)</span> (LLM token embeddings of original instruction answers), and <span class="arithmatex">\(G_{ae}\)</span> (LLM embeddings of GPT-4-extended answers). Extended answers are generated offline by prompting GPT-4 to add conceptual elaboration to each original answer without changing intent.</p>
+<p>A barycenter graph <span class="arithmatex">\(G_{br}\)</span> is defined with nodes averaging features across the three modalities. Multi-graph alignment is then reduced to <span class="arithmatex">\(K=3\)</span> pairwise second-order graph alignment (SGA) problems between each modality graph and <span class="arithmatex">\(G_{br}\)</span>, formulated as quadratic assignment problems minimizing joint vertex+edge affinity. Because SGA is NP-hard and non-differentiable, the authors use Lagrange decomposition heuristic solvers for forward passes and Implicit Maximum Likelihood Estimation (IMLE) with Gumbel noise perturbations for black-box gradient estimation in backpropagation. A 2-layer GCN performs message passing on each graph to enrich node representations. The multi-graph alignment loss (Hamming between predicted and true barycenter assignments) is jointly optimized with the standard autoregressive language modeling loss, weighted by coefficient <span class="arithmatex">\(\alpha\)</span>. The LLM (LLaMA-7B) and projector are trained end-to-end; the vision encoder (CLIP-ViT-L/14) is frozen.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Empirical demonstration that autoregressive pretraining is severely data-hungry in the medical domain, with a controlled ablation across 10%/40%/70%/100% data regimes.</li>
-<li>Multi-graph alignment framework that enforces triplet-level structural consistency among image, instruction, and extended-caption embeddings via a shared barycenter graph, reducing $K$-graph alignment to $K$ pairwise problems.</li>
+<li>Multi-graph alignment framework that enforces triplet-level structural consistency among image, instruction, and extended-caption embeddings via a shared barycenter graph, reducing <span class="arithmatex">\(K\)</span>-graph alignment to <span class="arithmatex">\(K\)</span> pairwise problems.</li>
 <li>Scalable end-to-end training for LLaMA-7B using IMLE-based black-box gradient estimation through a combinatorial (non-differentiable) solver.</li>
-<li>Theoretical results: proof that the SGA-derived distance $d_{\text{SGA}}$ is a valid metric on structured graph space $S(F)$ and that $S(F)$ is geodesic under this metric.</li>
+<li>Theoretical results: proof that the SGA-derived distance <span class="arithmatex">\(d_{\text{SGA}}\)</span> is a valid metric on structured graph space <span class="arithmatex">\(S(F)\)</span> and that <span class="arithmatex">\(S(F)\)</span> is geodesic under this metric.</li>
 <li>ExGra-Med + DCI variant integrating multi-scale visual features (local + global) for improved pathology analysis.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
@@ -5663,6 +5663,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

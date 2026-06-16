@@ -5560,40 +5560,40 @@
 <p>The framework proceeds in three steps:</p>
 <ol>
 <li>
-<p><strong>Interim LP relaxation:</strong> Solve an LP over interim allocation/payment rules $(π, q)$ that are <em>feasible in expectation</em> (per-agent allocations lie in their feasibility polytope $P_{F_i}$, and the marginal allocation vector lies in the global polytope $P_F$). This LP has polynomial size for many constraint families, unlike the exponential-constraint LPs of Cai et al.</p>
+<p><strong>Interim LP relaxation:</strong> Solve an LP over interim allocation/payment rules <span class="arithmatex">\((π, q)\)</span> that are <em>feasible in expectation</em> (per-agent allocations lie in their feasibility polytope <span class="arithmatex">\(P_{F_i}\)</span>, and the marginal allocation vector lies in the global polytope <span class="arithmatex">\(P_F\)</span>). This LP has polynomial size for many constraint families, unlike the exponential-constraint LPs of Cai et al.</p>
 </li>
 <li>
-<p><strong>Two-level OCRS (tOCRS):</strong> Define a new rounding primitive over an $n \times m$ element matrix where elements in the same row are <em>conditionally independent</em> given a row-level random draw $d_i \sim D_i$ (the agent's type). A $(b,c)$-selectable tOCRS guarantees each active element is selected with probability $\geq c$. For <em>Vertical-Horizontal (VH) constraints</em> (feasibility decomposes per-agent and per-item), a black-box reduction (Theorem 2) constructs a $(b, c \cdot c')$-selectable tOCRS from existing per-row and per-column OCRSs. For knapsack and multi-choice knapsack, tOCRSs are constructed from scratch (Theorems 3–4).</p>
+<p><strong>Two-level OCRS (tOCRS):</strong> Define a new rounding primitive over an <span class="arithmatex">\(n \times m\)</span> element matrix where elements in the same row are <em>conditionally independent</em> given a row-level random draw <span class="arithmatex">\(d_i \sim D_i\)</span> (the agent's type). A <span class="arithmatex">\((b,c)\)</span>-selectable tOCRS guarantees each active element is selected with probability <span class="arithmatex">\(\geq c\)</span>. For <em>Vertical-Horizontal (VH) constraints</em> (feasibility decomposes per-agent and per-item), a black-box reduction (Theorem 2) constructs a <span class="arithmatex">\((b, c \cdot c')\)</span>-selectable tOCRS from existing per-row and per-column OCRSs. For knapsack and multi-choice knapsack, tOCRSs are constructed from scratch (Theorems 3–4).</p>
 </li>
 <li>
-<p><strong>Mechanism construction (Algorithm 1):</strong> Approach agents sequentially; agent $i$ reports $r_i^<em>$, pays $b(c-\epsilon) \cdot q_i(r_i^</em>)$, and items are allocated by running the tOCRS on active elements drawn at rate $b \cdot \pi_{i,j}(r_i^*)$, with a Bernoulli-factory division coin to enforce exact BIC/BIR probabilities. The resulting mechanism is BIC-IR and $\frac{\alpha}{b(c-\epsilon)}$-approximately optimal (Theorem 1).</p>
+<p><strong>Mechanism construction (Algorithm 1):</strong> Approach agents sequentially; agent <span class="arithmatex">\(i\)</span> reports <span class="arithmatex">\(r_i^*\)</span>, pays <span class="arithmatex">\(b(c-\epsilon) \cdot q_i(r_i^*)\)</span>, and items are allocated by running the tOCRS on active elements drawn at rate <span class="arithmatex">\(b \cdot \pi_{i,j}(r_i^*)\)</span>, with a Bernoulli-factory division coin to enforce exact BIC/BIR probabilities. The resulting mechanism is BIC-IR and <span class="arithmatex">\(\frac{\alpha}{b(c-\epsilon)}\)</span>-approximately optimal (Theorem 1).</p>
 </li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Introduction of the <strong>two-level CRS/OCRS (tCRS/tOCRS)</strong> primitive capturing intra-agent correlations, with a formal definition distinguishing it from standard OCRS.</li>
 <li>A <strong>black-box reduction</strong> (Theorem 2) for constructing tOCRSs for VH constraints from existing per-row/column OCRSs.</li>
-<li>A $(b, \frac{1}{2+8b})$-selectable <strong>tOCRS for Knapsack</strong> (Theorem 3), implying a $(1, 0.1)$-selectable OCRS for knapsack — better than Feldman et al.'s 0.085.</li>
-<li>A $(b, \frac{1}{2+7b})$-selectable <strong>tOCRS for Multi-Choice Knapsack</strong> (Theorem 4).</li>
-<li>A <strong>$\frac{2e}{e-1} \approx 3.16$-approximation</strong> sequential BIC-IR mechanism for matroid VH constraints (Application 1), improving the prior best of 70× for even the special case.</li>
+<li>A <span class="arithmatex">\((b, \frac{1}{2+8b})\)</span>-selectable <strong>tOCRS for Knapsack</strong> (Theorem 3), implying a <span class="arithmatex">\((1, 0.1)\)</span>-selectable OCRS for knapsack — better than Feldman et al.'s 0.085.</li>
+<li>A <span class="arithmatex">\((b, \frac{1}{2+7b})\)</span>-selectable <strong>tOCRS for Multi-Choice Knapsack</strong> (Theorem 4).</li>
+<li>A <strong><span class="arithmatex">\(\frac{2e}{e-1} \approx 3.16\)</span>-approximation</strong> sequential BIC-IR mechanism for matroid VH constraints (Application 1), improving the prior best of 70× for even the special case.</li>
 <li>A <strong>10-approximation</strong> sequential BIC-IR mechanism for knapsack-constrained multi-item auctions and a <strong>9-approximation</strong> under multi-choice knapsack (Application 2).</li>
 <li>Extension to <strong>multi-parameter procurement auctions</strong> via an OCRS for Stochastic Knapsack.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Matroid VH constraints:</strong> $\frac{2e}{e-1} \approx 3.16$ approximation (sequential, BIC-IR). Prior best: 70× approximation [Cai–Zhao 2017] for a strict special case (single-copy items, independent values).</li>
+<li><strong>Matroid VH constraints:</strong> <span class="arithmatex">\(\frac{2e}{e-1} \approx 3.16\)</span> approximation (sequential, BIC-IR). Prior best: 70× approximation [Cai–Zhao 2017] for a strict special case (single-copy items, independent values).</li>
 <li><strong>Knapsack auctions:</strong> 10-approximation (sequential, BIC-IR, efficiently computable).</li>
 <li><strong>Multi-choice knapsack (each agent gets ≤1 item):</strong> 9-approximation (sequential, BIC-IR, efficiently computable).</li>
 <li><strong>Arbitrary valuations + knapsack:</strong> 9-approximation (sequential, BIC-IR, computationally inefficient in general).</li>
 <li><strong>Knapsack OCRS selectability:</strong> 0.1 (this work) vs. 0.085 [Feldman et al.] vs. ≈0.319 [Jiang et al., state-of-the-art].</li>
-<li><strong>Procurement auctions:</strong> $(3 + e^{-2})$-approximation sequential mechanism by combining with Jiang et al.'s Stochastic Knapsack OCRS.</li>
+<li><strong>Procurement auctions:</strong> <span class="arithmatex">\((3 + e^{-2})\)</span>-approximation sequential mechanism by combining with Jiang et al.'s Stochastic Knapsack OCRS.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
-<li>The interim LP (LP1) may require exponentially many constraints to represent $P_F$ and $P_{F_i}$ for complex feasibility sets (e.g., general matroids), making end-to-end efficiency dependent on LP tractability.</li>
+<li>The interim LP (LP1) may require exponentially many constraints to represent <span class="arithmatex">\(P_F\)</span> and <span class="arithmatex">\(P_{F_i}\)</span> for complex feasibility sets (e.g., general matroids), making end-to-end efficiency dependent on LP tractability.</li>
 <li>The knapsack tOCRS selectability (0.1) is substantially weaker than the state-of-the-art OCRS for knapsack (≈0.319 [Jiang et al.]), so the resulting revenue approximation factors are not tight.</li>
-<li>The $\frac{2e}{e-1} \approx 3.16$ matroid result does not achieve the simplicity properties (e.g., posted-price mechanisms) of [Cai–Zhao 2017], and those simplicity guarantees are information-theoretically impossible for correlated items.</li>
-<li>The Bernoulli-factory implementation introduces a $\epsilon$-slack in BIC compliance and requires $O(\text{poly}(1/\epsilon^2))$ oracle queries.</li>
+<li>The <span class="arithmatex">\(\frac{2e}{e-1} \approx 3.16\)</span> matroid result does not achieve the simplicity properties (e.g., posted-price mechanisms) of [Cai–Zhao 2017], and those simplicity guarantees are information-theoretically impossible for correlated items.</li>
+<li>The Bernoulli-factory implementation introduces a <span class="arithmatex">\(\epsilon\)</span>-slack in BIC compliance and requires <span class="arithmatex">\(O(\text{poly}(1/\epsilon^2))\)</span> oracle queries.</li>
 </ul>
 <h2 id="relevance-to-agentic-ai-llm-agents">Relevance to Agentic AI / LLM Agents<a class="headerlink" href="#relevance-to-agentic-ai-llm-agents" title="Permanent link">&para;</a></h2>
 <p>This paper is a theoretical algorithmic game theory / mechanism design contribution and has <strong>no direct relevance</strong> to Agentic AI or LLM agents. It addresses revenue-optimal auction design for strategic agents with additive preferences — a combinatorial optimization and microeconomics problem — with no connection to language models, autonomous AI systems, tool use, planning, or multi-agent LLM coordination. The "agents" here are economic bidders in an auction, not AI agents. Someone tracking Agentic AI / LLM Agents would not find actionable content in this work.</p>
@@ -5659,6 +5659,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

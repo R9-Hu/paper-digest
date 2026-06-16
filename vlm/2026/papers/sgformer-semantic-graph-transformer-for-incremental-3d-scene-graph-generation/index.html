@@ -5591,7 +5591,7 @@
 <p><strong>Semantic Injection Layer++ (SIL++)</strong>: A VLM generates scene-specific textual descriptions from multiple 2D camera views of the 3D scene (replacing the static, class-level LLM templates of SIL). Each description is encoded by a frozen CLIP text encoder into embeddings, which serve as keys/values in a cross-attention module where node features are queries — injecting view-dependent semantic context without any new trainable parameters.</p>
 </li>
 </ol>
-<p>For incremental SGG, a <strong>Cascaded Binary Prediction Head (CBPH)</strong> replaces the shared multi-class head with one independent binary MLP classifier per predicate. During task $t$, only classifiers for new predicates receive gradient updates; all previous classifiers are frozen. At inference, all binary heads run in parallel and their outputs are concatenated. To counter feature drift from the shared backbone, a <strong>Binary Knowledge Distillation loss (LBKD-A)</strong> aligns current predictions (using adapter-re-aligned features) with cached logits from the previous task snapshot, using L1 distance.</p>
+<p>For incremental SGG, a <strong>Cascaded Binary Prediction Head (CBPH)</strong> replaces the shared multi-class head with one independent binary MLP classifier per predicate. During task <span class="arithmatex">\(t\)</span>, only classifiers for new predicates receive gradient updates; all previous classifiers are frozen. At inference, all binary heads run in parallel and their outputs are concatenated. To counter feature drift from the shared backbone, a <strong>Binary Knowledge Distillation loss (LBKD-A)</strong> aligns current predictions (using adapter-re-aligned features) with cached logits from the previous task snapshot, using L1 distance.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Transformer backbone with Multi-Head Edge-Aware Self-Attention achieving linear complexity for 3D SGG global structure modeling.</li>
@@ -5679,6 +5679,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

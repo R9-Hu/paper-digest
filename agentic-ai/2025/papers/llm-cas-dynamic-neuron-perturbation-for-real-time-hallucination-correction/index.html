@@ -5573,8 +5573,8 @@
 <li><strong>State</strong>: concatenation of input embedding, baseline hallucination/relevance/fluency scores, current-best scores, and normalized step count.</li>
 <li><strong>High-level policy</strong> selects a macro functional network category (e.g., language network cluster) from a discrete set.</li>
 <li><strong>Low-level policy</strong> (conditioned on the high-level choice) selects perturbation type (noise, zero, scale, etc.) and magnitude.</li>
-<li><strong>Adaptive Perturbation Localization</strong>: a learnable sparse mask $M_{k,l}$ is trained per network category with L1+L0 regularization; at inference, it is element-wise modulated by per-input Integrated Gradients attribution scores to produce an input-specific operational mask $M_{op,k,l}$.</li>
-<li>The resulting perturbation $\Delta_{dyn}$ is applied temporarily to activations; the corrected output is evaluated by a Llama2-7B-Instruct judge for hallucination, relevance, and fluency, yielding the reward signal.</li>
+<li><strong>Adaptive Perturbation Localization</strong>: a learnable sparse mask <span class="arithmatex">\(M_{k,l}\)</span> is trained per network category with L1+L0 regularization; at inference, it is element-wise modulated by per-input Integrated Gradients attribution scores to produce an input-specific operational mask <span class="arithmatex">\(M_{op,k,l}\)</span>.</li>
+<li>The resulting perturbation <span class="arithmatex">\(\Delta_{dyn}\)</span> is applied temporarily to activations; the corrected output is evaluated by a Llama2-7B-Instruct judge for hallucination, relevance, and fluency, yielding the reward signal.</li>
 <li>No weights are permanently modified; the perturbation exists only for the current forward pass.</li>
 </ul>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5668,6 +5668,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5575,26 +5575,26 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing 3DGS-based feature distillation methods (e.g., Feature3DGS, LangSplat) attach learnable, differentiable feature embeddings to Gaussian primitives and optimize them jointly with appearance. This introduces an inherent contradiction: the anisotropic, view-dependent rasterization pipeline that governs RGB color conflicts with the view-independent (isotropic) consistency required for semantic features. The result is cross-view feature inconsistency, noise in segmentation boundaries, and corruption of the self-attention structure in transformer-derived embeddings. Additionally, these methods incur prohibitively long training times (&gt;24h for Feature3DGS on some scenes).</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>FHGS builds on a 2DGS backbone and augments each Gaussian primitive with a <strong>frozen, non-differentiable</strong> semantic feature vector $f_i$ extracted from a pre-trained model (SAM image encoder by default). The three core components are:</p>
+<p>FHGS builds on a 2DGS backbone and augments each Gaussian primitive with a <strong>frozen, non-differentiable</strong> semantic feature vector <span class="arithmatex">\(f_i\)</span> extracted from a pre-trained model (SAM image encoder by default). The three core components are:</p>
 <ol>
 <li>
-<p><strong>General Feature Fusion Architecture</strong>: A spatial hash table maps 3D SfM points to their 2D projections across all visible views. At initialization, each Gaussian inherits a frozen feature sampled from the ground-truth 2D feature map $F^\text{gt}$; no feature rendering is needed during the forward pass.</p>
+<p><strong>General Feature Fusion Architecture</strong>: A spatial hash table maps 3D SfM points to their 2D projections across all visible views. At initialization, each Gaussian inherits a frozen feature sampled from the ground-truth 2D feature map <span class="arithmatex">\(F^\text{gt}\)</span>; no feature rendering is needed during the forward pass.</p>
 </li>
 <li>
-<p><strong>Non-Differentiable Feature Driving (NDFD)</strong>: The feature loss $L_\text{feat}$ is computed directly from frozen $f_i$ and the differentiable blend weights $w_i$. Although $f_i$ has no gradient, $\partial L / \partial w_i$ propagates to the geometric parameters ${p_i, R_i, S_i, \text{op}_i}$, driving primitives to spatially reorganize toward feature-consistent regions without modifying the feature vectors themselves.</p>
+<p><strong>Non-Differentiable Feature Driving (NDFD)</strong>: The feature loss <span class="arithmatex">\(L_\text{feat}\)</span> is computed directly from frozen <span class="arithmatex">\(f_i\)</span> and the differentiable blend weights <span class="arithmatex">\(w_i\)</span>. Although <span class="arithmatex">\(f_i\)</span> has no gradient, <span class="arithmatex">\(\partial L / \partial w_i\)</span> propagates to the geometric parameters <span class="arithmatex">\(\{p_i, R_i, S_i, \text{op}_i\}\)</span>, driving primitives to spatially reorganize toward feature-consistent regions without modifying the feature vectors themselves.</p>
 </li>
 <li>
 <p><strong>Physics-Inspired Dual-Drive Mechanism</strong>: </p>
 </li>
-<li><em>External Potential Field</em> ($L_\text{gt}$): Computes cumulative similarity between each primitive's frozen feature and the ground-truth ray feature using a sigmoid activation $\sigma_i = 1/(1+e^{k(\phi-\lambda)})$ on cosine similarity, analogous to charge polarity in an electric field.</li>
-<li><em>Internal Feature Clustering</em> ($L_\text{cf}$): Compares each primitive's feature against the cumulative weighted feature of farther primitives along the ray, reducing $O(N^2)$ pairwise comparisons to $O(N)$ via prefix accumulation. This suppresses both inter-cluster noise and intra-cluster outliers.</li>
-<li>Total loss: $L = L_\text{rgb} + \lambda_1 L_\text{gt} + \lambda_2 L_\text{cf}$.</li>
+<li><em>External Potential Field</em> (<span class="arithmatex">\(L_\text{gt}\)</span>): Computes cumulative similarity between each primitive's frozen feature and the ground-truth ray feature using a sigmoid activation <span class="arithmatex">\(\sigma_i = 1/(1+e^{k(\phi-\lambda)})\)</span> on cosine similarity, analogous to charge polarity in an electric field.</li>
+<li><em>Internal Feature Clustering</em> (<span class="arithmatex">\(L_\text{cf}\)</span>): Compares each primitive's feature against the cumulative weighted feature of farther primitives along the ray, reducing <span class="arithmatex">\(O(N^2)\)</span> pairwise comparisons to <span class="arithmatex">\(O(N)\)</span> via prefix accumulation. This suppresses both inter-cluster noise and intra-cluster outliers.</li>
+<li>Total loss: <span class="arithmatex">\(L = L_\text{rgb} + \lambda_1 L_\text{gt} + \lambda_2 L_\text{cf}\)</span>.</li>
 </ol>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Identifies and resolves the anisotropy–isotropy conflict in 3DGS feature distillation by making feature vectors non-differentiable frozen attributes rather than learned embeddings.</li>
-<li>Physics-inspired dual-drive optimization combining external semantic field alignment and internal clustering regularization, both operating through the existing differentiable blend weights $w_i$.</li>
-<li>New cross-view consistency metric <strong>FE</strong> (Feature Entropy) based on $L_\text{gt}$ for evaluating global feature coherence.</li>
+<li>Physics-inspired dual-drive optimization combining external semantic field alignment and internal clustering regularization, both operating through the existing differentiable blend weights <span class="arithmatex">\(w_i\)</span>.</li>
+<li>New cross-view consistency metric <strong>FE</strong> (Feature Entropy) based on <span class="arithmatex">\(L_\text{gt}\)</span> for evaluating global feature coherence.</li>
 <li>Demonstrated plug-in compatibility with large-scale pre-trained vision models (SAM, CLIP) without architectural modifications to those models.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
@@ -5605,11 +5605,11 @@
 <li><strong>Geometry (Chamfer Distance on DTU)</strong>: FHGS CD=0.75 vs. 2DGS CD=0.83 and Feature3DGS CD=1.85; PSNR 34.21 vs. 33.42 (2DGS) and 35.25 (Feature3DGS).</li>
 <li><strong>Model size</strong>: 183 MB vs. Feature3DGS 745 MB; primitive count 196k vs. 642k.</li>
 <li><strong>Rendering</strong>: ≥60 FPS maintained.</li>
-<li><strong>Ablation</strong>: Removing $L_\text{cf}$ drops PSNR from 30.9 to 27.2 and increases FL1 from 0.16 to 0.21, confirming complementary roles of both loss terms.</li>
+<li><strong>Ablation</strong>: Removing <span class="arithmatex">\(L_\text{cf}\)</span> drops PSNR from 30.9 to 27.2 and increases FL1 from 0.16 to 0.21, confirming complementary roles of both loss terms.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Similarity-activation hyperparameters ($\lambda$, $k$) are manually tuned; no adaptive scheme is proposed.</li>
+<li>Similarity-activation hyperparameters (<span class="arithmatex">\(\lambda\)</span>, <span class="arithmatex">\(k\)</span>) are manually tuned; no adaptive scheme is proposed.</li>
 <li>Spatial hash table and cumulative-weight buffers incur high GPU memory in large-scale scenes.</li>
 <li>PSNR degrades in outdoor scenes relative to Feature3DGS (e.g., 26.5 vs. 28.2 on MN360-Garden), attributed to filtering of low-semantic regions (soil, shadows) that hurts RGB reconstruction metrics.</li>
 <li>Evaluation is limited to SAM image embeddings; generalization to other foundation model features (e.g., CLIP language-aligned features) is claimed but not benchmarked quantitatively.</li>
@@ -5678,6 +5678,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

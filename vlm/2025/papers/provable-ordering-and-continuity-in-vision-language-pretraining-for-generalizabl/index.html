@@ -5590,14 +5590,14 @@
 <p>Existing VL pretraining for embodied agents (R3M, LIV, DecisionNCE) uses time contrastive learning that aligns language with future or final frames under a goal-reaching assumption. Egocentric action videos (e.g., EPIC-KITCHENS-100) violate this assumption: actions may terminate early or contain irrelevant post-action content, causing the encoder to learn incorrect VL associations. No prior method enforces temporal ordering and smooth continuity of VL alignment without specifying explicit goal frames.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>AcTOL is initialized from CLIP (ResNet-50 backbone) and further pretrained on EPIC-KITCHENS-100 with two objectives:</p>
-<p><strong>Vision-Language Ordering (VLO) loss.</strong> For an anchor frame $o_i$ and a nearby frame $o_j$, the semantic alignment score $R(v_i, v_j, l) = -|\text{sim}(v_i, l) - \text{sim}(v_j, l)|^2$ measures the VL-similarity difference. The negative set $N_{i,j}$ contains frames temporally more distant from $o_i$ than $o_j$. An InfoNCE-style loss enforces that closer frame pairs exhibit smaller VL-similarity differences than more distant pairs—capturing temporal ordering without requiring any explicit positive goal frame.</p>
-<p><strong>Brownian Bridge (BB) loss.</strong> For a sampled interval $[n(i), n(j)]$, intermediate frame embeddings are regularized to follow the Brownian bridge distribution: mean linearly interpolating between endpoint embeddings, variance peaking at mid-interval. The loss $L_\text{BB} = \frac{1}{T}\sum_t \frac{1}{2\text{Var}[B(t)]}|v_t - \mathbb{E}[B(t)]|^2$ enforces local visual continuity.</p>
-<p>The combined loss is $L_\text{AcTOL} = L_\text{VLO} + \lambda L_\text{BB}$ with $\lambda{=}0.1$. At test time, encoders are frozen and a lightweight MLP policy is trained via behavior cloning on robot demonstrations.</p>
+<p><strong>Vision-Language Ordering (VLO) loss.</strong> For an anchor frame <span class="arithmatex">\(o_i\)</span> and a nearby frame <span class="arithmatex">\(o_j\)</span>, the semantic alignment score <span class="arithmatex">\(R(v_i, v_j, l) = -\|\text{sim}(v_i, l) - \text{sim}(v_j, l)\|^2\)</span> measures the VL-similarity difference. The negative set <span class="arithmatex">\(N_{i,j}\)</span> contains frames temporally more distant from <span class="arithmatex">\(o_i\)</span> than <span class="arithmatex">\(o_j\)</span>. An InfoNCE-style loss enforces that closer frame pairs exhibit smaller VL-similarity differences than more distant pairs—capturing temporal ordering without requiring any explicit positive goal frame.</p>
+<p><strong>Brownian Bridge (BB) loss.</strong> For a sampled interval <span class="arithmatex">\([n(i), n(j)]\)</span>, intermediate frame embeddings are regularized to follow the Brownian bridge distribution: mean linearly interpolating between endpoint embeddings, variance peaking at mid-interval. The loss <span class="arithmatex">\(L_\text{BB} = \frac{1}{T}\sum_t \frac{1}{2\text{Var}[B(t)]}\|v_t - \mathbb{E}[B(t)]\|^2\)</span> enforces local visual continuity.</p>
+<p>The combined loss is <span class="arithmatex">\(L_\text{AcTOL} = L_\text{VLO} + \lambda L_\text{BB}\)</span> with <span class="arithmatex">\(\lambda{=}0.1\)</span>. At test time, encoders are frozen and a lightweight MLP policy is trained via behavior cloning on robot demonstrations.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>VLO loss that provably (Theorem 1) guarantees representations satisfy a temporal ordering property without goal-frame selection.</li>
 <li>Brownian bridge continuity constraint that provably (Theorem 2) bounds VL alignment change for temporally close frames.</li>
-<li>Theorem 3: robustness to language perturbations bounded by $2C\delta_l$ under Lipschitz similarity.</li>
+<li>Theorem 3: robustness to language perturbations bounded by <span class="arithmatex">\(2C\delta_l\)</span> under Lipschitz similarity.</li>
 <li>End-to-end pretraining framework that transfers to language-conditioned imitation learning on both simulated and real robots with substantially fewer demonstrations than prior work.</li>
 <li>Dense VL reward generation that correctly localizes action boundaries in multi-action video clips.</li>
 </ul>
@@ -5687,6 +5687,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

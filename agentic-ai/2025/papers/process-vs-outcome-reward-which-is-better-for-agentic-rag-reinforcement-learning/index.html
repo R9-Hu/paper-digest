@@ -5583,12 +5583,12 @@
 <p>Outcome-supervised RL for agentic RAG (e.g., Search-R1) suffers from three compounding problems: (1) <strong>low exploration efficiency</strong> because the model must complete an entire reasoning chain before receiving any reward signal; (2) <strong>gradient conflict</strong> when late-step errors penalize correct early-step actions; and (3) <strong>sparse rewards</strong> requiring large amounts of training data and compute to converge. No prior work had applied process-supervised RL to the RAG setting, partly because constructing step-level reward annotations for open-ended retrieval trajectories is prohibitively expensive manually.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>ReasonRAG builds a process-supervised training dataset (RAG-ProGuide) automatically, then trains via DPO using those process-level preferences.</p>
-<p><strong>SPRE (Shortest Path Reward Estimation):</strong> For a partial reasoning trajectory $y_{1:t}$, SPRE estimates the step-level reward via Monte Carlo rollouts:
-$$Q_t = \frac{1}{k}\sum_{i=1}^{k} v(\text{rollout}_i) \cdot \alpha^{\text{step}(\text{rollout}_i)}$$
-where $v$ is F1 correctness against ground truth and $\alpha \in (0,1]$ is a decay factor penalizing unnecessarily long paths, incentivizing correct answers reached in fewer steps.</p>
+<p><strong>SPRE (Shortest Path Reward Estimation):</strong> For a partial reasoning trajectory <span class="arithmatex">\(y_{1:t}\)</span>, SPRE estimates the step-level reward via Monte Carlo rollouts:
+$<span class="arithmatex">\(Q_t = \frac{1}{k}\sum_{i=1}^{k} v(\text{rollout}_i) \cdot \alpha^{\text{step}(\text{rollout}_i)}\)</span>$
+where <span class="arithmatex">\(v\)</span> is F1 correctness against ground truth and <span class="arithmatex">\(\alpha \in (0,1]\)</span> is a decay factor penalizing unnecessarily long paths, incentivizing correct answers reached in fewer steps.</p>
 <p><strong>MCTS for trajectory exploration:</strong> A tailored MCTS over three stages (Reasoning, Grounding, Terminal) and three actions (Query Generation, Evidence Extraction, Answer Generation) selects promising paths via UCB, expands via LLM sampling, and backpropagates SPRE rewards. This yields diverse, high-reward intermediate steps without human annotation.</p>
 <p><strong>RAG-ProGuide dataset:</strong> 4,603 questions sampled from PopQA, HotpotQA, and 2WikiMultihopQA, yielding 13,289 step-level preference pairs (chosen/rejected response at each reasoning step). Post-filtering removes duplicate pairs and pairs with reward gap &lt; 0.01.</p>
-<p><strong>Policy optimization:</strong> Process-supervised DPO applied at the step level — each training example is $(x, y_{&lt;t}, y_t^w, y_t^l)$ conditioning on prior reasoning context, rather than on the full trajectory as in standard outcome DPO.</p>
+<p><strong>Policy optimization:</strong> Process-supervised DPO applied at the step level — each training example is <span class="arithmatex">\((x, y_{&lt;t}, y_t^w, y_t^l)\)</span> conditioning on prior reasoning context, rather than on the full trajectory as in standard outcome DPO.</p>
 <p><strong>Inference:</strong> Three-state agentic loop controlled by token markers (<code>&lt;query&gt;</code>, <code>&lt;evidence&gt;</code>, <code>&lt;answer&gt;</code>), enabling adaptive retrieval depth based on question complexity.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5612,7 +5612,7 @@ where $v$ is F1 correctness against ground truth and $\alpha \in (0,1]$ is a dec
 <li>MuSiQue (hardest multi-hop, out-of-domain) remains the one benchmark where Search-R1 outperforms ReasonRAG on EM, suggesting process supervision does not fully close the gap on the most compositionally complex tasks.</li>
 <li>MCTS-based data generation is computationally non-trivial (requires many LLM rollouts per question); the paper does not report the cost of constructing RAG-ProGuide relative to Search-R1's training cost.</li>
 <li>All experiments use a single backbone (Qwen2.5-7B-Instruct); generalizability to other model families or scales is unverified.</li>
-<li>The SPRE decay factor $\alpha$ is a fixed hyperparameter; sensitivity analysis is not reported in the main text.</li>
+<li>The SPRE decay factor <span class="arithmatex">\(\alpha\)</span> is a fixed hyperparameter; sensitivity analysis is not reported in the main text.</li>
 <li>RAG-ProGuide is constructed only from three datasets (PopQA, HotpotQA, 2WikiMultihopQA); domain coverage of the training signal is limited.</li>
 </ul>
 <h2 id="relevance-to-agentic-ai-llm-agents">Relevance to Agentic AI / LLM Agents<a class="headerlink" href="#relevance-to-agentic-ai-llm-agents" title="Permanent link">&para;</a></h2>
@@ -5679,6 +5679,10 @@ where $v$ is F1 correctness against ground truth and $\alpha \in (0,1]$ is a dec
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

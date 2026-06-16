@@ -5722,9 +5722,9 @@
 <p><strong>Claw-Eval Continuous Mode:</strong>
 - TokenPilot cost: $10.58 vs. Vanilla $81.52 (−87%); Vanilla's unbounded history causes catastrophic accumulation (709M+ cache-read tokens vs. 21M for TokenPilot).</p>
 <p><strong>Ablation (PinchBench continuous):</strong>
-- Global compaction alone: $7.24→$4.22; local eviction adds: $4.22→$2.79.
-- Disabling recovery tool: accuracy drops 80.9→77.1 while cost rises to $4.03.
-- Estimator cost (Qwen3.5-35B-A3B across full continuous PinchBench): &lt;$0.03.</p>
+- Global compaction alone: <span class="arithmatex">\(7.24→\)</span>4.22; local eviction adds: <span class="arithmatex">\(4.22→\)</span>2.79.
+- Disabling recovery tool: accuracy drops 80.9→77.1 while cost rises to <span class="arithmatex">\(4.03.
+- Estimator cost (Qwen3.5-35B-A3B across full continuous PinchBench): &lt;\)</span>0.03.</p>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Model-based estimator may misclassify segments under ambiguous or sparse interaction patterns.</li>
@@ -5796,6 +5796,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

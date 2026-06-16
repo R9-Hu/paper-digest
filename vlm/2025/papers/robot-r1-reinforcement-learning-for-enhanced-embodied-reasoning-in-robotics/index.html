@@ -5597,10 +5597,10 @@
 <p>SFT-based embodied reasoning datasets for robotics are heuristically constructed and not explicitly optimized for actual robot action prediction—linguistic labels often miss precise quantitative details needed for low-level control. Additionally, SFT causes catastrophic forgetting of general conversational and reasoning abilities, and models trained on fixed SFT formats fail to generalize to unseen input distributions.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>Robot-R1 trains Qwen2.5-7B-VL-Instruct via GRPO on three multiple-choice QA (MCQA) tasks derived from RLBench expert demonstrations:
-1. <strong>Waypoint prediction QA</strong>: given current image observation and state $(o_t, s_t)$ plus environment metadata $M$ (reference points, axis conventions, end-effector dimensions), predict next keypoint state $s_{k^<em>}$ from four options (one correct, three randomly sampled distractors).
-2. </em><em>Current state prediction QA</em><em>: identify the robot's current 3D Cartesian state from visual observation alone.
-3. </em><em>Movement prediction QA</em><em>: predict rule-based directional label (e.g., "move up", "slightly move backward") derived from the signed difference $s_{k^</em>} - s_t$.</p>
-<p>The MCQA formulation discretizes the continuous 3D state space, making RL exploration feasible. Models output <code>&lt;think&gt;...&lt;/think&gt;&lt;answer&gt;...&lt;/answer&gt;</code> chains; the GRPO reward is the sum of a format reward $r_f$ and an exact-match answer correctness reward $r_a$. Training uses ~7.5K QA pairs across five RLBench tasks (50 demos each), batch size 128, 5 epochs, 5 rollouts per prompt.</p>
+1. <strong>Waypoint prediction QA</strong>: given current image observation and state <span class="arithmatex">\((o_t, s_t)\)</span> plus environment metadata <span class="arithmatex">\(M\)</span> (reference points, axis conventions, end-effector dimensions), predict next keypoint state <span class="arithmatex">\(s_{k^*}\)</span> from four options (one correct, three randomly sampled distractors).
+2. <strong>Current state prediction QA</strong>: identify the robot's current 3D Cartesian state from visual observation alone.
+3. <strong>Movement prediction QA</strong>: predict rule-based directional label (e.g., "move up", "slightly move backward") derived from the signed difference <span class="arithmatex">\(s_{k^*} - s_t\)</span>.</p>
+<p>The MCQA formulation discretizes the continuous 3D state space, making RL exploration feasible. Models output <code>&lt;think&gt;...&lt;/think&gt;&lt;answer&gt;...&lt;/answer&gt;</code> chains; the GRPO reward is the sum of a format reward <span class="arithmatex">\(r_f\)</span> and an exact-match answer correctness reward <span class="arithmatex">\(r_a\)</span>. Training uses ~7.5K QA pairs across five RLBench tasks (50 demos each), batch size 128, 5 epochs, 5 rollouts per prompt.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Robot-R1 framework</strong>: RL-optimized embodied reasoning for LVLMs using GRPO on MCQA tasks derived from expert demonstrations.</li>
@@ -5621,7 +5621,7 @@
 <ul>
 <li>Planning performance modestly decreases (training objective targets single next keypoint, not long-horizon sequences).</li>
 <li>Evaluation confined to table-top manipulation (5 training tasks from RLBench); generalization to contact-rich or dexterous tasks untested.</li>
-<li>Environment metadata $M$ (reference points, axis orientations, end-effector scale) must be manually specified per scene, limiting out-of-the-box applicability.</li>
+<li>Environment metadata <span class="arithmatex">\(M\)</span> (reference points, axis orientations, end-effector scale) must be manually specified per scene, limiting out-of-the-box applicability.</li>
 <li>LLM-as-judge Pearson correlation for planning is only 0.33, making the planning evaluation metric unreliable.</li>
 <li>Only one base model (7B) evaluated; no scaling experiments or comparison to larger open-source VLMs.</li>
 <li>Training data is small (~7.5K pairs); how performance scales with more demonstrations is not studied.</li>
@@ -5690,6 +5690,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

@@ -5600,9 +5600,9 @@
 <p><strong>Cold-start SFT (R-SFT).</strong> The base model is fine-tuned to jointly generate a reasoning process R and moderation label Y given the guardrail instruction, user prompt, and VLM response.</p>
 <p><strong>Online RL (GRPO-based).</strong> Three techniques refine the SFT model:
 1. <em>Safety-aware data concatenation</em>: hard samples (all predictions wrong under rejection sampling) are augmented by concatenating pairs of text/image inputs; the new label is harmful if any constituent is harmful, forcing detection of harm buried in benign context.
-2. <em>Dynamic clipping</em>: the GRPO clip threshold $B_s = \frac{s_\text{total}-s}{s_\text{total}} \cdot \epsilon$ decreases from large (exploration) to small (exploitation) over training steps.
-3. <em>Length-aware safety reward</em>: $r = \frac{-1 + r_\text{safety}}{\min(l_\text{norm}, \beta)^2}$, where $r_\text{safety} \in [-1,0]$ encodes format + correctness, $l_\text{norm}$ is normalized reasoning length, and $\beta$ is a cut-off preventing over-thinking. Incorrect predictions are incentivized to extend reasoning; correct predictions are penalized for unnecessary length.</p>
-<p><strong>GuardReasoner-VL-Eco</strong> uses $\beta=16$ to trade ~1–1.4% F1 for ~12–14% fewer output tokens.</p>
+2. <em>Dynamic clipping</em>: the GRPO clip threshold <span class="arithmatex">\(B_s = \frac{s_\text{total}-s}{s_\text{total}} \cdot \epsilon\)</span> decreases from large (exploration) to small (exploitation) over training steps.
+3. <em>Length-aware safety reward</em>: <span class="arithmatex">\(r = \frac{-1 + r_\text{safety}}{\min(l_\text{norm}, \beta)^2}\)</span>, where <span class="arithmatex">\(r_\text{safety} \in [-1,0]\)</span> encodes format + correctness, <span class="arithmatex">\(l_\text{norm}\)</span> is normalized reasoning length, and <span class="arithmatex">\(\beta\)</span> is a cut-off preventing over-thinking. Incorrect predictions are incentivized to extend reasoning; correct predictions are penalized for unnecessary length.</p>
+<p><strong>GuardReasoner-VL-Eco</strong> uses <span class="arithmatex">\(\beta=16\)</span> to trade ~1–1.4% F1 for ~12–14% fewer output tokens.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>GuardReasoner-VL: a reasoning-first VLM guard model covering text, image, and text-image modalities.</li>
@@ -5694,6 +5694,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

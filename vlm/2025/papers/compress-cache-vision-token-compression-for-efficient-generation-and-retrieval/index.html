@@ -5590,14 +5590,14 @@
 <p>Prior LVLM token compression methods operate on-the-fly during inference, limiting compressor capacity and making them incompatible with retrieval-augmented generation (RAG) pipelines where images are available a priori. Furthermore, no existing compression approach produces representations suitable for both generative tasks (VQA, captioning) and discriminative tasks (image-text retrieval), forcing RAG systems to maintain separate retrieval and generation models.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>C&amp;C decouples compression from inference via two stages:</p>
-<p><strong>Offline compression (first forward pass):</strong> Learnable summary tokens $H_r \in \mathbb{R}^{k' \times d}$ (with $k' \ll 576$) are concatenated with image tokens $H_v$ and a fixed prompt ("Summarize the image in a few words.") and passed through the LLM. The LLM acts as a bottleneck, transforming the summary tokens into compressed visual representations $H_{cv}$.</p>
-<p><strong>Online generation (second forward pass):</strong> The same LLM (shared weights) takes only $H_{cv}$ and the language instruction as input, trained with next-token prediction loss $L_{AR}$ to reconstruct the full information flow.</p>
-<p>A contrastive loss $L_{disc}$ (CLIP-style InfoNCE) is applied over $H_{cv}$ after the first pass using CC3M caption pairs, with text embeddings computed analogously. The total loss is $L_{total} = L_{AR} + L_{disc}$.</p>
+<p><strong>Offline compression (first forward pass):</strong> Learnable summary tokens <span class="arithmatex">\(H_r \in \mathbb{R}^{k' \times d}\)</span> (with <span class="arithmatex">\(k' \ll 576\)</span>) are concatenated with image tokens <span class="arithmatex">\(H_v\)</span> and a fixed prompt ("Summarize the image in a few words.") and passed through the LLM. The LLM acts as a bottleneck, transforming the summary tokens into compressed visual representations <span class="arithmatex">\(H_{cv}\)</span>.</p>
+<p><strong>Online generation (second forward pass):</strong> The same LLM (shared weights) takes only <span class="arithmatex">\(H_{cv}\)</span> and the language instruction as input, trained with next-token prediction loss <span class="arithmatex">\(L_{AR}\)</span> to reconstruct the full information flow.</p>
+<p>A contrastive loss <span class="arithmatex">\(L_{disc}\)</span> (CLIP-style InfoNCE) is applied over <span class="arithmatex">\(H_{cv}\)</span> after the first pass using CC3M caption pairs, with text embeddings computed analogously. The total loss is <span class="arithmatex">\(L_{total} = L_{AR} + L_{disc}\)</span>.</p>
 <p>Stage-specific LoRA adapters (rank 64) are used for the compression and generation passes separately, since the optimal weight adjustments differ between stages (confirmed by Frobenius norm analysis). Training runs for 10,000 iterations on 24 AMD MI300X GPUs with batch size 1024 and AdamW (lr=2e-4, cosine decay), sampling generative (LLaVA-665K) and discriminative (CC3M) data at 1:1 ratio.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Double-forward pass training strategy that leverages the LVLM's own LLM for self-compression of visual tokens into cached summary tokens</li>
-<li>Unified compressed representation supporting both autoregressive generation and CLIP-style discriminative retrieval via joint $L_{AR} + L_{disc}$ training</li>
+<li>Unified compressed representation supporting both autoregressive generation and CLIP-style discriminative retrieval via joint <span class="arithmatex">\(L_{AR} + L_{disc}\)</span> training</li>
 <li>Stage-specific LoRA adapters that allow distinct weight updates for the compression vs. generation forward passes</li>
 <li>Offline caching paradigm that decouples compression cost from inference, enabling single-model visual RAG with no separate retriever</li>
 </ul>
@@ -5683,6 +5683,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

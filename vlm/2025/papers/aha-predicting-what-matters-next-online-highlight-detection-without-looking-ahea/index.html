@@ -5582,12 +5582,12 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing highlight detection methods—including transformer-based and VLM-based approaches—require access to the full video at inference time (offline, bidirectional attention), making them incompatible with streaming or real-time scenarios. The few streaming Video-LLMs that attempt highlight detection rely on post-hoc smoothing (implicitly using future frames), modified evaluation protocols, and achieve suboptimal detection performance. No prior method offers robust, task-conditioned, frame-level OHD on standard benchmarks under strict causal constraints.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>AHA is built on a frozen SigLIP visual encoder → single linear multimodal projector → Qwen2 decoder-only transformer pipeline. At each timestep, the decoder receives: (1) the current frame's visual tokens, (2) the fixed natural-language task objective Q and system prompt S (prepended once), and (3) the KV cache representing past context. Three lightweight linear heads on the decoder's final hidden state $h_t$ predict:
-- <strong>Relevance</strong> ($\hat{r}_t = W_r h_t$): trained with Smooth L1 loss + total-variation regularizer against YouTube engagement scores.
-- <strong>Informativeness</strong> ($\hat{i}_t = \text{softmax}(W_i h_t)$): binary BCE loss, distinguishing novel vs. redundant frames.
-- <strong>Uncertainty</strong> ($\hat{u}_t$): log-variance of a Gaussian, trained with NLL + variance diversity penalty to prevent mode collapse.
+<p>AHA is built on a frozen SigLIP visual encoder → single linear multimodal projector → Qwen2 decoder-only transformer pipeline. At each timestep, the decoder receives: (1) the current frame's visual tokens, (2) the fixed natural-language task objective Q and system prompt S (prepended once), and (3) the KV cache representing past context. Three lightweight linear heads on the decoder's final hidden state <span class="arithmatex">\(h_t\)</span> predict:
+- <strong>Relevance</strong> (<span class="arithmatex">\(\hat{r}_t = W_r h_t\)</span>): trained with Smooth L1 loss + total-variation regularizer against YouTube engagement scores.
+- <strong>Informativeness</strong> (<span class="arithmatex">\(\hat{i}_t = \text{softmax}(W_i h_t)\)</span>): binary BCE loss, distinguishing novel vs. redundant frames.
+- <strong>Uncertainty</strong> (<span class="arithmatex">\(\hat{u}_t\)</span>): log-variance of a Gaussian, trained with NLL + variance diversity penalty to prevent mode collapse.
 - An auxiliary LM head adds captioning supervision to enrich representations.</p>
-<p>Final score $\hat{y}_t$ combines all three heads via an uncertainty-aware piecewise function: relevance and informativeness are linearly weighted; high-uncertainty frames are penalized by $\epsilon(\hat{u}_t - \tau_u)$.</p>
+<p>Final score <span class="arithmatex">\(\hat{y}_t\)</span> combines all three heads via an uncertainty-aware piecewise function: relevance and informativeness are linearly weighted; high-uncertainty frames are penalized by <span class="arithmatex">\(\epsilon(\hat{u}_t - \tau_u)\)</span>.</p>
 <p><strong>Dynamic SinkCache</strong>: Modifies StreamingLLM's SinkCache so the persistent "sink" contains exclusively the task objective tokens Q (~45 tokens), while a 2048-token sliding window holds recent visual context. This fixes memory at 17% of an unbounded KV cache while outperforming it.</p>
 <p><strong>HIHD dataset</strong>: 22,463 YouTube videos with frame-level engagement scores (normalized replay counts), synthetically generated task queries from video titles, and quality-dropout augmentation (5–20% of frames corrupted with noise/blackout/resolution drops).</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5682,6 +5682,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

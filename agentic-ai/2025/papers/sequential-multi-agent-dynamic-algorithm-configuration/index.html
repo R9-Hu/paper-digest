@@ -5568,11 +5568,11 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Multi-hyperparameter DAC faces two compounding challenges: (1) the combinatorial explosion of joint action spaces when configuring multiple heterogeneous parameters simultaneously, and (2) inherent inter-dependencies among parameters (e.g., the reproduction operator type must be fixed before its associated parameters can be meaningfully set). Existing cooperative MARL approaches (VDN, QMIX, MAPPO, HAPPO, HASAC) treat agents as fully decentralized and ignore these dependencies. The only prior sequential approach, CANDID/SAQL, uses IQL-style credit assignment that causes non-convergence; ACE's long Q-value update chain introduces compounding errors under diverse instances.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>The problem is formulated as a <strong>contextual sequential multi-agent MDP (sequential MMDP)</strong>: at each timestep, agents act one-by-one in a predefined dependency order, with each agent $i$ observing the state $s$ plus all prior actions $a_{1:i-1}$.</p>
-<p><strong>SADN</strong> decomposes the global advantage function $A(s, a)$ into a sum of per-agent conditional advantage functions via the Multi-Agent Advantage Decomposition Lemma:
-$$A^\pi(s, a) = \sum_{i=1}^n A^\pi_i(s, a_{1:i-1}, a_i)$$</p>
-<p>Each agent $i$ maintains a network estimating $A_i(s, a_{1:i-1}, a_i)$ and selects the action maximizing it. A shared global value network $V(s)$ is maintained; the global advantage target is computed by one-step TD (GAE with $\lambda=0$):
-$$A(s,a) \leftarrow A(s,a) + \alpha[r + \gamma V(s') - V(s) - A(s,a)]$$</p>
+<p>The problem is formulated as a <strong>contextual sequential multi-agent MDP (sequential MMDP)</strong>: at each timestep, agents act one-by-one in a predefined dependency order, with each agent <span class="arithmatex">\(i\)</span> observing the state <span class="arithmatex">\(s\)</span> plus all prior actions <span class="arithmatex">\(a_{1:i-1}\)</span>.</p>
+<p><strong>SADN</strong> decomposes the global advantage function <span class="arithmatex">\(A(s, a)\)</span> into a sum of per-agent conditional advantage functions via the Multi-Agent Advantage Decomposition Lemma:
+$<span class="arithmatex">\(A^\pi(s, a) = \sum_{i=1}^n A^\pi_i(s, a_{1:i-1}, a_i)\)</span>$</p>
+<p>Each agent <span class="arithmatex">\(i\)</span> maintains a network estimating <span class="arithmatex">\(A_i(s, a_{1:i-1}, a_i)\)</span> and selects the action maximizing it. A shared global value network <span class="arithmatex">\(V(s)\)</span> is maintained; the global advantage target is computed by one-step TD (GAE with <span class="arithmatex">\(\lambda=0\)</span>):
+$<span class="arithmatex">\(A(s,a) \leftarrow A(s,a) + \alpha[r + \gamma V(s') - V(s) - A(s,a)]\)</span>$</p>
 <p>Gradients backpropagate through the summed global advantage to all individual networks simultaneously, so individual nets update in parallel rather than sequentially, avoiding the chain-error problem of ACE. The decomposition is proven to satisfy the <strong>IGM principle</strong> in the sequential setting (Theorem 1), guaranteeing that per-agent greedy action selection recovers the joint optimum.</p>
 <p>The required hyperparameter ordering is set by the natural execution order in the target algorithm's code (e.g., for MOEA/D: neighborhood size → operator type → operator parameters → weight update).</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5660,6 +5660,10 @@ $$A(s,a) \leftarrow A(s,a) + \alpha[r + \gamma V(s') - V(s) - A(s,a)]$$</p>
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

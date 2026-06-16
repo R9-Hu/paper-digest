@@ -5596,14 +5596,14 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing adversarial attacks on VLM agents either require white-box access (weights/gradients) or produce visually detectable perturbations, making them impractical against real-world agentic deployments. No prior method addresses stealthy, black-box, semantic-level manipulation of the vision-language selection layer that autonomous agents (e.g., GUI agents, e-commerce recommenders) use to make decisions.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>TRAP operates entirely in CLIP's shared image-text embedding space under a strict black-box threat model (query access only). Given a target image and attacker-chosen positive guidance prompt $p_{pos}$, it optimizes an adversarial image embedding $e_{adv}$ via a composite loss:</p>
-<p>$$L_{total} = \lambda_1 L_{sem} + \lambda_2 L_{dist} + \lambda_3 L_{LPIPS}$$</p>
+<p>TRAP operates entirely in CLIP's shared image-text embedding space under a strict black-box threat model (query access only). Given a target image and attacker-chosen positive guidance prompt <span class="arithmatex">\(p_{pos}\)</span>, it optimizes an adversarial image embedding <span class="arithmatex">\(e_{adv}\)</span> via a composite loss:</p>
+<div class="arithmatex">\[L_{total} = \lambda_1 L_{sem} + \lambda_2 L_{dist} + \lambda_3 L_{LPIPS}\]</div>
 <ul>
-<li><strong>$L_{sem}$</strong>: cosine distance between $e_{adv}$ and $e_{pos} = E_T(p_{pos})$, pulling the image embedding toward the target semantic concept.</li>
-<li><strong>$L_{dist}$</strong>: Siamese network $S_{dist}$ decomposes embeddings into common and distinctive components; penalizes deviation of $e_{adv}$'s distinctive branch from the original, preserving identity while channeling semantic edits through the common branch.</li>
-<li><strong>$L_{LPIPS}$</strong>: perceptual similarity loss in pixel space, computed after decoding through a layout-aware pipeline: a lightweight MLP generates a soft semantic heatmap $A$, refined with a DeepLabv3 foreground mask ($A_{final} = A \odot F_{seg}$), then the modulated common embedding is decoded via Stable Diffusion v2.1 Img2Img.</li>
+<li><strong><span class="arithmatex">\(L_{sem}\)</span></strong>: cosine distance between <span class="arithmatex">\(e_{adv}\)</span> and <span class="arithmatex">\(e_{pos} = E_T(p_{pos})\)</span>, pulling the image embedding toward the target semantic concept.</li>
+<li><strong><span class="arithmatex">\(L_{dist}\)</span></strong>: Siamese network <span class="arithmatex">\(S_{dist}\)</span> decomposes embeddings into common and distinctive components; penalizes deviation of <span class="arithmatex">\(e_{adv}\)</span>'s distinctive branch from the original, preserving identity while channeling semantic edits through the common branch.</li>
+<li><strong><span class="arithmatex">\(L_{LPIPS}\)</span></strong>: perceptual similarity loss in pixel space, computed after decoding through a layout-aware pipeline: a lightweight MLP generates a soft semantic heatmap <span class="arithmatex">\(A\)</span>, refined with a DeepLabv3 foreground mask (<span class="arithmatex">\(A_{final} = A \odot F_{seg}\)</span>), then the modulated common embedding is decoded via Stable Diffusion v2.1 Img2Img.</li>
 </ul>
-<p>Optimization runs for up to 20 outer iterations × 20 inner gradient steps (Adam, lr=0.005). The final $x_{adv}$ is evaluated over 100 randomized N-way ordering trials to measure selection probability.</p>
+<p>Optimization runs for up to 20 outer iterations × 20 inner gradient steps (Adam, lr=0.005). The final <span class="arithmatex">\(x_{adv}\)</span> is evaluated over 100 randomized N-way ordering trials to measure selection probability.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>TRAP framework</strong>: first black-box semantic adversarial attack specifically targeting the vision-language selection layer of agentic AI systems.</li>
@@ -5747,6 +5747,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

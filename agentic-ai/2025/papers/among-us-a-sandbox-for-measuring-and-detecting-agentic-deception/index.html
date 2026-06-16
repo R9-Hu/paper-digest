@@ -5589,8 +5589,8 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Prior deception evaluations in LLMs test narrow behaviors—single false statements or binary choices—rather than allowing open-ended, strategic, long-horizon deception to emerge organically. There is no rich sandbox where agents develop their own deceptive strategies in pursuit of game objectives, making it difficult to measure capability growth or evaluate detection techniques at scale.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>The authors implement Among Us as a text-based multi-agent MDP with 5 crewmates and 2 impostors, each backed by an LLM. Agents receive only game rules (no in-context examples of deception), and deception emerges instrumentally from the impostor's objective. The game state $S_t = (P_t, L_t, G_t)$ drives partial-observability; agents interleave task and meeting phases with actions including Kill, Fake Task, Speak, and Vote.</p>
-<p>Deceptive capability is quantified via <strong>Deception Elo</strong> and <strong>Detection Elo</strong> (Elo rating system applied to impostor/crewmate win rates across multi-model games, with $K=32$ and 1000-sample bootstrap CIs).</p>
+<p>The authors implement Among Us as a text-based multi-agent MDP with 5 crewmates and 2 impostors, each backed by an LLM. Agents receive only game rules (no in-context examples of deception), and deception emerges instrumentally from the impostor's objective. The game state <span class="arithmatex">\(S_t = (P_t, L_t, G_t)\)</span> drives partial-observability; agents interleave task and meeting phases with actions including Kill, Fake Task, Speak, and Vote.</p>
+<p>Deceptive capability is quantified via <strong>Deception Elo</strong> and <strong>Detection Elo</strong> (Elo rating system applied to impostor/crewmate win rates across multi-model games, with <span class="arithmatex">\(K=32\)</span> and 1000-sample bootstrap CIs).</p>
 <p>For detection, logistic regression probes are trained on residual stream activations at layer 20 of Phi-4 (embedding dim 5120) on four datasets: TruthfulQA, DishonestQA (same questions with "pretend honest/dishonest" system prompts), RepEng contrastive pairs, and Among Us gameplay. OOD generalization is the primary evaluation axis. Sparse autoencoder (SAE) features are extracted via the Goodfire API and evaluated for both detection and activation steering.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5686,6 +5686,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

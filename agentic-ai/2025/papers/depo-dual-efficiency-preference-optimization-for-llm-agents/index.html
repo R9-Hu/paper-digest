@@ -5583,8 +5583,8 @@
 <p>Prior work on LLM efficiency targets only token count per response, ignoring the compounding cost of multi-turn environment interactions where each API call adds latency and expense. Existing preference optimization methods (DPO, KTO, GRPO) optimize learning dynamics but have no explicit mechanism to reward agents for completing tasks in fewer steps or with more concise per-step reasoning. There is no standard definition of LLM agent efficiency to target.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>DEPO extends KTO (which applies prospect-theoretic sigmoid preference loss without requiring paired annotations) by augmenting the implied reward for <em>desirable</em> trajectories with an efficiency bonus:</p>
-<p>$$b(\tau) = \frac{\alpha_1}{T_{\text{token}}(\tau)} + \frac{\alpha_2}{T_{\text{step}}(\tau)}$$</p>
-<p>where $T_{\text{token}}$ is mean tokens per step and $T_{\text{step}}$ is total steps. The bonus is added only to the desirable branch's log-ratio; undesirable trajectories receive no modification. This creates a larger decision margin for efficient successful trajectories without altering the loss structure or requiring reward model training.</p>
+<div class="arithmatex">\[b(\tau) = \frac{\alpha_1}{T_{\text{token}}(\tau)} + \frac{\alpha_2}{T_{\text{step}}(\tau)}\]</div>
+<p>where <span class="arithmatex">\(T_{\text{token}}\)</span> is mean tokens per step and <span class="arithmatex">\(T_{\text{step}}\)</span> is total steps. The bonus is added only to the desirable branch's log-ratio; undesirable trajectories receive no modification. This creates a larger decision margin for efficient successful trajectories without altering the loss structure or requiring reward model training.</p>
 <p>Training is two-stage: (1) SFT/behavioral cloning on MCTS-generated high-reward trajectories rephrased for conciseness via GPT-4.1 mini; (2) DEPO preference optimization contrasting desirable vs. mid-quality undesirable trajectories filtered by reward thresholds and step-count criteria.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5675,6 +5675,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

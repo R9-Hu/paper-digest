@@ -5597,10 +5597,10 @@
 <p>Existing LVLM knowledge editing methods address a single modality in isolation and evaluate only single-step edits. This ignores two critical real-world requirements: (1) <em>continual</em> editing, where a sequence of alternating visual and textual updates must be retained over time without catastrophic forgetting; and (2) <em>compositional</em> reasoning, where a query requires integrating a visual edit (entity re-identification) with a separately stored textual fact update. External memory editors fail because they use text-only retrieval, missing visual cues. Internal methods (LoRA, fine-tuning) store heterogeneous modality edits in a shared parameter space, causing cross-modal interference and representation collapse under sequential edits.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>MemEIC operates through three coordinated components:</p>
-<p><strong>Query Decomposition.</strong> GPT-4o decomposes each input query into a visual sub-query $Q_v$ and a textual sub-query $Q_t$, enabling modality-specific downstream processing.</p>
-<p><strong>Mem-E (Dual External Memory).</strong> Two separate stores: $M_t$ for textual QA pairs (retrieved via DistilBERT [CLS] cosine similarity) and $M_v$ for visual image-QA triples (retrieved via a weighted combination of CLIP image embeddings and DistilBERT text embeddings, $\alpha=0.5$). For compositional queries, the visual retrieval resolves the entity first, then the entity name is substituted into the textual query for a second retrieval pass. Retrieved evidence is prepended to the LVLM prompt.</p>
-<p><strong>Mem-I (Dual LoRA Adapters).</strong> Two parallel LoRA adapters (rank 8 each) augment the FFN: a visual adapter $\theta_v$ (right-hemisphere analogy) and a textual adapter $\theta_t$ (left-hemisphere analogy). Only the modality-matched adapter is updated per edit and activated at inference; both activate for compositional queries.</p>
-<p><strong>Knowledge Connector.</strong> A LoRA-augmented self-attention module that activates only when both adapters are active (indicator $I_{v,t}=1$). It modifies the Q and K projections: $Q^\ell = h^\ell W_Q + I_{v,t} \cdot \Delta W_Q^L$, enabling cross-modal token interaction for compositional reasoning while remaining an identity operation for unimodal queries.</p>
+<p><strong>Query Decomposition.</strong> GPT-4o decomposes each input query into a visual sub-query <span class="arithmatex">\(Q_v\)</span> and a textual sub-query <span class="arithmatex">\(Q_t\)</span>, enabling modality-specific downstream processing.</p>
+<p><strong>Mem-E (Dual External Memory).</strong> Two separate stores: <span class="arithmatex">\(M_t\)</span> for textual QA pairs (retrieved via DistilBERT [CLS] cosine similarity) and <span class="arithmatex">\(M_v\)</span> for visual image-QA triples (retrieved via a weighted combination of CLIP image embeddings and DistilBERT text embeddings, <span class="arithmatex">\(\alpha=0.5\)</span>). For compositional queries, the visual retrieval resolves the entity first, then the entity name is substituted into the textual query for a second retrieval pass. Retrieved evidence is prepended to the LVLM prompt.</p>
+<p><strong>Mem-I (Dual LoRA Adapters).</strong> Two parallel LoRA adapters (rank 8 each) augment the FFN: a visual adapter <span class="arithmatex">\(\theta_v\)</span> (right-hemisphere analogy) and a textual adapter <span class="arithmatex">\(\theta_t\)</span> (left-hemisphere analogy). Only the modality-matched adapter is updated per edit and activated at inference; both activate for compositional queries.</p>
+<p><strong>Knowledge Connector.</strong> A LoRA-augmented self-attention module that activates only when both adapters are active (indicator <span class="arithmatex">\(I_{v,t}=1\)</span>). It modifies the Q and K projections: <span class="arithmatex">\(Q^\ell = h^\ell W_Q + I_{v,t} \cdot \Delta W_Q^L\)</span>, enabling cross-modal token interaction for compositional reasoning while remaining an identity operation for unimodal queries.</p>
 <p>Training uses two stages: (1) freeze the LVLM, train external memory retrieval; (2) freeze external memory, train the Knowledge Connector using an adversarial retriever that mixes factual and counterfactual evidence to prevent over-reliance on retrieved context.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
@@ -5691,6 +5691,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

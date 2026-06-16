@@ -5596,12 +5596,12 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Cache-based TTA methods (e.g., TDA, BoostAdapter) are constrained by finite cache capacity: they store only a limited set of representative samples, discard older entries, and consequently suffer catastrophic forgetting as the test distribution evolves. They also fail to capture the full statistical structure of the test stream, limiting both accuracy and long-horizon adaptability.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>DOTA assumes per-class image embeddings follow a Gaussian distribution $P(x|y=k) = \mathcal{N}(\mu_k, \Sigma_k)$ and maintains running estimates $(\hat{\mu}_k, \hat{\Sigma}_k)$ for each class $k$. At each test step, it:
-1. <strong>Soft-labels</strong> incoming samples using CLIP's zero-shot softmax probabilities $P_k^{zs}$ as EM weights (avoiding the need for ground-truth labels).
-2. <strong>Updates</strong> $\hat{\mu}_k$ and $\hat{\Sigma}_k$ via a streaming online algorithm (Dasgupta &amp; Hsu 2007) that accumulates confidence-weighted sufficient statistics, converging with zero average regret.
-3. <strong>Classifies</strong> using the Bayesian posterior $P(y=k|x) \propto \exp(f_k(x))$ where $f_k(x) = -\frac{1}{2}(x-\hat{\mu}_k)^T \hat{\Sigma}_k^{-1}(x-\hat{\mu}_k) - \frac{1}{2}\log|\hat{\Sigma}_k|$.
-4. <strong>Fuses</strong> zero-shot and distributional logits as $\cos(x,w_k)/\tau + \lambda f_k(x)$, where $\lambda = \min(\rho c, \eta)$ ramps up with sample count $c$, suppressing the unreliable distributional term early in the stream.</p>
-<p>To reduce inversion cost from $K$ to 1, covariances are averaged across classes; shrinkage regularization $\hat{\Lambda} = [(1-\epsilon)\hat{\Sigma} + \epsilon I]^{-1}$ ($\epsilon=10^{-4}$) ensures positive definiteness. No gradient backpropagation is required.</p>
+<p>DOTA assumes per-class image embeddings follow a Gaussian distribution <span class="arithmatex">\(P(x|y=k) = \mathcal{N}(\mu_k, \Sigma_k)\)</span> and maintains running estimates <span class="arithmatex">\((\hat{\mu}_k, \hat{\Sigma}_k)\)</span> for each class <span class="arithmatex">\(k\)</span>. At each test step, it:
+1. <strong>Soft-labels</strong> incoming samples using CLIP's zero-shot softmax probabilities <span class="arithmatex">\(P_k^{zs}\)</span> as EM weights (avoiding the need for ground-truth labels).
+2. <strong>Updates</strong> <span class="arithmatex">\(\hat{\mu}_k\)</span> and <span class="arithmatex">\(\hat{\Sigma}_k\)</span> via a streaming online algorithm (Dasgupta &amp; Hsu 2007) that accumulates confidence-weighted sufficient statistics, converging with zero average regret.
+3. <strong>Classifies</strong> using the Bayesian posterior <span class="arithmatex">\(P(y=k|x) \propto \exp(f_k(x))\)</span> where <span class="arithmatex">\(f_k(x) = -\frac{1}{2}(x-\hat{\mu}_k)^T \hat{\Sigma}_k^{-1}(x-\hat{\mu}_k) - \frac{1}{2}\log|\hat{\Sigma}_k|\)</span>.
+4. <strong>Fuses</strong> zero-shot and distributional logits as <span class="arithmatex">\(\cos(x,w_k)/\tau + \lambda f_k(x)\)</span>, where <span class="arithmatex">\(\lambda = \min(\rho c, \eta)\)</span> ramps up with sample count <span class="arithmatex">\(c\)</span>, suppressing the unreliable distributional term early in the stream.</p>
+<p>To reduce inversion cost from <span class="arithmatex">\(K\)</span> to 1, covariances are averaged across classes; shrinkage regularization <span class="arithmatex">\(\hat{\Lambda} = [(1-\epsilon)\hat{\Sigma} + \epsilon I]^{-1}\)</span> (<span class="arithmatex">\(\epsilon=10^{-4}\)</span>) ensures positive definiteness. No gradient backpropagation is required.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>A distributional TTA paradigm for VLMs that estimates per-class Gaussians online rather than caching individual samples, eliminating the capacity-forgetting trade-off.</li>
@@ -5621,8 +5621,8 @@
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Single Gaussian per class cannot capture multimodal or non-Gaussian intra-class distributions.</li>
-<li>Uniform class prior ($P(y=k)=1/K$) is incorrect under real-world class imbalance; no adaptive prior mechanism.</li>
-<li>Logit fusion weight schedule ($\lambda = \min(\rho c, \eta)$) is heuristic; no principled uncertainty-aware weighting.</li>
+<li>Uniform class prior (<span class="arithmatex">\(P(y=k)=1/K\)</span>) is incorrect under real-world class imbalance; no adaptive prior mechanism.</li>
+<li>Logit fusion weight schedule (<span class="arithmatex">\(\lambda = \min(\rho c, \eta)\)</span>) is heuristic; no principled uncertainty-aware weighting.</li>
 <li>Performance degrades below TDA when per-class sample count is very low (e.g., ImageNet-V2 with only 10 samples/class), since Gaussian estimates are unreliable in this regime.</li>
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
@@ -5689,6 +5689,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

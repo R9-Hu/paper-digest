@@ -5607,10 +5607,10 @@
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>VLMs used for robot manipulation planning can localize objects but are blind to object <em>orientation</em>, which is essential for 6-DoF manipulation (e.g., aligning a knife's blade, righting a wine glass, plugging in a USB). Prior pose-estimation methods rely on category-specific templates or fixed reference frames, limiting open-world, language-guided generalization. No large-scale dataset links free-text orientation descriptions to 3D geometry.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Semantic Orientation</strong> is defined as a unit vector $s^\mathcal{X}_\ell \in \mathcal{S}^{(2)}$ that maps an open-vocabulary phrase $\ell$ (part names, interaction verbs, cardinal directions) to a geometric direction on a given 3D object $\mathcal{X}$.</p>
+<p><strong>Semantic Orientation</strong> is defined as a unit vector <span class="arithmatex">\(s^\mathcal{X}_\ell \in \mathcal{S}^{(2)}\)</span> that maps an open-vocabulary phrase <span class="arithmatex">\(\ell\)</span> (part names, interaction verbs, cardinal directions) to a geometric direction on a given 3D object <span class="arithmatex">\(\mathcal{X}\)</span>.</p>
 <p><strong>OrienText300K</strong> is constructed from Objaverse (~800K raw models): GPT-4o filters samples against six quality criteria (standard orthogonal views, clean backgrounds, meaningful geometry, etc.) achieving 88.3% filtering accuracy, then annotates semantic-view pairs at 97.1% accuracy, yielding 350K+ objects and 8M rendered images.</p>
 <p><strong>PointSO</strong> is a plain Transformer processing point clouds via FPS + KNN + PointNet feature extraction. CLIP text embeddings are injected into every Transformer layer via token-wise addition, and an MLP [CLS] head predicts the orientation vector. Training minimizes negative cosine similarity between predicted and ground-truth orientations.</p>
-<p><strong>SoFar system</strong> (pipeline): (1) A VLM identifies task-relevant object phrases and their semantic orientation descriptors from the RGB image + instruction; (2) Florence-2 + SAM segment objects to 3D point clouds; (3) PointSO estimates semantic orientations; (4) A 6-DoF scene graph $G=(V,E)$ encodes per-object position, bounding box, and orientation set; (5) The VLM performs chain-of-thought reasoning over the scene graph to predict target poses; (6) Translation and rotation are computed analytically (Kabsch-Umeyama algorithm), and OMPL generates collision-free trajectories.</p>
+<p><strong>SoFar system</strong> (pipeline): (1) A VLM identifies task-relevant object phrases and their semantic orientation descriptors from the RGB image + instruction; (2) Florence-2 + SAM segment objects to 3D point clouds; (3) PointSO estimates semantic orientations; (4) A 6-DoF scene graph <span class="arithmatex">\(G=(V,E)\)</span> encodes per-object position, bounding box, and orientation set; (5) The VLM performs chain-of-thought reasoning over the scene graph to predict target poses; (6) Translation and rotation are computed analytically (Kabsch-Umeyama algorithm), and OMPL generates collision-free trajectories.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Semantic orientation</strong> concept: open-vocabulary, template-free, reference-frame-free orientation representation linked to natural language.</li>
@@ -5706,6 +5706,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

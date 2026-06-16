@@ -5603,7 +5603,7 @@
 <p><strong>Architecture:</strong> Separate RGB and depth encoders (each with its own projector) feed into a shared LLM (NVILA-2B/8B base). The depth encoder is initialized from the RGB encoder but updated independently, preventing modality interference while enriching 3D perception.</p>
 <p><strong>Two-stage training:</strong>
 1. <em>SFT</em> — (a) Depth alignment: train only the depth projector on RGB-D annotations. (b) Full fine-tuning on RefSpatial (RGB + RGB-D jointly) plus instruction-tuning and referring datasets, teaching single-step spatial understanding and providing a cold-start for reasoning.
-2. <em>RFT</em> — GRPO applied to the SFT checkpoint using multi-step reasoning data. Four reward signals are combined: Outcome Format Reward ($R_{OF}$), Point L1 Reward ($R_P$, binary at ground-truth proximity), Process Format Reward ($R_{PF}$, enforces step-format), and Accuracy Reward ($R_{Acc}$, per-step metric error against key-step annotations with $\alpha=0.25$). Rewards are group-normalized into relative advantages; KL regularization keeps updates near the reference policy.</p>
+2. <em>RFT</em> — GRPO applied to the SFT checkpoint using multi-step reasoning data. Four reward signals are combined: Outcome Format Reward (<span class="arithmatex">\(R_{OF}\)</span>), Point L1 Reward (<span class="arithmatex">\(R_P\)</span>, binary at ground-truth proximity), Process Format Reward (<span class="arithmatex">\(R_{PF}\)</span>, enforces step-format), and Accuracy Reward (<span class="arithmatex">\(R_{Acc}\)</span>, per-step metric error against key-step annotations with <span class="arithmatex">\(\alpha=0.25\)</span>). Rewards are group-normalized into relative advantages; KL regularization keeps updates near the reference policy.</p>
 <p><strong>RefSpatial dataset:</strong> 2.5M samples / 20M QA pairs from three sources—OpenImages (2D, 466k filtered), CA-1M (3D embodied video, 100k filtered frames), and Infinigen+Objaverse simulation (3k verified assets). Covers 31 spatial relations (vs. 15 prior), hierarchical captions, top-down occupancy maps, and ground-truth step-by-step reasoning annotations (up to 5 steps) in simulation.</p>
 <p><strong>RefSpatial-Bench:</strong> 200 real-world images (100 Location + 100 Placement); 70%+ require multi-step reasoning; 77% involve unseen spatial-relation combinations; ground-truth precise masks used for evaluation.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
@@ -5702,6 +5702,10 @@
     
     
       <script src="../../../../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="../../../../javascripts/mathjax.js"></script>
+      
+        <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
       
         <script src="../../../../javascripts/newtab.js"></script>
       

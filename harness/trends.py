@@ -29,8 +29,8 @@ SYSTEM = (
 PROMPT_TMPL = """\
 You are analyzing the research topic: "{topic}".
 
-Below are {n} paper digests (newest first), each with its date and venue. Write a
-GitHub-flavored Markdown trend report using EXACTLY these H2 sections:
+Below are {n} paper summaries (TL;DRs, newest first), each with its date and venue.
+Write a GitHub-flavored Markdown trend report using EXACTLY these H2 sections:
 
 ## Overview
 (3-5 sentences framing the topic and the state of play.)
@@ -61,7 +61,7 @@ Rules:
 - Reference papers by their titles. Be specific and technical; avoid generic filler.
 - Output ONLY the Markdown body starting at "## Overview". No preamble, no front matter.
 
-=== DIGESTS ===
+=== PAPER TL;DRs ===
 {corpus}
 """
 
@@ -75,18 +75,23 @@ def _strip_front_matter(md: str) -> str:
 
 
 def _build_corpus_year(conn, topic: Topic, year: int) -> tuple[str, int]:
+    """Corpus for trend synthesis = the cached per-paper TL;DRs (token-efficient;
+    ~4-5x smaller than feeding full digest bodies). Falls back to parsing the
+    digest file's TL;DR for pre-cache rows."""
     rows = state.digested_for_topic_year(conn, topic.slug, year)[:MAX_PAPERS]
     chunks, total, used = [], 0, 0
     for row in rows:
-        path = config.ROOT / (row["digest_path"] or "")
-        if not path.exists():
+        tl = row["tldr"] or ""
+        if not tl:
+            path = config.ROOT / (row["digest_path"] or "")
+            if path.exists():
+                tl = _tldr_of(path.read_text(encoding="utf-8"))
+        if not tl:
             continue
-        body = _strip_front_matter(path.read_text(encoding="utf-8"))
-        body = re.sub(r"\n{3,}", "\n\n", body)[:PER_PAPER_CHARS]
         header = f"### [{row['published'] or '?'}] {row['title']}"
         if row["venue"]:
             header += f"  ({row['venue']})"
-        chunk = f"{header}\n{body}\n"
+        chunk = f"{header}\n{tl}\n"
         if total + len(chunk) > MAX_CORPUS_CHARS:
             break
         chunks.append(chunk)

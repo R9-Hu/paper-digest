@@ -11,6 +11,7 @@ global:
   claude_bin: claude                   # path to the Claude Code CLI
   claude_timeout_sec: 600              # per-call timeout for headless claude -p
   digest_concurrency: 3                # parallel claude -p digests (lower = gentler on rate limits)
+  digest_max_chars: 30000              # paper text sent per digest (lower = fewer input tokens)
   digest_window_start: 21              # only DIGEST between these hours (24h), to avoid
   digest_window_end: 6                 # exhausting the rate limit during work time
   monthly_keep: 100                    # 1st of month: keep top N/topic for the previous month

@@ -186,10 +186,11 @@ def _produce(cfg: Config, topic: Topic, row):
     pdf_path = config.ROOT / (row["pdf_path"] or "")
     if not pdf_path.exists():
         return cid, slug, None, "pdf missing", None
+    cap = cfg.digest_max_chars
     text = extract_text(pdf_path, cid)
     if len(text) < 500:
-        text = (row["abstract"] or "")[:MAX_TEXT_CHARS]
-    text = text[:MAX_TEXT_CHARS]
+        text = (row["abstract"] or "")[:cap]
+    text = text[:cap]
     if not text.strip():
         return cid, slug, None, "no extractable text", None
     prompt = PROMPT_TMPL.format(topic=topic.name, title=row["title"], text=text)

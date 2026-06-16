@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import json
 import logging
+import re
 import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
@@ -67,17 +68,40 @@ Paper text (may be truncated):
 """
 
 
-def extract_text(pdf_path: Path) -> str:
-    """pdftotext -> string (empty on failure)."""
+def _cache_path(canonical_id: str):
+    return config.TEXT_DIR / f"{canonical_id.split(':', 1)[-1]}.txt"
+
+
+def extract_text(pdf_path: Path, canonical_id: str | None = None) -> str:
+    """pdftotext -> string (empty on failure), cached by paper id under state/text/.
+
+    The cache is keyed on the paper id (not the topic), so a re-digest, a retry of
+    a failed digest, or the same paper appearing under multiple topics all reuse a
+    single extraction instead of re-running pdftotext. Compaction clears the cache."""
+    cache = _cache_path(canonical_id) if canonical_id else None
+    if cache and cache.exists():
+        try:
+            cached = cache.read_text(encoding="utf-8", errors="ignore")
+            if len(cached) >= 500:
+                return cached
+        except OSError:
+            pass
     try:
         proc = subprocess.run(
             ["pdftotext", "-q", str(pdf_path), "-"],
             capture_output=True, text=True, timeout=120,
         )
-        return proc.stdout or ""
+        text = proc.stdout or ""
     except (subprocess.SubprocessError, FileNotFoundError) as e:
         log.warning("pdftotext failed for %s: %s", pdf_path, e)
         return ""
+    if cache and len(text) >= 500:
+        try:
+            config.TEXT_DIR.mkdir(parents=True, exist_ok=True)
+            cache.write_text(text, encoding="utf-8")
+        except OSError:
+            pass
+    return text
 
 
 def _fmt_ts(iso: str) -> str:
@@ -134,30 +158,35 @@ def _front_matter(row, topic: Topic, digest_body: str) -> str:
     return "\n".join(lines)
 
 
+def _tldr_of(body: str) -> str:
+    m = re.search(r"(?ims)^##\s*TL;DR\s*\n(.+?)(?=^##\s|\Z)", body)
+    return " ".join(m.group(1).split()) if m else ""
+
+
 def _produce(cfg: Config, topic: Topic, row):
     """Heavy, DB-free digest work (runs in a worker thread).
-    Returns (canonical_id, topic_slug, digest_rel_path | None, error | None)."""
+    Returns (canonical_id, topic_slug, digest_rel_path | None, error | None, tldr)."""
     cid, slug = row["canonical_id"], topic.slug
     pdf_path = config.ROOT / (row["pdf_path"] or "")
     if not pdf_path.exists():
-        return cid, slug, None, "pdf missing"
-    text = extract_text(pdf_path)
+        return cid, slug, None, "pdf missing", None
+    text = extract_text(pdf_path, cid)
     if len(text) < 500:
         text = (row["abstract"] or "")[:MAX_TEXT_CHARS]
     text = text[:MAX_TEXT_CHARS]
     if not text.strip():
-        return cid, slug, None, "no extractable text"
+        return cid, slug, None, "no extractable text", None
     prompt = PROMPT_TMPL.format(topic=topic.name, title=row["title"], text=text)
     try:
         body = llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=SYSTEM))
     except llm.LLMError as e:
-        return cid, slug, None, str(e)
+        return cid, slug, None, str(e), None
     out_dir = config.DIGEST_DIR / slug
     out_dir.mkdir(parents=True, exist_ok=True)
     out_path = out_dir / f"{Path(row['pdf_path']).stem}.md"
     note = f"{_front_matter(row, topic, body)}\n\n# {row['title']}\n\n{visible_meta_line(row)}\n\n{body}\n"
     out_path.write_text(note, encoding="utf-8")
-    return cid, slug, out_path.relative_to(config.ROOT).as_posix(), None
+    return cid, slug, out_path.relative_to(config.ROOT).as_posix(), None, _tldr_of(body)
 
 
 def digest_topic(conn, cfg: Config, topic: Topic, should_continue=None) -> int:
@@ -182,12 +211,12 @@ def digest_topic(conn, cfg: Config, topic: Topic, should_continue=None) -> int:
                 break
             futures = [ex.submit(_produce, cfg, topic, row) for row in pending[i:i + workers]]
             for fut in as_completed(futures):
-                cid, slug, rel, err = fut.result()
+                cid, slug, rel, err, tldr = fut.result()
                 if err:
                     state.mark_failed(conn, cid, slug, err)
                     log.warning("[%s] digest failed %s: %s", slug, cid, err[:80])
                 else:
-                    state.mark_digested(conn, cid, slug, rel)
+                    state.mark_digested(conn, cid, slug, rel, tldr)
                     done += 1
                 conn.commit()
     log.info("[%s] digested %d/%d", topic.slug, done, len(pending))

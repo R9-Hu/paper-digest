@@ -147,9 +147,12 @@ def summarize_today(conn, cfg: Config, topic: Topic) -> bool:
         return False
     chunks = []
     for r in rows[:60]:
-        p = config.ROOT / (r["digest_path"] or "")
-        if p.exists():
-            chunks.append(f"- {r['title']}: {_tldr_of(p.read_text(encoding='utf-8'))}")
+        tl = r["tldr"] or ""          # reuse cached TL;DR; fall back to parsing the file
+        if not tl:
+            p = config.ROOT / (r["digest_path"] or "")
+            if p.exists():
+                tl = _tldr_of(p.read_text(encoding="utf-8"))
+        chunks.append(f"- {r['title']}: {tl}")
     prompt = (f"Below are the TL;DRs of {len(rows)} papers just added for the topic "
               f"'{topic.name}'. In 3-4 sentences, summarize what this batch is collectively "
               f"about — the dominant themes and threads. Output only the prose paragraph.\n\n"

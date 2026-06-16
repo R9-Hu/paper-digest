@@ -46,7 +46,8 @@ class Config:
     digest_concurrency: int
     digest_window_start: int
     digest_window_end: int
-    auto_compact: bool
+    monthly_keep: int
+    yearly_keep: int
     topics: list[Topic]
 
     def topic(self, slug: str) -> Topic | None:
@@ -88,7 +89,8 @@ def load_config(path: Path | str = CONFIG_PATH) -> Config:
         digest_concurrency=int(g.get("digest_concurrency", 4)),
         digest_window_start=int(g.get("digest_window_start", 21)),
         digest_window_end=int(g.get("digest_window_end", 6)),
-        auto_compact=bool(g.get("auto_compact", False)),
+        monthly_keep=int(g.get("monthly_keep", 100)),
+        yearly_keep=int(g.get("yearly_keep", 400)),
         topics=topics,
     )
 

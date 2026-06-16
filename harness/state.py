@@ -32,7 +32,8 @@ CREATE TABLE IF NOT EXISTS papers (
     year           INTEGER,
     pdf_path       TEXT,          -- relative to project root
     digest_path    TEXT,          -- relative to project root
-    digest_status  TEXT DEFAULT 'fetched',  -- fetched | digested | failed
+    tldr           TEXT,          -- cached TL;DR (reused by the daily 'In brief' + pages)
+    digest_status  TEXT DEFAULT 'fetched',  -- fetched | digested | failed | compacted | dropped
     error          TEXT,
     fetched_at     TEXT,
     digested_at    TEXT,
@@ -63,7 +64,8 @@ def connect(db_path: Path | str = None):
         conn.executescript(SCHEMA)
         # Migrate older DBs that predate added columns.
         cols = {r[1] for r in conn.execute("PRAGMA table_info(papers)")}
-        for col, decl in (("published_ts", "TEXT"), ("version", "INTEGER"), ("doi", "TEXT")):
+        for col, decl in (("published_ts", "TEXT"), ("version", "INTEGER"),
+                          ("doi", "TEXT"), ("tldr", "TEXT")):
             if col not in cols:
                 conn.execute(f"ALTER TABLE papers ADD COLUMN {col} {decl}")
         yield conn
@@ -110,11 +112,12 @@ def get_version(conn, canonical_id: str, topic_slug: str) -> int | None:
     return (row["version"] if row and row["version"] is not None else None) if row else None
 
 
-def mark_digested(conn, canonical_id: str, topic_slug: str, digest_path: str) -> None:
+def mark_digested(conn, canonical_id: str, topic_slug: str, digest_path: str,
+                  tldr: str | None = None) -> None:
     conn.execute(
-        """UPDATE papers SET digest_status='digested', digest_path=?,
+        """UPDATE papers SET digest_status='digested', digest_path=?, tldr=?,
            digested_at=?, error=NULL WHERE canonical_id=? AND topic_slug=?""",
-        (digest_path, _now(), canonical_id, topic_slug),
+        (digest_path, tldr, _now(), canonical_id, topic_slug),
     )
 
 

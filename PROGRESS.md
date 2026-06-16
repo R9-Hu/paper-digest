@@ -98,6 +98,17 @@ Last updated: 2026-06-15 (✅ COMPLETE — end-to-end verified)
   **tags** moved to front-matter → Material tags plugin renders chips + a Tags index
   (raw `#hashtag` text removed); subtle venue chips.
 
+- ✅ **Periodic compaction** (`compact.py`): keep top-N papers/topic per window —
+  monthly_keep=100 (1st of month → previous month), yearly_keep=400 (Jan 1 →
+  previous year). Pulls in missed top-tier-conference papers via re-fetch+digest
+  (in-window), keeps the top N (storage-trimmed), drops the rest (status `dropped`).
+  Manual: `--compact-month YYYY-MM`, `--compact-year YYYY`. Scheduled via
+  `run_scheduled()` (fires on the 1st, in-window). Verified via dry-run.
+- ✅ **Cache system**: (a) PDF→text extraction cached by paper id under `state/text/`
+  (reused across retries, re-digests, and the same paper in multiple topics);
+  (b) per-paper TL;DR cached in the DB (`tldr` col) at digest time and reused by the
+  daily "In brief" + pages (no re-parsing), with a file-parse fallback for old rows.
+
 ## Blockers
 - _none yet_
 

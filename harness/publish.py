@@ -406,7 +406,7 @@ def build_site(conn, cfg: Config) -> None:
                 used_slugs.add(pslug)
                 raw = src.read_text(encoding="utf-8")
                 (ydir / "papers" / f"{pslug}.md").write_text(_site_digest(raw), encoding="utf-8")
-                tldr = _extract_tldr(raw)
+                tldr = (row["tldr"] or "").strip() or _extract_tldr(raw)   # cached TL;DR
                 topic_index[_norm_title(row["title"])] = (row["title"], year, pslug, tldr)
                 if _is_key(row["title"], key_norms):
                     key_nav.append({row["title"]: f"{topic.slug}/{year}/papers/{pslug}.md"})

@@ -54,7 +54,9 @@ def parse_args(argv=None):
     p.add_argument("--backfill-year", type=int,
                    help="fetch stage: pull top --max-papers papers for this year (ranked)")
     p.add_argument("--compact-year", type=int,
-                   help="compact (trim digest + delete PDF) all papers from this year, then exit")
+                   help="compact a year to the top yearly_keep papers/topic, then exit")
+    p.add_argument("--compact-month",
+                   help="compact a month (YYYY-MM) to the top monthly_keep papers/topic, then exit")
     p.add_argument("--no-compact", action="store_true",
                    help="skip the automatic prior-year compaction step")
     p.add_argument("--ignore-window", action="store_true",
@@ -77,17 +79,26 @@ def main(argv=None) -> int:
         log.info("model check:\n%s", modelcheck.report_str(report))
         return 0 if all(r["status"] != "unavailable" for r in report) else 1
 
-    if args.compact_year is not None:
-        with state.connect() as conn:
-            n = compact.compact_year(conn, cfg, args.compact_year)
-            publish.publish(conn, cfg, deploy=not args.no_deploy)
-        log.info("=== compacted %d papers from %d ===", n, args.compact_year)
-        return 0
-
     topics = [cfg.topic(args.topic)] if args.topic else cfg.topics
     if args.topic and topics[0] is None:
         log.error("unknown topic slug: %s", args.topic)
         return 2
+
+    if args.compact_month or args.compact_year is not None:
+        cont = lambda: args.ignore_window or _in_digest_window(cfg)  # refetch+digest gated to window
+        if not cont():
+            log.warning("outside digest window — missed-paper refetch will be skipped "
+                        "(use --ignore-window to force)")
+        with state.connect() as conn:
+            for topic in topics:
+                if args.compact_month:
+                    y, m = (int(x) for x in args.compact_month.split("-"))
+                    res = compact.compact_month(conn, cfg, topic, y, m, should_continue=cont)
+                else:
+                    res = compact.compact_year(conn, cfg, topic, args.compact_year, should_continue=cont)
+                log.info("[%s] compaction: %s", topic.slug, res)
+            publish.publish(conn, cfg, deploy=not args.no_deploy)
+        return 0
 
     since = dt.date.fromisoformat(args.since) if args.since else None
     stages = [args.stage] if args.stage else STAGES
@@ -130,8 +141,9 @@ def main(argv=None) -> int:
                 trends.summarize_today(conn, cfg, topic)
 
         # Auto-compaction of prior-year papers (storage saver) — opt-in, daily runs only.
-        if not args.dry_run and not args.no_compact and not args.stage and cfg.auto_compact:
-            totals["compacted"] = compact.maybe_autocompact(conn, cfg)
+        # Scheduled month/year compaction (fires on the 1st; needs the window for refetch+digest).
+        if not args.dry_run and not args.no_compact and not args.stage and digest_ok:
+            compact.run_scheduled(conn, cfg, topics, should_continue=can_llm)
 
         if "publish" in stages and not args.dry_run:
             publish.publish(conn, cfg, deploy=not args.no_deploy)

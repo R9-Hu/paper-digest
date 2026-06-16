@@ -13,7 +13,8 @@ global:
   digest_concurrency: 3                # parallel claude -p digests (lower = gentler on rate limits)
   digest_window_start: 21              # only DIGEST between these hours (24h), to avoid
   digest_window_end: 6                 # exhausting the rate limit during work time
-  auto_compact: false                  # yearly prior-year compaction (off during active build)
+  monthly_keep: 100                    # 1st of month: keep top N/topic for the previous month
+  yearly_keep: 400                     # 1st of year: keep top N/topic for the previous year
 
 topics:
   - name: "Vision-Language Models"

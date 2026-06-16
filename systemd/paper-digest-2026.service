@@ -6,6 +6,7 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 WorkingDirectory=/home/renjiu/Research/code/paperDigest
+EnvironmentFile=-/home/renjiu/Research/code/paperDigest/.env
 ExecStart=/home/renjiu/Research/code/paperDigest/run.sh --compact-months 2026
 # Resume the regular nightly pipeline (paused so it wouldn't collide with this run tonight).
 ExecStartPost=/usr/bin/systemctl --user start paper-digest-night.timer

@@ -10,3 +10,4 @@ site/_build/
 site/docs/
 site/mkdocs.yml
 .DS_Store
+.env

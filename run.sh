@@ -6,6 +6,12 @@ set -euo pipefail
 PROJECT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 cd "$PROJECT_DIR"
 
+# Load local secrets (e.g. SEMANTIC_SCHOLAR_API_KEY) if present. Gitignored;
+# covers manual runs as well as systemd (which also reads it via EnvironmentFile).
+if [[ -f "$PROJECT_DIR/.env" ]]; then
+  set -a; source "$PROJECT_DIR/.env"; set +a
+fi
+
 # Ensure CLIs used by sub-stages are on PATH under cron's minimal env.
 export PATH="$HOME/.nvm/versions/node/v20.19.6/bin:/usr/local/bin:/usr/bin:/bin:$PATH"
 

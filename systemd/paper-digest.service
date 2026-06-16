@@ -6,6 +6,7 @@ Wants=network-online.target
 [Service]
 Type=oneshot
 WorkingDirectory=/home/renjiu/Research/code/paperDigest
+EnvironmentFile=-/home/renjiu/Research/code/paperDigest/.env
 ExecStart=/home/renjiu/Research/code/paperDigest/run.sh
 # A full backfill can take a couple of hours; daily incremental runs are short.
 TimeoutStartSec=10800

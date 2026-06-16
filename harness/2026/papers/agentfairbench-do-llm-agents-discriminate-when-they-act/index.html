@@ -4933,20 +4933,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
     
     
     
@@ -4989,202 +4975,6 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../open-swe-traces-advancing-dual-mode-multilingual-distillation-for-software-engin/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Open-SWE-Traces: Advancing Dual-Mode Multilingual Distillation for Software Engineering Agents
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../llm-as-code-agentic-programming-for-agent-harness/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    LLM-as-Code Agentic Programming for Agent Harness
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../apex-adaptive-principle-extraction-a-three-layer-self-evolution-framework-for-pr/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    APEX: Adaptive Principle EXtraction A Three-Layer Self-Evolution Framework for Production AI Agents
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../agentspec-understanding-embodied-agent-scaffolds-through-controlled-composition/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    AgentSpec: Understanding Embodied Agent Scaffolds Through Controlled Composition
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../harnessx-a-composable-adaptive-and-evolvable-agent-harness-foundry/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HarnessX: A Composable, Adaptive, and Evolvable Agent Harness Foundry
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../eurekagent-agent-environment-engineering-is-all-you-need-for-autonomous-scientif/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    EurekAgent: Agent Environment Engineering is All You Need For Autonomous Scientific Discovery
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../recursive-agent-harnesses/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Recursive Agent Harnesses
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -5726,51 +5516,44 @@
 
 
 <h1 id="agentfairbench-do-llm-agents-discriminate-when-they-act">AgentFairBench: Do LLM Agents Discriminate When They Act?<a class="headerlink" href="#agentfairbench-do-llm-agents-discriminate-when-they-act" title="Permanent link">&para;</a></h1>
-<p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-15 13:50 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.16723v1">link</a></em></p>
+<p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-15 13:50 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="https://arxiv.org/abs/2606.16723">link</a></em></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>AgentFairBench is a reproducible, multi-domain benchmark and evaluation harness that measures demographic disparity in the <em>actions</em> of LLM agents (not their text outputs) across hiring, lending, and medical triage. It introduces a scaffold axis (direct → chain-of-thought → multi-agent → tool-augmented) to test whether agentic complexity amplifies bias, and a critical methodological correction: naive MASD-to-noise comparisons overstate disparity by ~2.4× due to statistic arity mismatch. A pilot on claude-haiku-4-5 finds no demographic effect above the arity-matched noise floor.</p>
+<p>AgentFairBench is an action-level fairness benchmark for LLM agents that measures demographic disparity in consequential decisions (hiring, lending, medical triage) across four scaffolding depths (direct, CoT, multi-agent, tool-augmented). Its key methodological finding is that comparing a six-group score spread to a two-run pairwise noise baseline overstates apparent disparity by ~2.4× due to statistic arity mismatch. Against a correctly arity-matched null, claude-haiku-4-5 shows no demographic effect above sampling noise.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
-<p>Existing fairness benchmarks grade model <em>answers</em> (BBQ, StereoSet, CrowS-Pairs), not model <em>actions</em>. This misses the structural gap formalized as "Masking" (BCF P2): token-level parity can coexist with action-level disparity when language is mapped to executable decisions, tool calls, and multi-step trajectories. Additionally, agentic scaffolds (CoT, multi-agent deliberation, tool use) may <em>amplify</em> entering bias (BCF P3 Super-additivity) — a phenomenon no prior benchmark instruments.</p>
+<p>Existing fairness benchmarks measure what LLMs <em>say</em> (answer-level), not what they <em>do</em> when acting as agents. Token-level parity can coexist with action-level disparity (BCF Proposition P2: Masking), and agent scaffolds (CoT, multi-agent deliberation, tool use) may amplify rather than wash out entering bias (P3: Super-additivity). No prior benchmark is simultaneously action-level, multi-domain, counterfactual, scaffold-stratified, and demographically instrumented.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p><strong>Counterfactual matched-set design</strong> following Bertrand–Mullainathan: synthetic, demographic-neutral profiles (hiring résumés, loan applications, clinical intakes) are evaluated in sets of six variants that differ only in a name-coded race×gender signal (White/Black/Hispanic × Male/Female). Each profile is run under four agent scaffolds — C0 (direct prompt), C2 (chain-of-thought), C3 (two-agent deliberation), C4 (tool-augmented) — so scaffold depth is a first-class measurement axis.</p>
-<p>The <strong>evaluation harness</strong> (<code>agentfairbench</code>, pip-installable, NumPy-only) computes:
-- <strong>CFR</strong> (counterfactual flip rate): fraction of matched sets where the binary decision is not unanimous across demographic conditions
-- <strong>MASD</strong> (mean absolute score difference): mean of per-set max–min score spread across six groups
-- <strong>Action-rate disparity</strong>: group-level proportion of positive decisions
-- <strong>∆tool</strong> (C4 only): spread in tool-invocation rate across groups</p>
-<p>All estimates use BCa bootstrap CIs, McNemar/Wilcoxon paired tests, and Benjamini–Hochberg FDR correction at q=0.05. The key methodological contribution is an <strong>arity-matched noise floor</strong>: MASD is a six-group range statistic and must be compared against a Monte Carlo six-group noise spread (from within-cell residuals after removing group main effects), not against a two-run pairwise retest MAE.</p>
+<p>Counterfactual matched-set design (Bertrand–Mullainathan tradition): synthetic, demographic-neutral profiles are evaluated in sets of six variants differing only in name-coded race×gender signal (White/Black/Hispanic × Male/Female). Each profile-domain pair is processed under four BCF scaffold levels: C0 (direct prompt), C2 (chain-of-thought), C3 (multi-agent deliberation: reviewer → decision agent), C4 (tool-augmented with measurable invocation rates). A NumPy-only harness computes: counterfactual flip rate (CFR), mean absolute score difference (MASD) with arity-matched noise floor, action-rate disparity, and tool-invocation disparity (Δ_tool). Statistical controls include BCa bootstrap CIs, McNemar and Wilcoxon paired tests, Benjamini-Hochberg FDR at q=0.05, and an omnibus two-way ANOVA F-test. A held-out private split with contamination canary guards against benchmark gaming.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Multi-domain, action-level fairness benchmark (hiring/lending/triage) with counterfactual matched sets and a scaffold stratification axis — no prior benchmark combines all five properties simultaneously</li>
-<li>Pip-installable, NumPy-only evaluation harness implementing CFR, MASD, action-rate disparity, ∆tool, with full statistical rigor (BCa bootstrap, FDR control); cost ~$1.79 for 864 calls at Haiku tier</li>
-<li>Live leaderboard with held-out private test split, contamination canary (<code>AGENTFAIRBENCH-CANARY-2f9c1a</code>), and SHA-256 content hashes per profile to prevent benchmark gaming</li>
-<li><strong>Arity-matched null methodology</strong>: demonstration that comparing a six-group spread to a two-run pairwise difference mechanically overstates disparity by ~2.4× under pure noise; correction reduces apparent MASD-to-noise ratio from 2.4× to 0.83× (mean)</li>
-<li>Novel tool-invocation disparity metric ∆tool measuring procedurally disparate scrutiny in C4 scaffold</li>
+<li>Multi-domain action-level fairness benchmark spanning hiring (EEOC), lending (ECOA/Reg B), and medical triage across four scaffold depths</li>
+<li>Arity-matched null methodology: demonstrates that comparing a k-group spread statistic to a 2-run pairwise noise floor structurally inflates apparent disparity by ~2.4× under pure noise; introduces Monte-Carlo residual resampling as the correct control</li>
+<li>Δ_tool metric: differential tool-invocation rates across demographic groups, a disparity channel invisible to all prior benchmarks</li>
+<li>pip-installable NumPy-only harness (<code>agentfairbench</code>) with CLI, replay adapter for post-hoc audit, and cost estimator; full benchmark under $2 at Haiku tier</li>
+<li>Live anti-gamed leaderboard with held-out private split, cryptographic content hashes, and contamination canary string</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Pilot</strong>: 864 decisions (36 profiles × 6 demographic conditions × 4 scaffolds) on claude-haiku-4-5, plus a 648-decision test–retest run (C0–C3)</li>
-<li>Test–retest decision agreement: <strong>0.917</strong> (≈8% binary flip rate from pure resampling noise)</li>
-<li>Per-cell retest MAE: <strong>0.15–5.75</strong> score points</li>
-<li>Naive MASD-to-noise ratio: <strong>1.24–3.33×</strong> (mean ~2.4×) — flagged as artifactual</li>
-<li>Arity-matched MASD-to-noise ratio: <strong>0.75–0.96</strong> across all C0–C3 domain-scaffold cells (mean <strong>0.83</strong>) — below 1.0 everywhere, indicating observed score spread is <em>smaller</em> than noise expectation</li>
-<li><strong>0 of 120</strong> pairwise contrasts and <strong>0 of 9</strong> omnibus contrasts survive FDR correction → no demographic effect distinguishable from sampling noise at n=12 matched sets per cell</li>
-<li>Planted-bias property test confirms the harness <em>does</em> recover known disparity when injected, validating instrument sensitivity</li>
+<li>Pilot: 864 decisions (36 profiles × 6 demographic conditions × 4 scaffolds) on claude-haiku-4-5, June 2026</li>
+<li>Naive MASD-to-retest-MAE ratio: 1.24–3.33× (mean ~2.4×) — superficially suggests disparity</li>
+<li>Arity-matched MASD-to-noise ratio: 0.75–0.96 across all C0–C3 cells (mean 0.83) — observed spread is <em>below</em> the noise-only expected spread</li>
+<li>0 of 120 pairwise contrasts and 0 of 9 omnibus contrasts survive FDR correction at pilot scale (n=12 matched sets per cell)</li>
+<li>Test–retest decision agreement: 0.917 overall; per-cell retest MAE: 0.15–5.75 score points</li>
+<li>Planted-bias property test confirms the harness successfully recovers a known injected disparity</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Pilot covers only one model (claude-haiku-4-5) at modest scale (n=12 matched sets per domain-scaffold cell); insufficient power to draw general conclusions about LLM fairness</li>
-<li>C4 scaffold not included in the test–retest reliability run, so ∆tool results lack a noise floor comparison</li>
-<li>Counterfactual design is a correspondence-audit (name substitution), not a structural-causal-model counterfactual; does not intervene on a protected-attribute node in a causal graph, so the stronger SCM-counterfactual guarantee does not apply</li>
-<li>C1 scaffold (retrieval-augmented context injection) deferred to v2; scaffold ladder is incomplete</li>
-<li>Leaderboard's held-out gaming resistance applies only to models where maintainers can re-run inference; proprietary models without shared API access receive only trace-reproducibility verification</li>
-<li>Domain score scales (0–100 / 1–5 / 1–5) are not commensurable in harm, so cross-domain aggregation is intentionally avoided but limits single-number comparison</li>
-<li>Genuine k-replicate noise floor (using multiple independent runs rather than within-cell residuals) deferred to v1.1</li>
+<li>Pilot on a single model (claude-haiku-4-5) at modest scale (n=12 matched sets per cell); underpowered for confirmatory claims</li>
+<li>C1 scaffold (retrieval-augmented context injection) not instantiated in v1, deferred to v2</li>
+<li>Test–retest reliability run excluded C4; genuine k-replicate noise floor deferred to v1.1</li>
+<li>Name-coded counterfactual is a surface proxy (correspondence-audit), not a structural-causal-model intervention; does not satisfy SCM-counterfactual guarantee</li>
+<li>Proprietary models without shared API access receive trace-only leaderboard entries without held-out private-split verification</li>
+<li>Per-domain AFB-Score composites are not commensurable across domains (score scales differ in harm magnitude)</li>
+<li>Explicit-attribute robustness arm (beyond name-coded signals) deferred to future work</li>
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
-<p>AgentFairBench is itself a <strong>meta-harness</strong>: a pip-installable orchestration layer that wraps arbitrary LLM agents in counterfactual evaluation loops, implements multiple scaffold topologies (C0–C4) as pluggable entry loci, and computes a battery of statistical metrics from structured action traces — exactly the pattern of a meta-harness that instruments underlying agent systems. The <strong>replay adapter</strong> (re-scoring frozen JSONL trace archives without re-issuing API calls) and the <strong>mock adapter</strong> (deterministic canned responses for CI) are canonical meta-harness engineering patterns for reproducibility and cost control. The cost-envelope design ($1.79/model at Haiku) and the CLI <code>agentfairbench run/score/cost</code> structure offer a concrete template for how evaluation harnesses should expose pre-flight estimation alongside execution. The arity-matched null methodology is a transferable statistical lesson for any harness that computes spread statistics over multi-condition evaluation grids.</p>
+<p>AgentFairBench is a purpose-built evaluation harness whose architecture is a direct case study in harness design: it ships a layered <code>profile → scaffold → metrics</code> pipeline with pluggable model adapters, a replay adapter for post-hoc audit without re-querying the model, seeded reproducibility over deterministic components, and a CLI wrapping the full evaluation workflow. The arity-matched null finding is a meta-level harness correctness lesson — a statistical artifact introduced by comparing metrics of different arity — directly analogous to bugs that can appear in any multi-condition evaluation harness that computes aggregate statistics across unequal group sizes. The anti-gaming protocol (contamination canary, held-out split, content hashes, PR-based submission) is a reusable design pattern for live leaderboard harnesses that need to resist benchmark saturation.</p>
 <h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="benchmark-evaluation-harness-llm-agents-algorithmic-fairness-counterfactual-evaluation-multi-agent-statistical-methodology-agentic-scaffolds">benchmark #evaluation-harness #llm-agents #algorithmic-fairness #counterfactual-evaluation #multi-agent #statistical-methodology #agentic-scaffolds<a class="headerlink" href="#benchmark-evaluation-harness-llm-agents-algorithmic-fairness-counterfactual-evaluation-multi-agent-statistical-methodology-agentic-scaffolds" title="Permanent link">&para;</a></h1>
+<h1 id="benchmark-agent-evaluation-fairness-evaluation-harness-counterfactual-llm-agents-statistical-methodology-multi-agent">benchmark #agent-evaluation #fairness #evaluation-harness #counterfactual #llm-agents #statistical-methodology #multi-agent<a class="headerlink" href="#benchmark-agent-evaluation-fairness-evaluation-harness-counterfactual-llm-agents-statistical-methodology-multi-agent" title="Permanent link">&para;</a></h1>
 
 
 

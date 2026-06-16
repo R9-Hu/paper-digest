@@ -4933,20 +4933,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
     
     
     
@@ -4989,202 +4975,6 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../open-swe-traces-advancing-dual-mode-multilingual-distillation-for-software-engin/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Open-SWE-Traces: Advancing Dual-Mode Multilingual Distillation for Software Engineering Agents
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../llm-as-code-agentic-programming-for-agent-harness/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    LLM-as-Code Agentic Programming for Agent Harness
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../apex-adaptive-principle-extraction-a-three-layer-self-evolution-framework-for-pr/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    APEX: Adaptive Principle EXtraction A Three-Layer Self-Evolution Framework for Production AI Agents
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../agentspec-understanding-embodied-agent-scaffolds-through-controlled-composition/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    AgentSpec: Understanding Embodied Agent Scaffolds Through Controlled Composition
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../harnessx-a-composable-adaptive-and-evolvable-agent-harness-foundry/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HarnessX: A Composable, Adaptive, and Evolvable Agent Harness Foundry
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../eurekagent-agent-environment-engineering-is-all-you-need-for-autonomous-scientif/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    EurekAgent: Agent Environment Engineering is All You Need For Autonomous Scientific Discovery
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../recursive-agent-harnesses/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Recursive Agent Harnesses
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -5726,42 +5516,42 @@
 
 
 <h1 id="labosbench-benchmarking-computer-use-agents-for-scientific-instrument-control">LabOSBench: Benchmarking Computer Use Agents for Scientific Instrument Control<a class="headerlink" href="#labosbench-benchmarking-computer-use-agents-for-scientific-instrument-control" title="Permanent link">&para;</a></h1>
-<p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-15 14:42 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.16802v1">link</a></em></p>
+<p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-15 14:42 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="https://arxiv.org/abs/2606.16802">link</a></em></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>LabOSBench is a browser-based benchmark of 96 subtasks across eight simulated scientific instrument GUIs (SEM, TEM, FIB, XRD, SPM, LFM, EDS, APT) for evaluating multimodal computer-use agents without OS-level virtualization. It reveals that current agents handle discrete GUI subtasks reasonably well but collapse on feedback-driven closed-loop control and long-horizon workflows, with GPT-5.5 via GTA1 achieving the best subtask score (0.814) yet only 26.3% end-to-end success.</p>
+<p>LabOSBench is a browser-based benchmark of 96 subtasks across eight web-simulated scientific instruments (SEM, TEM, FIB, XRD, etc.) for evaluating multimodal computer-use agents. It avoids OS-level virtualization by running entirely in a browser with Playwright, using in-page benchmark scripts and a Python coordinator to log episodes and compute metrics. Best agent (GTA1 w/ GPT-5.5) achieves 81.4% subtask-level but only 26.3% end-to-end success, revealing severe error accumulation in long-horizon workflows.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
-<p>Existing computer-use benchmarks (OSWorld, WebArena) either require heavy VM virtualization or cover only generic web navigation—neither captures the procedural dependencies, dense domain-specific controls, continuous parameter tuning, and feedback-driven visual adjustment required for scientific instrument operation. Directly evaluating agents on physical instruments is impractical due to cost, safety, and reproducibility constraints.</p>
+<p>Existing computer-use benchmarks (OSWorld, WebArena) rely on heavyweight VM/Docker virtualization and evaluate general GUI tasks, providing no coverage of scientific-instrument interfaces that require procedural dependencies, feedback-driven parameter tuning, and dense domain-specific controls. Evaluating agents on physical instruments is unsafe, expensive, and non-reproducible.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>LabOSBench runs entirely in a standard browser via Playwright, eliminating VM overhead. Eight high-fidelity JavaScript/HTML instrument simulators are instrumented with per-instrument benchmark scripts (e.g., <code>benchmark_xrd.js</code>) that record subtask completion, control attempts, and step-level traces. A Python coordinator drives a closed-loop observe–act–execute protocol: agent receives screenshot + NL instruction → outputs a GUI action (click, drag, type, scroll, key, wait) → Playwright executes it → coordinator captures next screenshot and queries in-page state. Evaluation runs in two modes: (1) <strong>full-episode</strong> from initial state within a step budget, and (2) <strong>subtask-level</strong> with fast-forward initialization to the canonical pre-subtask state (e.g., <code>XRD_fast_forward_to_subtask(Sk)</code>). Subtask success rates are averaged per instrument; image-producing tasks also report PSNR against a reference micrograph.</p>
+<p>LabOSBench builds eight high-fidelity web-based instrument simulators (SEM, TEM, LFM, XRD, EDS, APT, FIB, SPM). Each simulator is instrumented with an in-page JavaScript harness (e.g., <code>benchmark_xrd.js</code>) that tracks subtask completion, control attempts, and step-level traces. A Python coordinator drives interaction via Playwright: at each step, it sends a screenshot + NL instruction to the agent, receives a GUI action (click/drag/type/scroll/wait), dispatches it via DOM events or mouse fallback, captures the new screenshot, and queries in-page state. Episodes export JSON logs conforming to instrument-specific JSON Schemas. For subtask-level evaluation, programmatic fast-forward functions (<code>XRD_fast_forward_to_subtask(Sk)</code>) initialize simulators to canonical pre-subtask states. Success is scored as average subtask success rate per instrument; image-quality tasks additionally report PSNR against a reference view.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Browser-native, OS-virtualization-free benchmark infrastructure using Playwright + in-page JS hooks + JSON Schema episode contracts</li>
-<li>96 subtasks decomposed from real scientific operating procedures across 8 instrument simulators spanning microscopy, diffraction/spectroscopy, and micro-nanofabrication paradigms</li>
-<li>Dual evaluation protocol (subtask-level with fast-forward isolation vs. full end-to-end episode) enabling separation of local grounding failures from long-horizon error accumulation</li>
-<li>PSNR-based intermediate scientific-state quality metric for image-producing tasks beyond binary success</li>
-<li>Systematic evaluation of 12 agents: general VLMs, specialized GUI models (UI-TARS-1.5-7B, GUI-Owl-7B), and agentic frameworks (GTA1, VLAA-GUI, Hippo Agent)</li>
+<li>LabOSBench: a lightweight, browser-native, executable benchmark requiring no OS virtualization, with configurable CLI/env-var episode launch and JSON Schema-validated episode logs.</li>
+<li>96 subtasks across 8 instrument simulators spanning microscopy, diffraction/spectroscopy, and microfabrication, decomposed into five operational categories with three difficulty tiers (Easy/Medium/Hard).</li>
+<li>Dual evaluation modes: subtask-level (isolated, fast-forwarded initialization) and full end-to-end (from cold start within a step budget), distinguishing local grounding failures from long-horizon accumulation failures.</li>
+<li>Systematic evaluation of 12 agents/frameworks spanning general VLMs, specialized GUI models (UI-TARS, GUI-Owl), and agentic frameworks (GTA1, VLAA-GUI, Hippo Agent).</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>Best subtask average</strong>: GTA1 w/ GPT-5.5 at 0.814; human baseline at 0.924</li>
-<li><strong>Best single model</strong>: Seed-1.6 at 0.763 among general-purpose VLMs</li>
-<li><strong>End-to-end (GPT-5.5, 10 runs/workflow)</strong>: 26.3% average vs. ~72.6% subtask-level — severe error accumulation; non-zero success only on EDS (70%), APT (80%), XRD (60%); zero on SEM, SPM, TEM, LFM, FIB</li>
-<li><strong>Easiest instruments</strong>: EDS and XRD (structured, short workflows, clear feedback)</li>
-<li><strong>Hardest instruments</strong>: FIB (longest workflow, lowest average model SR), LFM (largest human–model gap due to feedback-driven optical adjustment)</li>
-<li>VLAA-GUI w/ Opus-4.5 (0.456) underperforms plain Opus-4.5 (0.620), showing agent loops hurt when recovery strategies conflict with instrument semantics</li>
-<li>Specialized GUI models (UI-TARS-1.5-7B: 0.659, GUI-Owl-7B: 0.640) do not outperform strong VLMs overall</li>
+<li>Best overall: <strong>GTA1 w/ GPT-5.5</strong> — 81.4% subtask-level average across eight instruments.</li>
+<li>Best general model: <strong>Seed-1.6</strong> — 76.3% subtask average.</li>
+<li>Specialized GUI models (UI-TARS-1.5-7B: 65.9%, GUI-Owl-7B: 64.0%) underperform top general VLMs despite GUI-specific training.</li>
+<li>VLAA-GUI w/ Opus-4.5 (45.6%) underperforms even standalone Opus-4.5 (62.0%), showing agent loops can hurt without domain-valid recovery.</li>
+<li><strong>End-to-end (GPT-5.5 only, 10 runs/workflow):</strong> 26.3% average; 0% on SEM, SPM, TEM, LFM, FIB; 60–80% only on short-workflow instruments (EDS 70%, APT 80%, XRD 60%).</li>
+<li>Hardest instruments: FIB (longest workflow, lowest average model score), LFM (large human–model gap due to feedback-driven optical adjustment).</li>
+<li>Human baseline: 92.4% subtask average; human–model gap largest on LFM and FIB.</li>
+<li>SEM focus task: GPT-5.5 achieves highest PSNR and focus success rate among all models.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Simulators cannot replicate hardware latency, calibration uncertainty, safety interlocks, or real failure modes of physical instruments</li>
-<li>Coverage restricted to eight instruments from microscopy, spectroscopy, diffraction, and tomography; excludes wet-lab, robotic manipulation, chemical synthesis, or multi-instrument planning</li>
-<li>Evaluation relies on screenshots and logged simulator states; excludes richer multimodal sensor signals or domain-knowledge bases that may be needed for harder tasks</li>
-<li>Subtask success is binary; partial-credit or trajectory-quality metrics are absent except for PSNR on SEM</li>
+<li>Simulators do not capture hardware latency, calibration uncertainty, real safety constraints, or physical failure modes.</li>
+<li>Coverage limited to microscopy, spectroscopy, diffraction, and tomography; excludes wet-lab protocols, robotic manipulation, chemical synthesis, and multi-instrument planning.</li>
+<li>Evaluation relies on screenshots and logged simulator state; some scientific decisions require richer multimodal sensor signals or domain knowledge unavailable in current environments.</li>
+<li>Not safe or intended for deployment on physical laboratory hardware without human supervision, permission control, and safety interlocks.</li>
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
-<p>LabOSBench is itself a harness: a Python coordinator wraps per-instrument JS benchmark scripts under a unified CLI-configurable observe–act–execute loop with structured JSON Schema episode contracts, making it a concrete example of a domain-specific evaluation harness layered over browser automation. The fast-forward initialization mechanism—programmatically teleporting simulator state to a subtask entry point—mirrors harness-level state injection patterns relevant to meta-harnesses that need to isolate sub-agent capabilities. The dual-mode design (subtask-isolated vs. full-episode) is a direct precedent for harnesses that must both unit-test individual agent steps and run full end-to-end orchestration, a core design tension in meta-harness architecture.</p>
+<p>LabOSBench is itself a benchmark harness: a thin Python coordinator that wraps browser-driven simulators, injects per-instrument JavaScript evaluation hooks, exports structured JSON episode logs via a defined schema contract, and dispatches actions through a unified Playwright driver — exactly the architecture pattern of agent evaluation meta-harnesses. The in-page <code>benchmark_*.js</code> scripts and fast-forward initialization functions are a domain-specific implementation of the harness abstraction layer (configure state → observe → act → score). The dual subtask/end-to-end evaluation modes demonstrate how harness design choices (isolated vs. chained initialization) directly determine what failure modes are diagnosable, a key design concern in building meta-harnesses for long-horizon agentic systems.</p>
 <h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="benchmark-computer-use-agents-gui-agents-evaluation-harness-browser-automation-scientific-workflows-multimodal-long-horizon">benchmark #computer-use-agents #gui-agents #evaluation-harness #browser-automation #scientific-workflows #multimodal #long-horizon<a class="headerlink" href="#benchmark-computer-use-agents-gui-agents-evaluation-harness-browser-automation-scientific-workflows-multimodal-long-horizon" title="Permanent link">&para;</a></h1>
+<h1 id="benchmark-computer-use-agent-gui-agent-evaluation-harness-scientific-automation-browser-based-vlm-long-horizon-planning">benchmark #computer-use-agent #gui-agent #evaluation-harness #scientific-automation #browser-based #vlm #long-horizon-planning<a class="headerlink" href="#benchmark-computer-use-agent-gui-agent-evaluation-harness-scientific-automation-browser-based-vlm-long-horizon-planning" title="Permanent link">&para;</a></h1>
 
 
 

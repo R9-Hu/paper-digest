@@ -59,6 +59,7 @@ Write GitHub-flavored Markdown using EXACTLY these H2 sections, in order:
 Rules:
 - Output ONLY the Markdown body starting at "## TL;DR". No preamble, no title, no front matter, no closing remarks.
 - Be specific and technical. Do not pad.
+- Write mathematical notation in LaTeX: $...$ for inline math and $$...$$ for display equations.
 
 Paper title: {title}
 Paper text (may be truncated):

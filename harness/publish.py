@@ -124,6 +124,19 @@ SITE_CSS = """\
 }
 """
 
+# MathJax config (pairs with pymdownx.arithmatex generic) to render LaTeX equations.
+SITE_MATHJAX = """\
+window.MathJax = {
+  tex: {
+    inlineMath: [["\\\\(", "\\\\)"]],
+    displayMath: [["\\\\[", "\\\\]"]],
+    processEscapes: true,
+    processEnvironments: true
+  },
+  options: { ignoreHtmlClass: ".*|", processHtmlClass: "arithmatex" }
+};
+"""
+
 # Open paper links in a new tab (content area only; leaves the left nav alone).
 SITE_JS = """\
 (function () {
@@ -624,6 +637,7 @@ def build_site(conn, cfg: Config) -> None:
     (docs / "stylesheets" / "extra.css").write_text(SITE_CSS, encoding="utf-8")
     (docs / "javascripts").mkdir(parents=True, exist_ok=True)
     (docs / "javascripts" / "newtab.js").write_text(SITE_JS, encoding="utf-8")
+    (docs / "javascripts" / "mathjax.js").write_text(SITE_MATHJAX, encoding="utf-8")
 
     # Cross-link pass: append "Related in this collection" to each paper page for
     # every other corpus paper whose *name* it mentions. Built fresh from the live
@@ -660,10 +674,15 @@ def build_site(conn, cfg: Config) -> None:
             ],
         },
         "extra_css": ["stylesheets/extra.css"],
-        "extra_javascript": ["javascripts/newtab.js"],
+        "extra_javascript": [
+            "javascripts/mathjax.js",
+            "https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js",
+            "javascripts/newtab.js",
+        ],
         "markdown_extensions": [
             "admonition", "attr_list", "md_in_html", "tables",
             "pymdownx.details", "pymdownx.superfences", "pymdownx.tasklist",
+            {"pymdownx.arithmatex": {"generic": True}},
             {"toc": {"permalink": True}},
         ],
         "plugins": ["callouts", "search", {"tags": {"tags_file": "tags.md"}}],
@@ -878,10 +897,10 @@ def sync_obsidian(conn, cfg: Config) -> None:
     for topic in cfg.topics:
         folder = naming.sanitize_title(topic.name)  # '/' etc. are illegal in paths
         tdir = vault / folder
+        # Wipe + regenerate so notes for dropped/compacted-away papers don't linger.
+        if tdir.exists():
+            shutil.rmtree(tdir)
         tdir.mkdir(parents=True, exist_ok=True)
-        # Remove the previous flat layout (notes now live in per-year subfolders).
-        for old in tdir.glob("*.md"):
-            old.unlink()
         years = state.years_for_topic(conn, topic.slug)
         topic_total = topic_today = 0
         year_links = []  # (year, n, rel_from_topic)

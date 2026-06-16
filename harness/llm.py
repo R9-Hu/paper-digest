@@ -23,7 +23,8 @@ class LLMError(RuntimeError):
 
 
 def run_claude(prompt: str, model: str, cfg: Config,
-               system: str | None = None, allow_tools: bool = True) -> str:
+               system: str | None = None, allow_tools: bool = True,
+               timeout: int | None = None) -> str:
     cmd = [
         cfg.claude_bin, "-p",
         "--model", model,
@@ -37,13 +38,13 @@ def run_claude(prompt: str, model: str, cfg: Config,
                 "Task", "WebSearch", "WebFetch", "Read", "Glob", "Grep"]
     else:
         cmd += ["--disallowedTools", *_DISALLOWED]
+    to = timeout if timeout is not None else cfg.claude_timeout_sec
     try:
         proc = subprocess.run(
-            cmd, input=prompt, capture_output=True, text=True,
-            timeout=cfg.claude_timeout_sec,
+            cmd, input=prompt, capture_output=True, text=True, timeout=to,
         )
     except subprocess.TimeoutExpired as e:
-        raise LLMError(f"claude timed out after {cfg.claude_timeout_sec}s") from e
+        raise LLMError(f"claude timed out after {to}s") from e
     except FileNotFoundError as e:
         raise LLMError(f"claude binary not found: {cfg.claude_bin}") from e
     if proc.returncode != 0:

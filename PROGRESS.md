@@ -41,6 +41,13 @@ Last updated: 2026-06-15 (✅ COMPLETE — end-to-end verified)
 - Seed topics: vlm, med-foundation, agentic-ai, harness. Backfill since 2025-01-01.
 - Digests → Sonnet, trends → Opus (configurable in `config.yaml`).
 
+## Add-ons (post-launch)
+- ✅ **Obsidian beautification** — callouts, property tags, emoji headings, table indexes.
+- ✅ **Model checking + auto-fallback** (`harness/modelcheck.py`) — pre-flight probes
+  pinned models via `claude -p`; falls back to the family alias (opus/sonnet/haiku)
+  if an ID is retired. Flags: `--check-models`, `--skip-model-check`. Verified
+  (OK path + simulated-retirement fallback).
+
 ## Blockers
 - _none yet_
 

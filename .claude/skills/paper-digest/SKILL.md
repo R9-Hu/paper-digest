@@ -22,6 +22,10 @@ Run from the project root using the project venv.
 - **Single stage:** `.venv/bin/python -m harness.orchestrate --stage {fetch|digest|trends|publish}`
 - **Override backfill date:** `... --stage fetch --since 2025-06-01`
 - **Build/sync without deploying:** `.venv/bin/python -m harness.orchestrate --stage publish --no-deploy`
+- **Check model availability:** `.venv/bin/python -m harness.orchestrate --check-models`
+  (probes the pinned models via `claude -p`; reports + auto-falls-back to the family
+  alias if an ID was retired). Daily runs do this pre-flight automatically;
+  `--skip-model-check` opts out.
 
 ## Adding / editing a topic
 Edit `config.yaml` → append (or modify) a block under `topics` with `name`, `slug`,

@@ -47,6 +47,22 @@ Edit [`config.yaml`](config.yaml):
 
 Stages: `fetch` · `digest` · `trends` · `publish` (default: all in order).
 
+### Model checking
+
+The digest/trend stages call pinned Anthropic models (`digest_model` / `trend_model`
+in `config.yaml`). Before each LLM run the harness **probes** those models via
+`claude -p`; if a pinned ID has been retired/updated, it **auto-falls back** to the
+family alias (`opus`/`sonnet`/`haiku`, always the latest) so the run still succeeds,
+and logs a note to update `config.yaml`. Check manually anytime:
+
+```bash
+.venv/bin/python -m harness.orchestrate --check-models   # report (and exit)
+# add --skip-model-check to any run to bypass the pre-flight
+```
+
+If `ANTHROPIC_API_KEY` is set, the report also lists currently available model IDs
+from the Models API to help you pick a new pin.
+
 ## Schedule (08:00 daily)
 
 ```

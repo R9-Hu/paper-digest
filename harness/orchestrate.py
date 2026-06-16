@@ -10,7 +10,7 @@ import datetime as dt
 import logging
 import sys
 
-from . import config, digest, fetch, publish, state, trends
+from . import config, digest, fetch, modelcheck, publish, state, trends
 
 STAGES = ["fetch", "digest", "trends", "publish"]
 
@@ -39,6 +39,10 @@ def parse_args(argv=None):
     p.add_argument("--max-papers", type=int, help="override max papers per topic per run")
     p.add_argument("--dry-run", action="store_true", help="fetch stage: list matches, don't download")
     p.add_argument("--no-deploy", action="store_true", help="publish stage: build/sync but don't gh-deploy")
+    p.add_argument("--check-models", action="store_true",
+                   help="probe configured models (with fallback report) and exit")
+    p.add_argument("--skip-model-check", action="store_true",
+                   help="skip the pre-flight model availability check")
     return p.parse_args(argv)
 
 
@@ -51,6 +55,12 @@ def main(argv=None) -> int:
     if args.max_papers is not None:
         cfg.max_papers_per_topic_per_run = args.max_papers
     config.ensure_dirs()
+
+    if args.check_models:
+        report = modelcheck.check_and_resolve(cfg)
+        log.info("model check:\n%s", modelcheck.report_str(report))
+        return 0 if all(r["status"] != "unavailable" for r in report) else 1
+
     topics = [cfg.topic(args.topic)] if args.topic else cfg.topics
     if args.topic and topics[0] is None:
         log.error("unknown topic slug: %s", args.topic)
@@ -60,6 +70,13 @@ def main(argv=None) -> int:
     stages = [args.stage] if args.stage else STAGES
     log.info("=== run start | topics=%s | stages=%s ===",
              [t.slug for t in topics], stages)
+
+    # Pre-flight: verify the pinned models still respond; auto-fall-back to the
+    # family's latest alias if a model ID was retired. Only when an LLM stage runs.
+    llm_stage = ("digest" in stages or "trends" in stages) and not args.dry_run
+    if llm_stage and not args.skip_model_check:
+        report = modelcheck.check_and_resolve(cfg)
+        log.info("model check:\n%s", modelcheck.report_str(report))
 
     totals = {"downloaded": 0, "digested": 0}
     with state.connect() as conn:

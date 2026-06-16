@@ -5389,6 +5389,7 @@
 
 
 <h1 id="multi-label-test-time-adaptation-with-bayesian-conditional-priors">Multi-Label Test-Time Adaptation with Bayesian Conditional Priors</h1>
+<p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-11 05:29 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.12925v1">link</a></em></p>
 <h2 id="tldr">TL;DR</h2>
 <p>CLIP's zero-shot multi-label inference scores labels independently via softmax, causing dominant labels to suppress co-occurring compatible ones under distribution shift. BCP (Bayesian Conditional Priors) corrects this at test time by selecting a high-confidence anchor label and applying a closed-form logit adjustment equal to the pointwise mutual information (PMI) between each label and the anchor, estimated online from unlabeled test-stream co-occurrence statistics. The method is gradient-free, adds negligible overhead beyond a single forward pass, and consistently outperforms all TTA baselines across CLIP backbones and multi-label benchmarks.</p>
 <h2 id="problem">Problem</h2>

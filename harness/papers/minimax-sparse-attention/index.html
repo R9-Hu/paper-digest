@@ -5389,6 +5389,7 @@
 
 
 <h1 id="minimax-sparse-attention">MiniMax Sparse Attention</h1>
+<p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-11 14:23 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.13392v2">link</a></em></p>
 <h2 id="tldr">TL;DR</h2>
 <p>MiniMax Sparse Attention (MSA) replaces full quadratic softmax attention with a two-branch blockwise sparse mechanism: a lightweight Index Branch scores and selects top-k KV blocks per GQA group, and the Main Branch attends only to those blocks. Validated at 109B-parameter MoE scale, MSA matches full-attention quality while delivering 28.4× FLOPs reduction and 14.2×/7.6× prefill/decoding wall-clock speedups at 1M context.</p>
 <h2 id="problem">Problem</h2>

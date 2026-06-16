@@ -5389,6 +5389,7 @@
 
 
 <h1 id="when-more-documents-hurt-rag-mitigating-vector-search-dilution-with-domain-scoped-model-agnostic-retrieval">When More Documents Hurt RAG: Mitigating Vector Search Dilution with Domain-Scoped, Model-Agnostic Retrieval</h1>
+<p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-09 18:26 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.11350v1">link</a></em></p>
 <h2 id="tldr">TL;DR</h2>
 <p>RAG pipelines degrade severely as heterogeneous corpora scale — a phenomenon the authors formalize as <em>vector search dilution</em> — because dense similarity loses discriminative power across domain boundaries. They propose MASDR-RAG, a multi-agent framework where each agent is a domain-scoped retrieval tool, and its lightweight variant HYBRID-ROUTED (regex + single LLM router + single synthesis call). The core finding is that domain scoping lifts P@10 from 0.77 to 0.86, but naïve multi-agent orchestration collapses faithfulness from 0.61 to 0.35 — the <em>precision–faithfulness paradox</em> — with severity depending on whether the generator is open-source or commercial.</p>
 <h2 id="problem">Problem</h2>

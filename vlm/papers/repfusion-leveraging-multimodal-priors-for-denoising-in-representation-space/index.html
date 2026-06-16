@@ -5389,6 +5389,7 @@
 
 
 <h1 id="repfusion-leveraging-multimodal-priors-for-denoising-in-representation-space">RepFusion: Leveraging Multimodal Priors for Denoising in Representation Space</h1>
+<p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-12 17:59 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.14700v1">link</a></em></p>
 <h2 id="tldr">TL;DR</h2>
 <p>RepFusion repurposes a frozen pretrained multimodal LLM (MLLM) as a noisy visual representation encoder, feeding evolving noisy RAE latents into the MLLM at each denoising step so its outputs condition a small diffusion transformer (DiT). This enables frozen MLLM priors to actively participate in the denoising loop rather than serving only as static text encoders. Under matched inference FLOPs, RepFusion with a 7B frozen MLLM + 1.3B DiT outperforms baselines using 8B of newly trained denoising capacity.</p>
 <h2 id="problem">Problem</h2>

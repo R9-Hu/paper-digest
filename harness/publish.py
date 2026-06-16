@@ -110,6 +110,7 @@ SITE_CSS = """\
   font-size: .7rem; font-weight: 600; white-space: nowrap; letter-spacing: .01em;
 }
 .md-typeset .venue-none { color: var(--md-default-fg-color--lighter); }
+.md-typeset .reason { font-size: .78rem; color: var(--md-default-fg-color--light); font-style: italic; }
 /* Tag chips (Material tags plugin) */
 .md-typeset .md-tag {
   border-radius: 6px; font-size: .68rem; font-weight: 600;
@@ -529,7 +530,10 @@ def build_site(conn, cfg: Config) -> None:
                 venue_cell = (f'<span class="venue">{_esc(v)}</span>' if v
                               else '<span class="venue-none">—</span>')
                 tr = f"| {date} | [{_esc(row['title'])}](papers/{pslug}.md) | {venue_cell} |"
-                paper_rows.append(tr)
+                why = " ".join((reason or "").split()).replace("|", "\\|")
+                why_cell = (f'<span class="reason">{_esc(why)}</span>' if why
+                            else '<span class="venue-none">—</span>')
+                paper_rows.append(f"{tr} {why_cell} |")   # paper-list table adds a Why column
                 if is_current and latest_dd and (row["digested_at"] or "").startswith(latest_dd):
                     today_items.append({"title": row["title"], "pslug": pslug,
                                         "venue": v, "row": tr, "tldr": tldr,
@@ -537,7 +541,8 @@ def build_site(conn, cfg: Config) -> None:
 
             # Full paper-list page (the leaf 'Paper list' nav item opens this table).
             plist = [f"# {topic.name} — {year} · Paper list ({len(paper_rows)})", ""]
-            plist += (["| Date | Paper | Venue |", "| --- | --- | --- |"] + paper_rows
+            plist += (["| Date | Paper | Venue | Why selected |",
+                       "| --- | --- | --- | --- |"] + paper_rows
                       if paper_rows else ["_No papers yet._"])
             (ydir / "papers-list.md").write_text("\n".join(plist) + "\n", encoding="utf-8")
 

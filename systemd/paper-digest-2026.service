@@ -1,5 +1,5 @@
 [Unit]
-Description=Paper Digest — one-shot 2026 monthly compaction (Jan..now): pull in missed top-tier papers, digest, cap to monthly_keep/topic
+Description=Paper Digest — one-shot nightly test: full daily pipeline, then 2026 monthly compaction (Jan..now)
 After=network-online.target
 Wants=network-online.target
 
@@ -7,8 +7,14 @@ Wants=network-online.target
 Type=oneshot
 WorkingDirectory=/home/renjiu/Research/code/paperDigest
 EnvironmentFile=-/home/renjiu/Research/code/paperDigest/.env
-ExecStart=/home/renjiu/Research/code/paperDigest/run.sh --compact-months 2026
-# Resume the regular nightly pipeline (paused so it wouldn't collide with this run tonight).
+# 1) Full daily pipeline — exercises every recent addition end-to-end:
+#    LLM paper selection + rationale, impact ranking, RAG card index, trend-from-cards,
+#    LaTeX/MathJax digests, rationale on the site. (Leading '-' so a failure here still
+#    lets the compaction + night-timer re-arm run.)
+ExecStart=-/home/renjiu/Research/code/paperDigest/run.sh
+# 2) Planned 2026 monthly compaction (current month first, then Jan..prev), high-impact fill.
+ExecStart=-/home/renjiu/Research/code/paperDigest/run.sh --compact-months 2026
+# Resume the regular nightly pipeline (paused so it wouldn't collide tonight).
 ExecStartPost=/usr/bin/systemctl --user start paper-digest-night.timer
-# Runs inside the 21:00-06:00 digest window; allow the whole window.
+# Both stages run inside the 21:00-06:00 digest window; allow the whole window.
 TimeoutStartSec=33000

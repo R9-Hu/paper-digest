@@ -140,24 +140,54 @@ def _llm_rank(cfg: Config, topic: Topic, papers: list[Paper], k: int) -> list[Pa
         f"high-impact and influential for a researcher tracking this topic. Weigh: the "
         f"reputation and track record of the authors and their research group/lab, the "
         f"venue (top-tier acceptance/awards), and the novelty and significance of the work.\n"
-        f"Return ONLY a JSON array of the {k} chosen candidate numbers, most important first, "
-        f"e.g. [3, 0, 12]. No prose.\n\n" + "\n".join(lines)
+        f"Return ONLY a JSON array of the {k} chosen items, most important first. Each item is "
+        f'{{"i": <candidate number>, "why": "<<=15-word reason this paper is worth reading>"}}. '
+        f'Example: [{{"i": 3, "why": "DeepMind RLHF team; NeurIPS oral; first to scale verifier rewards"}}]. '
+        f"No prose outside the JSON.\n\n" + "\n".join(lines)
     )
     try:
         out = llm.run_claude(prompt, cfg.rank_model, cfg, system=RANK_SYSTEM)
     except llm.LLMError as e:
         log.warning("[%s] LLM rank failed (%s); using heuristic", topic.slug, e)
         return None
-    m = re.search(r"\[[\d,\s]*\]", out or "")
-    if not m:
-        log.warning("[%s] LLM rank returned no index list; using heuristic", topic.slug)
+    picks = _parse_rank(out, len(papers))
+    if not picks:
+        log.warning("[%s] LLM rank returned nothing parseable; using heuristic", topic.slug)
         return None
     chosen, seen = [], set()
-    for idx in (int(x) for x in re.findall(r"\d+", m.group(0))):
-        if 0 <= idx < len(papers) and idx not in seen:
-            seen.add(idx)
-            chosen.append(papers[idx])
+    for idx, why in picks:
+        if idx in seen:
+            continue
+        seen.add(idx)
+        p = papers[idx]
+        if why:
+            p.extra["select_reason"] = why
+        chosen.append(p)
     return chosen[:k] if chosen else None
+
+
+def _parse_rank(out: str, n: int) -> list[tuple[int, str]]:
+    """Parse the ranker's JSON ([{i, why}, ...] preferred; bare [i, ...] tolerated)."""
+    import json
+    m = re.search(r"\[.*\]", out or "", re.DOTALL)
+    if not m:
+        return []
+    picks: list[tuple[int, str]] = []
+    try:
+        data = json.loads(m.group(0))
+        for item in data:
+            if isinstance(item, dict) and "i" in item:
+                idx = int(item["i"])
+                why = " ".join(str(item.get("why", "")).split())[:200]
+            else:
+                idx, why = int(item), ""
+            if 0 <= idx < n:
+                picks.append((idx, why))
+    except (ValueError, TypeError):
+        for idx in (int(x) for x in re.findall(r"\d+", m.group(0))):
+            if 0 <= idx < n:
+                picks.append((idx, ""))
+    return picks
 
 
 def select_top(cfg: Config, topic: Topic, papers: list[Paper], k: int) -> list[Paper]:

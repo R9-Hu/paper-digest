@@ -397,10 +397,11 @@ def _canon_tags(raw: list[str], alias: dict, keep: set) -> list[str]:
     return out[:5]
 
 
-def _site_digest(md: str, alias: dict, keep: set) -> str:
+def _site_digest(md: str, alias: dict, keep: set, reason: str | None = None) -> str:
     """Website copy of a digest: hoist the body '## Tags' into canonical front-matter
     `tags:` (rendered as chips + a compact Tags index by the Material tags plugin) and
-    drop the plain-text tag section."""
+    drop the plain-text tag section. If `reason` is given, surface why the paper was
+    selected as a callout below the title."""
     fm, content = _split_fm(md)
     head, secs = _sections(content)
     raw, body_secs = [], []
@@ -414,6 +415,8 @@ def _site_digest(md: str, alias: dict, keep: set) -> str:
     if tags:
         fm["tags"] = tags
     parts = [f"---\n{_dump_fm(fm)}\n---", head]
+    if reason:
+        parts.append(f"> [!tip] Why this paper was selected\n> {reason}")
     for title, body in body_secs:
         parts.append(f"## {title}\n\n{body}" if body else f"## {title}")
     return "\n\n".join(parts) + "\n"
@@ -439,6 +442,8 @@ def _rich_today_lines(topic_name: str, day: str, brief: str | None, items: list)
         vb = f'  <span class="venue">{_esc(it["venue"])}</span>' if it["venue"] else ""
         lines += [f'### [{it["title"]}](papers/{it["pslug"]}.md){vb}', "",
                   it["tldr"] or "_(no TL;DR)_", ""]
+        if it.get("reason"):
+            lines += [f'📌 *Why selected:* {it["reason"]}', ""]
         if it.get("cites"):
             lines.append(f'??? quote "🔗 Cites {len(it["cites"])} paper(s) in this corpus"')
             for (ct, rel, ctldr) in it["cites"]:
@@ -505,8 +510,9 @@ def build_site(conn, cfg: Config) -> None:
                     i += 1
                 used_slugs.add(pslug)
                 raw = src.read_text(encoding="utf-8")
+                reason = (row["select_reason"] if "select_reason" in row.keys() else None)
                 (ydir / "papers" / f"{pslug}.md").write_text(
-                    _site_digest(raw, tag_alias, tag_keep), encoding="utf-8")
+                    _site_digest(raw, tag_alias, tag_keep, reason), encoding="utf-8")
                 tldr = (row["tldr"] or "").strip() or _extract_tldr(raw)   # cached TL;DR
                 topic_index[_norm_title(row["title"])] = (row["title"], year, pslug, tldr)
                 name = _paper_name(row["title"])   # original case — matched case-sensitively
@@ -527,7 +533,7 @@ def build_site(conn, cfg: Config) -> None:
                 if is_current and latest_dd and (row["digested_at"] or "").startswith(latest_dd):
                     today_items.append({"title": row["title"], "pslug": pslug,
                                         "venue": v, "row": tr, "tldr": tldr,
-                                        "text_norm": _norm_title(raw)})
+                                        "reason": reason, "text_norm": _norm_title(raw)})
 
             # Full paper-list page (the leaf 'Paper list' nav item opens this table).
             plist = [f"# {topic.name} — {year} · Paper list ({len(paper_rows)})", ""]

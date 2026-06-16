@@ -84,7 +84,7 @@ def connect(db_path: Path | str = None):
         # Migrate older DBs that predate added columns.
         cols = {r[1] for r in conn.execute("PRAGMA table_info(papers)")}
         for col, decl in (("published_ts", "TEXT"), ("version", "INTEGER"),
-                          ("doi", "TEXT"), ("tldr", "TEXT")):
+                          ("doi", "TEXT"), ("tldr", "TEXT"), ("select_reason", "TEXT")):
             if col not in cols:
                 conn.execute(f"ALTER TABLE papers ADD COLUMN {col} {decl}")
         yield conn
@@ -110,15 +110,15 @@ def record_fetched(conn, paper: Paper, topic_slug: str, pdf_path: str) -> None:
         """INSERT OR REPLACE INTO papers
            (canonical_id, topic_slug, source, title, authors, abstract, pdf_url,
             abs_url, venue, published, published_ts, version, doi, year, pdf_path,
-            digest_status, fetched_at)
-           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'fetched', ?)""",
+            select_reason, digest_status, fetched_at)
+           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?, 'fetched', ?)""",
         (
             paper.canonical_id, topic_slug, paper.source, paper.title,
             json.dumps(paper.authors), paper.abstract, paper.pdf_url,
             paper.abs_url, paper.venue,
             paper.published.isoformat() if paper.published else None,
             paper.published_ts or None, paper.version, paper.doi or None,
-            paper.year, pdf_path, _now(),
+            paper.year, pdf_path, (paper.extra.get("select_reason") or None), _now(),
         ),
     )
     # A (re-)fetch may be a newer version — invalidate any cached shared body.

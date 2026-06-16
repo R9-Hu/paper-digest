@@ -275,6 +275,19 @@ def _norm_title(t: str) -> str:
     return re.sub(r"[^a-z0-9]+", " ", (t or "").lower()).strip()
 
 
+def _paper_name(title: str) -> str | None:
+    """A *distinctive* citable method-name for a paper — the part before the first
+    colon when it looks like a coined name: CamelCase (AgentSpec, FlowBank) or
+    hyphenated with caps/digits (Claw-SWE-Bench, Orchestra-o1). Returns None for
+    common-word acronyms (FOCUS, VISA) and generic phrases, to avoid false links."""
+    name = (title or "").split(":", 1)[0].strip()
+    if not (4 <= len(name) <= 45):
+        return None
+    camel = re.search(r"[a-z][A-Z]", name) is not None
+    hyphen_distinct = "-" in name and any(c.isupper() or c.isdigit() for c in name)
+    return name if (camel or hyphen_distinct) else None
+
+
 def _key_titles(trend_md: str | None) -> list[str]:
     """Bold paper titles listed in the trend report's 'Key papers' section."""
     if not trend_md:
@@ -436,6 +449,8 @@ def build_site(conn, cfg: Config) -> None:
     today = dt.date.today().isoformat()
     nav = [{"Home": "index.md"}, {"Tags": "tags.md"}]
     tag_alias, tag_keep = build_tag_vocab(conn)   # compact, merged tag vocabulary
+    name_loc, ambiguous = {}, set()   # paper name -> (display, slug, year, pslug)
+    written_pages = []                # (page_path, self_name, body_lower) for cross-linking
     home_cards = []
     grand_total = grand_today = 0
     cur_year = dt.date.today().year
@@ -481,6 +496,13 @@ def build_site(conn, cfg: Config) -> None:
                     _site_digest(raw, tag_alias, tag_keep), encoding="utf-8")
                 tldr = (row["tldr"] or "").strip() or _extract_tldr(raw)   # cached TL;DR
                 topic_index[_norm_title(row["title"])] = (row["title"], year, pslug, tldr)
+                name = _paper_name(row["title"])   # original case — matched case-sensitively
+                if name:
+                    if name in name_loc:
+                        ambiguous.add(name)
+                    else:
+                        name_loc[name] = (row["title"], topic.slug, year, pslug)
+                written_pages.append((ydir / "papers" / f"{pslug}.md", name, raw))
                 if _is_key(row["title"], key_norms):
                     key_nav.append({row["title"]: f"{topic.slug}/{year}/papers/{pslug}.md"})
                 date = row["published"] or "—"
@@ -602,6 +624,22 @@ def build_site(conn, cfg: Config) -> None:
     (docs / "stylesheets" / "extra.css").write_text(SITE_CSS, encoding="utf-8")
     (docs / "javascripts").mkdir(parents=True, exist_ok=True)
     (docs / "javascripts" / "newtab.js").write_text(SITE_JS, encoding="utf-8")
+
+    # Cross-link pass: append "Related in this collection" to each paper page for
+    # every other corpus paper whose *name* it mentions. Built fresh from the live
+    # corpus each publish, so links to compacted/dropped papers vanish automatically.
+    names = sorted((n for n in name_loc if n not in ambiguous), key=len, reverse=True)
+    if names:
+        pat = re.compile(r"(?<![\w-])(" + "|".join(re.escape(n) for n in names) + r")(?![\w-])")
+        for path, self_name, body_lower in written_pages:
+            hits = {m.group(1) for m in pat.finditer(body_lower)} - {self_name}
+            if hits:
+                links = [f"- [{_esc(name_loc[n][0])}]"
+                         f"(../../../{name_loc[n][1]}/{name_loc[n][2]}/papers/{name_loc[n][3]}.md)"
+                         for n in sorted(hits)]
+                with open(path, "a", encoding="utf-8") as f:
+                    f.write("\n\n## 🔗 Related in this collection\n\n"
+                            + "\n".join(links[:12]) + "\n")
 
     mkdocs_cfg = {
         "site_name": "Paper Digest",

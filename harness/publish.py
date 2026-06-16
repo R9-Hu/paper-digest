@@ -223,6 +223,32 @@ def _yearly_digest_lines(topic_name: str, year: int, trend_md: str | None,
     return lines
 
 
+def _norm_title(t: str) -> str:
+    return re.sub(r"[^a-z0-9]+", " ", (t or "").lower()).strip()
+
+
+def _key_titles(trend_md: str | None) -> list[str]:
+    """Bold paper titles listed in the trend report's 'Key papers' section."""
+    if not trend_md:
+        return []
+    sec = _extract_section(trend_md, "Key papers")
+    if not sec:
+        return []
+    return [_norm_title(m) for m in re.findall(r"\*\*(.+?)\*\*", sec) if m.strip()]
+
+
+def _is_key(title: str, key_norms: list[str]) -> bool:
+    p = _norm_title(title)
+    if not p:
+        return False
+    for k in key_norms:
+        if not k:
+            continue
+        if k in p or p in k or p[:25] == k[:25]:
+            return True
+    return False
+
+
 def _today_page_lines(topic_name: str, day: str, table_rows: list[str]) -> list[str]:
     """Body for a topic's dedicated 'Today's Digest' page — papers/posts collected
     on `day` (by fetched_at)."""
@@ -293,7 +319,8 @@ def build_site(conn, cfg: Config) -> None:
             if has_trend:
                 (ydir / "trend.md").write_text(trend_md, encoding="utf-8")
 
-            paper_nav, paper_rows, today_rows = [], [], []
+            key_norms = _key_titles(trend_md)
+            key_nav, paper_rows, today_rows = [], [], []
             used_slugs: set[str] = set()
             for row in rows:
                 src = config.ROOT / (row["digest_path"] or "")
@@ -307,7 +334,8 @@ def build_site(conn, cfg: Config) -> None:
                 used_slugs.add(pslug)
                 (ydir / "papers" / f"{pslug}.md").write_text(
                     src.read_text(encoding="utf-8"), encoding="utf-8")
-                paper_nav.append({row["title"]: f"{topic.slug}/{year}/papers/{pslug}.md"})
+                if _is_key(row["title"], key_norms):
+                    key_nav.append({row["title"]: f"{topic.slug}/{year}/papers/{pslug}.md"})
                 date = row["published"] or "—"
                 v = row["venue"] or ""
                 venue_cell = f'<span class="venue">{_esc(v)}</span>' if v else "—"
@@ -315,6 +343,12 @@ def build_site(conn, cfg: Config) -> None:
                 paper_rows.append(tr)
                 if (row["fetched_at"] or "").startswith(today):
                     today_rows.append(tr)
+
+            # Full paper-list page (the leaf 'Paper list' nav item opens this table).
+            plist = [f"# {topic.name} — {year} · Paper list ({len(paper_rows)})", ""]
+            plist += (["| Date | Paper | Venue |", "| --- | --- | --- |"] + paper_rows
+                      if paper_rows else ["_No papers yet._"])
+            (ydir / "papers-list.md").write_text("\n".join(plist) + "\n", encoding="utf-8")
 
             is_current = year == cur_year
             if is_current:
@@ -336,19 +370,20 @@ def build_site(conn, cfg: Config) -> None:
             page = [f"# {topic.name} — {year}", "", digest_link, ""]
             page += _timeline_section(trend_md, rows)
             page += _trend_digest_section(trend_md, trend_link)
-            page.append(f"## 📄 Papers ({len(paper_rows)})")
-            page.append("")
-            page += (["| Date | Paper | Venue |", "| --- | --- | --- |"] + paper_rows
-                     if paper_rows else ["_No digests yet._"])
+            page += [f"## 📄 Papers ({len(paper_rows)})", "",
+                     f"➡️ **[Paper list](papers-list.md)** — full table of {len(paper_rows)} papers."]
+            if key_nav:
+                page.append(f"  ·  ⭐ **{len(key_nav)} key papers** (see _Key papers_ in the left nav).")
             (ydir / "index.md").write_text("\n".join(page) + "\n", encoding="utf-8")
 
-            # Year nav group (the super-title) → Trend analysis / digest / Papers.
+            # Year nav group (super-title) → Trend / digest / Key papers / Paper list.
             children = [f"{topic.slug}/{year}/index.md"]
             if has_trend:
                 children.append({"Trend analysis": f"{topic.slug}/{year}/trend.md"})
             children.append(digest_nav)
-            if paper_nav:
-                children.append({"Papers": paper_nav})
+            if key_nav:
+                children.append({"Key papers": key_nav})        # expandable, key paper pages
+            children.append({"Paper list": f"{topic.slug}/{year}/papers-list.md"})  # leaf → table
             year_nav.append({str(year): children})
 
             badge = f"{len(today_rows)} new today" if is_current else "year in review"
@@ -363,10 +398,11 @@ def build_site(conn, cfg: Config) -> None:
         # Topic nav: overview + per-year groups.
         nav.append({topic.name: [f"{topic.slug}/index.md"] + year_nav})
 
-        # Home grid card.
+        # Home grid card — Overview, this year, last year.
         links = [f"[Overview]({topic.slug}/index.md){{ .md-button }}"]
-        if years:
-            links.append(f"[{years[0]}]({topic.slug}/{years[0]}/index.md){{ .md-button }}")
+        for yr in (cur_year, cur_year - 1):
+            if yr in years:
+                links.append(f"[{yr}]({topic.slug}/{yr}/index.md){{ .md-button }}")
         home_lines += [
             f"-   {_emoji(topic.slug)} **[{topic.name}]({topic.slug}/index.md)**",
             "",

@@ -9,7 +9,7 @@ import datetime as dt
 import logging
 import re
 
-from . import config, llm, state
+from . import config, llm, rag, state
 from .config import Config, Topic
 
 log = logging.getLogger("harness.trends")
@@ -75,22 +75,28 @@ def _strip_front_matter(md: str) -> str:
 
 
 def _build_corpus_year(conn, topic: Topic, year: int) -> tuple[str, int]:
-    """Corpus for trend synthesis = the cached per-paper TL;DRs (token-efficient;
-    ~4-5x smaller than feeding full digest bodies). Falls back to parsing the
-    digest file's TL;DR for pre-cache rows."""
-    rows = state.digested_for_topic_year(conn, topic.slug, year)[:MAX_PAPERS]
+    """Corpus for trend synthesis = the compact RAG cards (TL;DR + venue + impact),
+    never the full papers. Cards are ordered by impact (citations) so the most
+    important papers always make the (capped) corpus, not just the most recent.
+    Falls back to the cached TL;DRs in the papers table if the index isn't built."""
+    cards = rag.cards_for(conn, topic.slug, year, limit=MAX_PAPERS, order="impact")
+    if not cards:   # index not built yet — fall back to the raw TL;DR cache
+        rows = state.digested_for_topic_year(conn, topic.slug, year)[:MAX_PAPERS]
+        cards = [{"published": r["published"], "title": r["title"], "venue": r["venue"],
+                  "citations": 0, "tldr": (r["tldr"] or "")} for r in rows]
     chunks, total, used = [], 0, 0
-    for row in rows:
-        tl = row["tldr"] or ""
-        if not tl:
-            path = config.ROOT / (row["digest_path"] or "")
-            if path.exists():
-                tl = _tldr_of(path.read_text(encoding="utf-8"))
+    for c in cards:
+        tl = c.get("tldr") or ""
         if not tl:
             continue
-        header = f"### [{row['published'] or '?'}] {row['title']}"
-        if row["venue"]:
-            header += f"  ({row['venue']})"
+        header = f"### [{c.get('published') or c.get('year') or '?'}] {c['title']}"
+        extra = []
+        if c.get("venue"):
+            extra.append(c["venue"])
+        if c.get("citations"):
+            extra.append(f"{c['citations']} citations")
+        if extra:
+            header += "  (" + ", ".join(str(x) for x in extra) + ")"
         chunk = f"{header}\n{tl}\n"
         if total + len(chunk) > MAX_CORPUS_CHARS:
             break

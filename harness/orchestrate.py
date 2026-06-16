@@ -10,7 +10,7 @@ import datetime as dt
 import logging
 import sys
 
-from . import compact, config, digest, fetch, modelcheck, publish, state, trends
+from . import compact, config, digest, fetch, modelcheck, publish, rag, state, trends
 
 STAGES = ["fetch", "digest", "trends", "publish"]
 
@@ -64,6 +64,10 @@ def parse_args(argv=None):
                    help="skip the automatic prior-year compaction step")
     p.add_argument("--ignore-window", action="store_true",
                    help="digest now even outside the configured digest window")
+    p.add_argument("--build-index", action="store_true",
+                   help="(re)build the RAG card cache + FTS5/embedding index, then exit")
+    p.add_argument("--rag-query", metavar="TEXT",
+                   help="retrieve the most relevant paper cards for TEXT (debug), then exit")
     return p.parse_args(argv)
 
 
@@ -86,6 +90,20 @@ def main(argv=None) -> int:
     if args.topic and topics[0] is None:
         log.error("unknown topic slug: %s", args.topic)
         return 2
+
+    if args.build_index:
+        with state.connect() as conn:
+            log.info("rag: %s", rag.build_index(conn))
+        return 0
+
+    if args.rag_query:
+        with state.connect() as conn:
+            hits = rag.retrieve(conn, args.rag_query, topic_slug=args.topic, k=12)
+        for h in hits:
+            log.info("  [%.3f] %-12s %s (%s, cites=%s) — %s",
+                     h["score"], h["topic_slug"], h["title"][:70],
+                     h["year"], h["citations"], (h["tldr"] or "")[:100])
+        return 0
 
     if args.compact_month or args.compact_year is not None or args.compact_months is not None:
         cont = lambda: args.ignore_window or _in_digest_window(cfg)  # refetch+digest gated to window
@@ -121,6 +139,7 @@ def main(argv=None) -> int:
                         res = compact.compact_year(conn, cfg, topic, args.compact_year, should_continue=cont)
                     log.info("[%s] compaction: %s", topic.slug, res)
             digest.clear_text_cache()
+            rag.build_index(conn)          # refresh cards (drops compacted-away papers)
             publish.publish(conn, cfg, deploy=not args.no_deploy)
         return 0
 
@@ -160,7 +179,14 @@ def main(argv=None) -> int:
                         log.info("  NEW [%s %s] %s", p.source, p.year, p.title[:90])
             if "digest" in stages and not args.dry_run and digest_ok:
                 totals["digested"] += digest.digest_topic(conn, cfg, topic, should_continue=can_llm)
-            if "trends" in stages and not args.dry_run and digest_ok:
+
+        # Build the RAG card cache before synthesis so trend/brief steps run off
+        # compact cards (not full papers). Incremental — cheap when nothing changed.
+        if not args.dry_run and digest_ok and ("trends" in stages or "publish" in stages):
+            rag.build_index(conn)
+
+        if "trends" in stages and not args.dry_run and digest_ok:
+            for topic in topics:
                 trends.analyze_topic(conn, cfg, topic)
                 trends.summarize_today(conn, cfg, topic)
 
@@ -174,6 +200,7 @@ def main(argv=None) -> int:
             digest.clear_text_cache()
 
         if "publish" in stages and not args.dry_run:
+            rag.build_index(conn)          # reflect any compaction drops in the cards
             publish.publish(conn, cfg, deploy=not args.no_deploy)
 
     log.info("=== run done | downloaded=%d digested=%d compacted=%d ===",

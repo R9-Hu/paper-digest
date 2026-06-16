@@ -4,3 +4,5 @@ requests>=2.25.0
 PyYAML>=6.0
 mkdocs-material>=9.5.0
 mkdocs-callouts>=1.13.0
+numpy>=1.24            # RAG embeddings (vector re-rank)
+model2vec>=0.3        # static (torch-free) embeddings for hybrid retrieval; FTS5 used if absent

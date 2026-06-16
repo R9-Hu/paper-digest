@@ -4,6 +4,7 @@ authors: ["Seokju Cho", "Ryo Hachiuma", "Abhishek Badki", "Hang Su", "Byung-Kwan
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T17:59:36+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] SpatialClaw Rethinking Action Interface for Agentic
 ---
 
 # SpatialClaw: Rethinking Action Interface for Agentic Spatial Reasoning
+
+*🕒 **Published (v1):** 2026-06-11 17:59 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13673v1)*
 
 ## TL;DR
 SpatialClaw is a training-free framework that replaces single-pass code execution and structured tool-call interfaces in spatial reasoning agents with a persistent, multi-turn Python kernel. A VLM-backed agent writes one executable cell per step, inspects intermediate outputs (masks, depth maps, plots), and revises its geometric analysis before committing an answer. Evaluated on 20 spatial benchmarks with six backbone models, it achieves 59.9% average accuracy, outperforming the prior best spatial agent by +11.2 points.

@@ -4,6 +4,7 @@ authors: ["Pengxin Wang", "Lihao Guo", "Yi Xie", "Bo Liu", "Siyang Cao", "Jingdi
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T17:55:28+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Learning Coordinated Preference for Multi-Ob
 ---
 
 # Learning Coordinated Preference for Multi-Objective Multi-Agent Reinforcement Learning
+
+*🕒 **Published (v1):** 2026-06-12 17:55 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14693v1)*
 
 ## TL;DR
 PCMA (Preference Coordinated Multi-agent Policy Optimization) addresses cooperative multi-objective multi-agent RL by letting each agent learn a distinct, observation-conditioned preference vector over objectives rather than forcing all agents to share one. Theoretically, preference diversity yields a provable first-order improvement in the team objective. Empirically, PCMA outperforms MADDPG, IPPO, and MAPPO across MPE, SMAC, MOMAland, and a CARLA autonomous-driving scenario.

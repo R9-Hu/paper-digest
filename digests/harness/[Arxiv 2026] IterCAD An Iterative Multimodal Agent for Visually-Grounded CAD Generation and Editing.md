@@ -4,6 +4,7 @@ authors: ["Tao Hu", "Jiaxin Ai", "Licheng Wen", "Xueheng Li", "Shu Zou", "Siqi L
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T13:53:21+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] IterCAD An Iterative Multimodal Agent for Visua
 ---
 
 # IterCAD: An Iterative Multimodal Agent for Visually-Grounded CAD Generation and Editing
+
+*🕒 **Published (v1):** 2026-06-11 13:53 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13368v1)*
 
 ## TL;DR
 IterCAD is a closed-loop multimodal agent that recasts CAD generation as multi-turn agent-sandbox interaction, moving beyond one-shot synthesis to iterative "generate–verify–refine" cycles guided by multi-view engineering drawings. A 4B model trained with progressive SFT and geometry-aware RL with Geometry-Viable Prefix Masking (GVPM) outperforms GPT-5 and models an order of magnitude larger on the proposed IterCAD-Bench. A new survivor-bias-free metric (CD-TR / AUC-TR) unifies code executability and geometric fidelity into a single evaluation standard.

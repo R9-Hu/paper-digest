@@ -4,6 +4,7 @@ authors: ["Jiaqi Tang", "Shaoyang Zhang", "Xiaoqi Wang", "Jiaying Zhou", "Yang L
 source: "Arxiv"
 venue: ""
 published: "2026-02-27"
+published_time: "2026-02-27T11:04:15+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Topology-Driven Transferability Estimati
 ---
 
 # Topology-Driven Transferability Estimation of Medical Foundation Models for Segmentation
+
+*🕒 **Published (v1):** 2026-02-27 11:04 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2602.23916v2)*
 
 ## TL;DR
 Selecting the best SSL-pretrained encoder for a medical segmentation task requires costly exhaustive fine-tuning across a model zoo. This paper proposes a training-free transferability estimation framework that measures topological alignment between feature manifolds and semantic label spaces—using Minimum Spanning Trees—rather than statistical distributional overlap. On the OpenMind benchmark it outperforms prior methods by ~31% in weighted Kendall's τ.

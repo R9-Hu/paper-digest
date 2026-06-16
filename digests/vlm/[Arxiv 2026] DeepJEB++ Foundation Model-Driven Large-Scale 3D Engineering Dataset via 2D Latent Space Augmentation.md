@@ -4,6 +4,7 @@ authors: ["Soyoung Yoo", "Leekyo Jeong", "Jinsu Ra", "Dongeon Lee", "Sunwoong Ya
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T07:30:56+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] DeepJEB++ Foundation Model-Driven Large-Scale 3D En
 ---
 
 # DeepJEB++: Foundation Model-Driven Large-Scale 3D Engineering Dataset via 2D Latent Space Augmentation
+
+*🕒 **Published (v1):** 2026-06-11 07:30 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12994v2)*
 
 ## TL;DR
 DeepJEB++ is a three-stage pipeline that expands 380 seed jet engine bracket CAD models into 15,360 simulation-labeled 3D meshes (40× expansion) by augmenting in 2D latent space via fine-tuned Stable Diffusion, lifting to 3D with a domain-adapted TRELLIS model, and automatically assigning FEA labels through geometric interface detection. A VLM (LLaVA) serves as the manufacturability gatekeeper for synthesized 2D images. The paper identifies and fixes the "Negative Words Negation" (NWN) artifact, a systematic failure mode in VLM-based quality scoring.

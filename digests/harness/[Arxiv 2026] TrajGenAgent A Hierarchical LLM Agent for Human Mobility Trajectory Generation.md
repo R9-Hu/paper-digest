@@ -4,6 +4,7 @@ authors: ["Siyu Li", "Toan Tran", "Lingyi Zhao", "Khurram Shafique", "Li Xiong"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-10"
+published_time: "2026-06-10T20:32:52+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] TrajGenAgent A Hierarchical LLM Agent for Human
 ---
 
 # TrajGenAgent: A Hierarchical LLM Agent for Human Mobility Trajectory Generation
+
+*🕒 **Published (v1):** 2026-06-10 20:32 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12657v1)*
 
 ## TL;DR
 TrajGenAgent is a zero-shot hierarchical LLM-agent framework for synthetic human mobility trajectory generation that decouples macro-level activity planning (LLM orchestrator via in-context learning) from micro-level spatiotemporal grounding (deterministic LangGraph worker workflow), avoiding both the spatial imprecision of pure prompting and the compute cost of fine-tuning. It also introduces an anomaly-detection-based evaluation framework using ICAD and BeSTAD detectors to assess behavioral plausibility beyond aggregate distributional statistics.

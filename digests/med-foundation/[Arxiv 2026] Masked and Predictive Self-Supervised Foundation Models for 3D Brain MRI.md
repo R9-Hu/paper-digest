@@ -4,6 +4,7 @@ authors: ["Esra Erg\u00fcn", "Hersh Chandarana", "Dan Sodickson", "G\u00f6zde \u
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T13:09:59+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Masked and Predictive Self-Supervised Fo
 ---
 
 # Masked and Predictive Self-Supervised Foundation Models for 3D Brain MRI
+
+*🕒 **Published (v1):** 2026-06-11 13:09 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13315v1)*
 
 ## TL;DR
 This paper systematically compares two self-supervised pretraining paradigms—Masked Autoencoders (MAE) and Joint Embedding Predictive Architectures (JEPA)—for 3D structural brain MRI disease detection, pretrained on ~58k heterogeneous MRI volumes. Two auxiliary objectives are introduced: a spectral-domain reconstruction loss for MAE and variance–covariance regularization (VCR) for JEPA. MAE with spectral supervision consistently outperforms JEPA for MRI-based disease detection, and the benefit of each objective is shown to be conditioned on the pathological structure of the downstream task.

@@ -4,6 +4,7 @@ authors: ["Anugrah Aidin Yotolembah", "Novanto Yudistira", "Gembong Edhi Setyawa
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T12:29:39+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Zero-Shot Captioning for Cultural Heritage Automate
 ---
 
 # Zero-Shot Captioning for Cultural Heritage: Automated Image Analysis of Traditional Indonesian Clothing
+
+*🕒 **Published (v1):** 2026-06-11 12:29 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13275v1)*
 
 ## TL;DR
 Custom ZeroCLIP is a retrieval-augmented vision-language framework for inductive zero-shot captioning of traditional Indonesian garments across all 38 provinces. It combines frozen CLIP encoders with a trainable BERT–LSTM decoder that conditions generation on cosine-retrieved captions from seen provinces. On 8 fully unseen provinces it achieves CLIPScore 0.8536, BLEU-4 0.3342, and METEOR 0.4859, outperforming off-the-shelf VLM baselines.

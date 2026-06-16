@@ -4,6 +4,7 @@ authors: ["Tingyang Chen", "Shuo Lu", "Kang Zhao", "Weicheng Meng", "Hanlin Teng
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T08:27:11+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] HarnessX A Composable, Adaptive, and Evolvable 
 ---
 
 # HarnessX: A Composable, Adaptive, and Evolvable Agent Harness Foundry
+
+*🕒 **Published (v1):** 2026-06-12 08:27 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14249v1)*
 
 ## TL;DR
 HarnessX formalizes the agent harness as a first-class typed object composed via a substitution algebra, then automatically evolves it through AEGIS—a trace-driven, four-stage multi-agent engine grounded in an operational mirror between symbolic harness adaptation and RL. Across five benchmarks and three model families, harness evolution yields an average absolute gain of +14.5% (up to +44.0%), with an additional +4.7% from closing the loop via harness–model co-evolution using cross-harness GRPO.

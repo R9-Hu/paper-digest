@@ -4,6 +4,7 @@ authors: ["Fengyu Liu", "Jiarun Dai", "Yihe Fan", "Wuyuao Mai", "Ziao Li", "Bofe
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T09:29:58+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] AgentCyberRange Benchmarking Frontier AI Sys
 ---
 
 # AgentCyberRange: Benchmarking Frontier AI Systems in Realistic Cyber Ranges
+
+*🕒 **Published (v1):** 2026-06-12 09:29 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14295v1)*
 
 ## TL;DR
 AgentCyberRange is the first open, multi-host cyber-range benchmark for evaluating frontier AI systems on end-to-end autonomous cyberattack workflows—web exploitation followed by post-exploitation across networked enterprise environments. The companion CAGE pipeline handles scalable agent orchestration, environment deployment, and automatic verification. GPT-5.5 with Codex leads all evaluated systems but still solves only ~16% of web exploitation and ~32% of post-exploitation tasks at Level-0, revealing large capability gaps for reliable autonomous attack execution.

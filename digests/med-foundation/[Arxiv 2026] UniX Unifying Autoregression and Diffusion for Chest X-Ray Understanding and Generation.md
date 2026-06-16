@@ -4,6 +4,7 @@ authors: ["Ruiheng Zhang", "Jingfeng Yao", "Huangxuan Zhao", "Hao Yan", "Xiao He
 source: "Arxiv"
 venue: ""
 published: "2026-01-16"
+published_time: "2026-01-16T18:59:58+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] UniX Unifying Autoregression and Diffusi
 ---
 
 # UniX: Unifying Autoregression and Diffusion for Chest X-Ray Understanding and Generation
+
+*🕒 **Published (v1):** 2026-01-16 18:59 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2601.11522v1)*
 
 ## TL;DR
 UniX is a unified chest X-ray foundation model that decouples understanding (autoregressive branch) and generation (diffusion branch) to eliminate the semantic-abstraction vs. pixel-reconstruction conflict that cripples prior parameter-sharing approaches. A cross-modal self-attention mechanism injects understanding features into the diffusion process, enabling synergistic collaboration at 1.5B parameters. On MIMIC-CXR, UniX improves Micro-F1 by 46.1% and FD-RadDino by 24.2% over LLM-CXR using only a quarter of its parameters.

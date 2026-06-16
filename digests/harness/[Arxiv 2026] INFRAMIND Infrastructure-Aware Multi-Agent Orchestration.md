@@ -4,6 +4,7 @@ authors: ["Ahasan Kabir", "Jiaqi Xue", "Mengxin Zheng", "Qian Lou"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-09"
+published_time: "2026-06-09T20:50:12+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] INFRAMIND Infrastructure-Aware Multi-Agent Orch
 ---
 
 # INFRAMIND: Infrastructure-Aware Multi-Agent Orchestration
+
+*🕒 **Published (v1):** 2026-06-09 20:50 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.11440v1)*
 
 ## TL;DR
 INFRAMIND is an infrastructure-aware multi-agent LLM orchestration framework that closes the "infrastructure blindness" gap in existing routers by conditioning topology planning, per-step model/strategy selection, and queue scheduling on real-time serving metrics (queue depths, KV-cache pressure, latencies). Formulated as a hierarchical constrained MDP and trained end-to-end via RL, it delivers up to +7.6 pp accuracy and 7× lower latency at low load, and sustains 99.9% SLO compliance under high load where all baselines collapse below 50%.

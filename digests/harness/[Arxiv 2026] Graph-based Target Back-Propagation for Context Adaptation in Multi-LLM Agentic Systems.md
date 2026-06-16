@@ -4,6 +4,7 @@ authors: ["Tan Zhu", "Tong Yao", "Kananart Kuwaranancharoen", "Amit Singh", "Yus
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T06:27:15+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] Graph-based Target Back-Propagation for Context
 ---
 
 # Graph-based Target Back-Propagation for Context Adaptation in Multi-LLM Agentic Systems
+
+*🕒 **Published (v1):** 2026-06-12 06:27 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14155v1)*
 
 ## TL;DR
 GTBP is a framework for automatically tuning the prompts of multi-LLM agentic workflows—modeled as directed acyclic graphs—without touching model weights. It adapts Difference Target Propagation from neural networks: instead of backpropagating gradients, it backpropagates inferred "local target outputs" through the workflow graph so each module receives a precise, stage-specific optimization signal. On three benchmarks it outperforms GEPA and few-shot baselines with comparable or lower training cost.

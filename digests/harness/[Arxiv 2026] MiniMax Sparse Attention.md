@@ -4,6 +4,7 @@ authors: ["Xunhao Lai", "Weiqi Xu", "Yufeng Yang", "Qiaorui Chen", "Yang Xu", "L
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T14:23:41+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] MiniMax Sparse Attention.pdf"
 ---
 
 # MiniMax Sparse Attention
+
+*🕒 **Published (v1):** 2026-06-11 14:23 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13392v2)*
 
 ## TL;DR
 MiniMax Sparse Attention (MSA) replaces full quadratic softmax attention with a two-branch blockwise sparse mechanism: a lightweight Index Branch scores and selects top-k KV blocks per GQA group, and the Main Branch attends only to those blocks. Validated at 109B-parameter MoE scale, MSA matches full-attention quality while delivering 28.4× FLOPs reduction and 14.2×/7.6× prefill/decoding wall-clock speedups at 1M context.

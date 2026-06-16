@@ -4,6 +4,7 @@ authors: ["Xinbei Ma", "Congmin Zheng", "Jiyang Qiu", "Jiale Hong", "Yao Yao", "
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T09:38:47+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Retrospective Progress-Aware Self-Refinement
 ---
 
 # Retrospective Progress-Aware Self-Refinement for LLM Agent Training
+
+*🕒 **Published (v1):** 2026-06-12 09:38 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14302v1)*
 
 ## TL;DR
 RePro (Retrospective Progress-Aware Training) trains LLM agents to self-generate metacognitive progress signals by first executing a task online, then retrospectively reassessing step-wise completion percentages given the known outcome. A pilot study shows online progress prompting degrades performance (−8.6% avg) while retrospective demonstrations help (+7.9%), motivating a dedicated two-phase training framework. RePro achieves up to +11.57% absolute success rate gains over baseline RL on WebShop, ALFWorld, and Sokoban.

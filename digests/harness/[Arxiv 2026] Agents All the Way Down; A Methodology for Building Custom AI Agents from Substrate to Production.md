@@ -4,6 +4,7 @@ authors: ["Marc Alier Forment", "Juanan Pereira", "Francisco Jos\u00e9 Garc\u00e
 source: "Arxiv"
 venue: ""
 published: "2026-06-10"
+published_time: "2026-06-10T09:44:54+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] Agents All the Way Down; A Methodology for Buil
 ---
 
 # Agents All the Way Down; A Methodology for Building Custom AI Agents from Substrate to Production
+
+*🕒 **Published (v1):** 2026-06-10 09:44 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.11869v1)*
 
 ## TL;DR
 This methodology paper codifies a five-phase, framework-free practice for building custom production AI agents — from internalizing the LLM substrate through prototyping with a general-purpose code agent, shipping as a CLI (the "Turtle pattern"), and using a general-purpose agent to test the custom agent ("agent-tests-agent"). It was distilled from a real deployment (the AAC agent on the LAMB educational platform, ~200 users, production since April 2026) and presented as a transferable, language-agnostic engineering practice.

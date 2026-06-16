@@ -4,6 +4,7 @@ authors: ["Qiru Li", "Ao Zhou", "Zhiwei Jiang", "Zifeng Cheng", "Cong Wang", "Ya
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T05:29:00+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Multi-Label Test-Time Adaptation with Bayesian Cond
 ---
 
 # Multi-Label Test-Time Adaptation with Bayesian Conditional Priors
+
+*🕒 **Published (v1):** 2026-06-11 05:29 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12925v1)*
 
 ## TL;DR
 CLIP's zero-shot multi-label inference scores labels independently via softmax, causing dominant labels to suppress co-occurring compatible ones under distribution shift. BCP (Bayesian Conditional Priors) corrects this at test time by selecting a high-confidence anchor label and applying a closed-form logit adjustment equal to the pointwise mutual information (PMI) between each label and the anchor, estimated online from unlabeled test-stream co-occurrence statistics. The method is gradient-free, adds negligible overhead beyond a single forward pass, and consistently outperforms all TTA baselines across CLIP backbones and multi-label benchmarks.

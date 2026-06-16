@@ -4,6 +4,7 @@ authors: ["Dongjian Ma", "Silin Chen", "Yufei Yang", "Yulin Shi", "Yanfu yan", "
 source: "HuggingFace"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T03:14:40+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[HuggingFace 2026] LLM Agents Can See Code Repositories.p
 ---
 
 # LLM Agents Can See Code Repositories
+
+*🕒 **Published (v1):** 2026-06-12 03:14 UTC  ·  **Source:** HuggingFace  ·  [link](https://huggingface.co/papers/2606.14061)*
 
 ## TL;DR
 SeeRepo augments coding agents with visual dependency-graph renderings of code repositories, enabling MLLMs to consume structural context visually rather than through linearized text. Evaluated on SWE-bench Verified across four frontier models, hybrid text+vision reduces input token cost by up to 46% while maintaining or improving issue-resolution accuracy. Vision-only interaction, by contrast, degrades accuracy and inflates costs.

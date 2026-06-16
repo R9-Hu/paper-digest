@@ -4,6 +4,7 @@ authors: ["Yubo Zhang", "Xueqing Wang", "Manhui Lin", "Yue Zhang", "Penglongyi D
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T09:35:16+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] PP-OCRv6 From 1.5M to 34.5M Parameters, Surpassing 
 ---
 
 # PP-OCRv6: From 1.5M to 34.5M Parameters, Surpassing Billion-Scale VLMs on OCR Tasks
+
+*🕒 **Published (v1):** 2026-06-11 09:35 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13108v1)*
 
 ## TL;DR
 

@@ -4,6 +4,7 @@ authors: ["Xiangxiang Cui", "Tianjin Huang", "Yifang Wang", "Lijie Hu", "Lu Yin"
 source: "Arxiv"
 venue: ""
 published: "2026-05-18"
+published_time: "2026-05-18T18:50:56+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] MedFM-Robust Benchmarking Robustness of 
 ---
 
 # MedFM-Robust: Benchmarking Robustness of Medical Foundation Models
+
+*🕒 **Published (v1):** 2026-05-18 18:50 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2605.19027v3)*
 
 ## TL;DR
 MedFM-Robust is the first systematic robustness benchmark for medical foundation models, covering 40 perturbation types (12 generic + 28 modality-specific) across 8 imaging modalities. It evaluates 5 VLMs and 2 SAM-based segmentation models on VQA, visual grounding, captioning, and segmentation. The central finding is that fine-tuning strategy—not model architecture—is the dominant determinant of robustness.

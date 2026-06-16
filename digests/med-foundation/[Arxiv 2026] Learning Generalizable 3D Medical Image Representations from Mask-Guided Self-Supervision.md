@@ -4,6 +4,7 @@ authors: ["Yunhe Gao", "Yabin Zhang", "Chong Wang", "Jiaming Liu", "Maya Varma",
 source: "Arxiv"
 venue: "CVPR 2026"
 published: "2026-03-14"
+published_time: "2026-03-14T00:06:18+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Learning Generalizable 3D Medical Image 
 ---
 
 # Learning Generalizable 3D Medical Image Representations from Mask-Guided Self-Supervision
+
+*🕒 **Published (v1):** 2026-03-14 00:06 UTC  ·  **Source:** Arxiv  ·  **Venue:** CVPR 2026  ·  [link](http://arxiv.org/abs/2603.13660v1)*
 
 ## TL;DR
 MASS (MAsk-guided Self-Supervised learning) is a self-supervised pretraining framework for 3D medical imaging that uses in-context segmentation as its pretext task, driven entirely by automatically generated class-agnostic masks from SAM2 — no expert annotations required. It learns semantically rich, spatially-precise representations that generalize to few-shot segmentation and frozen-encoder classification on unseen pathologies, outperforming all SSL baselines by wide margins and rivaling supervised pretraining methods in low-data regimes.

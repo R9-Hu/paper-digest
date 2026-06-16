@@ -4,6 +4,7 @@ authors: ["Xiangyu Huang", "Zhenlin Hua", "Han Zhou", "Shounak Sural", "Ragunath
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T01:06:42+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] RT-VLA Real-Time Vision-Language-Action Models via 
 ---
 
 # RT-VLA: Real-Time Vision-Language-Action Models via Knowledge Distillation
+
+*🕒 **Published (v1):** 2026-06-12 01:06 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14010v1)*
 
 ## TL;DR
 RT-VLA distills a large Vision-Language-Action (VLA) model (SimLingo) into a compact student via multi-level supervised distillation, achieving a 44.8× inference speedup in vision-only mode while maintaining competitive closed-loop driving scores on Bench2Drive. It decouples real-time driving from language reasoning, enabling post-hoc explainability without runtime latency cost.

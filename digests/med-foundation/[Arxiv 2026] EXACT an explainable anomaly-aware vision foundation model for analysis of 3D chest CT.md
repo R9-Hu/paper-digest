@@ -4,6 +4,7 @@ authors: ["Xuguang Bai", "Mingxuan Liu", "Tongxi Song", "Yifei Chen", "Hongjia Y
 source: "Arxiv"
 venue: ""
 published: "2026-04-27"
+published_time: "2026-04-27T07:57:47+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] EXACT an explainable anomaly-aware visio
 ---
 
 # EXACT: an explainable anomaly-aware vision foundation model for analysis of 3D chest CT
+
+*🕒 **Published (v1):** 2026-04-27 07:57 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2604.24146v1)*
 
 ## TL;DR
 EXACT is a 3D chest CT foundation model that produces intrinsic voxel-level anomaly-aware maps (AAmaps) via anatomy-constrained weakly supervised learning on CT-report pairs, without any manual voxel annotations. Unlike CLIP-based models that compress volumetric features into 1D embeddings, EXACT's Y-Mamba dual-decoder architecture jointly performs organ segmentation and multi-instance anomaly localization, enabling zero-shot diagnosis, lesion localization, and spatially grounded report generation. Evaluated across multinational multi-center cohorts, it consistently outperforms all compared 3D medical foundation models.

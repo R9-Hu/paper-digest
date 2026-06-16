@@ -4,6 +4,7 @@ authors: ["Minh H. N. Le", "Tuan Vinh", "Thanh-Huy Nguyen", "Tao Li", "Bao Quang
 source: "Arxiv"
 venue: ""
 published: "2026-01-10"
+published_time: "2026-01-10T23:30:49+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Imaging-anchored Multiomics in Cardiovas
 ---
 
 # Imaging-anchored Multiomics in Cardiovascular Disease: Integrating Cardiac Imaging, Bulk, Single-cell, and Spatial Transcriptomics
+
+*🕒 **Published (v1):** 2026-01-10 23:30 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2601.07871v1)*
 
 ## TL;DR
 A systematic review proposing an "imaging-anchored multiomics" framework for cardiovascular disease in which cardiac imaging (echocardiography, CMR, CT) acts as the primary spatial reference and bulk, single-cell, and spatial transcriptomics supply cell-type- and location-specific molecular context. The review surveys representation learning per modality, multimodal fusion architectures, radiogenomics pipelines, and spatial alignment strategies. Single-cell and spatial foundation models are highlighted as a near-term pathway toward scalable cardiovascular multiomics.

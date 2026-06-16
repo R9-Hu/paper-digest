@@ -4,6 +4,7 @@ authors: ["Nabaraj Subedi", "Ahmed Abdelaty", "Shivanand Venkanna Sheshappanavar
 source: "Arxiv"
 venue: ""
 published: "2026-06-09"
+published_time: "2026-06-09T18:26:24+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] When More Documents Hurt RAG Mitigating Vector 
 ---
 
 # When More Documents Hurt RAG: Mitigating Vector Search Dilution with Domain-Scoped, Model-Agnostic Retrieval
+
+*🕒 **Published (v1):** 2026-06-09 18:26 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.11350v1)*
 
 ## TL;DR
 RAG pipelines degrade severely as heterogeneous corpora scale — a phenomenon the authors formalize as *vector search dilution* — because dense similarity loses discriminative power across domain boundaries. They propose MASDR-RAG, a multi-agent framework where each agent is a domain-scoped retrieval tool, and its lightweight variant HYBRID-ROUTED (regex + single LLM router + single synthesis call). The core finding is that domain scoping lifts P@10 from 0.77 to 0.86, but naïve multi-agent orchestration collapses faithfulness from 0.61 to 0.35 — the *precision–faithfulness paradox* — with severity depending on whether the generator is open-source or commercial.

@@ -4,6 +4,7 @@ authors: ["Yihan Xia", "Taotao Wang"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T07:32:19+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] When Should Agent Trust Be Conditional Chara
 ---
 
 # When Should Agent Trust Be Conditional? Characterizing and Attacking Skill-Conditional Reputation in Agent Swarms
+
+*🕒 **Published (v1):** 2026-06-12 07:32 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14200v1)*
 
 ## TL;DR
 This paper formalizes skill-conditional trust R(i|k) for heterogeneous LLM agent pools, derives when conditioning beats a global score, and shows the same cross-skill borrowing mechanism that buys data efficiency is a one-episode-cheap reputation-laundering attack vector. The key result is that on a CIVT-certified GREEN AppWorld pool, a zero-target attacker drives routing regret from 0 to 0.94 with a single fabricated farm episode.

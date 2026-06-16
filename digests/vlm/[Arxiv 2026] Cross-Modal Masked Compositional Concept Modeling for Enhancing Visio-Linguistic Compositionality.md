@@ -4,6 +4,7 @@ authors: ["Wei Li", "Zhen Huang", "Xinmei Tian"]
 source: "Arxiv"
 venue: "ACL 2026"
 published: "2026-06-11"
+published_time: "2026-06-11T12:45:25+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Cross-Modal Masked Compositional Concept Modeling f
 ---
 
 # Cross-Modal Masked Compositional Concept Modeling for Enhancing Visio-Linguistic Compositionality
+
+*🕒 **Published (v1):** 2026-06-11 12:45 UTC  ·  **Source:** Arxiv  ·  **Venue:** ACL 2026  ·  [link](http://arxiv.org/abs/2606.13288v1)*
 
 ## TL;DR
 MACCO (MAsked Compositional Concept MOdeling) is a fine-tuning framework for CLIP-like models that masks compositional concepts (relations, attributes, word order) in one modality and reconstructs them using full context from the other modality—without requiring hard negative samples. It achieves state-of-the-art compositional understanding across five benchmarks while preserving general representation quality and transferring gains to text-to-image generation and MLLMs.

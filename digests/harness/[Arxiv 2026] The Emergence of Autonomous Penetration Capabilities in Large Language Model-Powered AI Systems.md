@@ -4,6 +4,7 @@ authors: ["Jiaqi Luo", "Jiarun Dai", "Zhile Chen", "Jia Xu", "Weibing Wang", "Ya
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T09:02:14+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] The Emergence of Autonomous Penetration Capabil
 ---
 
 # The Emergence of Autonomous Penetration Capabilities in Large Language Model-Powered AI Systems
+
+*🕒 **Published (v1):** 2026-06-11 09:02 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13079v1)*
 
 ## TL;DR
 This paper constructs a realistic evaluation framework for assessing autonomous penetration capabilities of LLM-powered AI systems, addressing methodological gaps in prior work (opacity, CTF-style objectives, excessive prior knowledge). Evaluating 19 models across 300 target servers with real CVE vulnerabilities, the paper finds success rates of 10.7%–69.3%, with capability strongly correlated to general model quality (Pearson r ≈ 0.88).

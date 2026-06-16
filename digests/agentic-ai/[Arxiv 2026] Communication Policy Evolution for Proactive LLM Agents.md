@@ -4,6 +4,7 @@ authors: ["Xinbei Ma", "Jiyang Qiu", "Yao Yao", "Zheng Wu", "Yijie Lu", "Xiangmo
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T09:54:01+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Communication Policy Evolution for Proactive
 ---
 
 # Communication Policy Evolution for Proactive LLM Agents
+
+*🕒 **Published (v1):** 2026-06-12 09:54 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14314v1)*
 
 ## TL;DR
 LLM agents operating under partial task information must decide not only *what* to ask users but *how* — via free-text or structured HTML forms. This paper formalizes this as a "Communication Policy," shows text and UI channels have complementary strengths, and proposes Communication Policy Evolution (CPE), a training-free prompt self-evolution method that achieves best task success across all evaluated configurations.

@@ -4,6 +4,7 @@ authors: ["Guanming Liu", "Yuqi Ren", "Hansu Gu", "Peng Zhang", "Weihang Wang", 
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T15:48:43+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] StreamMemBench Streaming Evaluation of Agent
 ---
 
 # StreamMemBench: Streaming Evaluation of Agent Memory for Future-Oriented Assistance
+
+*🕒 **Published (v1):** 2026-06-12 15:48 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14571v1)*
 
 ## TL;DR
 StreamMemBench is a streaming benchmark that evaluates whether personal-agent memory systems can translate egocentric observations and interaction feedback into future-oriented assistance — not just storage. Built on the EgoLife lifelog dataset, it exposes a systematic gap: current memory systems often retain evidence but fail to use it in tasks or consolidate feedback for later reuse.

@@ -17,6 +17,7 @@ class Paper:
     pdf_url: str = ""
     abs_url: str = ""          # landing/abstract page URL
     published: dt.date | None = None
+    published_ts: str = ""     # ISO datetime of the EARLIEST version (v1), if known
     venue: str = ""            # conference/journal if known (from arxiv comment etc.)
     extra: dict = field(default_factory=dict)
 

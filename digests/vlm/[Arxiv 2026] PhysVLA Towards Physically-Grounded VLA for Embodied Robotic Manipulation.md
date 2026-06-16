@@ -4,6 +4,7 @@ authors: ["Namai Chandra", "Shriram Damodaran", "Lin Wang"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T20:23:09+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] PhysVLA Towards Physically-Grounded VLA for Embodie
 ---
 
 # PhysVLA: Towards Physically-Grounded VLA for Embodied Robotic Manipulation
+
+*🕒 **Published (v1):** 2026-06-11 20:23 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13886v1)*
 
 ## TL;DR
 PhysVLA is a training-free, plug-and-play inference-time wrapper that adds physics awareness to any frozen Vision-Language-Action (VLA) model without touching its weights. It intercepts predicted actions and applies a two-branch correction — a phase-aware finite-state machine and a selective Euler-Lagrange gate — adding under 1 ms overhead per control step. On LIBERO-Spatial, it yields up to +17 pp success and +19 pp stability across four distinct VLA backbones with zero per-task regressions.

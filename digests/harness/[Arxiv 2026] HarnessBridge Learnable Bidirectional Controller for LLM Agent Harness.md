@@ -4,6 +4,7 @@ authors: ["Xiaoxuan Wang", "Haixin Wang", "Alexander Taylor", "Jason Cong", "Yiz
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T04:18:37+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] HarnessBridge Learnable Bidirectional Controlle
 ---
 
 # HarnessBridge: Learnable Bidirectional Controller for LLM Agent Harness
+
+*🕒 **Published (v1):** 2026-06-11 04:18 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12882v1)*
 
 ## TL;DR
 HarnessBridge replaces manually engineered LLM agent harnesses with a lightweight, end-to-end learnable bidirectional projection policy (Qwen3.5-0.8B) that compresses agent observations and validates or rejects proposed actions at runtime. On Terminal-Bench 2.0 and SWE-bench Verified, it matches or beats strong specialized harnesses while cutting token usage by 23–91% and generalizes from small open-source generators to large commercial models.

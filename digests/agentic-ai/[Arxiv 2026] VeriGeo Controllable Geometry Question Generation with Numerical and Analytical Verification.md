@@ -4,6 +4,7 @@ authors: ["Xiaoxian Duan", "Zequn Liu", "Yingce Xia"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T06:59:44+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] VeriGeo Controllable Geometry Question Gener
 ---
 
 # VeriGeo: Controllable Geometry Question Generation with Numerical and Analytical Verification
+
+*🕒 **Published (v1):** 2026-06-12 06:59 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14176v1)*
 
 ## TL;DR
 VeriGeo is a controllable geometry question generation framework that uses an Author agent and a Solver agent, both grounded in executable action sequences, to synthesize multimodal geometry problems with mutual consistency guaranteed by a three-stage verification pipeline. Raw LLM generations fail verification at high rates (average direct-pass rate 29.02%), but verification-guided reflection repairs a substantial fraction. Fine-tuning Qwen2.5-VL-7B on only 8.7k verified examples achieves state-of-the-art GeoQA accuracy among end-to-end MLLM-based solvers.

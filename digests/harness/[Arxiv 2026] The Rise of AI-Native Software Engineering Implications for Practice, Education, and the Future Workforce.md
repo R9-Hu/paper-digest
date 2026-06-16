@@ -4,6 +4,7 @@ authors: ["Mamdouh Alenezi"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T07:23:49+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] The Rise of AI-Native Software Engineering Impl
 ---
 
 # The Rise of AI-Native Software Engineering: Implications for Practice, Education, and the Future Workforce
+
+*🕒 **Published (v1):** 2026-06-11 07:23 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12986v1)*
 
 ## TL;DR
 A PRISMA-inspired systematic review of 48 peer-reviewed studies (2016–2026) on GenAI/LLMs/agentic AI in software engineering, itself executed via a four-agent research workflow. The paper synthesizes evidence into a conceptual framework (Intent–Collaboration–Verification), a nine-dimension competency model, and a phased curriculum roadmap, arguing that the central challenge of the AI-native era is educating engineers for judgment and orchestration rather than code production.

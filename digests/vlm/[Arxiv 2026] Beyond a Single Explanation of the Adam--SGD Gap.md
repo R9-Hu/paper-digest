@@ -4,6 +4,7 @@ authors: ["Chenxiang Zhang", "Rustem Islamov", "Enea Monzio Compagnoni", "Jun Pa
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T08:43:53+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Beyond a Single Explanation of the Adam--SGD Gap.pd
 ---
 
 # Beyond a Single Explanation of the Adam--SGD Gap
+
+*🕒 **Published (v1):** 2026-06-12 08:43 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14259v1)*
 
 ## TL;DR
 This paper challenges the prevailing single-factor explanations for why Adam outperforms SGD, showing through controlled experiments across language, vision, genomics, and graph tasks that the gap arises from nontrivial interactions between data properties and architecture design. The unifying empirical finding is a crossover batch size—below which SGD can match or beat Adam, above which Adam dominates—that shifts depending on architecture and data. A geometry-based theoretical model using SignSGD as an Adam proxy predicts this batch-size-dependent crossover via the smoothness ratio r = L∞/L₂.

@@ -4,6 +4,7 @@ authors: ["Yineng Chen", "Peng Huang", "Aozhong Zhang", "Hui Guo", "Penghang Yin
 source: "Arxiv"
 venue: ""
 published: "2026-04-09"
+published_time: "2026-04-09T00:34:27+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Weight Group-wise Post-Training Quantiza
 ---
 
 # Weight Group-wise Post-Training Quantization for Medical Foundation Model
+
+*🕒 **Published (v1):** 2026-04-09 00:34 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2604.07674v1)*
 
 ## TL;DR
 Permutation-COMQ is a post-training quantization (PTQ) method for medical foundation models (specifically MedSAM) that reorders weight matrix elements by magnitude before coordinate-wise minimization, mitigating the outlier-dominated scaling problem that degrades low-bit quantization. It requires no backpropagation, no Hessian inverse, and no hyperparameters. On CT abdominal segmentation, it outperforms RTN and COMQ baselines at 2-, 4-, and 8-bit precision.

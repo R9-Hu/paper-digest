@@ -4,6 +4,7 @@ authors: ["Wentao Ke", "Jianche Liu"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T03:38:40+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Diffusion-Refined Segmentation and Vision-Language 
 ---
 
 # Diffusion-Refined Segmentation and Vision-Language Interpretation for Pediatric Brain Tumor MRI
+
+*🕒 **Published (v1):** 2026-06-12 03:38 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14072v1)*
 
 ## TL;DR
 This paper presents a two-stage pipeline for pediatric brain tumor segmentation on BraTS-PEDs 2023 data: a Swin-UNETR baseline generates coarse masks that condition diffusion-based refiners (3D DDPM and MedSegDiff), yielding improved boundary delineation. Conditioned MedSegDiff achieves the best HD95 (9.35 voxels) across all models. Segmentation outputs are then passed to Gemini 2.5 Pro for automated radiology report generation.

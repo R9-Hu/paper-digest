@@ -4,6 +4,7 @@ authors: ["Jayoo Hwang", "Xiaowen Zhang", "Vedant Padwal"]
 source: "HuggingFace"
 venue: ""
 published: "2026-06-09"
+published_time: "2026-06-09T04:53:19+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[HuggingFace 2026] WebChallenger A Reliable and Efficient Ge
 ---
 
 # WebChallenger: A Reliable and Efficient Generalist Web Agent
+
+*🕒 **Published (v1):** 2026-06-09 04:53 UTC  ·  **Source:** HuggingFace  ·  [link](https://huggingface.co/papers/2606.10423)*
 
 ## TL;DR
 WebChallenger is a web agent framework that replaces brute-force model scale with three architectural mechanisms—divide-and-conquer observation, offline exploration memory, and compound action workflows—all built on a shared DOM-derived page abstraction called PageMem. Using off-the-shelf 32B/7B open-weight models without fine-tuning, it achieves state-of-the-art open-model results on WebArena (56.3%), VisualWebArena (48.7%), Online-Mind2Web (51.0%), and WorkArena (70.9%). The gap between the same backbone in a minimal harness (19.4%) vs. WebChallenger (58.8%) isolates 39.4 points of gain attributable purely to scaffolding design.

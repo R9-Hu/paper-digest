@@ -4,6 +4,7 @@ authors: ["Tan Zhu", "Tong Yao", "Kananart Kuwaranancharoen", "Amit Singh", "Yus
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T06:27:15+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Graph-based Target Back-Propagation for Cont
 ---
 
 # Graph-based Target Back-Propagation for Context Adaptation in Multi-LLM Agentic Systems
+
+*🕒 **Published (v1):** 2026-06-12 06:27 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14155v1)*
 
 ## TL;DR
 GTBP adapts the Difference Target Propagation idea from neural networks to multi-LLM agentic workflows modeled as DAGs: it propagates local target outputs backward through the graph so each module receives a localized credit signal rather than relying on global trajectory reflection. Prompt updates are performed stage-wise with frozen model weights, eliminating gradient access requirements. Theoretical stability guarantees and empirical gains over GEPA/zero-shot/few-shot baselines are provided across three benchmarks.

@@ -4,6 +4,7 @@ authors: ["Ruining Li", "Yuxin Yao", "Matt Zhou", "Chuanxia Zheng", "Christian R
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T17:59:36+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Instruct-Particulate Scaling Feed-Forward 3D Object
 ---
 
 # Instruct-Particulate: Scaling Feed-Forward 3D Object Articulation with Kinematic Control
+
+*🕒 **Published (v1):** 2026-06-12 17:59 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14699v1)*
 
 ## TL;DR
 Instruct-Particulate is a feed-forward model that recovers the articulated structure of a 3D mesh by conditioning on an explicit kinematic specification (part descriptions, joint types, point prompts), enabling it to train on a heterogeneous dataset of 150k+ annotated objects. VLMs serve dual roles: as a pseudo-labeling engine to build that dataset and as a test-time oracle to auto-generate kinematic conditions for arbitrary meshes. The model substantially outperforms prior methods on the Lightwheel benchmark across all input modalities.

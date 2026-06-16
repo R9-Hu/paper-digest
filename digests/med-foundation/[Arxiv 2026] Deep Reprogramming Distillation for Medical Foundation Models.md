@@ -4,6 +4,7 @@ authors: ["Siyuan Du", "Yuhang Zhou", "Haolin Li", "Jiangchao Yao", "Haishuai Wa
 source: "Arxiv"
 venue: ""
 published: "2026-05-06"
+published_time: "2026-05-06T03:22:39+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Deep Reprogramming Distillation for Medi
 ---
 
 # Deep Reprogramming Distillation for Medical Foundation Models
+
+*🕒 **Published (v1):** 2026-05-06 03:22 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2605.04447v1)*
 
 ## TL;DR
 DRD (Deep Reprogramming Distillation) is a framework for adapting large medical foundation models into lightweight task-specific models by bridging task, domain, and architectural mismatches simultaneously. It introduces learnable reprogramming projectors on the teacher's intermediate features, co-trains them with the student via supervised and logits-level losses, and applies CKA-based feature distillation for robustness. Evaluated on 18 datasets across 8 foundation models, it consistently outperforms prior KD and PEFT baselines.

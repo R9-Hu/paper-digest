@@ -4,6 +4,7 @@ authors: ["Daniel Ben-Levi", "Judah Goldfeder", "Weiliang Zhao", "Raz Lapid", "A
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T19:51:44+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Mirage Probes How Vision Models Fake Visual Underst
 ---
 
 # Mirage Probes: How Vision Models Fake Visual Understanding
+
+*🕒 **Published (v1):** 2026-06-11 19:51 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13870v1)*
 
 ## TL;DR
 VLMs can answer image-grounded questions correctly even when no image is provided ("mirage behavior"), inflating benchmarks without genuine visual grounding. This paper introduces Mirage Probes, a contrastive probing framework demonstrating that mirage behavior is linearly decodable from image-present internal activations, and argues that it comprises two mechanistically distinct regimes—spurious images and textual biases—requiring different mitigations.

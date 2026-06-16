@@ -4,6 +4,7 @@ authors: ["Yongheng Zhang", "Ziang Liu", "Jiaxuan Zhu", "Shuai Wang", "Xiangqi C
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T14:33:55+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] From Chatbot to Digital Colleague The Paradi
 ---
 
 # From Chatbot to Digital Colleague: The Paradigm Shift Toward Persistent Autonomous AI
+
+*🕒 **Published (v1):** 2026-06-12 14:33 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14502v1)*
 
 ## TL;DR
 A survey paper organizing the evolution of LLMs into a two-dimensional framework: cognitive core (Chatbot → Thinking LLM via inference-time scaling and RL) and tool-augmented task execution (ad-hoc Agents → OpenClaw-style persistent workspace systems). The central thesis is that a "Workspace + Skill" paradigm is the decisive architectural mechanism enabling LLMs to shift from ephemeral conversational generators to persistent digital colleagues capable of completing long-horizon work.

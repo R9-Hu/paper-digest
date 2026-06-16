@@ -4,6 +4,7 @@ authors: ["Jiayue Cao", "Zhicong Lu", "Xuehan Sun", "Wei Jia", "Hongling Zheng",
 source: "Arxiv"
 venue: "EMNLP 2026"
 published: "2026-06-12"
+published_time: "2026-06-12T17:54:59+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] CORA Analyzing and bridging thinking-answer gap in 
 ---
 
 # CORA: Analyzing and bridging thinking-answer gap in Multimodal RLVR via Consistency-Oriented Reasoning Alignment
+
+*🕒 **Published (v1):** 2026-06-12 17:54 UTC  ·  **Source:** Arxiv  ·  **Venue:** EMNLP 2026  ·  [link](http://arxiv.org/abs/2606.14691v1)*
 
 ## TL;DR
 Multimodal RLVR training with answer-level rewards produces reasoning traces that are semantically inconsistent with final answers — a persistent problem GRPO does not fix on its own. CORA addresses this by adding a lightweight ModernBERT-based Consistency Reward Model (CRM) scoring thinking-answer alignment via NLI, plus Hybrid Reward Advantage Splitting (HRAS) to prevent the consistency signal from interfering with accuracy optimization. The result is simultaneously lower inconsistency rates and higher accuracy across four Qwen-VL backbones.

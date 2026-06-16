@@ -4,6 +4,7 @@ authors: ["Jassem Manita", "Aziz Amari"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T16:14:32+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Regulating the Machine Contributor Governanc
 ---
 
 # Regulating the Machine Contributor: Governance and Policy Alignment in Open Source
+
+*🕒 **Published (v1):** 2026-06-12 16:14 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14594v1)*
 
 ## TL;DR
 Autonomous AI agents submitting pull requests to open-source projects have exposed a structural mismatch between existing governance instruments (CLAs, codes of conduct) and agentic contributors that lack legal standing. This paper performs the first systematic comparative analysis of AI-contribution policies across six major OSS organizations, derives a six-dimensional taxonomy and Policy Maturity Score, and maps both policies and documented 2025–2026 incidents against EU AI Act, NIST AI RMF, and ISO 42001/23894 to identify mutual governance gaps. The critical unaddressed gap—ignored by all policies and all regulatory frameworks—is maintainer workload under asymmetric submission volume.

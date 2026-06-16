@@ -4,6 +4,7 @@ authors: ["Yuhan Wei", "Yuting He", "Linshan Wu", "Fuxiang Huang", "Junlin Hou",
 source: "Arxiv"
 venue: ""
 published: "2026-02-12"
+published_time: "2026-02-12T18:09:22+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Free Lunch in Medical Image Foundation M
 ---
 
 # Free Lunch in Medical Image Foundation Model Pre-training via Randomized Synthesis and Disentanglement
+
+*🕒 **Published (v1):** 2026-02-12 18:09 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2602.12317v1)*
 
 ## TL;DR
 RaSD (Randomized Synthesis and Disentanglement) pre-trains medical image foundation models entirely on synthetic data generated from Gaussian distributions, requiring zero real images. Pre-trained at scale (1.2M 3D volumes, 9.6M 2D images), RaSD consistently outperforms scratch baselines and matches or exceeds real-data pre-trained models across 56 downstream tasks spanning 6 modalities and 48 datasets. The work establishes synthetic data as a viable, privacy-preserving substitute for real data in MIFM pre-training.

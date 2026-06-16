@@ -4,6 +4,7 @@ authors: ["Xichen Pan", "Aashu Singh", "Satya Narayan Shukla", "Xiangjun Fan", "
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T17:59:51+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] RepFusion Leveraging Multimodal Priors for Denoisin
 ---
 
 # RepFusion: Leveraging Multimodal Priors for Denoising in Representation Space
+
+*🕒 **Published (v1):** 2026-06-12 17:59 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14700v1)*
 
 ## TL;DR
 RepFusion repurposes a frozen pretrained multimodal LLM (MLLM) as a noisy visual representation encoder, feeding evolving noisy RAE latents into the MLLM at each denoising step so its outputs condition a small diffusion transformer (DiT). This enables frozen MLLM priors to actively participate in the denoising loop rather than serving only as static text encoders. Under matched inference FLOPs, RepFusion with a 7B frozen MLLM + 1.3B DiT outperforms baselines using 8B of newly trained denoising capacity.

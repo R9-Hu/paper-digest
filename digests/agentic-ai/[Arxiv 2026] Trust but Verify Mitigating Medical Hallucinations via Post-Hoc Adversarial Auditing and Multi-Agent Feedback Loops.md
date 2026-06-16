@@ -4,6 +4,7 @@ authors: ["Muhammad Osama", "Maheera Amjad", "Zartasha Mustansar", "Arslan Shauk
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T06:21:19+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Trust but Verify Mitigating Medical Hallucin
 ---
 
 # Trust but Verify: Mitigating Medical Hallucinations via Post-Hoc Adversarial Auditing and Multi-Agent Feedback Loops
+
+*🕒 **Published (v1):** 2026-06-12 06:21 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14149v1)*
 
 ## TL;DR
 This paper proposes "Trust but Verify," a five-agent pipeline that performs post-hoc adversarial auditing against real-time regulatory databases to prevent LLMs from recommending banned or withdrawn pharmaceuticals. Using a 103-question adversarial MCQ benchmark (BannedDrug-Bench), the system reduces Hallucination Error Rate (HER) by ~53% across five open-access models compared to vanilla single-shot inference. The key insight is that even SOTA models with native RAG fail this task because parametric knowledge overrides retrieved safety signals.

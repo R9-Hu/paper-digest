@@ -4,6 +4,7 @@ authors: ["Matt Turk"]
 source: "Arxiv"
 venue: ""
 published: "2026-05-28"
+published_time: "2026-05-28T21:37:06+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Counterfactual Evaluation Reveals Hidden
 ---
 
 # Counterfactual Evaluation Reveals Hidden Capability Profiles in Clinical LLMs and Agents
+
+*🕒 **Published (v1):** 2026-05-28 21:37 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2605.30590v1)*
 
 ## TL;DR
 Standard coverage-based evaluation of clinical LLMs (checking whether outputs overlap with reference recommendations) cannot detect whether a model actually responds to changed patient facts. This paper introduces the Causal Sensitivity Score (CSS), a pre-registered counterfactual metric that mutates oncology tumor-board cases along five clinically meaningful dimensions and scores whether model recommendations update in the correct direction. Benchmarking six frontier models reveals that CSS and coverage-based rankings are nearly opposite, exposing a universal surgery-status blind spot invisible to coverage metrics.

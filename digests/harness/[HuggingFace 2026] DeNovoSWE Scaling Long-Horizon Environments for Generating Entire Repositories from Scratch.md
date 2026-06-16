@@ -4,6 +4,7 @@ authors: ["Jiale Zhao", "Guoxin Chen", "Fanzhe Meng", "Wayne Xin Zhao", "Ruihua 
 source: "HuggingFace"
 venue: ""
 published: "2026-06-09"
+published_time: "2026-06-09T11:37:15+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[HuggingFace 2026] DeNovoSWE Scaling Long-Horizon Environmen
 ---
 
 # DeNovoSWE: Scaling Long-Horizon Environments for Generating Entire Repositories from Scratch
+
+*🕒 **Published (v1):** 2026-06-09 11:37 UTC  ·  **Source:** HuggingFace  ·  [link](https://huggingface.co/papers/2606.10728)*
 
 ## TL;DR
 

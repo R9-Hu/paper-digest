@@ -4,6 +4,7 @@ authors: ["Jiazhen Huang", "Xiao Chen", "Zhiming Liu", "Yaru Sun", "Jingyan Jian
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T09:35:28+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] What Drives Test-Time Adaptation for CLIP A Control
 ---
 
 # What Drives Test-Time Adaptation for CLIP? A Controlled Empirical Study from an Update Perspective
+
+*🕒 **Published (v1):** 2026-06-12 09:35 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14299v1)*
 
 ## TL;DR
 This paper conducts a controlled empirical study of Test-Time Adaptation for CLIP (TTA4CLIP), introducing TTABC—an open-source benchmark integrating 20+ methods across three paradigms and diverse distribution shifts. The central finding is that adaptation gains are primarily driven by test-time evidence quantity/quality and reliable unsupervised proxies, not by the intensity of parameter optimization. No single adaptation paradigm is universally optimal; the best choice depends on the nature of the distribution shift.

@@ -4,6 +4,7 @@ authors: ["Yongru Chen", "Kai Zhang", "Zeliang Zong", "Yuchen Lu", "Wenming Tan"
 source: "Arxiv"
 venue: "CVPR 2026"
 published: "2026-06-12"
+published_time: "2026-06-12T08:58:58+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] One Layer's Trash is Another Layer's Treasure Adapt
 ---
 
 # One Layer's Trash is Another Layer's Treasure: Adaptive Layer-wise Visual Token Selection in LVLMs
+
+*🕒 **Published (v1):** 2026-06-12 08:58 UTC  ·  **Source:** Arxiv  ·  **Venue:** CVPR 2026  ·  [link](http://arxiv.org/abs/2606.14277v1)*
 
 ## TL;DR
 ALVTS (Adaptive Layer-wise Visual Token Selection) addresses the permanent token loss problem in existing LVLM pruning methods by allowing each decoder layer to independently select which visual tokens to process, while skipped tokens remain accessible to later layers. A lightweight token selector based on importance-consistency-constrained low-rank approximation emulates full attention without retraining. At 89% token compression, ALVTS retains 96.7% of LLaVA-1.5-7B's performance with 1.6× prefill speedup.

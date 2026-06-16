@@ -4,6 +4,7 @@ authors: ["Md Jafrin Hossain", "Mohammad Arif Hossain", "Weiqi Liu", "Nirwan Ans
 source: "Arxiv"
 venue: "ICML 2026"
 published: "2026-06-11"
+published_time: "2026-06-11T01:46:26+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] The Containment Gap How Deployed Agentic AI Fra
 ---
 
 # The Containment Gap: How Deployed Agentic AI Frameworks Fail Public-Facing Safety Requirements
+
+*🕒 **Published (v1):** 2026-06-11 01:46 UTC  ·  **Source:** Arxiv  ·  **Venue:** ICML 2026  ·  [link](http://arxiv.org/abs/2606.12797v1)*
 
 ## TL;DR
 This paper audits three dominant agentic AI frameworks (LangChain, AutoGPT, OpenAI Agents SDK) against six formal containment principles and finds zero native compliance in any of them. A single memory-poisoning write in a LangChain-based government benefits agent achieves 100% targeted corruption across all tested model backends, raising wrongful denial rates to 88.9%. Two deterministic, sub-millisecond interventions (a memory integrity validator and a tool-call policy gate) eliminate both attack vectors entirely.

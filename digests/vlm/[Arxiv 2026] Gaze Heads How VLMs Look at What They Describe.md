@@ -4,6 +4,7 @@ authors: ["Rohit Gandikota", "David Bau"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T17:59:57+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Gaze Heads How VLMs Look at What They Describe.pdf"
 ---
 
 # Gaze Heads: How VLMs Look at What They Describe
+
+*🕒 **Published (v1):** 2026-06-12 17:59 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14703v1)*
 
 ## TL;DR
 This paper identifies "gaze heads"—a small subset (~9%) of attention heads in VLM language-model backbones that causally track and control which image region the model is currently describing. A single attention-mask intervention on these heads (no retraining) steers the model's output to any chosen visual region at 83.1% accuracy. The mechanism recurs across model sizes (2B–32B) and multiple architectures, but is absent in frozen-encoder families.

@@ -4,6 +4,7 @@ authors: ["Jepson Taylor"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T11:35:54+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] No Accidental Software Agent First Canonical
 ---
 
 # No Accidental Software Agent First Canonical Code for Human Code Entropy Reduction and 30 to 500 times Lower Frontier Model Requirements
+
+*🕒 **Published (v1):** 2026-06-12 11:35 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14357v1)*
 
 ## TL;DR
 Raw human code repositories force LLM coding agents to spend training and inference budget on "accidental representation" — framework churn, naming drift, CI dialects, and duplicated encodings of identical behavior — rather than on verified software change. This paper proposes "agent-first canonical code": a governed, proof-carrying substrate that collapses behavior-equivalent encodings into canonical representatives, with hypothesized 30×–150× training-token efficiency gains (central estimate). All headline efficiency ranges are explicitly labeled hypotheses, not measured frontier results; only preliminary QLoRA learnability evidence is reported.

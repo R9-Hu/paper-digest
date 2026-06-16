@@ -4,6 +4,7 @@ authors: ["Xiangyu Lyu", "Dan Lei"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T08:21:03+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] SeamEdit A Black-Box VLM-Agnostic Pipeline for Larg
 ---
 
 # SeamEdit: A Black-Box VLM-Agnostic Pipeline for Large-Image Semantic Editing
+
+*🕒 **Published (v1):** 2026-06-11 08:21 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13041v1)*
 
 ## TL;DR
 SeamEdit is a training-free, model-agnostic pipeline that wraps any VLM with inpainting capability as a black-box oracle to perform semantic editing on large images that exceed a single VLM's input resolution. It addresses alignment drift and seam artifacts that appear when closed-source VLMs are naively applied to tiled editing via five post-hoc stages: overlay decomposition, multi-candidate VLM inpainting, Grid-SIFT geometric alignment + local color correction, seam-risk-based candidate ranking, and dynamic-programming curved seam fusion.

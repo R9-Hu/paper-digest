@@ -4,6 +4,7 @@ authors: ["Lingzhi Yuan", "Chenghao Deng", "Fangxu Yu", "Souradip Chakraborty", 
 source: "Arxiv"
 venue: ""
 published: "2026-06-09"
+published_time: "2026-06-09T17:58:21+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] FlowBank Query-Adaptive Agentic Workflows Optim
 ---
 
 # FlowBank: Query-Adaptive Agentic Workflows Optimization through Precompute-and-Reuse
+
+*🕒 **Published (v1):** 2026-06-09 17:58 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.11290v1)*
 
 ## TL;DR
 FlowBank reframes agentic workflow optimization as portfolio construction: rather than deploying one static workflow or generating a fresh workflow per query, it precomputes a compact bank of complementary workflows offline and routes each query to the best member at inference time. Across five benchmarks, this precompute-and-reuse strategy outperforms both the best automated baseline (AFlow, +4.26% relative) and the best handcrafted baseline (+14.92% relative) while remaining cost-competitive.

@@ -4,6 +4,7 @@ authors: ["Aishik Nagar", "Arun-Kumar Kaliya-Perumal", "Yu-Hsuan Han", "Andrew S
 source: "Arxiv"
 venue: ""
 published: "2026-05-10"
+published_time: "2026-05-10T14:51:31+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] CLR-voyance Reinforcing Open-Ended Reaso
 ---
 
 # CLR-voyance: Reinforcing Open-Ended Reasoning for Inpatient Clinical Decision Support with Outcome-Aware Rubrics
+
+*🕒 **Published (v1):** 2026-05-10 14:51 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2605.09584v1)*
 
 ## TL;DR
 CLR-voyance reformulates inpatient clinical reasoning as a Partially Observable Markov Decision Process (POMDP) and trains small language models (8B/4B) via GRPO with per-case, outcome-grounded rubrics derived from real EHR future trajectories. The resulting 8B model (84.91% on CLR-POMDP) outperforms GPT-5 (77.83%) and MedGemma-27B (66.66%) on inpatient clinical decision support, has been deployed at a partner hospital for 6+ months, and has processed 1.03T+ tokens.

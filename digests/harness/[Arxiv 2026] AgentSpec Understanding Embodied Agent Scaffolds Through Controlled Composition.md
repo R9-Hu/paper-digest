@@ -4,6 +4,7 @@ authors: ["Jixuan Chen", "Jianzhi Shen", "Haoqiang Kang", "Zhi Hong", "Qingyi Ji
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T17:39:49+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] AgentSpec Understanding Embodied Agent Scaffold
 ---
 
 # AgentSpec: Understanding Embodied Agent Scaffolds Through Controlled Composition
+
+*🕒 **Published (v1):** 2026-06-12 17:39 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14674v1)*
 
 ## TL;DR
 AgentSpec is a modular specification framework that decomposes embodied LLM agents into a typed Perception–Memory–Reasoning–Reflection–Action loop with standardized interfaces, enabling controlled swapping and ablation of components. Experiments across DeliveryBench, ALFRED, MiniGrid, and RoboTHOR demonstrate that scaffold compatibility and module interaction effects govern performance more than individual module strength or model scale.

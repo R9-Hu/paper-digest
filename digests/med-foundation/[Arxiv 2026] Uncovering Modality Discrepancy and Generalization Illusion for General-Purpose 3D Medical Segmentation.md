@@ -4,6 +4,7 @@ authors: ["Yichi Zhang", "Feiyang Xiao", "Le Xue", "Wenbo Zhang", "Gang Feng", "
 source: "Arxiv"
 venue: ""
 published: "2026-02-07"
+published_time: "2026-02-07T17:54:10+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Uncovering Modality Discrepancy and Gene
 ---
 
 # Uncovering Modality Discrepancy and Generalization Illusion for General-Purpose 3D Medical Segmentation
+
+*🕒 **Published (v1):** 2026-02-07 17:54 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2602.07643v1)*
 
 ## TL;DR
 Current 3D medical segmentation foundation models claim general-purpose capability but are overwhelmingly trained and validated on structural imaging (CT/MRI), leaving functional imaging (PET) almost entirely unaddressed. This paper constructs the UMD benchmark—paired PET/CT and PET/MRI whole-body scans from the same subjects—to isolate imaging modality as the primary variable, revealing catastrophic performance collapse when state-of-the-art models are applied to PET. The findings expose a "generalization illusion" in which high benchmark scores on curated structural data do not transfer to functional or out-of-distribution clinical scenarios.

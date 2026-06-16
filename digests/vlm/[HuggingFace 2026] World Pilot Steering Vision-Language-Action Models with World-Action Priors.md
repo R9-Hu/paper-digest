@@ -4,6 +4,7 @@ authors: ["Zefu Lin", "Rongxu Cui", "Junjia Xu", "Xiaojuan Jin", "Wenling Li", "
 source: "HuggingFace"
 venue: ""
 published: "2026-06-10"
+published_time: "2026-06-10T17:59:08+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[HuggingFace 2026] World Pilot Steering Vision-Language-Action M
 ---
 
 # World Pilot: Steering Vision-Language-Action Models with World-Action Priors
+
+*🕒 **Published (v1):** 2026-06-10 17:59 UTC  ·  **Source:** HuggingFace  ·  [link](https://huggingface.co/papers/2606.12403)*
 
 ## TL;DR
 World Pilot augments Vision-Language-Action (VLA) models with priors from a frozen World-Action Model (WAM) via two injection pathways: Latent Steering inserts a scene-evolution latent into VLM hidden states, and Action Steering compresses an anticipated trajectory into a single prefix token for the flow-matching action generator. This approach reaches 84.7% Total success on the LIBERO-Plus zero-shot OOD benchmark and achieves the highest real-robot success rate across four manipulation tasks, with the largest margins under viewpoint, geometry, deformable-state, and pose shifts.

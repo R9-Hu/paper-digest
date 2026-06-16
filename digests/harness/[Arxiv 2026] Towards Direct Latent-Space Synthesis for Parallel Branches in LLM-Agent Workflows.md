@@ -4,6 +4,7 @@ authors: ["Shikun Liu", "Mufei Li", "Dongqi Fu", "Haoyu Wang", "Yinglong Xia", "
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T17:39:29+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] Towards Direct Latent-Space Synthesis for Paral
 ---
 
 # Towards Direct Latent-Space Synthesis for Parallel Branches in LLM-Agent Workflows
+
+*🕒 **Published (v1):** 2026-06-12 17:39 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14672v1)*
 
 ## TL;DR
 Parallel-Synthesis is a plug-and-play framework that allows a synthesizer LLM to consume KV caches directly from parallel worker agents instead of re-encoding their text outputs. It uses positional re-encoding, a learned cache mapper (MLP), and a LoRA adapter to calibrate and interpret non-sequential branch caches. On 7 of 9 benchmarks it matches or exceeds text-concatenation-based synthesis while reducing time-to-first-token by 2.5×–11×.

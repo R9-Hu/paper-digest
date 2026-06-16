@@ -4,6 +4,7 @@ authors: ["Vi Vu", "Thanh-Huy Nguyen", "Tien-Thinh Nguyen", "Ba-Thinh Lam", "Hoa
 source: "Arxiv"
 venue: "ISBI 2026"
 published: "2026-01-25"
+published_time: "2026-01-25T18:13:48+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] From Specialist to Generalist Unlocking 
 ---
 
 # From Specialist to Generalist: Unlocking SAM's Learning Potential on Unlabeled Medical Images
+
+*🕒 **Published (v1):** 2026-01-25 18:13 UTC  ·  **Source:** Arxiv  ·  **Venue:** ISBI 2026  ·  [link](http://arxiv.org/abs/2601.17934v2)*
 
 ## TL;DR
 SC-SAM introduces a bidirectional co-training loop between U-Net (specialist) and SAM (generalist) to enable label-efficient medical image segmentation. U-Net generates point-based prompts and pseudo-labels to guide SAM's PEFT adaptation, while SAM's refined masks regularize U-Net. The framework outperforms existing semi-supervised SAM variants and medical foundation models like MedSAM on prostate MRI and polyp benchmarks.

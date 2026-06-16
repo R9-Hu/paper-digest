@@ -4,6 +4,7 @@ authors: ["Zhi Li", "Yaqi Wang", "Bingtao Ma", "Yifan Zhang", "Huiyu Zhou", "Shu
 source: "Arxiv"
 venue: ""
 published: "2025-12-30"
+published_time: "2025-12-30T14:36:26+00:00"
 year: 2025
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2025] Physically-Grounded Manifold Projection 
 ---
 
 # Physically-Grounded Manifold Projection Model for Generalizable Metal Artifact Reduction in Dental CBCT
+
+*🕒 **Published (v1):** 2025-12-30 14:36 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2512.24260v2)*
 
 ## TL;DR
 PGMP (Physically-Grounded Manifold Projection) is a three-stage framework for metal artifact reduction (MAR) in dental CBCT that replaces stochastic diffusion with a single-step deterministic manifold projection. It combines polychromatic physics simulation for realistic training data, a deterministic ViT-based projector (DMP-Former), and semantic regularization via a frozen medical foundation model (MedDINOv3) to prevent structural hallucinations. The framework targets both image quality and clinical generalizability across unseen scanner protocols.

@@ -59,8 +59,10 @@ def search(
                 continue
             seen.add(arxiv_id)
             pub_raw = p.get("publishedAt") or item.get("publishedAt") or ""
+            pub_ts = ""
             try:
-                pub = dt.datetime.fromisoformat(pub_raw.replace("Z", "+00:00")).date()
+                pub_dt = dt.datetime.fromisoformat(pub_raw.replace("Z", "+00:00"))
+                pub, pub_ts = pub_dt.date(), pub_dt.isoformat()
             except (ValueError, AttributeError):
                 pub = day
             authors = [a.get("name", "") for a in (p.get("authors") or []) if isinstance(a, dict)]
@@ -74,6 +76,7 @@ def search(
                     pdf_url=f"https://arxiv.org/pdf/{arxiv_id}.pdf",
                     abs_url=f"https://huggingface.co/papers/{arxiv_id}",
                     published=pub,
+                    published_ts=pub_ts,
                     extra={"upvotes": p.get("upvotes")},
                 )
             )

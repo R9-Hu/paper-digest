@@ -4,6 +4,7 @@ authors: ["Pavan C Shekar", "Abhishek H S", "Aswanth Krishnan"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T14:02:37+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] GitOfThoughts Version-Controlled Reasoning a
 ---
 
 # GitOfThoughts: Version-Controlled Reasoning and Agent Memory You Can Replay, Diff, and Merge
+
+*🕒 **Published (v1):** 2026-06-12 14:02 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14470v1)*
 
 ## TL;DR
 GitOfThoughts stores an LLM agent's reasoning tree as a git repository, mapping scored thoughts to commits, scores to git notes, and outcomes to tags, enabling replay, diff, and cross-agent memory merge at near-zero cost. A rigorous pre-registered evaluation across five memory substrates, two benchmarks, and two model scales finds that no memory format reliably improves accuracy on novel problems. Memory only helps when retrieved cases are near-duplicates of the test problem (cosine ≥ 0.8); the value of git-as-substrate is therefore auditability and provenance, not retrieval quality.

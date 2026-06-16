@@ -4,6 +4,7 @@ authors: ["Mengyu Zheng", "Kai Han", "Boxun Li", "Haiyang Xu", "Yuchuan Tian", "
 source: "Arxiv"
 venue: ""
 published: "2026-06-10"
+published_time: "2026-06-10T17:16:23+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] Claw-SWE-Bench A Benchmark for Evaluating OpenC
 ---
 
 # Claw-SWE-Bench: A Benchmark for Evaluating OpenClaw-style Agent Harnesses on Coding Tasks
+
+*🕒 **Published (v1):** 2026-06-10 17:16 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12344v1)*
 
 ## TL;DR
 Claw-SWE-Bench is a multilingual SWE-bench-style benchmark and adapter protocol that treats the agent harness as a controlled experimental variable, enabling heterogeneous "claws" (agent harnesses) to be compared under fixed tasks, prompts, budgets, and scoring pipelines. It includes 350 GitHub issue-resolution instances across 8 languages and 43 repositories, plus an 80-instance cost-aware Lite subset. Results show harness choice alone spans 27.4 pp Pass@1 under a fixed model—comparable to or exceeding the effect of swapping model tiers.

@@ -4,6 +4,7 @@ authors: ["Shikun Liu", "Mufei Li", "Dongqi Fu", "Haoyu Wang", "Yinglong Xia", "
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T17:39:29+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Towards Direct Latent-Space Synthesis for Pa
 ---
 
 # Towards Direct Latent-Space Synthesis for Parallel Branches in LLM-Agent Workflows
+
+*🕒 **Published (v1):** 2026-06-12 17:39 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14672v1)*
 
 ## TL;DR
 Parallel-Synthesis is a plug-and-play framework that lets a synthesizer LLM directly consume KV caches produced by parallel worker agents, bypassing text serialization entirely. It matches or outperforms text-based synthesis on 7 of 9 benchmarks while reducing time-to-first-token by 2.5×–11×. The key insight is that re-prefilling worker outputs as text is redundant and discards the DAG structure inherent in parallel agent workflows.

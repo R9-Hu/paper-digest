@@ -4,6 +4,7 @@ authors: ["He Zhang", "Lingzhu Xiang", "Haitao Lin", "Zeyu Huang", "Minghui Wang
 source: "HuggingFace"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T12:45:18+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[HuggingFace 2026] Hy-Embodied-0.5-VLA From Vision-Language-Acti
 ---
 
 # Hy-Embodied-0.5-VLA: From Vision-Language-Action Models to a Real-World Robot Learning Stack
+
+*🕒 **Published (v1):** 2026-06-12 12:45 UTC  ·  **Source:** HuggingFace  ·  [link](https://huggingface.co/papers/2606.14409)*
 
 ## TL;DR
 HyVLA-0.5 is an end-to-end Vision-Language-Action system from Tencent that covers the full robot learning stack: custom data collection hardware, a 4B MoT-based VLM backbone with a flow-matching action expert, two SFT tracks for intra- and cross-embodiment transfer, and a reward-free offline RL stage (FlowPRO) that converts operator interventions into policy improvements. The system is pre-trained on 10K hours of egocentric bimanual demonstrations collected with sub-millimeter optical motion capture, then deployed across five heterogeneous real-robot platforms using an asynchronous inference pipeline with Bézier chunk stitching for C¹-continuous control.

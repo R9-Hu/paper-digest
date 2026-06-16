@@ -4,6 +4,7 @@ authors: ["Wanting Wang", "Xiye Ma", "Yuyang He", "Minghui Cheng", "Ran Cao"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-10"
+published_time: "2026-06-10T13:06:11+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] A Lightweight Multi-Agent Framework for Automat
 ---
 
 # A Lightweight Multi-Agent Framework for Automated Concrete Barrier Design
+
+*🕒 **Published (v1):** 2026-06-10 13:06 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12040v2)*
 
 ## TL;DR
 This paper proposes a closed-loop multi-agent framework (MAF) built on AutoGen for automating reinforced concrete highway barrier design per AASHTO-LRFD specifications. The framework orchestrates Designer, Validator, and Optimizer agents in a generation-evaluation-optimization loop, achieving >98% design precision versus ≤11.7% for standalone LLMs. A key finding is that an 8B-parameter model inside the MAF outperforms an unconstrained 671B-parameter model.

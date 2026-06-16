@@ -53,6 +53,17 @@ Last updated: 2026-06-15 (✅ COMPLETE — end-to-end verified)
   if an ID is retired. Flags: `--check-models`, `--skip-model-check`. Verified
   (OK path + simulated-retirement fallback).
 
+- ✅ **Per-topic Today's Digest** — dedicated page (site `today.md` / Obsidian
+  `_Today - <topic>.md`) listing papers collected today (by `fetched_at`); nav
+  sibling to Trend analysis, subtitle link on overview, home-tree sibling.
+- ✅ **systemd user timer** (replaces cron) — `systemd/paper-digest.{service,timer}`
+  with `Persistent=true` (catches up missed runs) + linger. cron entry removed.
+- ✅ **Earliest-version publish time in every digest** — `published_ts` captured
+  from arXiv v1 (`arxiv_source`), stored in DB (migration), shown in digest
+  front matter (`published_time`) + a visible "🕒 Published (v1)" line + Obsidian
+  metadata callout. Backfilled 130/137 existing digests via `harness.backfill_published`
+  (re-queried arXiv, rate-limit resilient).
+
 ## Blockers
 - _none yet_
 

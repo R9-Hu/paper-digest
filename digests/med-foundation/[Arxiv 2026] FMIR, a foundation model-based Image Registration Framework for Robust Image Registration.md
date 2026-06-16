@@ -4,6 +4,7 @@ authors: ["Fengting Zhang", "Yue He", "Qinghao Liu", "Yaonan Wang", "Xiang Chen"
 source: "Arxiv"
 venue: "ISBI 2026"
 published: "2026-01-24"
+published_time: "2026-01-24T17:05:18+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] FMIR, a foundation model-based Image Reg
 ---
 
 # FMIR, a foundation model-based Image Registration Framework for Robust Image Registration
+
+*🕒 **Published (v1):** 2026-01-24 17:05 UTC  ·  **Source:** Arxiv  ·  **Venue:** ISBI 2026  ·  [link](http://arxiv.org/abs/2601.17529v2)*
 
 ## TL;DR
 FMIR is a medical image registration framework that adapts frozen 2D foundation model encoders (DINO, SAM) for 3D volumetric registration via slice-wise feature extraction and a pyramid-based registration head. Trained on a single dataset, it achieves state-of-the-art in-domain performance while generalizing robustly to out-of-domain imaging modalities and anatomies. A channel regularization strategy — random channel dropout during training, PCA during inference — is the key mechanism driving cross-domain generalization.

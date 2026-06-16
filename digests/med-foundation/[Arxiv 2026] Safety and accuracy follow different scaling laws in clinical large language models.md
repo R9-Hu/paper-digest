@@ -4,6 +4,7 @@ authors: ["Sebastian Wind", "Tri-Thien Nguyen", "Jeta Sopa", "Mahshad Lotfinia",
 source: "Arxiv"
 venue: ""
 published: "2026-05-05"
+published_time: "2026-05-05T17:57:19+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Safety and accuracy follow different sca
 ---
 
 # Safety and accuracy follow different scaling laws in clinical large language models
+
+*🕒 **Published (v1):** 2026-05-05 17:57 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2605.04039v1)*
 
 ## TL;DR
 Clinical LLMs do not become safer simply by scaling model size, adding retrieval, or increasing inference-time compute. This paper introduces SaFE-Scale, a framework pairing a new radiology benchmark (RadSaFE-200) with option-level clinical safety labels, and demonstrates across 34 LLMs that evidence quality—not scale—is the dominant driver of safe clinical behavior. Safety and accuracy respond to different deployment levers and cannot be treated as a single axis.

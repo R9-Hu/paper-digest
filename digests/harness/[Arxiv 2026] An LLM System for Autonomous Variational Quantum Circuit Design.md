@@ -4,6 +4,7 @@ authors: ["Kenya Sakka", "Wataru Mizukami", "Kosuke Mitarai"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T14:08:00+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] An LLM System for Autonomous Variational Quantu
 ---
 
 # An LLM System for Autonomous Variational Quantum Circuit Design
+
+*🕒 **Published (v1):** 2026-06-11 14:08 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13380v1)*
 
 ## TL;DR
 A seven-component closed-loop LLM agentic framework autonomously designs variational quantum circuits by iterating over web-grounded idea generation, multi-expert critique, RAG-assisted refinement, and executable-code validation. Evaluated on quantum feature map construction (QML) and VQE ansatz generation (quantum chemistry), the best generated circuits outperform both quantum and classical baselines while satisfying hardware-scaling constraints.

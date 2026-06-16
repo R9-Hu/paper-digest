@@ -4,6 +4,7 @@ authors: ["Md Amirul Islam", "Sumiran Thakur", "Huancheng Chen", "Su Min Park", 
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T07:01:50+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] CacheRLMulti-Turn Tool-Calling Agents via Ca
 ---
 
 # CacheRL:Multi-Turn Tool-Calling Agents via Cached Rollouts and Hybrid Reward
+
+*🕒 **Published (v1):** 2026-06-12 07:01 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14179v1)*
 
 ## TL;DR
 CacheRL trains a 4B-parameter agent model (Qwen3-4B-Thinking) for multi-turn tool calling by replacing costly live tool execution with a three-tier fuzzy cache and dynamically adjusting reward weights based on cache fidelity. The system achieves 92% process accuracy on multi-step tool-calling benchmarks, approaching GPT-5's 94%, while requiring 100× less compute than live RL training.

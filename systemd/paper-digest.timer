@@ -1,0 +1,11 @@
+[Unit]
+Description=Run Paper Digest daily at 08:00 (catches up missed runs after downtime)
+
+[Timer]
+OnCalendar=*-*-* 08:00:00
+Persistent=true
+# Spread the trigger a little so an exact-8:00 wake isn't required.
+AccuracySec=1min
+
+[Install]
+WantedBy=timers.target

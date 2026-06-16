@@ -4,6 +4,7 @@ authors: ["Furkan Yuceyalcin", "Abdurrahim Yilmaz", "Burak Temelkuran"]
 source: "Arxiv"
 venue: ""
 published: "2026-01-18"
+published_time: "2026-01-18T12:38:15+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] A Hierarchical Benchmark of Foundation M
 ---
 
 # A Hierarchical Benchmark of Foundation Models for Dermatology
+
+*🕒 **Published (v1):** 2026-01-18 12:38 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2601.12382v1)*
 
 ## TL;DR
 This paper benchmarks ten frozen foundation model embeddings (general vision, general medical, dermatology-specific) for hierarchical skin lesion classification across four levels of diagnostic granularity on the DERM12345 dataset. The central finding is a "granularity gap": models excelling at binary malignancy screening (MedImageInsights, 97.52% F1) systematically underperform at fine-grained 40-subclass differential diagnosis, where MedSigLIP (69.79%) and dermatology-specific models lead. Domain specificity alone does not guarantee superiority—scale and pretraining diversity matter.

@@ -4,6 +4,7 @@ authors: ["Hanbin Ko", "Kyungmin Jeon", "Doowoong Choi", "Chang Min Park"]
 source: "Arxiv"
 venue: ""
 published: "2026-04-06"
+published_time: "2026-04-06T09:52:26+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Temporal Inversion for Learning Interval
 ---
 
 # Temporal Inversion for Learning Interval Change in Chest X-Rays
+
+*🕒 **Published (v1):** 2026-04-06 09:52 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2604.04563v2)*
 
 ## TL;DR
 TILA (Temporal Inversion-aware Learning and Alignment) is a training framework that uses reversed image-pair ordering as a supervisory signal to teach temporal VLP models directional interval-change sensitivity in paired chest X-rays. It introduces inversion-aware losses at pretraining, fine-tuning, and inference without modifying underlying architectures, improving both standard progression classification accuracy and order-consistency metrics across multiple backbones and datasets.

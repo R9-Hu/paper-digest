@@ -36,6 +36,16 @@ def _topic_rows(conn, slug: str):
     return state.digested_for_topic(conn, slug)
 
 
+def _fmt_ts(iso: str) -> str:
+    """ISO datetime -> 'YYYY-MM-DD HH:MM UTC' (the earliest-version time)."""
+    try:
+        d = dt.datetime.fromisoformat(iso)
+    except (ValueError, TypeError):
+        return iso
+    tz = "UTC" if d.utcoffset() in (dt.timedelta(0), None) else (d.tzname() or "")
+    return f"{d.strftime('%Y-%m-%d %H:%M')} {tz}".strip()
+
+
 # ----------------------------------------------------------------------------- #
 # Shared overview-page sections (used by both the website and Obsidian)
 # Order per topic page: intro -> timeline -> trend digest (+link) -> papers.
@@ -363,9 +373,14 @@ def beautify_digest(md: str) -> str:
     if authors:
         shown = ", ".join(authors[:8]) + (" et al." if len(authors) > 8 else "")
         meta.append(f"> **Authors:** {shown}")
-    line2 = [f"**{k}:** {fm[v]}" for k, v in
-             (("Venue", "venue"), ("Published", "published"), ("Source", "source"))
-             if fm.get(v)]
+    pub_disp = _fmt_ts(fm["published_time"]) if fm.get("published_time") else (fm.get("published") or "")
+    line2 = []
+    if fm.get("venue"):
+        line2.append(f"**Venue:** {fm['venue']}")
+    if pub_disp:
+        line2.append(f"**Published (v1):** {pub_disp}")
+    if fm.get("source"):
+        line2.append(f"**Source:** {fm['source']}")
     if line2:
         meta.append("> " + "  ·  ".join(line2))
     if fm.get("url"):

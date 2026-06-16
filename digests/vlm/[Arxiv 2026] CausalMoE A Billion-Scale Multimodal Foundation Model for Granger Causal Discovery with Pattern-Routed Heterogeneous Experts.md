@@ -4,6 +4,7 @@ authors: ["Bo Liu", "Di Dai", "Jingwei Liu", "Jiarui Jin", "Xiaocheng Fang", "Gu
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T07:57:23+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] CausalMoE A Billion-Scale Multimodal Foundation Mod
 ---
 
 # CausalMoE: A Billion-Scale Multimodal Foundation Model for Granger Causal Discovery with Pattern-Routed Heterogeneous Experts
+
+*🕒 **Published (v1):** 2026-06-11 07:57 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13024v1)*
 
 ## TL;DR
 CausalMoE is a billion-scale multimodal foundation model for Granger Causal Discovery (GCD) that replaces the standard "uniform distribution modeling" assumption with a Pattern-Routed Mixture of Heterogeneous Experts (MoHE), dynamically routing time-series patches to specialized experts including frozen LLMs and VLMs. It is the first GCD system to integrate VLMs into the causal inference loop, converting time-series patches into normalized images for a frozen VLM to extract shape-level visual priors. It achieves state-of-the-art on five synthetic and real-world benchmarks with strong few-shot generalization.

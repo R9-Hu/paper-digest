@@ -4,6 +4,7 @@ authors: ["Omar Adalat", "Edwin Hamel-De le Court", "Francesco Belardinelli"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T05:30:53+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Contract-Based Compositional Shielding for S
 ---
 
 # Contract-Based Compositional Shielding for Safe Multi-Agent Reinforcement Learning
+
+*🕒 **Published (v1):** 2026-06-12 05:30 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14130v1)*
 
 ## TL;DR
 Purely factorized (unilateral) runtime shields in multi-agent RL are overly conservative: they exclude joint actions that are safe only through coordination. This paper certifies tuples of local LTLsafe obligations via a circular assume-guarantee fixed point, projecting them into decentralized action masks that recover team-optimal coordinated safe behavior without central control at runtime.

@@ -4,6 +4,7 @@ authors: ["Mateusz Winiarek", "Maksymilian Bilski", "Mateusz Jacniacki"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T16:23:00+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] LoSoNA A Benchmark for Local Social Norm Ada
 ---
 
 # LoSoNA: A Benchmark for Local Social Norm Adaptation in Group Conversations
+
+*🕒 **Published (v1):** 2026-06-12 16:23 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14600v1)*
 
 ## TL;DR
 LoSoNA is a benchmark for evaluating whether LLM-based agents can infer and adapt to implicit local social norms in multi-party group chat, without being told those norms explicitly. Eight frontier and open-weight models are evaluated under four prompting conditions; naive prompting leaves most models below 37% accuracy, while explicit norm-aware prompting helps unevenly—Gemini 3.1 Pro reaches 84.2% and Claude Fable 5 reaches 81.6%.

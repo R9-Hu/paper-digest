@@ -4,6 +4,7 @@ authors: ["Youngjin Yoo", "Han Liu", "Bogdan Georgescu", "Yanbo Zhang", "Sasa Gr
 source: "Arxiv"
 venue: ""
 published: "2026-02-28"
+published_time: "2026-02-28T14:32:38+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Specializing Foundation Models via Mixtu
 ---
 
 # Specializing Foundation Models via Mixture of Low-Rank Experts for Comprehensive Head CT Analysis
+
+*🕒 **Published (v1):** 2026-02-28 14:32 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2603.00675v1)*
 
 ## TL;DR
 MoLRE (Mixture of Low-Rank Experts) extends LoRA with K specialized low-rank adapters and unsupervised soft routing, enabling input-conditional feature adaptation for multi-label head CT finding detection with <0.5% additional parameters. Benchmarked across six foundation models (7M–431M params) on 72,756 head CTs with 75 neurological findings, MoLRE consistently improves AUC across all compatible models, with MedGemma+MoLRE achieving 0.917 mean AUC.

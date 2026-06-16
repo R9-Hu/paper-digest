@@ -4,6 +4,7 @@ authors: ["Tanmoy Kanti Halder", "Akash Ghosh", "Subhadip Baidya", "Arijit Roy",
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T16:59:42+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] ArogyaSutra A Multi-Agent Framework for Multimo
 ---
 
 # ArogyaSutra: A Multi-Agent Framework for Multimodal Medical Reasoning in Indic Languages
+
+*🕒 **Published (v1):** 2026-06-11 16:59 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13572v1)*
 
 ## TL;DR
 ArogyaSutra is an actor-critic multi-agent framework for multimodal medical reasoning in seven low-resource Indic languages, paired with ArogyaBodha, a 40,857-sample multilingual multimodal medical QA benchmark. The framework combines tool-grounded visual perception, dual-memory error tracking, and adaptive code-switching, then distills the critic's corrective signals into the actor for inference-time efficiency.

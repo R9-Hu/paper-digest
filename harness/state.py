@@ -25,7 +25,8 @@ CREATE TABLE IF NOT EXISTS papers (
     pdf_url        TEXT,
     abs_url        TEXT,
     venue          TEXT,
-    published      TEXT,          -- ISO date
+    published      TEXT,          -- ISO date (earliest version)
+    published_ts   TEXT,          -- ISO datetime of the earliest version (v1)
     year           INTEGER,
     pdf_path       TEXT,          -- relative to project root
     digest_path    TEXT,          -- relative to project root
@@ -53,6 +54,10 @@ def connect(db_path: Path | str = None):
     try:
         conn.execute("PRAGMA busy_timeout=30000")  # tolerate concurrent runs
         conn.executescript(SCHEMA)
+        # Migrate older DBs that predate published_ts.
+        cols = {r[1] for r in conn.execute("PRAGMA table_info(papers)")}
+        if "published_ts" not in cols:
+            conn.execute("ALTER TABLE papers ADD COLUMN published_ts TEXT")
         yield conn
         conn.commit()
     finally:
@@ -75,13 +80,14 @@ def record_fetched(conn, paper: Paper, topic_slug: str, pdf_path: str) -> None:
     conn.execute(
         """INSERT OR REPLACE INTO papers
            (canonical_id, topic_slug, source, title, authors, abstract, pdf_url,
-            abs_url, venue, published, year, pdf_path, digest_status, fetched_at)
-           VALUES (?,?,?,?,?,?,?,?,?,?,?,?, 'fetched', ?)""",
+            abs_url, venue, published, published_ts, year, pdf_path, digest_status, fetched_at)
+           VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?, 'fetched', ?)""",
         (
             paper.canonical_id, topic_slug, paper.source, paper.title,
             json.dumps(paper.authors), paper.abstract, paper.pdf_url,
             paper.abs_url, paper.venue,
             paper.published.isoformat() if paper.published else None,
+            paper.published_ts or None,
             paper.year, pdf_path, _now(),
         ),
     )

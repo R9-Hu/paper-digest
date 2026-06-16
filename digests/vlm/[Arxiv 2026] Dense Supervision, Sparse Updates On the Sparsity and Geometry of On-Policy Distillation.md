@@ -4,6 +4,7 @@ authors: ["Guo Yu", "Wenlin Liu", "Yulan Hu", "Hao-Xuan Ma", "Jun-Peng Jiang", "
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T17:54:09+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Dense Supervision, Sparse Updates On the Sparsity a
 ---
 
 # Dense Supervision, Sparse Updates: On the Sparsity and Geometry of On-Policy Distillation
+
+*🕒 **Published (v1):** 2026-06-11 17:54 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13657v2)*
 
 ## TL;DR
 On-policy distillation (OPD) — training a student on its own rollouts with dense teacher token-level feedback — produces parameter updates that are small, coordinate-sparse, spectrally concentrated, and biased away from the source model's principal singular directions. Despite the dense supervision signal, OPD behaves geometrically closer to sparse on-policy post-training (RLVR) than to offline distillation. Training only the discovered sparse subnetwork nearly recovers full-model performance, but AdamW remains necessary because the dense teacher preserves gradient heterogeneity.

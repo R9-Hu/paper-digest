@@ -4,6 +4,7 @@ authors: ["Minseo Kim"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T13:28:34+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] tap A File-Based Protocol for Heterogeneous 
 ---
 
 # tap: A File-Based Protocol for Heterogeneous LLM Agent Collaboration
+
+*🕒 **Published (v1):** 2026-06-12 13:28 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14445v1)*
 
 ## TL;DR
 `tap` is a file-based communication protocol enabling heterogeneous LLM agents (Claude and Codex) to collaborate on a shared codebase without a common runtime or central server. It uses markdown files in a shared `inbox/` directory as the canonical message store, supplemented by environment-specific real-time notification paths. A 27-day self-hosted operation produced 209 merged PRs and showed heterogeneous model pairings detected defects in 69.8% of reviews vs. 53.1% for homogeneous pairings.

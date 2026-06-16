@@ -4,6 +4,7 @@ authors: ["Ruiqi Xian", "Yuehan Xian", "Jing Liang", "Xuewei Qi", "Dinesh Manoch
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T15:15:34+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] VISA VLM-Guided Instance Semantic Auditing for 3D O
 ---
 
 # VISA: VLM-Guided Instance Semantic Auditing for 3D Occupancy World Models
+
+*🕒 **Published (v1):** 2026-06-11 15:15 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13460v1)*
 
 ## TL;DR
 VISA is a training-time framework that uses an offline VLM (Qwen3VL) to audit 2D object-crop instances, converting structured semantic judgments into reliability-weighted supervision for 3D occupancy world models. It first diagnoses a fundamental mismatch: standard CLIP/caption-alignment improves text-space metrics but fails to improve closed-set occupancy mIoU. VISA resolves this by grounding crop-level audits to matched 3D object voxels and distilling them via taxonomy, attribute-factor, and scene-graph losses—requiring no VLM at inference.

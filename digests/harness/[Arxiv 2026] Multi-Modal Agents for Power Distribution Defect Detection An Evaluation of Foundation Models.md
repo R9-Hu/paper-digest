@@ -4,6 +4,7 @@ authors: ["Quan Quan"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T06:57:01+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] Multi-Modal Agents for Power Distribution Defec
 ---
 
 # Multi-Modal Agents for Power Distribution Defect Detection: An Evaluation of Foundation Models
+
+*🕒 **Published (v1):** 2026-06-11 06:57 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12969v1)*
 
 ## TL;DR
 This paper proposes a multi-modal agent framework for autonomous power distribution inspection and systematically benchmarks foundation models across three capability tiers: perception (defect identification and description), reasoning (RAG-augmented severity grading and maintenance planning), and tool usage (closed-loop work-order generation via ReAct). On a private 26,803-image dataset covering 10 equipment and 31 defect categories, zero-shot accuracy is below 10% for all tested models, with RAG and few-shot exemplars substantially closing the gap.

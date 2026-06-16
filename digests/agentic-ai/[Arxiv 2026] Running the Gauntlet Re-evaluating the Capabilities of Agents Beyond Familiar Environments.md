@@ -4,6 +4,7 @@ authors: ["Mykola Vysotskyi", "Runqi Lin", "Grzegorz Biziel", "Michal Zakrzewski
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T12:32:24+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Running the Gauntlet Re-evaluating the Capab
 ---
 
 # Running the Gauntlet: Re-evaluating the Capabilities of Agents Beyond Familiar Environments
+
+*🕒 **Published (v1):** 2026-06-12 12:32 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14397v1)*
 
 ## TL;DR
 GauntletBench is a web-based agent benchmark targeting three underexplored capabilities—temporal perception, graphical understanding, and 3D reasoning—across five professional applications. State-of-the-art agentic systems achieve only 19.1% success rate versus >80% for non-expert humans, exposing a critical generalisation gap invisible in existing saturated benchmarks.

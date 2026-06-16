@@ -4,6 +4,7 @@ authors: ["Haowen Gao", "Haoran Chen", "Can Wang", "Shasha Guo", "Liang Pang", "
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T08:20:09+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] SkillAudit Ground-Truth-Free Skill Evolution
 ---
 
 # SkillAudit: Ground-Truth-Free Skill Evolution via Paired Trajectory Auditing
+
+*🕒 **Published (v1):** 2026-06-12 08:20 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14239v1)*
 
 ## TL;DR
 SkillAudit is a framework for evolving LLM agent "skills" (structured procedural instruction packages) without any ground-truth feedback—no hidden tests, reference solutions, or oracle signals. It works by running the same task twice (with and without the candidate skill) and using the behavioral divergence between those two trajectories as a self-contained optimization signal. On 89 containerized professional tasks, it achieves 73.9% average task reward vs. 56.7% for static expert-authored skills and 40.9% for no skill at all.

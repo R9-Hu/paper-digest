@@ -4,6 +4,7 @@ authors: ["Wen Zhang", "Xiaocui Yang", "Zhuoyue Gao", "Shi Feng", "Daling Wang",
 source: "Arxiv"
 venue: "INTERSPEECH 2026"
 published: "2026-06-11"
+published_time: "2026-06-11T04:59:33+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] PRISM Prosody-Integrated Multi-Agent Reasoning 
 ---
 
 # PRISM: Prosody-Integrated Multi-Agent Reasoning Framework for Empathetic Spoken Dialogue
+
+*🕒 **Published (v1):** 2026-06-11 04:59 UTC  ·  **Source:** Arxiv  ·  **Venue:** INTERSPEECH 2026  ·  [link](http://arxiv.org/abs/2606.12902v1)*
 
 ## TL;DR
 PRISM is a four-agent framework for empathetic spoken dialogue that preserves prosodic information lost in cascade ASR→TTS pipelines by translating acoustic cues into natural-language descriptions before LLM reasoning. It decouples perception, coordination, response generation, and speech synthesis into specialized agents (Perceiver, Manager, Responder, Vocalizer) with on-demand external knowledge retrieval. It consistently outperforms both cascade and end-to-end speech baselines on the AvaMERG benchmark.

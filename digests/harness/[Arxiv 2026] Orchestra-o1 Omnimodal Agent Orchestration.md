@@ -4,6 +4,7 @@ authors: ["Fan Zhang", "Vireo Zhang", "Shengju Qian", "Haoxuan Li", "Hao Wu", "J
 source: "Arxiv"
 venue: ""
 published: "2026-06-10"
+published_time: "2026-06-10T04:50:35+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] Orchestra-o1 Omnimodal Agent Orchestration.pdf"
 ---
 
 # Orchestra-o1: Omnimodal Agent Orchestration
+
+*🕒 **Published (v1):** 2026-06-10 04:50 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13707v1)*
 
 ## TL;DR
 Orchestra-o1 is an omnimodal multi-agent orchestration framework that decouples high-level planning from modality-specialized sub-agent execution, supporting text, image, audio, and video tasks within a unified dependency-aware parallel scheduling loop. It introduces DA-GRPO, an offline RL algorithm that trains a compact 8B open-source orchestrator by aligning step-level orchestration decisions with expert trajectories. On the OmniGAIA benchmark, it achieves 72.8% accuracy (proprietary setting), outperforming Gemini-3-Pro by 10.3%.

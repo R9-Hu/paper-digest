@@ -4,6 +4,7 @@ authors: ["Xiaoxin Lu", "Ranran Haoran Zhang", "Rui Zhang"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T15:53:16+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] SIMMER Benchmarking Latent Failures in LLM E
 ---
 
 # SIMMER: Benchmarking Latent Failures in LLM Executable Planning with a World Model
+
+*🕒 **Published (v1):** 2026-06-12 15:53 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14574v1)*
 
 ## TL;DR
 SIMMER is a benchmark that exposes "latent failures" in LLM-generated executable plans — errors that satisfy all preconditions and produce no immediate exception but silently compromise goal safety through implicit state propagation. Across six frontier and open-weight LLMs on 100 kitchen tasks, fewer than 17% of plans are error-free, and 29–56% contain latent failures, most of which are irreversible. Counterfactual foresight simulation — prompting models to predict state changes before committing each action — reduces latent failures by up to 72%.

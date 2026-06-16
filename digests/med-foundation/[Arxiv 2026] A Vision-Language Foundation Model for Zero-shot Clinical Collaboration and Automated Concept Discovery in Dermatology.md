@@ -4,6 +4,7 @@ authors: ["Siyuan Yan", "Xieji Li", "Dan Mo", "Philipp Tschandl", "Yiwen Jiang",
 source: "Arxiv"
 venue: ""
 published: "2026-02-11"
+published_time: "2026-02-11T08:14:20+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] A Vision-Language Foundation Model for Z
 ---
 
 # A Vision-Language Foundation Model for Zero-shot Clinical Collaboration and Automated Concept Discovery in Dermatology
+
+*🕒 **Published (v1):** 2026-02-11 08:14 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2602.10624v1)*
 
 ## TL;DR
 DermFM-Zero is a dermatology vision-language foundation model trained on 4M+ multimodal data points via masked latent modelling and contrastive learning, enabling zero-shot clinical decision support without task-specific fine-tuning. Across 20 benchmarks and three multinational reader studies involving 1,100+ clinicians, it achieves state-of-the-art zero-shot performance and measurably improves clinical accuracy and management safety. Sparse autoencoders applied to its latent space automatically disentangle interpretable clinical concepts and enable targeted artifact-bias suppression without retraining.

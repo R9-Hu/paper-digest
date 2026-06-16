@@ -4,6 +4,7 @@ authors: ["Yihang Liu", "Longzhen Yang", "Jiaxiong Yang", "Ying Wen", "Lianghua 
 source: "Arxiv"
 venue: ""
 published: "2026-04-10"
+published_time: "2026-04-10T04:06:11+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] M-IDoL Information Decomposition for Mod
 ---
 
 # M-IDoL: Information Decomposition for Modality-Specific and Diverse Representation Learning in Medical Foundation Model
+
+*🕒 **Published (v1):** 2026-04-10 04:06 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2604.08936v2)*
 
 ## TL;DR
 M-IDoL is a self-supervised medical foundation model that addresses "information ambiguity" in multimodal pre-training by decomposing the contrastive objective into two entropy-based terms: one that maximizes inter-modality separation and one that minimizes intra-modality uncertainty. Pre-trained on 1.15M unlabeled images across five imaging modalities, it outperforms 20 existing foundation and modality-specific models on 21 downstream clinical tasks.

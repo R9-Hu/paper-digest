@@ -4,6 +4,7 @@ authors: ["Kechun Xu", "Zhenjie Zhu", "Anzhe Chen", "Rong Xiong", "Yue Wang"]
 source: "HuggingFace"
 venue: ""
 published: "2026-06-10"
+published_time: "2026-06-10T17:34:25+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[HuggingFace 2026] APT Action Expert Pretraining Improves Instru
 ---
 
 # APT: Action Expert Pretraining Improves Instruction Generalization of Vision-Language-Action Policies
+
+*🕒 **Published (v1):** 2026-06-10 17:34 UTC  ·  **Source:** HuggingFace  ·  [link](https://huggingface.co/papers/2606.12366)*
 
 ## TL;DR
 APT addresses the poor OOD language instruction generalization of continuous-action VLA models by pretraining the action expert on vision-action pairs before introducing language, using a Bayesian factorization of the policy into a language-agnostic VA prior and a language-conditioned VLA likelihood. A two-stage training procedure and a layer-wise gated fusion mechanism prevent visual shortcuts and VLM corruption. APT consistently outperforms baselines on unseen instructions and compositional tasks in both simulation and real-world settings.

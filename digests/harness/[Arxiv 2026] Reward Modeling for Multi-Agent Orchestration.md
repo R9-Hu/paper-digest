@@ -4,6 +4,7 @@ authors: ["King Yeung Tsang", "Zihao Zhao", "Vishal Venkataramani", "Haizhou Shi
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T17:16:24+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] Reward Modeling for Multi-Agent Orchestration.p
 ---
 
 # Reward Modeling for Multi-Agent Orchestration
+
+*🕒 **Published (v1):** 2026-06-11 17:16 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13598v1)*
 
 ## TL;DR
 Orch-RM is a self-supervised Bradley-Terry reward model trained on intermediate orchestration artifacts from multi-agent LLM systems, enabling quality scoring of orchestration plans without executing sub-agents. It improves MAS test-time scaling and orchestrator training efficiency by up to 10–46× in token usage while achieving up to 8% accuracy gains over baselines.

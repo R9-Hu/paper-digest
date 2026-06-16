@@ -4,6 +4,7 @@ authors: ["Zongsheng Cao", "Bihao Zhan", "Jinxin Shi", "Jiong Wang", "Fangchen Y
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T17:58:35+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] Agents-K1 Towards Agent-native Knowledge Orches
 ---
 
 # Agents-K1: Towards Agent-native Knowledge Orchestration
+
+*🕒 **Published (v1):** 2026-06-11 17:58 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13669v1)*
 
 ## TL;DR
 Agents-K1 is an end-to-end pipeline that converts raw scientific PDFs into agent-native multimodal knowledge graphs by combining a five-module extraction schema, a 4B GRPO-trained model, and a tri-source CLI agent interface. It processes 2.46 million papers across six disciplines to produce Scholar-KG, with a 1M-paper subset released. On research-QA benchmarks it lifts frontier-model accuracy by up to 3× over unaugmented baselines.

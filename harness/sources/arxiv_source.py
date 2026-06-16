@@ -67,6 +67,8 @@ def search(
 
     papers: list[Paper] = []
     for r in client.results(search):
+        # r.published is the datetime the ORIGINAL (v1) version was submitted —
+        # i.e. the earliest version's timestamp, exactly what we want.
         pub = r.published.date()
         if pub < earliest:
             break  # results are newest-first, so we can stop here
@@ -82,6 +84,7 @@ def search(
                 pdf_url=r.pdf_url,
                 abs_url=r.entry_id,
                 published=pub,
+                published_ts=r.published.isoformat(),
                 venue=_detect_venue(r.comment),
                 extra={"comment": r.comment or "", "primary_category": r.primary_category},
             )

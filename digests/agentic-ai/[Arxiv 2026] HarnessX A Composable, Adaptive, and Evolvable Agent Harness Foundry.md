@@ -4,6 +4,7 @@ authors: ["Tingyang Chen", "Shuo Lu", "Kang Zhao", "Weicheng Meng", "Hanlin Teng
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T08:27:11+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] HarnessX A Composable, Adaptive, and Evolvab
 ---
 
 # HarnessX: A Composable, Adaptive, and Evolvable Agent Harness Foundry
+
+*🕒 **Published (v1):** 2026-06-12 08:27 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14249v1)*
 
 ## TL;DR
 HarnessX is a foundry that treats the agent runtime harness (prompts, tools, memory, control flow) as a first-class typed object that can be automatically composed, adapted, and co-evolved with the model. Its AEGIS engine formalizes harness adaptation as an MDP over symbolic artifacts, running a four-stage trace-driven pipeline (Digester → Planner → Evolver → Critic) with deterministic acceptance gates. Across five benchmarks and three model families, it delivers an average +14.5% absolute gain (up to +44.0%) without any model weight updates in the harness-only setting.

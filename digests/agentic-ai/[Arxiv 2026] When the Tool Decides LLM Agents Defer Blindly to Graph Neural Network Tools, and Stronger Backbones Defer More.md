@@ -4,6 +4,7 @@ authors: ["Zhongyuan Wang", "Pratyusha Vemuri"]
 source: "Arxiv"
 venue: "TMLR"
 published: "2026-06-12"
+published_time: "2026-06-12T14:13:19+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] When the Tool Decides LLM Agents Defer Blind
 ---
 
 # When the Tool Decides: LLM Agents Defer Blindly to Graph Neural Network Tools, and Stronger Backbones Defer More
+
+*🕒 **Published (v1):** 2026-06-12 14:13 UTC  ·  **Source:** Arxiv  ·  **Venue:** TMLR  ·  [link](http://arxiv.org/abs/2606.14476v1)*
 
 ## TL;DR
 LLM agents given a frozen GNN as a callable tool do not exercise judgment over its outputs — they adopt the tool's prediction 97.6–99.2% of the time, functioning as "GNN parrots." Stronger backbone models defer more completely, not less, and the accuracy cost of this blind deference grows with capability because stronger agents have better alternatives they never use.

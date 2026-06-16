@@ -4,6 +4,7 @@ authors: ["Yijun Liang", "Hengguang Zhou", "Ming Li", "Lichen Li", "Cho-Jui Hsie
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T21:45:46+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Self-Evolving Visual Questioner.pdf"
 ---
 
 # Self-Evolving Visual Questioner
+
+*🕒 **Published (v1):** 2026-06-11 21:45 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13929v1)*
 
 ## TL;DR
 This paper proposes a self-evolving framework that enables a VLM to continuously improve its visual question generation (VQG) capability without any external supervision, human annotations, or teacher models. The model acts as both proposer and refiner through iterative rounds of question proposal, rewriting, and filtering on unlabeled images. After two self-evolution rounds, the average QG score improves ~82% relative to the base model while QA accuracy is preserved or slightly improved.

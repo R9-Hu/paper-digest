@@ -4,6 +4,7 @@ authors: ["Yong Zeng"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T11:02:08+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] Under What Conditions Can a Machine Be Called G
 ---
 
 # Under What Conditions Can a Machine Be Called Genuinely Creative?
+
+*🕒 **Published (v1):** 2026-06-11 11:02 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13196v2)*
 
 ## TL;DR
 This paper proposes a ten-requirement framework for "genuine machine creativity" grounded in Designics — the science of meaning-bearing intentional change — organized through three laws: perception, conflict, and capability. It argues that creativity should be evaluated by a system's participation in recursive intervention dynamics (perceive → scope → conflict-identify → intervene → observe consequences → update → rescope), not by output novelty alone. Contemporary AI systems (foundation models, agentic workflows, automated discovery) are treated as "pressure cases" that partially instantiate but do not fulfill these requirements.

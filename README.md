@@ -65,11 +65,16 @@ from the Models API to help you pick a new pin.
 
 ## Schedule (08:00 daily)
 
-```
-0 8 * * * /home/renjiu/Research/code/paperDigest/run.sh >> /home/renjiu/Research/code/paperDigest/logs/cron.log 2>&1
+Scheduling uses a **systemd user timer** with `Persistent=true`, so a run missed
+while the machine was asleep/off is **caught up** on the next boot (cron would
+silently skip it). See [`systemd/README.md`](systemd/README.md) for install/operate.
+
+```bash
+systemctl --user list-timers paper-digest.timer   # next/last run
+systemctl --user start paper-digest.service       # trigger a run now
 ```
 
-The machine must be powered on & online at 08:00 (local cron).
+The machine still needs to be on at some point each day for the run to happen.
 
 ## Layout
 

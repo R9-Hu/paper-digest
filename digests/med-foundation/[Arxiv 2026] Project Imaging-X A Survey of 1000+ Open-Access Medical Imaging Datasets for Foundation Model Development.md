@@ -4,6 +4,7 @@ authors: ["Zhongying Deng", "Cheng Tang", "Ziyan Huang", "Jiashi Lin", "Ying Che
 source: "Arxiv"
 venue: ""
 published: "2026-03-29"
+published_time: "2026-03-29T00:46:53+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Project Imaging-X A Survey of 1000+ Open
 ---
 
 # Project Imaging-X: A Survey of 1000+ Open-Access Medical Imaging Datasets for Foundation Model Development
+
+*🕒 **Published (v1):** 2026-03-29 00:46 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2603.27460v1)*
 
 ## TL;DR
 This paper presents the largest survey to date of 1,000+ open-access medical imaging datasets (2000–2025), cataloging them by modality, task, anatomy, and dimensionality. It exposes a fragmented, long-tailed landscape that severely limits medical foundation model development, and proposes a Metadata-Driven Fusion Paradigm (MDFP) alongside an interactive discovery portal to consolidate disparate datasets into larger, coherent training corpora.

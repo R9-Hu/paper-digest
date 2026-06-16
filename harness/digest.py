@@ -79,6 +79,33 @@ def extract_text(pdf_path: Path) -> str:
         return ""
 
 
+def _fmt_ts(iso: str) -> str:
+    """ISO datetime -> 'YYYY-MM-DD HH:MM UTC' (earliest-version time)."""
+    import datetime as _dt
+    try:
+        d = _dt.datetime.fromisoformat(iso)
+    except (ValueError, TypeError):
+        return iso
+    tz = "UTC" if d.utcoffset() in (_dt.timedelta(0), None) else (d.tzname() or "")
+    return f"{d.strftime('%Y-%m-%d %H:%M')} {tz}".strip()
+
+
+def visible_meta_line(row) -> str:
+    """A one-line, human-visible header for a digest naming the publish time
+    (earliest version), source and venue. Shown verbatim on the website."""
+    ts = row["published_ts"] if "published_ts" in row.keys() else None
+    when = _fmt_ts(ts) if ts else (row["published"] or "unknown date")
+    bits = [f"🕒 **Published (v1):** {when}"]
+    if row["source"]:
+        bits.append(f"**Source:** {row['source']}")
+    if row["venue"]:
+        bits.append(f"**Venue:** {row['venue']}")
+    url = row["abs_url"] or row["pdf_url"]
+    if url:
+        bits.append(f"[link]({url})")
+    return "*" + "  ·  ".join(bits) + "*"
+
+
 def _front_matter(row, topic: Topic, digest_body: str) -> str:
     authors = json.loads(row["authors"] or "[]")
     fields = {
@@ -87,6 +114,7 @@ def _front_matter(row, topic: Topic, digest_body: str) -> str:
         "source": row["source"],
         "venue": row["venue"] or "",
         "published": row["published"] or "",
+        "published_time": (row["published_ts"] or ""),  # earliest-version timestamp
         "year": row["year"],
         "topic": topic.name,
         "topic_slug": topic.slug,
@@ -134,7 +162,7 @@ def digest_paper(conn, cfg: Config, topic: Topic, row) -> bool:
     out_path = out_dir / f"{stem}.md"
 
     fm = _front_matter(row, topic, body)
-    note = f"{fm}\n\n# {row['title']}\n\n{body}\n"
+    note = f"{fm}\n\n# {row['title']}\n\n{visible_meta_line(row)}\n\n{body}\n"
     out_path.write_text(note, encoding="utf-8")
 
     rel = out_path.relative_to(config.ROOT).as_posix()

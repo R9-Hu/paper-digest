@@ -4,6 +4,7 @@ authors: ["Hartmut H\u00e4ntze", "Sarah de Boer", "Myrthe Buser", "Alessa Hering
 source: "Arxiv"
 venue: ""
 published: "2026-05-08"
+published_time: "2026-05-08T13:56:11+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Benchmarking Foundation Models for Renal
 ---
 
 # Benchmarking Foundation Models for Renal Lesion Stratification in CT
+
+*🕒 **Published (v1):** 2026-05-08 13:56 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2605.07749v1)*
 
 ## TL;DR
 This paper benchmarks three open-source medical foundation models (FMCIB, CT-FM, MMM) against a radiomics classifier and a from-scratch 3D ResNet-50 for six-class renal lesion stratification in CT, using a frozen feature-probing protocol. On an external TCIA test set (234 lesions), all FMs matched the ResNet baseline (AUC 0.70–0.77 vs. 0.72) but were significantly outperformed by handcrafted radiomics (AUC 0.88). Radiomics remains state-of-the-art for this texture-dependent task.

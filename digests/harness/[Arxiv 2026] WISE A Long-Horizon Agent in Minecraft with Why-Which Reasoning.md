@@ -4,6 +4,7 @@ authors: ["Renmin Cheng", "Changhao Chen"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T03:35:02+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] WISE A Long-Horizon Agent in Minecraft with Why
 ---
 
 # WISE: A Long-Horizon Agent in Minecraft with Why-Which Reasoning
+
+*🕒 **Published (v1):** 2026-06-11 03:35 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12852v1)*
 
 ## TL;DR
 WISE is a long-horizon embodied agent for Minecraft that closes the loop between exploration, episodic memory, and planning by augmenting conventional what-where-when memory with explicit causal structure via a VLM-built Causal Event Graph. A companion Opportunistic Task Scheduler dynamically reorders pending subtasks when causally relevant entities are encountered, and a three-tier multi-scale exploration strategy ensures spatially comprehensive coverage. Together these components yield a 30-point success-rate gain and 26% faster completion over the prior SOTA low-level controller MrSteve on sequential sparse tasks, and a 44-point gain with 42.5% less time on adaptive non-sequential tasks.

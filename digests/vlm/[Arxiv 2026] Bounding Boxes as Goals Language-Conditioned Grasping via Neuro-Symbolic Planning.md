@@ -4,6 +4,7 @@ authors: ["Allison Andreyev", "Landon Eum", "Nestor Tiglao", "Romel Gomez"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T05:09:34+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Bounding Boxes as Goals Language-Conditioned Graspi
 ---
 
 # Bounding Boxes as Goals: Language-Conditioned Grasping via Neuro-Symbolic Planning
+
+*🕒 **Published (v1):** 2026-06-11 05:09 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12910v2)*
 
 ## TL;DR
 GRASP is a training-free neuro-symbolic framework for language-conditioned tabletop grasping that converts natural-language instructions into symbolic goal states (bounding-box JSON) via an LLM, then grounds them in real-time using GroundingDINO and a proportional RPY controller. It achieves 73.3% overall grasp success across 90 trials without any fine-tuning. The key insight is decoupling high-level semantic parsing from low-level closed-loop control via bounding-box feedback.

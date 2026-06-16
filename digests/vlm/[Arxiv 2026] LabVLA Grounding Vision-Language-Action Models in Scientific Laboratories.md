@@ -4,6 +4,7 @@ authors: ["Baochang Ren", "Xinjie Liu", "Xi Chen", "Yanshuo Liu", "Chenxi Li", "
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T17:03:53+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] LabVLA Grounding Vision-Language-Action Models in S
 ---
 
 # LabVLA: Grounding Vision-Language-Action Models in Scientific Laboratories
+
+*🕒 **Published (v1):** 2026-06-11 17:03 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13578v1)*
 
 ## TL;DR
 LabVLA adapts Vision-Language-Action models to scientific laboratory manipulation by addressing two bottlenecks: lack of lab-specific training data and cross-embodiment generalization. The authors build RoboGenesis, a simulation-based data engine for synthesizing protocol-conditioned laboratory demonstrations, and train LabVLA—a Qwen3-VL-4B-Instruct backbone paired with a DiT action expert—via FAST action token pretraining followed by flow matching posttraining with knowledge insulation. LabVLA achieves the highest average success rate (71.1% ID, 70.0% OOD) on the LabUtopia benchmark across six laboratory manipulation tasks.

@@ -4,6 +4,7 @@ authors: ["Sihan Zhuang", "Xinyuan Chen", "Tianfan Xue", "Yaohui Wang"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T09:57:01+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] CausalMotion Structured Physical Reasoning as Keyfr
 ---
 
 # CausalMotion: Structured Physical Reasoning as Keyframe and Trajectory Guidance for Training-Free Video Generation
+
+*🕒 **Published (v1):** 2026-06-12 09:57 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14317v1)*
 
 ## TL;DR
 CausalMotion is a training-free framework that uses a VLM (Qwen-VL-2.5-72B) to decompose text prompts into causally consistent keyframes and explicit object trajectory plans, then injects these as soft latent-space constraints into a pretrained video diffusion model (LTX-Video). Without any additional training, it scores 0.65 on PhyGenBench (67% above the LTX-Video baseline of 0.39) while also improving VBench perceptual quality from 80.57% to 82.52%.

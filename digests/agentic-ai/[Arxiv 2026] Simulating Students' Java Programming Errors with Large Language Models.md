@@ -4,6 +4,7 @@ authors: ["Ali Keramati", "Jie Cao", "Iman Mohammadi", "Mark Warschauer", "Yang 
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T04:51:49+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Simulating Students' Java Programming Errors
 ---
 
 # Simulating Students' Java Programming Errors with Large Language Models
+
+*🕒 **Published (v1):** 2026-06-12 04:51 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14113v1)*
 
 ## TL;DR
 This paper evaluates whether LLMs can generate realistic student-like logical errors in Java code, assessing five models under three prompting strategies (IO, CoT, Self-Refine) across 74,000+ authentic submissions from the CodeWorkout dataset. Results show that LLMs produce functionally indistinguishable errors (83.7% deception rate in expert annotation) but face an inherent diversity–fidelity trade-off. Claude Sonnet 4 achieves the best balance between error diversity and alignment to authentic student mistakes.

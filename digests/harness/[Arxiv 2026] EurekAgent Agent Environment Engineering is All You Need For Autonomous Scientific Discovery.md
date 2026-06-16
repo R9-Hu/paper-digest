@@ -4,6 +4,7 @@ authors: ["Amy Xin", "Jiening Siow", "Junjie Wang", "Zijun Yao", "Fanjin Zhang",
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T17:56:35+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] EurekAgent Agent Environment Engineering is All
 ---
 
 # EurekAgent: Agent Environment Engineering is All You Need For Autonomous Scientific Discovery
+
+*🕒 **Published (v1):** 2026-06-11 17:56 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13662v2)*
 
 ## TL;DR
 EurekAgent reframes autonomous scientific discovery as an *environment engineering* problem rather than a workflow-prescription problem, arguing that as general-purpose CLI agents (e.g., Claude Code) grow more capable, the binding constraint is the surrounding environment—its permissions, artifacts, budgets, and oversight interfaces. The system coordinates off-the-shelf CLI agents through a prepare→propose→implement loop with four environment engineering layers, achieving new state-of-the-art results across mathematics, kernel engineering, and ML engineering benchmarks.

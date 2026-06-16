@@ -4,6 +4,7 @@ authors: ["Neha Prakriya", "Chaojun Hou", "Zheng Gong", "Huasha Zhao", "Xi Zhao"
 source: "Arxiv"
 venue: ""
 published: "2026-06-10"
+published_time: "2026-06-10T18:14:56+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] Arbor Tree Search as a Cognition Layer for Auto
 ---
 
 # Arbor: Tree Search as a Cognition Layer for Autonomous Agents
+
+*🕒 **Published (v1):** 2026-06-10 18:14 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12563v1)*
 
 ## TL;DR
 Arbor is a multi-agent framework that reformulates full-stack LLM inference optimization as heuristic-scored stateful tree search, using an Orchestrator–Critic checks-and-balances architecture with dynamically-constructed Domain Specialists. A shared search tree serves as working memory across agents, propagating failures as constraints and expanding dynamically as bottlenecks shift. On six production models on AMD MI355X GPUs, Arbor achieves +40%–+193% throughput over vendor-optimized baselines in multi-day autonomous campaigns.

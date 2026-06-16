@@ -4,6 +4,7 @@ authors: ["Taewoo Park", "Kyeonghyun Yoo", "Seunghyun Yoo", "Hwangnam Kim"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T07:57:47+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Selective Agentic Recovery for UAV Autonomy 
 ---
 
 # Selective Agentic Recovery for UAV Autonomy with a Persistent Mission Runtime
+
+*🕒 **Published (v1):** 2026-06-12 07:57 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14219v1)*
 
 ## TL;DR
 Persistent Mission Runtime (PMR) integrates an LLM-based agentic reasoner into UAV autonomy as a selective, on-demand recovery module rather than an always-active controller. A learned admission gate (learned-CVI) decides when remote reasoning is worth its latency and token cost. In a 400-run Gazebo/PX4 simulation, PMR raises hard-scenario success from 5% to 95% while cutting remote calls by 16.7% versus the best rule-based baseline.

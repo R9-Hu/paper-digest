@@ -4,6 +4,7 @@ authors: ["Zizhi Chen", "Yizhen Gao", "Minghao Han", "Yizhou Liu", "Zhaoyu Chen"
 source: "Arxiv"
 venue: ""
 published: "2025-12-15"
+published_time: "2025-12-15T08:09:40+00:00"
 year: 2025
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2025] Forging a Dynamic Memory Retrieval-Guide
 ---
 
 # Forging a Dynamic Memory: Retrieval-Guided Continual Learning for Generalist Medical Foundation Models
+
+*🕒 **Published (v1):** 2025-12-15 08:09 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2512.13072v1)*
 
 ## TL;DR
 PRIMED is a continual learning (CL) framework for generalist medical Vision-Language Models that integrates Retrieval-Augmented Generation (RAG) with dynamic knowledge distillation to combat catastrophic forgetting across diverse medical imaging domains. It builds an 18M-entry multimodal PubMed retrieval database and a 3,000-entry question pool to construct dynamic reference datasets at training time, replacing the inaccessible pretraining data typically required by distillation-based CL. The method achieves SOTA across all metrics on the authors' new MGTIL benchmark covering both intra- and inter-domain medical CL scenarios.

@@ -4,6 +4,7 @@ authors: ["Yanan Wang", "Shuaicong Hu", "Jian Liu", "Guohui Zhou", "Aiguo Wang",
 source: "Arxiv"
 venue: "ICML 2026"
 published: "2026-05-28"
+published_time: "2026-05-28T10:42:44+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Why Specialist Models Still Matter A Het
 ---
 
 # Why Specialist Models Still Matter: A Heterogeneous Multi-Agent Paradigm for Medical Artificial Intelligence
+
+*🕒 **Published (v1):** 2026-05-28 10:42 UTC  ·  **Source:** Arxiv  ·  **Venue:** ICML 2026  ·  [link](http://arxiv.org/abs/2605.29744v1)*
 
 ## TL;DR
 HetMedAgent is a heterogeneous multi-agent framework that orchestrates generalist LLMs, domain-specific specialist models, and human clinicians for multimodal clinical decision-making. It argues specialist models remain irreplaceable and outperforms both monolithic medical LLMs and homogeneous multi-agent systems on cardiovascular tasks. The core claim is that collaborative intelligence between agent types surpasses any single-paradigm approach.

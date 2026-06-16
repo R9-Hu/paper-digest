@@ -4,6 +4,7 @@ authors: ["Jundong Xu", "Qingchuan Li", "Jiaying Wu", "Yihuai Lan", "Shuyue Stel
 source: "HuggingFace"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T17:59:59+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[HuggingFace 2026] EvoArena Tracking Memory Evolution for
 ---
 
 # EvoArena: Tracking Memory Evolution for Robust LLM Agents in Dynamic Environments
+
+*🕒 **Published (v1):** 2026-06-11 17:59 UTC  ·  **Source:** HuggingFace  ·  [link](https://huggingface.co/papers/2606.13681)*
 
 ## TL;DR
 EvoArena is a benchmark suite evaluating LLM agents under persistent environment evolution across terminal workflows, software repositories, and social preferences—domains where interfaces, rules, codebases, and user preferences change over time. The authors also propose EvoMem, a git-like patch-based memory paradigm that records not just the latest memory state but the full evolution history (what changed, why, and from what prior state). Current strong agents average only 39.6% step accuracy on EvoArena, and EvoMem yields consistent but modest gains (+1.5% on EvoArena, +6.1%/+4.8% on GAIA/LoCoMo).

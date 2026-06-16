@@ -4,6 +4,7 @@ authors: ["Wei Wu"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T16:06:55+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] When Errors Become Narratives A Longitudinal
 ---
 
 # When Errors Become Narratives: A Longitudinal Taxonomy of Silent Failures in a Production LLM Agent Runtime
+
+*🕒 **Published (v1):** 2026-06-12 16:06 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14589v1)*
 
 ## TL;DR
 This paper presents a longitudinal empirical study of 22 production incidents in a continuously running personal-assistant LLM agent runtime, deriving a five-class mechanism-oriented taxonomy of silent failures. The central novel contribution is the "fail-plausible" failure mode (Class D): LLMs actively transform internal errors into fluent, plausible false output delivered to the user rather than signaling failure. Cross-cutting findings show that ~70% of silent failures were caught by a human reading pushed output, not by 4,286 unit tests or 827 governance checks.

@@ -4,6 +4,7 @@ authors: ["Animesh Tripathy", "Aswanth Krishnan"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T10:27:29+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Iterative Visual Thinking Teaching Vision-Language 
 ---
 
 # Iterative Visual Thinking: Teaching Vision-Language Models Spatial Self-Correction through Visual Feedback
+
+*🕒 **Published (v1):** 2026-06-11 10:27 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13156v1)*
 
 ## TL;DR
 VLMs achieve strong single-shot spatial grounding but catastrophically fail (−31pp Acc@0.5) when naively asked to iterate over rendered visualizations of their own predictions. Iterative Visual Thinking (IVT) closes this self-correction gap with a two-phase SFT+GRPO recipe, recovering and surpassing the base model on referring expression comprehension using only 2,400 training samples on a single GPU.

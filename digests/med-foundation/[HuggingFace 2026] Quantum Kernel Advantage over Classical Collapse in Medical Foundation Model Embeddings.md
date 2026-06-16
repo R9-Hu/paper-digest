@@ -4,6 +4,7 @@ authors: ["Sebastian Cajas Ord\u00f3\u00f1ez", "Felipe Ocampo Osorio", "Dax Ensh
 source: "HuggingFace"
 venue: ""
 published: "2026-04-27"
+published_time: "2026-04-27T15:21:53+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[HuggingFace 2026] Quantum Kernel Advantage over Clas
 ---
 
 # Quantum Kernel Advantage over Classical Collapse in Medical Foundation Model Embeddings
+
+*🕒 **Published (v1):** 2026-04-27 15:21 UTC  ·  **Source:** HuggingFace  ·  [link](https://huggingface.co/papers/2604.24597)*
 
 ## TL;DR
 This paper demonstrates quantum kernel advantage over classical SVM in noiseless simulation on a binary insurance classification task using frozen embeddings from three medical foundation models (MedSigLIP-448, RAD-DINO, ViT-patch32) applied to MIMIC-CXR chest radiographs. A two-tier fair comparison framework shows QSVM wins minority-class F1 in all 18 tested model×qubit configurations over untuned and hyperparameter-tuned classical baselines. The classical collapse is mechanistically explained by the structural low-rank degeneracy of linear kernel matrices after PCA-q compression.

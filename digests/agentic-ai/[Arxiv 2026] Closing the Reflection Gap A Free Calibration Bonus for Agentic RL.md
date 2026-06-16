@@ -4,6 +4,7 @@ authors: ["Yinglun Zhu"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T07:47:15+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] Closing the Reflection Gap A Free Calibratio
 ---
 
 # Closing the Reflection Gap: A Free Calibration Bonus for Agentic RL
+
+*🕒 **Published (v1):** 2026-06-12 07:47 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14211v1)*
 
 ## TL;DR
 LLM agents persistently mis-assess their own correctness even after observing concrete environment feedback (execution results, error messages)—a "reflection gap" that standard outcome-only RL barely closes due to a credit-assignment mismatch. RefGRPO fixes this by augmenting the GRPO reward with a cost-free calibration bonus (the indicator that the agent's binary self-assessment matches the actual outcome) and a two-stage decaying coefficient schedule. The result is simultaneous gains in reflection calibration and task accuracy, enabling verifier-free self-improvement and better test-time selective prediction.

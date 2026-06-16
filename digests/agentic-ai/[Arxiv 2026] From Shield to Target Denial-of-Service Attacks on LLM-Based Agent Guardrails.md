@@ -4,6 +4,7 @@ authors: ["Yuguang Zhou", "Xunguang Wang", "Pingchuan Ma", "Zhantong Xue", "Zhao
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T14:49:00+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] From Shield to Target Denial-of-Service Atta
 ---
 
 # From Shield to Target: Denial-of-Service Attacks on LLM-Based Agent Guardrails
+
+*🕒 **Published (v1):** 2026-06-12 14:49 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14517v1)*
 
 ## TL;DR
 LLM-based guardrails protecting autonomous agents are vulnerable to a novel denial-of-service attack that exploits their schema-following behavior: adversarial payloads mimicking a guardrail's own analytical template trap it in unbounded reasoning loops. A beam-search optimization framework crafts transferable natural-language payloads achieving 13–63× token amplification on standalone guardrails and up to 148× latency amplification in end-to-end agent deployments.

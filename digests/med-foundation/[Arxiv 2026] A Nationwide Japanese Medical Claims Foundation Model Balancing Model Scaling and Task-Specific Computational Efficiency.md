@@ -4,6 +4,7 @@ authors: ["Nanae Aratake", "Taisei Tosaki", "Yuji Okamoto", "Eiichiro Uchino", "
 source: "Arxiv"
 venue: ""
 published: "2026-04-24"
+published_time: "2026-04-24T08:32:47+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] A Nationwide Japanese Medical Claims Fou
 ---
 
 # A Nationwide Japanese Medical Claims Foundation Model: Balancing Model Scaling and Task-Specific Computational Efficiency
+
+*🕒 **Published (v1):** 2026-04-24 08:32 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2604.22348v1)*
 
 ## TL;DR
 This paper systematically investigates scaling laws for encoder-only Transformer foundation models pretrained on structured Japanese medical claims data (2.3M patients, 519-hospital nationwide database). It finds that downstream task performance saturates at task-dependent model sizes—disease prediction benefits from larger models (32M–101M parameters) while medication prediction saturates at 11M—challenging the "bigger is always better" paradigm in structured healthcare AI.

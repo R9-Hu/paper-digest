@@ -4,6 +4,7 @@ authors: ["Michelle Stegeman", "Lena Philipp", "Fennie van der Graaf", "Marina D
 source: "Arxiv"
 venue: ""
 published: "2026-03-03"
+published_time: "2026-03-03T09:27:06+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] Designing UNICORN a Unified Benchmark fo
 ---
 
 # Designing UNICORN: a Unified Benchmark for Imaging in Computational Pathology, Radiology, and Natural Language
+
+*🕒 **Published (v1):** 2026-03-03 09:27 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2603.02790v1)*
 
 ## TL;DR
 UNICORN is the first unified public benchmark for evaluating medical foundation models simultaneously across radiology, digital pathology, and clinical text, spanning 20 tasks under a single standardized protocol. It introduces a two-step evaluation framework that decouples frozen encoder inference from lightweight few-shot adaptation, isolating representation quality. A new aggregate metric—the UNICORN Score—enables direct cross-model, cross-domain comparison.

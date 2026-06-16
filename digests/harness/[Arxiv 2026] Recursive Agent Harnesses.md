@@ -4,6 +4,7 @@ authors: ["Elias Lumer", "Sahil Sen", "Kevin Paul", "Vamse Kumar Subbiah"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T17:47:30+00:00"
 year: 2026
 topic: "Harnesses / Meta-Harnesses"
 topic_slug: "harness"
@@ -13,6 +14,8 @@ pdf: "paper/harness/[Arxiv 2026] Recursive Agent Harnesses.pdf"
 ---
 
 # Recursive Agent Harnesses
+
+*🕒 **Published (v1):** 2026-06-11 17:47 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13643v1)*
 
 ## TL;DR
 Recursive Agent Harnesses (RAH) names and evaluates the pattern of using a full agent harness—with filesystem tools, code execution, and planning—as the recursive unit instead of a bare model call. A parent agent generates and executes a script that spawns parallel subagent harnesses per document entry, bypassing per-turn tool-call caps. On Oolong-Synthetic (199 samples, up to 4M tokens), RAH improves the Codex coding-agent baseline from 71.75% to 81.36% with the backbone held fixed at GPT-5.

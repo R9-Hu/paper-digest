@@ -4,6 +4,7 @@ authors: ["Han Liu", "Bogdan Georgescu", "Yanbo Zhang", "Youngjin Yoo", "Michael
 source: "Arxiv"
 venue: ""
 published: "2025-12-15"
+published_time: "2025-12-15T00:01:19+00:00"
 year: 2025
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2025] Revisiting 2D Foundation Models for Scal
 ---
 
 # Revisiting 2D Foundation Models for Scalable 3D Medical Image Classification
+
+*🕒 **Published (v1):** 2025-12-15 00:01 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2512.12887v3)*
 
 ## TL;DR
 AnyMC3D adapts frozen 2D foundation models (FMs) to 3D medical image classification via lightweight task-specific LoRA adapters (~1M parameters per task) and a query-based attention pooling slice aggregator. It achieves 0.894 average AUROC across a 12-task benchmark, matching or surpassing 3D medical FMs that require 40–50× more trainable parameters. A key finding is that properly adapted general-purpose 2D FMs (e.g., DINOv2/v3) can match domain-specific medical FMs.

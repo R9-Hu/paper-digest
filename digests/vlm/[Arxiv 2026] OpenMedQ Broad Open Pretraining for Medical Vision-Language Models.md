@@ -4,6 +4,7 @@ authors: ["Ibrahim Gulluk", "Max Van Puyvelde", "Olivier Gevaert"]
 source: "Arxiv"
 venue: "MIDL"
 published: "2026-06-11"
+published_time: "2026-06-11T06:24:44+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] OpenMedQ Broad Open Pretraining for Medical Vision-
 ---
 
 # OpenMedQ: Broad Open Pretraining for Medical Vision-Language Models
+
+*🕒 **Published (v1):** 2026-06-11 06:24 UTC  ·  **Source:** Arxiv  ·  **Venue:** MIDL  ·  [link](http://arxiv.org/abs/2606.12953v1)*
 
 ## TL;DR
 OpenMedQ is a fully-open medical VLM (ViT-base + LLaMA-7B with LoRA) pretrained on the broadest publicly available medical mix to date: 14 datasets totaling ~3.35M samples spanning pathology, radiology, microscopy, and text-only clinical QA. It achieves state-of-the-art BLEU-1 on PathVQA (75.9), outperforming Med-PaLM M variants up to 562B parameters, while its vision encoder leads three strong contrastive baselines on average classification transfer across 8 unseen benchmarks.

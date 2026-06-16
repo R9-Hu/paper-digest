@@ -4,6 +4,7 @@ authors: ["Shadi Heenatigala", "Hasanika Samarasinghe"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T16:23:33+00:00"
 year: 2026
 topic: "Agentic AI / LLM Agents"
 topic_slug: "agentic-ai"
@@ -13,6 +14,8 @@ pdf: "paper/agentic-ai/[Arxiv 2026] A Statistical and Machine Learning Framework
 ---
 
 # A Statistical and Machine Learning Framework for Operational Threshold Detection and Deployable Dispatch Controller Development in Hydrogen Multi-Energy Systems
+
+*🕒 **Published (v1):** 2026-06-12 16:23 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14601v1)*
 
 ## TL;DR
 This paper applies a six-method statistical and machine learning pipeline — including Kruskal-Wallis tests, multiple regression, Random Forest, LSTM, and DDPG — to one year of five-minute operational data from a hydrogen multi-energy system (H-MES) to characterize dispatch dynamics and train a deployable electrolyzer controller. The central finding is that solar irradiance acts as a binary activation threshold (ε² = 0.457) rather than a continuous driver, and wind output carries unique non-linear predictive information (45.16% %IncMSE) invisible to parametric regression. A DDPG agent trained offline on 14,999 transitions learns a continuous hydrogen revenue-maximizing dispatch policy.

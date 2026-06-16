@@ -4,6 +4,7 @@ authors: ["Ziyu Gao", "Xinyuan Wu", "Xiaolan Chen", "Zhuoran Liu", "Ruoyu Chen",
 source: "Arxiv"
 venue: ""
 published: "2026-03-14"
+published_time: "2026-03-14T17:19:57+00:00"
 year: 2026
 topic: "Foundation Models in Medicine"
 topic_slug: "med-foundation"
@@ -13,6 +14,8 @@ pdf: "paper/med-foundation/[Arxiv 2026] EyeWorld A Generative World Model of Ocu
 ---
 
 # EyeWorld: A Generative World Model of Ocular State and Dynamics
+
+*🕒 **Published (v1):** 2026-03-14 17:19 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2603.14039v1)*
 
 ## TL;DR
 EyeWorld is a generative world model that represents the eye as a partially observed dynamical system, learning a single observation-stable latent ocular state shared across seven ophthalmic imaging modalities. It unifies segmentation, cross-modality translation, quality enhancement, and longitudinal disease-progression forecasting within one framework. By adding time-conditioned state transitions via longitudinal supervision, it moves beyond static representation learning to explicit disease dynamics modeling.

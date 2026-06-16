@@ -4,6 +4,7 @@ authors: ["Qingping Zeng", "Fei She"]
 source: "Arxiv"
 venue: ""
 published: "2026-06-12"
+published_time: "2026-06-12T06:27:00+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Encoder Winners Do Not Reliably Transfer Across VLA
 ---
 
 # Encoder Winners Do Not Reliably Transfer Across VLA Backbone Scale: A Frozen-Backbone Grafting Diagnostic
+
+*🕒 **Published (v1):** 2026-06-12 06:27 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.14153v1)*
 
 ## TL;DR
 Vision-language-action (VLA) policies inherit their vision encoders from upstream VLM releases without backbone-specific ablations; this paper asks whether a small-backbone encoder winner transfers to a larger backbone. Using a frozen-backbone grafting diagnostic across SmolVLA-450M and π0.5-3.3B, the authors show that the top-1 encoder choice is backbone-dependent and cannot be safely inferred from small-scale results.

@@ -4,6 +4,7 @@ authors: ["Gokul Puthumanaillam", "Vardhan Dongre", "Pranay Thangeda", "Hooshang
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T07:12:17+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] Trajectory-Level Redirection Attacks on Vision-Lang
 ---
 
 # Trajectory-Level Redirection Attacks on Vision-Language-Action Models
+
+*🕒 **Published (v1):** 2026-06-11 07:12 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.12978v1)*
 
 ## TL;DR
 This paper formalizes **command-preserving trajectory redirection**: a single near-benign text perturbation (median 3.4 character edits) issued once before a robot episode can redirect a frozen VLA policy to an adversary-specified physical goal while appearing to still specify the intended task. An on-policy prompt search algorithm (analogous to DAgger) discovers such prompts by matching closed-loop rollout actions to a target teacher, achieving >90% attack success rate on 7 of 9 evaluated VLA architectures.

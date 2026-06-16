@@ -4,6 +4,7 @@ authors: ["Seungjae Lee", "Yoonkyo Jung", "Jusuk Lee", "Jonghun Shin", "Amir Hos
 source: "Arxiv"
 venue: ""
 published: "2026-06-11"
+published_time: "2026-06-11T17:59:56+00:00"
 year: 2026
 topic: "Vision-Language Models"
 topic_slug: "vlm"
@@ -13,6 +14,8 @@ pdf: "paper/vlm/[Arxiv 2026] $\u03bc_0$ A Scalable 3D Interaction-Trace World Mo
 ---
 
 # $μ_0$: A Scalable 3D Interaction-Trace World Model
+
+*🕒 **Published (v1):** 2026-06-11 17:59 UTC  ·  **Source:** Arxiv  ·  [link](http://arxiv.org/abs/2606.13769v1)*
 
 ## TL;DR
 µ0 is a query-conditioned world model that predicts smooth 3D trajectories for semantically selected interaction keypoints (objects, tools, hands, contact regions) rather than pixels or robot-specific actions. A scalable data engine (TraceExtract) converts heterogeneous human and robot videos into event-captioned 3D trace supervision without any action labels. The frozen pretrained µ0 can be paired with lightweight action experts for downstream robot control, matching or exceeding action-labeled VLAs like π0.

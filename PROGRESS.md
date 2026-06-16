@@ -43,6 +43,11 @@ Last updated: 2026-06-15 (✅ COMPLETE — end-to-end verified)
 
 ## Add-ons (post-launch)
 - ✅ **Obsidian beautification** — callouts, property tags, emoji headings, table indexes.
+- ✅ **Overview page restructure** (site + Obsidian) — fixed intro callout → concise
+  timestamped **Timeline** (from Analyst's new `## Timeline` section; falls back to
+  per-month counts) → **Trend digest** (overview teaser + link to full analysis) →
+  Papers table. Per-topic `intro` added to config.yaml. Home page is an indented
+  tree; website left nav uses `navigation.indexes` for clickable hierarchy.
 - ✅ **Model checking + auto-fallback** (`harness/modelcheck.py`) — pre-flight probes
   pinned models via `claude -p`; falls back to the family alias (opus/sonnet/haiku)
   if an ID is retired. Flags: `--check-models`, `--skip-model-check`. Verified

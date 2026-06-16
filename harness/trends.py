@@ -35,6 +35,13 @@ GitHub-flavored Markdown trend report using EXACTLY these H2 sections:
 ## Overview
 (3-5 sentences framing the topic and the state of play.)
 
+## Timeline
+(A concise, abstract chronological timeline of how the topic developed — one bullet
+per milestone/phase, each prefixed with a timestamp. Use the format
+`- **YYYY-MM**: one-line milestone` (use `YYYY` alone if a month is not meaningful).
+6-10 bullets, oldest first. Keep each to a single line; this is the at-a-glance
+history, not the prose narrative below.)
+
 ## How the field developed
 (A chronological narrative / phases, referencing dates and the shift in approaches.)
 

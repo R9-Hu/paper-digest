@@ -31,6 +31,7 @@ class Topic:
     keywords: list[str] = field(default_factory=list)
     huggingface: bool = True
     conferences: list[str] = field(default_factory=list)
+    intro: str = ""   # fixed human-written topic description for the overview page
 
 
 @dataclass
@@ -68,6 +69,7 @@ def load_config(path: Path | str = CONFIG_PATH) -> Config:
             keywords=list(t.get("keywords", [])),
             huggingface=bool(t.get("huggingface", True)),
             conferences=list(t.get("conferences", [])),
+            intro=str(t.get("intro", "")).strip(),
         )
         for t in data.get("topics", [])
     ]

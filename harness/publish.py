@@ -37,6 +37,83 @@ def _topic_rows(conn, slug: str):
 
 
 # ----------------------------------------------------------------------------- #
+# Shared overview-page sections (used by both the website and Obsidian)
+# Order per topic page: intro -> timeline -> trend digest (+link) -> papers.
+# ----------------------------------------------------------------------------- #
+def _extract_section(trend_md: str, name: str) -> str | None:
+    """Return the body of the `## <name>` section from a raw trend file."""
+    body = _strip_front_matter(trend_md)
+    for chunk in re.split(r"(?m)^##[ \t]+", body)[1:]:
+        nl = chunk.find("\n")
+        title = (chunk[:nl] if nl != -1 else chunk).strip()
+        content = (chunk[nl + 1:] if nl != -1 else "").strip()
+        if title.lower().startswith(name.lower()):
+            return content
+    return None
+
+
+def _first_paragraph(text: str) -> str:
+    for block in re.split(r"\n\s*\n", text.strip()):
+        if block.strip():
+            return block.strip()
+    return ""
+
+
+def _topic_intro(topic) -> str:
+    if topic.intro:
+        return topic.intro
+    kw = ", ".join(topic.keywords[:5])
+    return f"Research on {topic.name}." + (f" Tracked keywords: {kw}." if kw else "")
+
+
+def _month_counts(rows) -> list[str]:
+    counts: dict[str, int] = {}
+    for row in rows:
+        pub = row["published"]
+        if pub and len(pub) >= 7:
+            counts[pub[:7]] = counts.get(pub[:7], 0) + 1
+    out = []
+    for ym in sorted(counts):
+        n = counts[ym]
+        out.append(f"- **{ym}** — {n} paper{'s' if n != 1 else ''} digested")
+    return out
+
+
+def _timeline_bullets(trend_md: str | None, rows) -> list[str]:
+    """Concise, timestamped timeline. Prefer the Analyst's Timeline section;
+    fall back to per-month paper counts so the section is never empty."""
+    if trend_md:
+        section = _extract_section(trend_md, "Timeline")
+        if section:
+            bullets = [ln.rstrip() for ln in section.splitlines()
+                       if ln.lstrip().startswith(("-", "*"))]
+            if bullets:
+                return bullets
+    return _month_counts(rows)
+
+
+def _intro_section(topic) -> list[str]:
+    return ["> [!info] About this topic", _quote(_topic_intro(topic)), ""]
+
+
+def _timeline_section(trend_md: str | None, rows) -> list[str]:
+    bullets = _timeline_bullets(trend_md, rows)
+    return ["## 🕒 Timeline", ""] + (bullets or ["_Not enough data yet._"]) + [""]
+
+
+def _trend_digest_section(trend_md: str | None, trend_link_md: str | None) -> list[str]:
+    out = ["## 📈 Trend", ""]
+    overview = _first_paragraph(_extract_section(trend_md, "Overview") or "") if trend_md else ""
+    if overview:
+        out += ["> [!abstract] Where the field stands", _quote(overview), ""]
+    if trend_link_md:
+        out += [f"➡️ **{trend_link_md}**", ""]
+    elif not overview:
+        out += ["_No trend analysis yet._", ""]
+    return out
+
+
+# ----------------------------------------------------------------------------- #
 # GitHub Pages (MkDocs Material)
 # ----------------------------------------------------------------------------- #
 def build_site(conn, cfg: Config) -> None:
@@ -54,6 +131,8 @@ def build_site(conn, cfg: Config) -> None:
         "",
         "An auto-generated radar of newly published research, digested and trend-analyzed daily.",
         "",
+        "## Topics",
+        "",
     ]
 
     for topic in cfg.topics:
@@ -61,9 +140,16 @@ def build_site(conn, cfg: Config) -> None:
         tdir = docs / topic.slug
         (tdir / "papers").mkdir(parents=True, exist_ok=True)
 
-        # Per-paper pages (slugified filenames for clean URLs).
+        # Trend file (raw) — source for the timeline + trend-digest sections.
+        trend_src = config.TREND_DIR / f"{topic.slug}.md"
+        has_trend = trend_src.exists()
+        trend_md = trend_src.read_text(encoding="utf-8") if has_trend else None
+        if has_trend:
+            (tdir / "trend.md").write_text(trend_md, encoding="utf-8")
+
+        # Per-paper pages (slugified filenames for clean URLs) + table rows.
         paper_nav = []
-        paper_index_lines = []
+        paper_rows = []
         used_slugs: set[str] = set()
         for row in rows:
             src = config.ROOT / (row["digest_path"] or "")
@@ -80,46 +166,37 @@ def build_site(conn, cfg: Config) -> None:
                 src.read_text(encoding="utf-8"), encoding="utf-8"
             )
             paper_nav.append({row["title"]: f"{topic.slug}/papers/{pslug}.md"})
-            meta = []
-            if row["published"]:
-                meta.append(row["published"])
-            if row["venue"]:
-                meta.append(row["venue"])
-            suffix = f" — {' · '.join(meta)}" if meta else ""
-            paper_index_lines.append(
-                f"- [{row['title']}](papers/{pslug}.md){suffix}"
-            )
+            date = row["published"] or "—"
+            venue = _esc(row["venue"] or "—")
+            paper_rows.append(f"| {date} | [{_esc(row['title'])}](papers/{pslug}.md) | {venue} |")
 
-        # Trend page.
-        trend_src = config.TREND_DIR / f"{topic.slug}.md"
-        has_trend = trend_src.exists()
-        if has_trend:
-            (tdir / "trend.md").write_text(
-                trend_src.read_text(encoding="utf-8"), encoding="utf-8"
-            )
+        # Topic overview page: intro -> timeline -> trend digest (+link) -> papers.
+        trend_link = "[Read the full trend analysis](trend.md)" if has_trend else None
+        page = [f"# {topic.name}", ""]
+        page += _intro_section(topic)
+        page += _timeline_section(trend_md, rows)
+        page += _trend_digest_section(trend_md, trend_link)
+        page.append(f"## 📄 Papers ({len(paper_rows)})")
+        page.append("")
+        if paper_rows:
+            page += ["| Date | Paper | Venue |", "| --- | --- | --- |"] + paper_rows
+        else:
+            page.append("_No digests yet._")
+        (tdir / "index.md").write_text("\n".join(page) + "\n", encoding="utf-8")
 
-        # Topic landing page.
-        landing = [f"# {topic.name}", ""]
-        if has_trend:
-            landing.append("➡️ **[Trend analysis](trend.md)**")
-            landing.append("")
-        landing.append(f"## Papers ({len(paper_index_lines)})")
-        landing.append("")
-        landing += paper_index_lines or ["_No digests yet._"]
-        (tdir / "index.md").write_text("\n".join(landing) + "\n", encoding="utf-8")
-
-        # Nav for this topic.
-        topic_children = [{"Overview": f"{topic.slug}/index.md"}]
+        # Nav: bare index path first => clickable section header (navigation.indexes).
+        topic_children = [f"{topic.slug}/index.md"]
         if has_trend:
             topic_children.append({"Trend analysis": f"{topic.slug}/trend.md"})
         if paper_nav:
             topic_children.append({"Papers": paper_nav})
         nav.append({topic.name: topic_children})
 
-        home_lines.append(
-            f"- **[{topic.name}]({topic.slug}/index.md)** — {len(paper_index_lines)} papers"
-            + ("  ·  [trend](" + f"{topic.slug}/trend.md)" if has_trend else "")
-        )
+        # Home tree — indentation shows the level relations.
+        home_lines.append(f"- **[{topic.name}]({topic.slug}/index.md)** — {len(paper_rows)} papers")
+        if has_trend:
+            home_lines.append(f"    - [📈 Trend analysis]({topic.slug}/trend.md)")
+        home_lines.append(f"    - [📄 Browse papers]({topic.slug}/index.md)")
 
     (docs / "index.md").write_text("\n".join(home_lines) + "\n", encoding="utf-8")
 
@@ -128,7 +205,8 @@ def build_site(conn, cfg: Config) -> None:
         "site_description": "Daily auto-generated research paper digests and trend analysis",
         "theme": {
             "name": "material",
-            "features": ["navigation.sections", "navigation.top", "content.code.copy", "search.suggest"],
+            "features": ["navigation.indexes", "navigation.top", "navigation.tracking",
+                         "toc.follow", "content.code.copy", "search.suggest"],
             "palette": [
                 {"scheme": "default", "primary": "indigo", "accent": "indigo",
                  "toggle": {"icon": "material/weather-night", "name": "Dark mode"}},
@@ -185,8 +263,8 @@ def _md_link(display: str, target: str) -> str:
 _HEADING_EMOJI = [
     ("key contribution", "⭐"), ("problem", "🎯"), ("method", "🧩"),
     ("result", "📊"), ("limitation", "⚠️"), ("relevance", "🔗"), ("tag", "🏷️"),
-    ("how the field", "📈"), ("current state", "🗺️"), ("open problem", "❓"),
-    ("key paper", "📌"), ("overview", "🔭"),
+    ("timeline", "🕒"), ("how the field", "📈"), ("current state", "🗺️"),
+    ("open problem", "❓"), ("key paper", "📌"), ("overview", "🔭"),
 ]
 
 
@@ -330,26 +408,27 @@ def sync_obsidian(conn, cfg: Config) -> None:
         tdir = vault / folder
         tdir.mkdir(parents=True, exist_ok=True)
 
+        trend_src = config.TREND_DIR / f"{topic.slug}.md"
+        trend_name = f"_Trend - {folder}.md"
+        has_trend = trend_src.exists()
+        trend_md = trend_src.read_text(encoding="utf-8") if has_trend else None
+        if has_trend:
+            (tdir / trend_name).write_text(beautify_trend(trend_md), encoding="utf-8")
+
+        # Overview note: intro -> timeline -> trend digest (+link) -> papers.
         index = [
             "---", f"title: {json.dumps(topic.name)}", "cssclasses: [paper-index]", "---",
             f"# {topic.name}", "",
         ]
-
-        trend_src = config.TREND_DIR / f"{topic.slug}.md"
-        trend_name = f"_Trend - {folder}.md"
-        has_trend = trend_src.exists()
-        if has_trend:
-            (tdir / trend_name).write_text(
-                beautify_trend(trend_src.read_text(encoding="utf-8")), encoding="utf-8")
-            index.append("> [!abstract] Trend analysis")
-            index.append("> ➡️ " + _md_link("Read the trend analysis", trend_name))
-            index.append("")
+        index += _intro_section(topic)
+        index += _timeline_section(trend_md, rows)
+        trend_link = _md_link("Read the full trend analysis", trend_name) if has_trend else None
+        index += _trend_digest_section(trend_md, trend_link)
 
         index.append(f"## 📄 Papers ({len(rows)})")
         index.append("")
         if rows:
-            index.append("| Date | Paper | Venue |")
-            index.append("| --- | --- | --- |")
+            index += ["| Date | Paper | Venue |", "| --- | --- | --- |"]
             for row in rows:
                 src = config.ROOT / (row["digest_path"] or "")
                 if not src.exists():
@@ -359,8 +438,7 @@ def sync_obsidian(conn, cfg: Config) -> None:
                     beautify_digest(src.read_text(encoding="utf-8")), encoding="utf-8")
                 date = row["published"] or "—"
                 venue = _esc(row["venue"] or "—")
-                link = _md_link(_esc(row["title"]), fname)
-                index.append(f"| {date} | {link} | {venue} |")
+                index.append(f"| {date} | {_md_link(_esc(row['title']), fname)} | {venue} |")
         else:
             index.append("_No digests yet._")
 
@@ -375,12 +453,13 @@ def sync_obsidian(conn, cfg: Config) -> None:
         f"> [!note] Daily research radar — {total_papers} papers across {len(cfg.topics)} topics",
         f"> _Last updated: {today}._", "",
         "## Topics", "",
-        "| Topic | Papers | Trend |",
-        "| --- | --- | --- |",
     ]
+    # Indented tree — nesting shows the level relations.
     for name, n, has_trend, idx_path, trend_path in home_rows:
-        trend_cell = _md_link("📈 trend", trend_path) if has_trend else "—"
-        home.append(f"| {_md_link(_esc(name), idx_path)} | {n} | {trend_cell} |")
+        home.append(f"- **{_md_link(name, idx_path)}** — {n} papers")
+        if has_trend:
+            home.append("    - " + _md_link("📈 Trend analysis", trend_path))
+        home.append("    - " + _md_link("📄 Papers & overview", idx_path))
     (vault / "Home.md").write_text("\n".join(home) + "\n", encoding="utf-8")
     log.info("obsidian vault synced (beautified): %s", vault)
 

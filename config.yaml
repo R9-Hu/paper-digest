@@ -19,6 +19,12 @@ topics:
     keywords: ["vision-language", "VLM", "multimodal LLM", "vision language model"]
     huggingface: true
     conferences: [CVPR, ICCV, NeurIPS, ICLR]
+    intro: >
+      Vision-Language Models couple a visual encoder with a language model so a
+      single system can perceive images (and video) and reason or converse about
+      them. This topic tracks architectures, training recipes, benchmarks,
+      grounding/interpretability, and the move toward unified multimodal
+      foundation models.
 
   - name: "Foundation Models in Medicine"
     slug: med-foundation
@@ -27,6 +33,12 @@ topics:
     keywords: ["medical foundation model", "clinical LLM", "generalist medical AI", "medical image foundation"]
     huggingface: true
     conferences: [MICCAI, CVPR, NeurIPS]
+    intro: >
+      Foundation models for medicine are large pretrained models adapted to
+      clinical and biomedical data — medical imaging (radiology, pathology,
+      ophthalmology), clinical text, and multimodal records. This topic tracks
+      generalist medical models, self-supervised pretraining, clinical LLMs and
+      agents, evaluation, and safety/robustness for deployment.
 
   - name: "Agentic AI / LLM Agents"
     slug: agentic-ai
@@ -35,6 +47,11 @@ topics:
     keywords: ["LLM agent", "multi-agent", "tool use", "agentic", "autonomous agent"]
     huggingface: true
     conferences: [NeurIPS, ICLR, ICML]
+    intro: >
+      Agentic AI studies LLMs that plan, use tools, and act over multiple steps to
+      accomplish goals — single agents and multi-agent systems. This topic tracks
+      reasoning and planning, tool use and function calling, memory, multi-agent
+      orchestration and communication, training (RL for agents), and benchmarks.
 
   - name: "Harnesses / Meta-Harnesses"
     slug: harness
@@ -43,3 +60,9 @@ topics:
     keywords: ["agent harness", "agent scaffolding", "agent orchestration", "agent framework", "agentic workflow"]
     huggingface: true
     conferences: [NeurIPS, ICLR]
+    intro: >
+      The harness is the scaffold around a model — prompts, tools, memory, control
+      flow, and environment. This topic tracks the harness as a first-class
+      research object: composable/evolvable harness frameworks, learned
+      controllers and orchestration policies, workflow optimization, environment
+      engineering, and benchmarks that hold the model fixed to measure scaffolding.

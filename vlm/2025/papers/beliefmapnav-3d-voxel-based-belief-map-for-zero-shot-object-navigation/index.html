@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5549,8 +5538,6 @@
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>BeliefMapNav directly addresses a known failure mode of VLMs in embodied AI: poor spatial reasoning when used as a direct goal-selection oracle. Rather than querying a VLM for a next waypoint, the system grounds CLIP visual-language embeddings into a persistent 3D spatial structure, using language only where it excels (commonsense landmark generation via GPT-4o) while delegating spatial memory to the voxel map. This hybrid architecture—VLM/LLM as semantic prior generator, not spatial reasoner—is a concrete design pattern for integrating foundation models into robotics perception pipelines. The ablation confirming that CLIP and BLIP-2 perform comparably (while BLIP lags) also provides practical encoder selection guidance for retrieval-based navigation tasks.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="vlm-embodied-ai-zero-shot-navigation-spatial-reasoning-semantic-mapping-llm-grounding-clip-object-navigation">vlm #embodied-ai #zero-shot-navigation #spatial-reasoning #semantic-mapping #llm-grounding #clip #object-navigation<a class="headerlink" href="#vlm-embodied-ai-zero-shot-navigation-spatial-reasoning-semantic-mapping-llm-grounding-clip-object-navigation" title="Permanent link">&para;</a></h1>
 
 
 

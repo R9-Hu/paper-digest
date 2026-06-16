@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5556,8 +5545,6 @@
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>AutoFSM is a concrete domain-specific meta-harness: it wraps a backend tool (<code>fsm2sv</code>/Verilator/iverilog) with a multi-agent orchestration layer (MetaGPT) that manages IR generation, verification, compilation, co-simulation, fault diagnosis, and repair as a deterministic pipeline with feedback loops. The pattern of using an IR as a stable intermediate artifact to decouple LLM reasoning from brittle syntax generation is directly applicable to any harness that drives LLMs to produce structured tool inputs. The Judger/Fixer loop—where a diagnostic agent analyzes execution traces to route repairs to the correct upstream artifact—is a reusable meta-harness design pattern for iterative code generation harnesses. This paper demonstrates how specialized toolchain integration (SystemC, fsm2sv) within a multi-agent harness can replace the need for human-authored golden references, a key scalability challenge for harness designers.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="multi-agent-code-generation-hardware-design-intermediate-representation-automated-testing-fsm-rtl-benchmark">multi-agent #code-generation #hardware-design #intermediate-representation #automated-testing #fsm #rtl #benchmark<a class="headerlink" href="#multi-agent-code-generation-hardware-design-intermediate-representation-automated-testing-fsm-rtl-benchmark" title="Permanent link">&para;</a></h1>
 
 
 

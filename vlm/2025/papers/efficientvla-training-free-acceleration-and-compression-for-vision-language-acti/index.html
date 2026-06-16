@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5562,8 +5551,6 @@
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>EfficientVLA directly addresses a key deployment bottleneck for VLMs embedded in action-generation pipelines: the LLM backbone (Llama2-7B) dominates both memory and latency, and standard VLM acceleration techniques (visual token pruning, KV caching) are insufficient in isolation when coupled with a diffusion decoder. The task-relevance + diversity token selection strategy is a transferable contribution applicable to any VLM where cross-attention scores to text tokens can be used to prioritize visual inputs. The layer-importance metric based on inter-layer cosine similarity of hidden states connects to a broader line of structured pruning work for LLMs, now contextualized in the embodied AI setting. For researchers tracking VLMs, this paper establishes that holistic, multi-axis compression is necessary once a VLM is embedded in a multi-component inference pipeline, as bottlenecks shift dynamically across modules.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="vla-efficiency-inference-acceleration-visual-token-pruning-llm-pruning-diffusion-policy-training-free-robotic-manipulation">vla #efficiency #inference-acceleration #visual-token-pruning #llm-pruning #diffusion-policy #training-free #robotic-manipulation<a class="headerlink" href="#vla-efficiency-inference-acceleration-visual-token-pruning-llm-pruning-diffusion-policy-training-free-robotic-manipulation" title="Permanent link">&para;</a></h1>
 
 
 

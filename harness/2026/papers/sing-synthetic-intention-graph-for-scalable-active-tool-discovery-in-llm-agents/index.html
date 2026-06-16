@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5558,8 +5547,6 @@ At each step, the agent chooses DISCOVER, INVOKE, or RESPOND. On DISCOVER, it de
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>SING directly addresses the tool-management layer of agent harnesses: the problem of dynamically populating a harness's accessible tool set from a large, open-world MCP ecosystem without exhausting the context budget. The framework treats the harness's ReAct loop as a first-class citizen, inserting a DISCOVER action type that updates the tool inventory mid-execution, which is a concrete architectural pattern for harness designers managing plug-in tool registries. The 99.8% schema-token reduction and the finding that intention-guided retrieval can outperform a fixed ground-truth tool set have direct implications for meta-harness design: a meta-harness orchestrating many sub-agents could use a SING-like discovery layer to gate which tool schemas each sub-agent receives, rather than broadcasting the full registry. The paper also benchmarks against MCP-Zero, an earlier active-discovery harness, providing a useful comparative baseline for researchers tracking the evolution of harness-level tool management.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="tool-retrieval-mcp-agent-harness-knowledge-graph-retrieval-augmented-react-active-discovery-scalability">tool-retrieval #mcp #agent-harness #knowledge-graph #retrieval-augmented #react #active-discovery #scalability<a class="headerlink" href="#tool-retrieval-mcp-agent-harness-knowledge-graph-retrieval-augmented-react-active-discovery-scalability" title="Permanent link">&para;</a></h1>
 
 
 

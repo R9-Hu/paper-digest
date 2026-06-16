@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5518,40 +5507,37 @@
 <h1 id="adaptive-gpu-resource-allocation-for-multi-agent-collaborative-reasoning-in-serverless-environments">Adaptive GPU Resource Allocation for Multi-Agent Collaborative Reasoning in Serverless Environments<a class="headerlink" href="#adaptive-gpu-resource-allocation-for-multi-agent-collaborative-reasoning-in-serverless-environments" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-12-15 09:21 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="https://arxiv.org/abs/2512.22149">link</a></em></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>This paper proposes an adaptive GPU resource allocation framework for multi-agent LLM systems deployed on serverless GPU platforms. The framework uses an O(N) priority-weighted proportional allocation algorithm that achieves 85% latency reduction versus round-robin scheduling while matching static allocation's throughput. Evaluation is simulation-only over a 4-agent synthetic workload.</p>
+<p>This paper proposes an adaptive GPU resource allocation framework for multi-agent LLM systems on serverless platforms, using an O(N) priority-weighted demand algorithm. It achieves 85% latency reduction versus round-robin scheduling while matching static allocation throughput at identical cost, validated through simulation.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
-<p>Serverless GPU platforms lack scheduling strategies that account for the heterogeneous computational demands of multi-agent LLM systems: lightweight coordinator agents and heavyweight specialist agents have fundamentally different resource profiles, yet standard static equal-share and round-robin schedulers ignore these differences, causing queue buildup, starvation, and inefficient GPU utilization.</p>
+<p>Multi-agent LLM systems have heterogeneous GPU demands (lightweight coordinators vs. heavyweight specialists), yet serverless GPU platforms lack allocation strategies tuned for this workload mix. Static equal allocation and round-robin scheduling both fail: the former ignores demand asymmetry, the latter serializes concurrently-needed agents and causes queue buildup.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>The framework models each agent with a model size, base throughput, minimum GPU fraction, and priority level (1–3). At each 1-second timestep, a demand score is computed per agent as <code>d_i = λ_i(t) · R_i / P_i</code> (arrival rate × minimum GPU / priority), resources are proportionally allocated to demand scores, minimum GPU floors are enforced, and if total allocation exceeds capacity the allocations are normalized. The entire procedure is O(N). The 4-agent test system has one coordinator (500 MB, 10% min GPU, priority 1) and three domain specialists (1500–3000 MB, 25–35% min GPU, priorities 1–2).</p>
+<p>The framework models each agent by model size, base throughput, minimum GPU fraction, and priority level. At each timestep, a demand score is computed per agent as <code>d_i = λ_i(t) · R_i / P_i</code> (arrival rate × min GPU requirement ÷ priority), resources are allocated proportionally to these scores, minimum requirements are enforced to prevent starvation, and the total is renormalized if it exceeds capacity. The algorithm runs in O(N) time, enabling sub-millisecond reallocation. No learning is involved—the allocation is a closed-form calculation. The evaluation is simulation-only, modeling four agents (coordinator + NLP/Vision/Reasoning specialists) on a synthetic 100-second workload targeting NVIDIA T4 characteristics.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Priority-weighted proportional allocation algorithm with O(N) complexity enabling millisecond-scale reallocation</li>
-<li>Formalization of the multi-agent GPU allocation problem with heterogeneous minimum-resource constraints in serverless settings</li>
-<li>Simulation study comparing adaptive vs. static-equal vs. round-robin strategies across latency, throughput, cost, and GPU utilization</li>
-<li>Practical deployment guidelines: agent profiling methodology, priority configuration, and minimum GPU setting heuristics</li>
+<li>Priority-weighted demand metric combining arrival rate, minimum resource floor, and agent priority into a single O(N) allocation signal.</li>
+<li>Enforcement of per-agent minimum GPU floors within a normalized capacity constraint, preventing starvation under overload.</li>
+<li>Simulation study comparing adaptive, static-equal, and round-robin strategies across latency, throughput, cost, and queue-length metrics.</li>
+<li>Deployment guidelines: priority configuration for coordinators vs. specialists, minimum GPU sizing by model size.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Adaptive allocation achieves <strong>111.9 s average latency</strong> vs. 756.1 s (round-robin) and 110.3 s (static equal) — <strong>85% latency reduction</strong> over round-robin; comparable to static</li>
-<li>Total throughput: 58.1 rps (adaptive) vs. 60.0 rps (static equal, round-robin) — 3.2% reduction</li>
-<li>Cost identical across all strategies: $0.020 per 100 s</li>
-<li>Latency std dev: 3.8 s (adaptive) vs. 4.2 s (static) vs. 0.5 s (round-robin)</li>
-<li>Per-agent latency under adaptive: reasoning specialist 91.6 s (highest priority), vision specialist 128.6 s (lowest priority among non-coordinator)</li>
-<li>Under 3× demand overload: normalization degrades latency by only 24% without starvation; 10× arrival spikes adapted within 100 ms; allocation computation under 1 ms</li>
+<li>Adaptive avg latency: 111.9s vs. Static Equal 110.3s vs. Round-Robin 756.1s — <strong>85% latency reduction vs. round-robin</strong>.</li>
+<li>Total throughput: Adaptive 58.1 rps vs. 60.0 rps for both baselines (3.2% reduction).</li>
+<li>Cost identical across all three strategies: $0.020 per 100 seconds.</li>
+<li>Latency std dev: Adaptive 3.8s vs. Static 4.2s vs. Round-Robin 0.5s.</li>
+<li>Under 3× demand overload: latency degrades by 24% with no starvation; 10× spike handled within 100ms; allocation computation &lt; 1ms.</li>
+<li>Reasoning specialist (highest priority) achieves lowest per-agent latency (91.6s); vision specialist highest (128.6s).</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Evaluation is <strong>simulation-only</strong>; no empirical results on real serverless GPU hardware (Google Cloud Run, Azure Container Apps) are provided</li>
-<li>Only 4 agents tested; scalability claims beyond O(N) complexity are not empirically validated at large N</li>
-<li>Round-robin baseline is an unusually weak comparator; more realistic baselines (e.g., work-stealing, fair-share schedulers) are absent</li>
-<li>Latency metric (queue-length-derived seconds) is very high for all strategies, suggesting the simulation models severe overload rather than typical operation</li>
-<li>Throughput does not account for inter-agent communication latency or dependency graphs between agent calls</li>
-<li>α, β, γ cost-function weights are not specified or studied</li>
+<li>Evaluation is entirely simulation-based; no empirical validation on real serverless GPU hardware.</li>
+<li>The four-agent topology and workload parameters are synthetic and fixed; generalizability to larger or differently structured agent graphs is undemonstrated.</li>
+<li>The demand formula is heuristic with no learned or adaptive weighting; α, β, γ cost-function weights are not tuned empirically.</li>
+<li>No inter-agent communication or dependency modeling—agents are treated as independent queues, which understates coordination overhead in real workflows.</li>
+<li>Round-robin is a weak baseline; no comparison to existing GPU schedulers from related work (e.g., RL-based or pipeline-conscious methods).</li>
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
-<p>Multi-agent harnesses orchestrate multiple LLM-backed agents with heterogeneous compute profiles—exactly the workload this paper targets. The paper's insight that coordinator agents (the orchestration layer in a meta-harness) need different scheduling priority than specialist agents is directly applicable to harness designers choosing how to allocate inference budget. The O(N) adaptive allocator is a candidate scheduling primitive for meta-harnesses that dynamically spin up or down specialized subagents on cloud GPU backends. However, the simulation-only validation limits immediate practical applicability.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="multi-agent-gpu-scheduling-serverless-resource-allocation-inference-infrastructure-llm-deployment-workload-scheduling">multi-agent #gpu-scheduling #serverless #resource-allocation #inference-infrastructure #llm-deployment #workload-scheduling<a class="headerlink" href="#multi-agent-gpu-scheduling-serverless-resource-allocation-inference-infrastructure-llm-deployment-workload-scheduling" title="Permanent link">&para;</a></h1>
+<p>This work directly addresses the infrastructure layer that multi-agent harnesses execute on: how to allocate shared GPU capacity across heterogeneous agent roles (orchestrators vs. specialists) in real time. For harness designers, the priority-and-minimum-floor model maps naturally onto the coordinator/worker role split common in meta-harness architectures. The O(N) recalculation loop is analogous to a scheduling tick in a task dispatcher, making this a concrete reference for how a harness runtime could expose resource hints to an underlying serverless scheduler. The gap between simulation and production deployment, however, means practitioners should treat the numbers as directional rather than prescriptive.</p>
 
 
 

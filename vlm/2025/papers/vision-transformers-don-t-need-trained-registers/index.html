@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5551,8 +5540,6 @@
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>CLIP-based vision encoders power most VLMs, and the outlier-token artifact directly corrupts the language model's cross-attention to visual tokens, producing misleading text-to-image attribution. This paper provides a plug-in, zero-cost fix: applying test-time registers to the CLIP encoder of LLaVA-Llama-3-8B eliminates those artifacts without touching the LLM weights or retraining the vision encoder. For researchers building or probing VLMs, it also offers a cleaner lens on what visual information the language model actually attends to, which matters for hallucination analysis and mechanistic interpretability. More broadly, the finding that a handful of neurons in a shared vision encoder mediate a global computational role (outlier absorption) rather than feature detection raises important questions about how VLMs route and exploit visual information internally.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="vision-transformer-attention-artifact-register-tokens-training-free-interpretability-vlm-clip-mechanistic-interpretability">vision-transformer #attention-artifact #register-tokens #training-free #interpretability #vlm #clip #mechanistic-interpretability<a class="headerlink" href="#vision-transformer-attention-artifact-register-tokens-training-free-interpretability-vlm-clip-mechanistic-interpretability" title="Permanent link">&para;</a></h1>
 
 
 

@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5562,8 +5551,6 @@
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>Astraea directly addresses the runtime orchestration layer that underlies any multi-step agentic harness: it shows that naively wrapping LLM calls in a loop (ReAct, LangChain, AgentGraph) creates scheduling pathologies at the serving infrastructure level that no harness-level logic can fix. For meta-harness designers, this is a systems-level complement — the harness controls <em>what</em> agents do and <em>when</em> they call tools, while Astraea controls <em>how</em> those calls are prioritized and <em>whether</em> intermediate state (KV cache) survives the wait. The adaptive KV cache manager is especially relevant to harnesses that issue long-latency tool calls (image generation, search), where the choice of Preserve vs. Discard vs. Swap directly affects whether a harness iteration resumes at low cost or pays full recomputation. This work validates that lifecycle-aware state tracking — the same principle behind stateful meta-harnesses — must be applied at the serving layer as well as the orchestration layer.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="llm-serving-agentic-workflow-scheduling-kv-cache-latency-optimization-mlfq-hrrn-inference-infrastructure">llm-serving #agentic-workflow #scheduling #kv-cache #latency-optimization #mlfq #hrrn #inference-infrastructure<a class="headerlink" href="#llm-serving-agentic-workflow-scheduling-kv-cache-latency-optimization-mlfq-hrrn-inference-infrastructure" title="Permanent link">&para;</a></h1>
 
 
 

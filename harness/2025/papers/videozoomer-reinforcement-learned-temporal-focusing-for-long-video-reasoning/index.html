@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5552,8 +5541,6 @@
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>VideoZoomer is a concrete instance of a multi-turn agentic harness built on top of a base VLM: the framework defines the tool contract, observation loop, trajectory format, and reward structure that orchestrate the model's behavior—classic harness concerns. Its two-stage training pipeline (SFT cold-start with curated exemplar+reflection data, then RL policy refinement) is itself a meta-harness over the base model training loop, analogous to how meta-harnesses in language settings coordinate multiple reasoning or retrieval tools. The design of the conditional $R_\text{tool}$ reward and the reflection data generation loop—where a failing agent's trajectories are corrected and fed back—demonstrates a self-improving harness pattern directly applicable to any tool-augmented agentic system. The modular swap of the initial overview (uniform sampling → TSPO frame selector with +2–3 point gains) further illustrates how harness components can be hot-swapped without retraining the core agent.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="video-understanding-agentic-framework-reinforcement-learning-tool-use-multi-turn-reasoning-long-video-grpo-vlm">video-understanding #agentic-framework #reinforcement-learning #tool-use #multi-turn-reasoning #long-video #grpo #vlm<a class="headerlink" href="#video-understanding-agentic-framework-reinforcement-learning-tool-use-multi-turn-reasoning-long-video-grpo-vlm" title="Permanent link">&para;</a></h1>
 
 
 

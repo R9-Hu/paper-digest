@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5560,8 +5549,6 @@
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>HAWAII directly addresses a central efficiency bottleneck in VLMs: multi-expert visual encoding provides perceptual diversity but multiplies inference cost, and HAWAII shows this trade-off can be largely eliminated via post-hoc distillation into the existing single encoder. The MoLA design—separating teacher-specific from general adapters with independent routing—is a practical blueprint for conflict-free multi-teacher KD, applicable to any LoRA-amenable vision backbone. Token importance scoring that conditions on instruction text is also notable: it ties visual feature selection to the linguistic context, a pattern consistent with dynamic token pruning work (e.g., FastV) but applied at the distillation stage rather than inference. For VLM researchers, this work establishes that the LLaVA-1.5 architecture can absorb the complementary strengths of SAM, ConvNeXt, EVA, and Pix2Struct into its existing CLIP encoder with modest LoRA parameter overhead.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="vlm-knowledge-distillation-vision-encoder-lora-multi-teacher-token-importance-efficient-inference-moe">vlm #knowledge-distillation #vision-encoder #lora #multi-teacher #token-importance #efficient-inference #moe<a class="headerlink" href="#vlm-knowledge-distillation-vision-encoder-lora-multi-teacher-token-importance-efficient-inference-moe" title="Permanent link">&para;</a></h1>
 
 
 

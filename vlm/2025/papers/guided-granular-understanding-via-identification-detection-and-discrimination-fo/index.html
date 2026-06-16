@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5564,8 +5553,6 @@
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>GUIDED directly targets a fundamental limitation of CLIP-style VLMs: contrastive pretraining entangles subject and attribute semantics in a single embedding, making those embeddings poorly suited for compositional reasoning tasks like attribute-conditioned detection. The paper provides an important diagnostic (t-SNE, localization shift, score/IoU analysis) quantifying how CLIP embeddings fail under fine-grained prompts, which is broadly relevant to anyone using CLIP for retrieval, grounding, or detection. The solution—routing coarse semantics to a detection head and fine-grained semantics to a refined VLM—is a modular template applicable to other tasks where VLM embeddings conflate multiple semantic levels. The plug-in FGAD stage also demonstrates that a lightweight projection head on frozen CLIP can recover substantial fine-grained discriminability, offering a practical technique for the broader VLM adaptation literature.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="vlm-open-vocabulary-detection-fine-grained-clip-object-detection-semantic-disentanglement-detr-attribute-recognition">vlm #open-vocabulary-detection #fine-grained #clip #object-detection #semantic-disentanglement #detr #attribute-recognition<a class="headerlink" href="#vlm-open-vocabulary-detection-fine-grained-clip-object-detection-semantic-disentanglement-detr-attribute-recognition" title="Permanent link">&para;</a></h1>
 
 
 

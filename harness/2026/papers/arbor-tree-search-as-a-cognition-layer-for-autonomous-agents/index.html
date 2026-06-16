@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5561,8 +5550,6 @@ where g(a) is expected gain (profiled GPU time share × category speedup prior),
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>Arbor is a canonical example of a <strong>meta-harness</strong>: rather than writing an optimizer for a specific target, it constructs a general orchestration layer that dynamically assembles specialist sub-agents at runtime and routes work through a structured search process—precisely the "harness over harnesses" pattern. The tree as shared working memory, with failures propagating upward as branch constraints and successes triggering re-profiling that expands the frontier, is a concrete instantiation of stateful meta-level control that goes beyond simple agent-loop wrappers. The Orchestrator–Critic checks-and-balances design addresses a key open problem in harness research: preventing individual agents from corrupting shared state (measurement integrity, accuracy gating) while sustaining long-horizon campaigns. The persistent Knowledge Base enabling warm-start transfer across campaigns is directly applicable to any meta-harness that must generalize across tasks or environments.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="multi-agent-tree-search-meta-harness-orchestration-llm-inference-optimization-persistent-knowledge-base-agentic-systems-checks-and-balances">multi-agent #tree-search #meta-harness #orchestration #llm-inference-optimization #persistent-knowledge-base #agentic-systems #checks-and-balances<a class="headerlink" href="#multi-agent-tree-search-meta-harness-orchestration-llm-inference-optimization-persistent-knowledge-base-agentic-systems-checks-and-balances" title="Permanent link">&para;</a></h1>
 
 
 

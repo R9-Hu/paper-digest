@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5554,8 +5543,6 @@
 </ul>
 <h2 id="relevance-to-agentic-ai-llm-agents">Relevance to Agentic AI / LLM Agents<a class="headerlink" href="#relevance-to-agentic-ai-llm-agents" title="Permanent link">&para;</a></h2>
 <p>GenCache directly targets the cost and latency bottleneck in agentic workflows that execute repetitive ReAct-style action loops—a dominant architectural pattern in tool-using LLM agents. By replacing LLM calls with local program execution on cache hits, it addresses a practical deployment concern (API cost and latency) that scales quadratically with agent step count. The program-as-cache paradigm is a novel middle ground between KV-cache prefix matching (server-side, prefix-constrained) and semantic caching (client-side, correctness-unsafe), and the framework's integration points with LangChain and OpenAI completion APIs make it directly applicable to most production agent stacks. The failure mode analysis (regex misfires, multi-sentence decomposition) also surfaces important fragility patterns in structured agentic prompts that have broader implications for prompt engineering.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="caching-llm-inference-agentic-workflows-react-agents-cost-reduction-program-synthesis-tool-use-latency-optimization">caching #llm-inference #agentic-workflows #react-agents #cost-reduction #program-synthesis #tool-use #latency-optimization<a class="headerlink" href="#caching-llm-inference-agentic-workflows-react-agents-cost-reduction-program-synthesis-tool-use-latency-optimization" title="Permanent link">&para;</a></h1>
 
 
 

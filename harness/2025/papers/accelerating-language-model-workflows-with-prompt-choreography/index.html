@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5557,8 +5546,6 @@
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>Prompt Choreography is directly relevant as an <strong>execution substrate for multi-agent harnesses</strong>: it provides the low-level scheduling and caching layer that a harness sits above, making the cost of spinning up parallel or iterative agent calls materially lower. A harness that fans out N agents over shared context (background documents, prior round outputs) is exactly the prefill-bound regime where Choreography achieves its largest gains. The <code>prefill</code>/<code>decode</code> API design—separating encoding from generation and exposing a programmable message-DAG—mirrors the compositional structure that meta-harnesses impose on workflow graphs, suggesting a natural integration point. The distillation recipe also offers a pattern for harness designers: workflow-level behavioral fidelity can be preserved under infrastructure changes without retraining the full model.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="kv-cache-multi-agent-workflow-execution-inference-optimization-lora-peft-attention-masking-harness-infrastructure">kv-cache #multi-agent #workflow-execution #inference-optimization #lora #peft #attention-masking #harness-infrastructure<a class="headerlink" href="#kv-cache-multi-agent-workflow-execution-inference-optimization-lora-peft-attention-masking-harness-infrastructure" title="Permanent link">&para;</a></h1>
 
 
 

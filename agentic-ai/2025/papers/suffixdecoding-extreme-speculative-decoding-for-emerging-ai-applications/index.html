@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5550,8 +5539,6 @@
 </ul>
 <h2 id="relevance-to-agentic-ai-llm-agents">Relevance to Agentic AI / LLM Agents<a class="headerlink" href="#relevance-to-agentic-ai-llm-agents" title="Permanent link">&para;</a></h2>
 <p>Inference latency is a primary bottleneck for deployed LLM agents, particularly in multi-agent pipelines and self-refinement loops where dozens to hundreds of LLM calls are chained. SuffixDecoding directly targets this bottleneck by recognizing that agentic workloads have fundamentally different statistical properties than single-turn chat—high token repetition across requests—and exploiting this at the inference-system level rather than the algorithm level. The 4.5× end-to-end task-completion speedup on SWE-Bench with OpenHands demonstrates production-grade impact, and the model-free design means it requires no retraining or draft-model alignment, making it drop-in compatible with any new agent-specialized LLM. For researchers building or studying agentic systems, this work establishes that workload-aware inference optimization is a high-leverage lever orthogonal to prompt engineering, planning algorithms, or model capability.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="speculative-decoding-llm-inference-agentic-ai-multi-agent-inference-acceleration-suffix-tree-model-free-latency-optimization">speculative-decoding #llm-inference #agentic-ai #multi-agent #inference-acceleration #suffix-tree #model-free #latency-optimization<a class="headerlink" href="#speculative-decoding-llm-inference-agentic-ai-multi-agent-inference-acceleration-suffix-tree-model-free-latency-optimization" title="Permanent link">&para;</a></h1>
 
 
 

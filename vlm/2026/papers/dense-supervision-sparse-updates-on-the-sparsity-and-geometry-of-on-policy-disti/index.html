@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5556,8 +5545,6 @@ Two interventions test operational significance: (1) masked retraining restricte
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>The paper directly includes a VLM checkpoint (Qwen2.5-VL-3B-Instruct distilled via NoisyRollout) and confirms that OPD sparsity/geometry findings hold in the multimodal setting, including off-principal update bias and high OPD-RLVR mask overlap (73.53% vs. 33.28% baseline). For practitioners fine-tuning VLMs post-training via OPD, the finding that the vision tower accumulates a non-negligible relative delta (0.158%) alongside language components has direct implications for adapter placement and parameter-efficient fine-tuning budget. The spectral concentration result (but numerical full-rank) clarifies that LoRA applied to OPD will capture meaningful update energy but not the full delta, which is especially relevant for VLMs where parameter budgets are tighter due to dual encoder+LLM stacks. More broadly, the off-principal geometry result challenges assumptions about whether dense distillation signals preserve the principal feature directions learned during VLM pre-training.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="distillation-on-policy-training-parameter-efficiency-rlvr-vlm-sparse-finetuning-post-training-weight-geometry">distillation #on-policy-training #parameter-efficiency #rlvr #vlm #sparse-finetuning #post-training #weight-geometry<a class="headerlink" href="#distillation-on-policy-training-parameter-efficiency-rlvr-vlm-sparse-finetuning-post-training-weight-geometry" title="Permanent link">&para;</a></h1>
 
 
 

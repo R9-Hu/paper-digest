@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5551,8 +5540,6 @@
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>QSVD directly targets VLM inference efficiency — a critical bottleneck for deploying models like LLaVA on resource-constrained devices — by addressing the KV cache and weight memory jointly rather than optimizing one in isolation. The finding that low-rank QKV compression can <em>reduce</em> hallucination (rather than trade off accuracy for speed) is particularly noteworthy for the VLM community, as it suggests regularization benefits beyond pure compression. The combination of joint SVD with PTQ yields qualitatively different operating points than either technique alone, enabling W8A4/W4A4 regimes where standalone quantization collapses, which is directly relevant to real-time VLM deployment. The cross-layer rank allocation approach generalizes prior Fisher-information methods and could be applied to other structured pruning decisions in multimodal architectures.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="vlm-model-compression-svd-quantization-kv-cache-attention-efficiency-post-training-quantization">vlm #model-compression #svd #quantization #kv-cache #attention #efficiency #post-training-quantization<a class="headerlink" href="#vlm-model-compression-svd-quantization-kv-cache-attention-efficiency-post-training-quantization" title="Permanent link">&para;</a></h1>
 
 
 

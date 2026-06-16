@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5558,8 +5547,6 @@
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>ALE is a canonical example of a <strong>meta-harness</strong>: it is not itself a task-solving agent but rather the infrastructure layer that orchestrates data synthesis pipelines, sandboxed execution environments, RL training loops, and deployment scaffolding into a single closed-loop system. The ROCK environment engine with its GEM-standard API is directly analogous to the "environment abstraction layer" pattern seen in harness design—providing a uniform interface across heterogeneous task environments that any RL framework can plug into. The Agent Native Mode (ModelProxyService) solves the train/deploy consistency problem that harnesses face when the inference-time scaffolding (context assembly, prompt structure) must exactly match training-time scaffolding—a critical invariant for harness-trained models. IPA's chunk-level credit assignment is a harness-level design choice: the training harness segments trajectories into semantic units before computing gradients, meaning the harness architecture directly shapes the optimization objective.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="agentic-ai-rl-training-meta-harness-environment-sandbox-context-engineering-long-horizon-swe-bench-policy-optimization">agentic-ai #rl-training #meta-harness #environment-sandbox #context-engineering #long-horizon #swe-bench #policy-optimization<a class="headerlink" href="#agentic-ai-rl-training-meta-harness-environment-sandbox-context-engineering-long-horizon-swe-bench-policy-optimization" title="Permanent link">&para;</a></h1>
 
 
 

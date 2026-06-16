@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5560,8 +5549,6 @@
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>Visual Para-Thinker++ is a concrete implementation of a <em>learned</em> multi-agent harness: rather than assembling agents at the prompt/orchestration layer, it bakes the coordination protocol (role tokens, visibility masks, reward routing) directly into a single policy via end-to-end training. The Role-Decoupled Multi-Agent Optimization is precisely a gradient-routing harness that decides which reward signals flow to which token segments—an intra-model analogue of the reward/signal-routing that meta-harnesses perform at the inter-process level. The vLLM rollout engine with shared KV-cache and Copy-on-Write forking is an efficiency harness pattern (shared prefix, diverge-at-branch) directly applicable to any multi-agent orchestration system. The paper's finding that role separation must be learned (not just prompted) is a strong design signal for meta-harness architects considering whether coordination logic belongs in the model or in the orchestrator.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="multi-agent-single-policy-visual-reasoning-mllm-rl-training-role-conditioning-inference-efficiency-hallucination">multi-agent #single-policy #visual-reasoning #mllm #rl-training #role-conditioning #inference-efficiency #hallucination<a class="headerlink" href="#multi-agent-single-policy-visual-reasoning-mllm-rl-training-role-conditioning-inference-efficiency-hallucination" title="Permanent link">&para;</a></h1>
 
 
 

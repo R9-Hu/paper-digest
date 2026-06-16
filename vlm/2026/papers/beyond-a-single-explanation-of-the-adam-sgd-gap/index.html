@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5554,8 +5543,6 @@
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>VLMs inherit both the Transformer architecture and the large-scale one-epoch (underparametrized) training regime, making the Adam-vs-SGD question directly operational for practitioners choosing or developing optimizers. The paper's finding that architectural design choices—especially normalization (LayerNorm) and activation (GeLU), both standard in VLMs—progressively shift optimizer preference toward Adam helps justify why Adam-family methods dominate VLM training. Conversely, the result that SGD can outperform Adam for ViT on ImageNet21K at small batch sizes signals that multimodal pretraining at low batch sizes (constrained by memory) may warrant reconsideration of SGD with tuned momentum. The crossover batch size framework provides a principled lens for understanding optimizer behavior in VLM scaling experiments where batch size varies across compute budgets.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="optimization-adam-sgd-transformer-vision-language-training-dynamics-batch-size-architecture">optimization #adam #sgd #transformer #vision-language #training-dynamics #batch-size #architecture<a class="headerlink" href="#optimization-adam-sgd-transformer-vision-language-training-dynamics-batch-size-architecture" title="Permanent link">&para;</a></h1>
 
 
 

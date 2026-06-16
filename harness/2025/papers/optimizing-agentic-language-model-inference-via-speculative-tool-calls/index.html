@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5555,8 +5544,6 @@
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>This work is directly relevant to any harness that orchestrates multiple LLM agent calls with tool-augmented execution pipelines. The proposed engine-side <code>/cache-tool-output</code> API represents a systems-level primitive that meta-harnesses could exploit by pre-running likely tools (e.g., file reads, searches) before the main model requests them—turning the harness's knowledge of likely next steps into inference efficiency gains. The client-side algorithm is immediately deployable in any harness using the OpenAI-compatible async API without infrastructure changes, making it a drop-in optimization for multi-agent harness orchestrators. The theoretical analysis (speedup peaks when T ≈ G) provides actionable guidance for harness designers deciding when speculation is worth the added complexity and speculative API cost.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="inference-optimization-tool-calling-speculative-execution-agentic-ai-llm-serving-throughput-vllm-multi-agent">inference-optimization #tool-calling #speculative-execution #agentic-ai #llm-serving #throughput #vllm #multi-agent<a class="headerlink" href="#inference-optimization-tool-calling-speculative-execution-agentic-ai-llm-serving-throughput-vllm-multi-agent" title="Permanent link">&para;</a></h1>
 
 
 

@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5552,8 +5541,6 @@
 </ul>
 <h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>Multimodal LLMs such as Qwen2-VL present a qualitatively different parallelism challenge compared to LLMs: the ViT encoder and language model have mismatched hidden sizes and layer counts, breaking the assumption of uniform virtual-stage execution times. This paper directly confronts that asymmetry—assigning ViT to its own virtual stage and calibrating FLOPs balance—and demonstrates that synergistic TP+PP scheduling yields larger gains on MLLMs (up to 16.7%) than on pure LLMs (12%), making it particularly relevant for teams training or fine-tuning large VLMs at scale. For researchers tracking VLMs, this work offers a practical, software-level (no custom CUDA kernels) training acceleration method compatible with the standard Megatron-Core stack.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="distributed-training-tensor-parallelism-pipeline-parallelism-mllm-training-training-efficiency-systems-vlm-infrastructure-megatron">distributed-training #tensor-parallelism #pipeline-parallelism #mllm-training #training-efficiency #systems #vlm-infrastructure #megatron<a class="headerlink" href="#distributed-training-tensor-parallelism-pipeline-parallelism-mllm-training-training-efficiency-systems-vlm-infrastructure-megatron" title="Permanent link">&para;</a></h1>
 
 
 

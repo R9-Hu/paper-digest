@@ -5487,17 +5487,6 @@
   
 </li>
       
-        <li class="md-nav__item">
-  <a href="#tags" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Tags
-      
-    </span>
-  </a>
-  
-</li>
-      
     </ul>
   
 </nav>
@@ -5561,8 +5550,6 @@
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>FuzzWise is a textbook <strong>meta-harness pattern</strong>: it orchestrates two specialized LLM agents (generation + evaluation) in a feedback loop, dynamically routing work between them based on structured signals (predicted coverage delta), with an explicit termination condition and mode-switching logic—exactly the control flow skeleton that characterizes harness-level orchestration. The separation of a <em>generator</em> agent from a <em>judge/filter</em> agent with structured feedback is directly applicable to any meta-harness that needs to balance exploration (recall) against quality filtering (precision). The execution-free evaluation sub-agent (CodePilot) also demonstrates that harness inner loops need not be bottlenecked by heavyweight oracles—LLM-based predictive proxies can serve as fast gatekeepers.</p>
-<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
-<h1 id="multi-agent-fuzzing-llm-agents-code-coverage-test-generation-feedback-loop-ai4se-harness">multi-agent #fuzzing #llm-agents #code-coverage #test-generation #feedback-loop #ai4se #harness<a class="headerlink" href="#multi-agent-fuzzing-llm-agents-code-coverage-test-generation-feedback-loop-ai4se-harness" title="Permanent link">&para;</a></h1>
 
 
 

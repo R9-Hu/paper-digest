@@ -72,6 +72,22 @@ def _cache_path(canonical_id: str):
     return config.TEXT_DIR / f"{canonical_id.split(':', 1)[-1]}.txt"
 
 
+def clear_text_cache() -> int:
+    """Delete the PDF→text extraction cache. Called after a digest run — the cache
+    only accelerates within-run retries/cross-topic reuse and is regenerable from
+    the (retained) PDF, so it's unnecessary once the run completes."""
+    n = 0
+    for f in config.TEXT_DIR.glob("*.txt"):
+        try:
+            f.unlink()
+            n += 1
+        except OSError:
+            pass
+    if n:
+        log.info("cleared %d cached text files", n)
+    return n
+
+
 def extract_text(pdf_path: Path, canonical_id: str | None = None) -> str:
     """pdftotext -> string (empty on failure), cached by paper id under state/text/.
 

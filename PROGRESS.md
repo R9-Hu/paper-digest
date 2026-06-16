@@ -104,10 +104,12 @@ Last updated: 2026-06-15 (✅ COMPLETE — end-to-end verified)
   (in-window), keeps the top N (storage-trimmed), drops the rest (status `dropped`).
   Manual: `--compact-month YYYY-MM`, `--compact-year YYYY`. Scheduled via
   `run_scheduled()` (fires on the 1st, in-window). Verified via dry-run.
-- ✅ **Cache system**: (a) PDF→text extraction cached by paper id under `state/text/`
-  (reused across retries, re-digests, and the same paper in multiple topics);
-  (b) per-paper TL;DR cached in the DB (`tldr` col) at digest time and reused by the
-  daily "In brief" + pages (no re-parsing), with a file-parse fallback for old rows.
+- ✅ **Cache system**: (a) PDF→text cache (`state/text/`) reused within a run
+  (retries/cross-topic), **cleared after every digest** (regenerable from the PDF);
+  (b) per-paper TL;DR cached in the DB (`tldr` col) reused by the daily "In brief"
+  + pages. **PDF cache retained up to a year**: monthly compaction only drops papers
+  beyond the top-100 (keeps survivors' PDFs full); the **yearly digest archives** the
+  kept top-400 (trims digest + removes PDFs). `archive` flag on `compact_window`.
 
 ## Blockers
 - _none yet_

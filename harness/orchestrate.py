@@ -97,6 +97,7 @@ def main(argv=None) -> int:
                 else:
                     res = compact.compact_year(conn, cfg, topic, args.compact_year, should_continue=cont)
                 log.info("[%s] compaction: %s", topic.slug, res)
+            digest.clear_text_cache()
             publish.publish(conn, cfg, deploy=not args.no_deploy)
         return 0
 
@@ -144,6 +145,10 @@ def main(argv=None) -> int:
         # Scheduled month/year compaction (fires on the 1st; needs the window for refetch+digest).
         if not args.dry_run and not args.no_compact and not args.stage and digest_ok:
             compact.run_scheduled(conn, cfg, topics, should_continue=can_llm)
+
+        # Drop the (regenerable) text-extraction cache once digesting is done.
+        if not args.dry_run and digest_ok and "digest" in stages:
+            digest.clear_text_cache()
 
         if "publish" in stages and not args.dry_run:
             publish.publish(conn, cfg, deploy=not args.no_deploy)

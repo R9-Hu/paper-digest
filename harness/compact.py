@@ -104,7 +104,12 @@ def _rank_key(row):
 
 def compact_window(conn, cfg: Config, topic: Topic, start: dt.date, end: dt.date,
                    keep_n: int, should_continue=None, refetch: bool = True,
-                   dry_run: bool = False) -> dict:
+                   dry_run: bool = False, archive: bool = False) -> dict:
+    """Keep the top `keep_n` papers in the window, drop the rest.
+
+    `archive=False` (monthly): kept papers keep their full digest + PDF (the PDF
+    cache is retained up to a year). `archive=True` (yearly): kept papers are
+    storage-archived — digest trimmed to essentials and PDF/text removed."""
     slug = topic.slug
     added = 0
 
@@ -130,13 +135,15 @@ def compact_window(conn, cfg: Config, topic: Topic, start: dt.date, end: dt.date
     result = {"in_window": len(rows), "keep": len(keep), "drop": len(drop), "added": added}
     if dry_run:
         return result
-    for r in keep:
-        compact_paper(conn, cfg, r)
-    for r in drop:
+    if archive:                       # yearly: trim kept + remove their PDFs
+        for r in keep:
+            compact_paper(conn, cfg, r)
+    for r in drop:                    # always remove the papers beyond the cap
         _drop_paper(conn, r)
     conn.commit()
-    log.info("[%s] compacted %s..%s: kept %d, dropped %d, added %d",
-             slug, start, end, len(keep), len(drop), added)
+    log.info("[%s] compacted %s..%s: kept %d (%s), dropped %d, added %d",
+             slug, start, end, len(keep), "archived" if archive else "full",
+             len(drop), added)
     return result
 
 
@@ -147,6 +154,7 @@ def compact_month(conn, cfg: Config, topic: Topic, year: int, month: int, **kw) 
 
 
 def compact_year(conn, cfg: Config, topic: Topic, year: int, **kw) -> dict:
+    kw.setdefault("archive", True)   # yearly archive: trim + remove PDFs/text cache
     return compact_window(conn, cfg, topic, dt.date(year, 1, 1), dt.date(year, 12, 31),
                           cfg.yearly_keep, **kw)
 

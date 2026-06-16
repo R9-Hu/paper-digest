@@ -101,6 +101,21 @@ def _timeline_section(trend_md: str | None, rows) -> list[str]:
     return ["## 🕒 Timeline", ""] + (bullets or ["_Not enough data yet._"]) + [""]
 
 
+def _today_page_lines(topic_name: str, day: str, table_rows: list[str]) -> list[str]:
+    """Body for a topic's dedicated 'Today's Digest' page — papers/posts collected
+    on `day` (by fetched_at)."""
+    n = len(table_rows)
+    lines = [f"# 🆕 Today's Digest — {topic_name}", "",
+             f"*New papers/posts collected {day}.*", ""]
+    lines.append(f"> [!success] {n} new today" if n else "> [!note] Nothing new today")
+    lines.append("")
+    if table_rows:
+        lines += ["| Date | Paper | Venue |", "| --- | --- | --- |"] + table_rows
+    else:
+        lines.append("_No new papers today — the next 8am run will refresh this._")
+    return lines
+
+
 def _trend_digest_section(trend_md: str | None, trend_link_md: str | None) -> list[str]:
     out = ["## 📈 Trend", ""]
     overview = _first_paragraph(_extract_section(trend_md, "Overview") or "") if trend_md else ""
@@ -150,6 +165,7 @@ def build_site(conn, cfg: Config) -> None:
         # Per-paper pages (slugified filenames for clean URLs) + table rows.
         paper_nav = []
         paper_rows = []
+        today_rows = []
         used_slugs: set[str] = set()
         for row in rows:
             src = config.ROOT / (row["digest_path"] or "")
@@ -168,12 +184,21 @@ def build_site(conn, cfg: Config) -> None:
             paper_nav.append({row["title"]: f"{topic.slug}/papers/{pslug}.md"})
             date = row["published"] or "—"
             venue = _esc(row["venue"] or "—")
-            paper_rows.append(f"| {date} | [{_esc(row['title'])}](papers/{pslug}.md) | {venue} |")
+            tr = f"| {date} | [{_esc(row['title'])}](papers/{pslug}.md) | {venue} |"
+            paper_rows.append(tr)
+            if (row["fetched_at"] or "").startswith(today):
+                today_rows.append(tr)
 
-        # Topic overview page: intro -> timeline -> trend digest (+link) -> papers.
+        # Dedicated "Today's Digest" page (sibling to Trend analysis).
+        (tdir / "today.md").write_text(
+            "\n".join(_today_page_lines(topic.name, today, today_rows)) + "\n",
+            encoding="utf-8")
+
+        # Topic overview page: intro -> today link -> timeline -> trend digest -> papers.
         trend_link = "[Read the full trend analysis](trend.md)" if has_trend else None
         page = [f"# {topic.name}", ""]
         page += _intro_section(topic)
+        page += [f"🆕 **[Today's Digest](today.md)** — {len(today_rows)} new today", ""]
         page += _timeline_section(trend_md, rows)
         page += _trend_digest_section(trend_md, trend_link)
         page.append(f"## 📄 Papers ({len(paper_rows)})")
@@ -188,6 +213,7 @@ def build_site(conn, cfg: Config) -> None:
         topic_children = [f"{topic.slug}/index.md"]
         if has_trend:
             topic_children.append({"Trend analysis": f"{topic.slug}/trend.md"})
+        topic_children.append({"Today's Digest": f"{topic.slug}/today.md"})
         if paper_nav:
             topic_children.append({"Papers": paper_nav})
         nav.append({topic.name: topic_children})
@@ -196,6 +222,7 @@ def build_site(conn, cfg: Config) -> None:
         home_lines.append(f"- **[{topic.name}]({topic.slug}/index.md)** — {len(paper_rows)} papers")
         if has_trend:
             home_lines.append(f"    - [📈 Trend analysis]({topic.slug}/trend.md)")
+        home_lines.append(f"    - [🆕 Today's Digest ({len(today_rows)})]({topic.slug}/today.md)")
         home_lines.append(f"    - [📄 Browse papers]({topic.slug}/index.md)")
 
     (docs / "index.md").write_text("\n".join(home_lines) + "\n", encoding="utf-8")
@@ -415,37 +442,51 @@ def sync_obsidian(conn, cfg: Config) -> None:
         if has_trend:
             (tdir / trend_name).write_text(beautify_trend(trend_md), encoding="utf-8")
 
-        # Overview note: intro -> timeline -> trend digest (+link) -> papers.
+        # Paper notes + table rows (full + today's).
+        paper_table = []
+        today_rows = []
+        for row in rows:
+            src = config.ROOT / (row["digest_path"] or "")
+            if not src.exists():
+                continue
+            fname = src.name
+            (tdir / fname).write_text(
+                beautify_digest(src.read_text(encoding="utf-8")), encoding="utf-8")
+            date = row["published"] or "—"
+            venue = _esc(row["venue"] or "—")
+            tr = f"| {date} | {_md_link(_esc(row['title']), fname)} | {venue} |"
+            paper_table.append(tr)
+            if (row["fetched_at"] or "").startswith(today):
+                today_rows.append(tr)
+
+        # Dedicated "Today's Digest" note (sibling to the trend note).
+        today_name = f"_Today - {folder}.md"
+        today_md = ["---", f"title: {json.dumps('Today — ' + topic.name)}",
+                    "cssclasses: [paper-today]", "---"] + \
+            _today_page_lines(topic.name, today, today_rows)
+        (tdir / today_name).write_text("\n".join(today_md) + "\n", encoding="utf-8")
+
+        # Overview note: intro -> today link -> timeline -> trend digest -> papers.
         index = [
             "---", f"title: {json.dumps(topic.name)}", "cssclasses: [paper-index]", "---",
             f"# {topic.name}", "",
         ]
         index += _intro_section(topic)
+        index += ["🆕 " + _md_link(f"Today's Digest ({len(today_rows)} new)", today_name), ""]
         index += _timeline_section(trend_md, rows)
         trend_link = _md_link("Read the full trend analysis", trend_name) if has_trend else None
         index += _trend_digest_section(trend_md, trend_link)
 
-        index.append(f"## 📄 Papers ({len(rows)})")
+        index.append(f"## 📄 Papers ({len(paper_table)})")
         index.append("")
-        if rows:
-            index += ["| Date | Paper | Venue |", "| --- | --- | --- |"]
-            for row in rows:
-                src = config.ROOT / (row["digest_path"] or "")
-                if not src.exists():
-                    continue
-                fname = src.name
-                (tdir / fname).write_text(
-                    beautify_digest(src.read_text(encoding="utf-8")), encoding="utf-8")
-                date = row["published"] or "—"
-                venue = _esc(row["venue"] or "—")
-                index.append(f"| {date} | {_md_link(_esc(row['title']), fname)} | {venue} |")
-        else:
-            index.append("_No digests yet._")
+        index += (["| Date | Paper | Venue |", "| --- | --- | --- |"] + paper_table) \
+            if paper_table else ["_No digests yet._"]
 
         index_name = f"_Index - {folder}.md"
         (tdir / index_name).write_text("\n".join(index) + "\n", encoding="utf-8")
-        home_rows.append((topic.name, len(rows), has_trend,
-                          f"{folder}/{index_name}", f"{folder}/{trend_name}"))
+        home_rows.append((topic.name, len(paper_table), has_trend, len(today_rows),
+                          f"{folder}/{index_name}", f"{folder}/{trend_name}",
+                          f"{folder}/{today_name}"))
 
     home = [
         "---", "title: Paper Digest", "cssclasses: [paper-home]", "---",
@@ -455,10 +496,11 @@ def sync_obsidian(conn, cfg: Config) -> None:
         "## Topics", "",
     ]
     # Indented tree — nesting shows the level relations.
-    for name, n, has_trend, idx_path, trend_path in home_rows:
+    for name, n, has_trend, n_today, idx_path, trend_path, today_path in home_rows:
         home.append(f"- **{_md_link(name, idx_path)}** — {n} papers")
         if has_trend:
             home.append("    - " + _md_link("📈 Trend analysis", trend_path))
+        home.append("    - " + _md_link(f"🆕 Today's Digest ({n_today})", today_path))
         home.append("    - " + _md_link("📄 Papers & overview", idx_path))
     (vault / "Home.md").write_text("\n".join(home) + "\n", encoding="utf-8")
     log.info("obsidian vault synced (beautified): %s", vault)

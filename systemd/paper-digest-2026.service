@@ -1,0 +1,13 @@
+[Unit]
+Description=Paper Digest — one-shot 2026 monthly compaction (Jan..now): pull in missed top-tier papers, digest, cap to monthly_keep/topic
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/renjiu/Research/code/paperDigest
+ExecStart=/home/renjiu/Research/code/paperDigest/run.sh --compact-months 2026
+# Resume the regular nightly pipeline (paused so it wouldn't collide with this run tonight).
+ExecStartPost=/usr/bin/systemctl --user start paper-digest-night.timer
+# Runs inside the 21:00-06:00 digest window; allow the whole window.
+TimeoutStartSec=33000

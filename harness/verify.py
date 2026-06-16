@@ -12,10 +12,10 @@ import subprocess
 from . import config, state
 
 
-def _service_result() -> str:
+def _service_result(unit: str = "paper-digest.service") -> str:
     try:
-        r = subprocess.run(["systemctl", "--user", "show", "paper-digest.service",
-                            "-p", "Result"], capture_output=True, text=True, timeout=10)
+        r = subprocess.run(["systemctl", "--user", "show", unit, "-p", "Result"],
+                            capture_output=True, text=True, timeout=10)
         return r.stdout.strip().split("=", 1)[-1] or "unknown"
     except (subprocess.SubprocessError, FileNotFoundError):
         return "unknown"
@@ -26,15 +26,17 @@ def summary() -> str:
         pending = c.execute(
             "SELECT COUNT(*) FROM papers WHERE digest_status IN ('failed','fetched')"
         ).fetchone()[0]
-        h2025 = c.execute(
-            "SELECT COUNT(*) FROM papers WHERE topic_slug='harness' AND year=2025 "
-            "AND digest_status IN ('digested','compacted')"
-        ).fetchone()[0]
+        # 2026 per-topic counts — this is what tonight's monthly-compaction job touched.
+        rows = c.execute(
+            "SELECT topic_slug, COUNT(*) FROM papers WHERE year=2026 "
+            "AND digest_status IN ('digested','compacted') GROUP BY topic_slug"
+        ).fetchall()
+        y2026 = ",".join(f"{r[0]}={r[1]}" for r in rows) or "none"
         briefs = c.execute(
             "SELECT COUNT(*) FROM meta WHERE key LIKE 'today_brief:%' AND value != ''"
         ).fetchone()[0]
-    return (f"service={_service_result()} · pending={pending} · "
-            f"harness2025={h2025}/400 · in-brief={briefs}/{len(config.load_config().topics)}")
+    return (f"2026-job={_service_result('paper-digest-2026.service')} · pending={pending} · "
+            f"2026[{y2026}] · in-brief={briefs}/{len(config.load_config().topics)}")
 
 
 def main() -> int:

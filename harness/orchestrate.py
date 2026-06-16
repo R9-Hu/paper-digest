@@ -57,6 +57,9 @@ def parse_args(argv=None):
                    help="compact a year to the top yearly_keep papers/topic, then exit")
     p.add_argument("--compact-month",
                    help="compact a month (YYYY-MM) to the top monthly_keep papers/topic, then exit")
+    p.add_argument("--compact-months", type=int, metavar="YYYY",
+                   help="run monthly compaction for every completed month of YYYY "
+                        "(pulls in missed top-tier papers, caps to monthly_keep), then exit")
     p.add_argument("--no-compact", action="store_true",
                    help="skip the automatic prior-year compaction step")
     p.add_argument("--ignore-window", action="store_true",
@@ -84,19 +87,34 @@ def main(argv=None) -> int:
         log.error("unknown topic slug: %s", args.topic)
         return 2
 
-    if args.compact_month or args.compact_year is not None:
+    if args.compact_month or args.compact_year is not None or args.compact_months is not None:
         cont = lambda: args.ignore_window or _in_digest_window(cfg)  # refetch+digest gated to window
         if not cont():
             log.warning("outside digest window — missed-paper refetch will be skipped "
                         "(use --ignore-window to force)")
         with state.connect() as conn:
-            for topic in topics:
-                if args.compact_month:
-                    y, m = (int(x) for x in args.compact_month.split("-"))
-                    res = compact.compact_month(conn, cfg, topic, y, m, should_continue=cont)
-                else:
-                    res = compact.compact_year(conn, cfg, topic, args.compact_year, should_continue=cont)
-                log.info("[%s] compaction: %s", topic.slug, res)
+            if args.compact_months is not None:
+                year = args.compact_months
+                today = dt.date.today()
+                last_month = 12 if year < today.year else today.month - 1
+                log.info("=== monthly compaction for %d (months 1-%d) ===", year, last_month)
+                for m in range(1, last_month + 1):
+                    if not cont():
+                        log.info("digest window closed — stopping at month %02d", m)
+                        break
+                    for topic in topics:
+                        if not cont():
+                            break
+                        res = compact.compact_month(conn, cfg, topic, year, m, should_continue=cont)
+                        log.info("[%s] %d-%02d compaction: %s", topic.slug, year, m, res)
+            else:
+                for topic in topics:
+                    if args.compact_month:
+                        y, m = (int(x) for x in args.compact_month.split("-"))
+                        res = compact.compact_month(conn, cfg, topic, y, m, should_continue=cont)
+                    else:
+                        res = compact.compact_year(conn, cfg, topic, args.compact_year, should_continue=cont)
+                    log.info("[%s] compaction: %s", topic.slug, res)
             digest.clear_text_cache()
             publish.publish(conn, cfg, deploy=not args.no_deploy)
         return 0

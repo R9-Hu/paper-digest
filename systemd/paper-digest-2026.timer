@@ -1,0 +1,10 @@
+[Unit]
+Description=Run the 2026 monthly compaction once, tonight at 21:00 (start of the digest window)
+
+[Timer]
+OnCalendar=2026-06-16 21:00:00
+Persistent=true
+Unit=paper-digest-2026.service
+
+[Install]
+WantedBy=timers.target

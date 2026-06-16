@@ -110,6 +110,20 @@ SITE_CSS = """\
 }
 """
 
+# Open paper links in a new tab (content area only; leaves the left nav alone).
+SITE_JS = """\
+(function () {
+  function mark() {
+    document.querySelectorAll('.md-content a[href*="papers/"]').forEach(function (a) {
+      a.target = '_blank';
+      a.rel = 'noopener';
+    });
+  }
+  if (document.readyState !== 'loading') mark();
+  else document.addEventListener('DOMContentLoaded', mark);
+})();
+"""
+
 # Obsidian CSS snippet (written to <vault>/.obsidian/snippets/paper-digest.css).
 OBSIDIAN_CSS = """\
 /* Paper Digest — vault styling (auto-generated) */
@@ -516,6 +530,8 @@ def build_site(conn, cfg: Config) -> None:
         "# 🏷️ Tags\n\nBrowse digested papers by tag.\n", encoding="utf-8")
     (docs / "stylesheets").mkdir(parents=True, exist_ok=True)
     (docs / "stylesheets" / "extra.css").write_text(SITE_CSS, encoding="utf-8")
+    (docs / "javascripts").mkdir(parents=True, exist_ok=True)
+    (docs / "javascripts" / "newtab.js").write_text(SITE_JS, encoding="utf-8")
 
     mkdocs_cfg = {
         "site_name": "Paper Digest",
@@ -536,6 +552,7 @@ def build_site(conn, cfg: Config) -> None:
             ],
         },
         "extra_css": ["stylesheets/extra.css"],
+        "extra_javascript": ["javascripts/newtab.js"],
         "markdown_extensions": [
             "admonition", "attr_list", "md_in_html", "tables",
             "pymdownx.details", "pymdownx.superfences", "pymdownx.tasklist",

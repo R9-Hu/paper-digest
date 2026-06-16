@@ -16,6 +16,7 @@ Both indexes live in the same papers.db:
 """
 from __future__ import annotations
 
+import datetime as dt
 import hashlib
 import logging
 import re
@@ -81,12 +82,26 @@ def _ensure_tables(conn) -> None:
     conn.execute("""
         CREATE TABLE IF NOT EXISTS card (
             canonical_id TEXT, topic_slug TEXT, year INTEGER, published TEXT, title TEXT,
-            venue TEXT, citations INTEGER, tldr TEXT, tags TEXT, text TEXT,
+            venue TEXT, citations INTEGER, score REAL, tldr TEXT, tags TEXT, text TEXT,
             vec BLOB, text_hash TEXT,
             PRIMARY KEY (canonical_id, topic_slug)
         )""")
     conn.execute("CREATE VIRTUAL TABLE IF NOT EXISTS card_fts USING fts5("
                  "canonical_id UNINDEXED, topic_slug UNINDEXED, year UNINDEXED, text)")
+    cols = {r[1] for r in conn.execute("PRAGMA table_info(card)")}
+    for col, decl in (("published", "TEXT"), ("score", "REAL")):
+        if col not in cols:
+            conn.execute(f"ALTER TABLE card ADD COLUMN {col} {decl}")
+
+
+def _impact_score(venue, citations, influential, published, year) -> float:
+    from . import fetch
+    pub = None
+    try:
+        pub = dt.date.fromisoformat(published) if published else None
+    except (ValueError, TypeError):
+        pub = None
+    return fetch.impact_score(venue or "", "", citations or 0, influential or 0, pub, year or 0)
 
 
 def _parse_digest(row) -> tuple[str, str]:
@@ -139,8 +154,9 @@ def build_index(conn, embed_new: bool = True) -> dict:
     ).fetchall()
 
     current = {(r["canonical_id"], r["topic_slug"]) for r in rows}
-    existing = {(r["canonical_id"], r["topic_slug"]): r["text_hash"]
-                for r in conn.execute("SELECT canonical_id, topic_slug, text_hash FROM card")}
+    prior = {(r["canonical_id"], r["topic_slug"]): (r["text_hash"], r["citations"])
+             for r in conn.execute("SELECT canonical_id, topic_slug, text_hash, citations FROM card")}
+    existing = {key: v[0] for key, v in prior.items()}
 
     # Drop cards whose papers are gone.
     removed = 0
@@ -164,11 +180,21 @@ def build_index(conn, embed_new: bool = True) -> dict:
         tldr = r["tldr"] or file_tldr
         text = _card_text(r["title"], r["venue"], r["year"], tldr, tags)
         h = _hash(r["title"], tldr, tags)
-        cites = impacts.get(r["canonical_id"], (0, 0))[0]
+        # Citations: use a fresh lookup if we got one; otherwise KEEP the prior value
+        # (a rate-limited/failed lookup must never overwrite a known count with 0).
+        known = impacts.get(r["canonical_id"])
+        cites = known[0] if known is not None else (prior.get(key, ("", 0))[1] or 0)
+        infl = known[1] if known is not None else 0
+        # Impact score is venue + citations + recency aware, so conference papers
+        # (which can't be resolved for citations via S2) still rank by their venue.
+        score = _impact_score(r["venue"], cites, infl, r["published"], r["year"])
         if existing.get(key) == h:
-            # unchanged text — just refresh the (cheap) citation count
-            conn.execute("UPDATE card SET citations=? WHERE canonical_id=? AND topic_slug=?",
-                         (cites, *key))
+            if known is not None:                          # only touch when we have a fresh count
+                conn.execute("UPDATE card SET citations=?, score=? WHERE canonical_id=? AND topic_slug=?",
+                             (cites, score, *key))
+            else:                                          # refresh score even from prior citations
+                conn.execute("UPDATE card SET score=? WHERE canonical_id=? AND topic_slug=?",
+                             (score, *key))
             continue
         fresh += 1
         conn.execute("DELETE FROM card_fts WHERE canonical_id=? AND topic_slug=?", key)
@@ -176,10 +202,10 @@ def build_index(conn, embed_new: bool = True) -> dict:
                      (r["canonical_id"], r["topic_slug"], r["year"], text))
         conn.execute(
             """INSERT OR REPLACE INTO card
-               (canonical_id, topic_slug, year, published, title, venue, citations, tldr, tags, text, vec, text_hash)
-               VALUES (?,?,?,?,?,?,?,?,?,?,?,?)""",
+               (canonical_id, topic_slug, year, published, title, venue, citations, score, tldr, tags, text, vec, text_hash)
+               VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?)""",
             (r["canonical_id"], r["topic_slug"], r["year"], r["published"], r["title"], r["venue"],
-             cites, tldr, tags, text, None, h),
+             cites, score, tldr, tags, text, None, h),
         )
         pending.append((key, text))
     conn.commit()
@@ -220,8 +246,9 @@ def _row_to_card(r) -> dict:
     keys = r.keys() if hasattr(r, "keys") else []
     return {"canonical_id": r["canonical_id"], "topic_slug": r["topic_slug"],
             "year": r["year"], "published": (r["published"] if "published" in keys else None),
-            "title": r["title"], "venue": r["venue"],
-            "citations": r["citations"], "tldr": r["tldr"], "tags": r["tags"]}
+            "title": r["title"], "venue": r["venue"], "citations": r["citations"],
+            "impact": (r["score"] if "score" in keys else None),
+            "tldr": r["tldr"], "tags": r["tags"]}
 
 
 def retrieve(conn, query: str, topic_slug: str | None = None, year: int | None = None,
@@ -294,7 +321,7 @@ def cards_for(conn, topic_slug: str, year: int | None = None, limit: int | None 
     `order='recent'` by date. This is what we send to Claude instead of papers."""
     _ensure_tables(conn)
     scope_sql, args = _scope_sql(topic_slug, year)
-    order_sql = ("ORDER BY citations DESC, published DESC" if order == "impact"
+    order_sql = ("ORDER BY score DESC, published DESC" if order == "impact"
                  else "ORDER BY published DESC")
     sql = f"SELECT * FROM card{scope_sql} {order_sql}"
     if limit:

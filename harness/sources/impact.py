@@ -13,6 +13,7 @@ from __future__ import annotations
 
 import datetime as dt
 import logging
+import os
 import time
 
 import requests
@@ -23,7 +24,17 @@ S2_BATCH = "https://api.semanticscholar.org/graph/v1/paper/batch"
 FIELDS = "citationCount,influentialCitationCount"
 UA = {"User-Agent": "paperDigest/1.0 (research digest harness)"}
 TTL_DAYS = 21          # citation counts move slowly; refresh every few weeks
-CHUNK = 400            # S2 batch allows up to 500 ids/request
+CHUNK = 100            # smaller batches survive the unauthenticated rate limit better
+# An (optional) API key lifts the shared ~1 req/s limit dramatically. Get one free at
+# https://www.semanticscholar.org/product/api and export SEMANTIC_SCHOLAR_API_KEY.
+_API_KEY = os.environ.get("SEMANTIC_SCHOLAR_API_KEY", "").strip()
+
+
+def _headers() -> dict:
+    h = dict(UA)
+    if _API_KEY:
+        h["x-api-key"] = _API_KEY
+    return h
 
 
 def _s2_id(canonical_id: str) -> str | None:
@@ -40,18 +51,19 @@ def _chunks(seq, n):
 
 def _batch(s2_ids: list[str]):
     """POST one batch to S2; return the aligned result list, or None on failure."""
-    for attempt in range(3):
+    for attempt in range(5):
         try:
             r = requests.post(S2_BATCH, params={"fields": FIELDS},
-                              json={"ids": s2_ids}, headers=UA, timeout=30)
-            if r.status_code == 429:
-                time.sleep(5 * (attempt + 1))
+                              json={"ids": s2_ids}, headers=_headers(), timeout=30)
+            if r.status_code == 429:                       # rate limited — back off and retry
+                wait = float(r.headers.get("Retry-After") or 0) or 8 * (attempt + 1)
+                time.sleep(min(wait, 60))
                 continue
             r.raise_for_status()
             return r.json()
         except (requests.RequestException, ValueError) as e:
             log.warning("S2 batch failed (%d ids): %s", len(s2_ids), e)
-            time.sleep(2 * (attempt + 1))
+            time.sleep(3 * (attempt + 1))
     return None
 
 

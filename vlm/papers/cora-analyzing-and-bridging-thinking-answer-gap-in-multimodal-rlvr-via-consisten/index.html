@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -280,8 +402,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -307,7 +435,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -523,6 +651,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -2525,6 +2656,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2700,6 +2834,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3643,6 +3780,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3866,6 +4006,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,23 +7847,23 @@
 
 
 
-<h1 id="cora-analyzing-and-bridging-thinking-answer-gap-in-multimodal-rlvr-via-consistency-oriented-reasoning-alignment">CORA: Analyzing and bridging thinking-answer gap in Multimodal RLVR via Consistency-Oriented Reasoning Alignment</h1>
+<h1 id="cora-analyzing-and-bridging-thinking-answer-gap-in-multimodal-rlvr-via-consistency-oriented-reasoning-alignment">CORA: Analyzing and bridging thinking-answer gap in Multimodal RLVR via Consistency-Oriented Reasoning Alignment<a class="headerlink" href="#cora-analyzing-and-bridging-thinking-answer-gap-in-multimodal-rlvr-via-consistency-oriented-reasoning-alignment" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-12 17:54 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  </em><em>Venue:</em><em> EMNLP 2026  ·  <a href="http://arxiv.org/abs/2606.14691v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Multimodal RLVR training with answer-level rewards produces reasoning traces that are semantically inconsistent with final answers — a persistent problem GRPO does not fix on its own. CORA addresses this by adding a lightweight ModernBERT-based Consistency Reward Model (CRM) scoring thinking-answer alignment via NLI, plus Hybrid Reward Advantage Splitting (HRAS) to prevent the consistency signal from interfering with accuracy optimization. The result is simultaneously lower inconsistency rates and higher accuracy across four Qwen-VL backbones.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Standard RLVR for LVLMs (e.g., GRPO with answer-correctness rewards) supervises only the final answer, leaving the thinking process under-supervised. This causes <strong>thinking-answer inconsistency</strong>: the reasoning trace either fails to support or actively contradicts the final answer. Empirical analysis of ~719K rollouts shows this inconsistency is widespread, task-dependent (worse on math and puzzle tasks), and does <em>not</em> diminish as GRPO training progresses — it often worsens. Concurrent works address it only heuristically or require expensive LLM-judge calls at training time.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p><strong>Consistency Reward Model (CRM):</strong> Offline, training-stage rollouts are labeled for thinking-answer consistency using GPT-5 as judge. This yields ~90K NLI-style premise-hypothesis pairs (premise = question + thinking; hypothesis = "The final answer is {a}"). ModernBERT-large is fine-tuned on this dataset as a lightweight binary discriminator (consistent / inconsistent). The CRM is then frozen and used online during GRPO rollouts to produce a continuous consistency reward: <code>r_cons = λ_cons · P(consistent | q, t, a)</code>.</p>
 <p><strong>Hybrid Reward Advantage Splitting (HRAS):</strong> Rather than summing all reward components before group-wise normalization (which lets the continuous CRM signal dominate the sparse accuracy signal), HRAS normalizes task rewards (accuracy + format) and consistency rewards <em>separately</em> within each response group, then composes the two advantages with learnable weights α and β: <code>A = α·A_task + β·A_cons</code>. Scheduling strategies (warmup, decay) modulate the consistency reward weight across training.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Systematic empirical characterization of thinking-answer inconsistency across GRPO training dynamics (early/middle/late) and post-training evaluation, covering spatial, math, and puzzle reasoning tasks with four Qwen-VL models.</li>
 <li>CRM: a plug-and-play, NLI-framed ModernBERT discriminator trained offline on ~90K annotated rollouts, lightweight enough for online use during RL.</li>
 <li>HRAS: reward-decoupled advantage estimation that prevents the continuous consistency reward from crowding out the discrete accuracy reward under group-wise normalization.</li>
 <li>Demonstration that reduced inconsistency correlates with improved final-answer accuracy, supporting the claim that faithful reasoning causally helps task performance.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <p>Against standard GRPO baseline on five benchmarks (CVBench, MathVision, MathVista, PuzzleVQA, AlgoPuzzleVQA) with four backbones (Qwen2-VL-2B/7B, Qwen2.5-VL-3B/7B):</p>
 <ul>
 <li><strong>Qwen2.5-VL-7B:</strong> MathVista accuracy 67.90 → 69.30; MathVision IR 15.80 → 8.28; AlgoPuzzleVQA IR 12.54 → 2.50.</li>
@@ -7724,17 +7873,17 @@
 <li>Ablation (Qwen2.5-VL-7B): removing CRM degrades accuracy and raises IR; removing HRAS reduces accuracy while sometimes over-suppressing inconsistency, confirming both components are necessary.</li>
 <li>CORA increases Consistent-Correct samples on MathVision (+6.38 pp CC, −29.47 pp IW) and PuzzleVQA (+11.00 pp CC, −10.05 pp IC).</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Evaluated only on models ≤7B parameters; scalability to larger models is untested.</li>
 <li>Restricted to static image-text inputs; video and higher-dimensional multimodal inputs are not considered.</li>
 <li>CRM is trained offline from rollouts of specific task domains; out-of-distribution generalization of the discriminator is not characterized.</li>
 <li>Consistency labeling (and hence CRM training data quality) depends on GPT-5 as judge, introducing cost and potential annotation bias.</li>
 </ul>
-<h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models</h2>
+<h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>CORA directly targets a structural weakness in how RLVR is applied to LVLMs: answer-level rewards do not align the chain-of-thought with the final prediction, undermining trustworthiness of reasoning even when accuracy improves. For researchers tracking VLMs, this is a concrete step toward <em>process-faithful</em> reward design — complementary to grounded CoT and visual hallucination work. The NLI-framed CRM is a general-purpose, lightweight plug-in that could be applied to any GRPO-trained LVLM without modifying the base reward structure, making it practically relevant for the broader multimodal reasoning fine-tuning ecosystem.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="vlm-rlvr-grpo-chain-of-thought-reward-modeling-multimodal-reasoning-consistency-nli">vlm #rlvr #grpo #chain-of-thought #reward-modeling #multimodal-reasoning #consistency #nli</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="vlm-rlvr-grpo-chain-of-thought-reward-modeling-multimodal-reasoning-consistency-nli">vlm #rlvr #grpo #chain-of-thought #reward-modeling #multimodal-reasoning #consistency #nli<a class="headerlink" href="#vlm-rlvr-grpo-chain-of-thought-reward-modeling-multimodal-reasoning-consistency-nli" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7793,7 +7942,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

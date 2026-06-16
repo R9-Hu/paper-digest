@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2388,8 +2516,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -2415,7 +2549,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2565,6 +2699,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -3643,6 +3780,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3866,6 +4006,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,15 +7847,15 @@
 
 
 
-<h1 id="free-lunch-in-medical-image-foundation-model-pre-training-via-randomized-synthesis-and-disentanglement">Free Lunch in Medical Image Foundation Model Pre-training via Randomized Synthesis and Disentanglement</h1>
+<h1 id="free-lunch-in-medical-image-foundation-model-pre-training-via-randomized-synthesis-and-disentanglement">Free Lunch in Medical Image Foundation Model Pre-training via Randomized Synthesis and Disentanglement<a class="headerlink" href="#free-lunch-in-medical-image-foundation-model-pre-training-via-randomized-synthesis-and-disentanglement" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-02-12 18:09 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2602.12317v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>RaSD (Randomized Synthesis and Disentanglement) pre-trains medical image foundation models entirely on synthetic data generated from Gaussian distributions, requiring zero real images. Pre-trained at scale (1.2M 3D volumes, 9.6M 2D images), RaSD consistently outperforms scratch baselines and matches or exceeds real-data pre-trained models across 56 downstream tasks spanning 6 modalities and 48 datasets. The work establishes synthetic data as a viable, privacy-preserving substitute for real data in MIFM pre-training.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>MIFM pre-training is bottlenecked by the cost, scarcity, heterogeneity, and privacy constraints of large-scale annotated medical datasets. Self-supervised approaches on real data provide weak supervision signals, while prior synthetic approaches (e.g., Anatomix) enforce appearance consistency, limiting generalization to modalities with stable intensity distributions. No existing method demonstrates that MIFMs can be pre-trained competitively using zero real data.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>RaSD comprises two components: (1) a <strong>randomized synthetic data engine</strong> that generates paired image-mask data on-the-fly by sampling Gaussian heatmaps to simulate anatomical structures, applying random deformation fields for geometric variation, and filling pixel intensities from class-conditioned Gaussian noise to produce appearance diversity; (2) a <strong>prototype disentangling learning</strong> objective that applies pull (prototype clustering) and push (prototype separation) losses over dense per-region features to force the backbone to disentangle semantic regions rather than memorize dataset-specific textures. Training is fully streaming (online synthesis), eliminating data storage requirements. Two architectures are instantiated: RaSD-2D (CNN-UNet) and RaSD-3D (Swin Transformer base in Swin UNETR), pre-trained on 9.6M synthetic 2D and 1.2M synthetic 3D image-label pairs respectively.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Demonstrates that MIFMs can be pre-trained entirely on Gaussian-synthesized data with no real medical images.</li>
 <li>Online streaming synthesis pipeline that eliminates storage overhead (zero GB vs. ~10 GB at 1000-image scale) and reduces total training time by ~13% at scale.</li>
@@ -7714,7 +7863,7 @@
 <li>Comprehensive benchmark across 48 datasets, 56 tasks, and 6 modalities (CT, MRI, X-ray, ultrasound, fundus, pathology).</li>
 <li>Scales to models up to 653M parameters, establishing a privacy-preserving and annotation-free pre-training paradigm.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li>RaSD consistently outperforms training-from-scratch across all 56 evaluated tasks and achieves best performance on 17.</li>
 <li><strong>3D CT segmentation</strong> (14 datasets vs. Swin UNETR, SuPreM, VoCo, Anatomix): best or tied-best on IRCADb (94%), Covid-19-20 (84%), WHS-CT (98%); outperforms Anatomix on all 12 CT segmentation tasks.</li>
@@ -7725,17 +7874,17 @@
 <li><strong>Representation quality</strong> (t-SNE NMI on AMOS-MR): RaSD 0.374 vs. Swin UNETR (real-data) 0.379 vs. Anatomix 0.320 vs. Scratch 0.287.</li>
 <li>Online synthesis is 96 s faster than offline at 1000-sample scale with zero storage.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Rule-based synthesis cannot reproduce rare pathological variations or complex anatomical anomalies not captured by predefined Gaussian rules.</li>
 <li>Performance gap remains against highly specialized modality-specific models (e.g., Mammo-CLIP, MAMA) on narrow domains; gap is within 5% in 80% of comparisons but not eliminated.</li>
 <li>Validation is restricted to benchmark datasets; real-world clinical deployment performance remains unconfirmed.</li>
 <li>Hybrid integration with generative models (to capture organic diversity beyond rule-based patterns) is deferred to future work.</li>
 </ul>
-<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine</h2>
+<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine<a class="headerlink" href="#relevance-to-foundation-models-in-medicine" title="Permanent link">&para;</a></h2>
 <p>RaSD directly confronts the core data bottleneck constraining MIFM development by decoupling model pre-training from real-data acquisition entirely—a practically significant result for privacy-sensitive clinical settings or under-resourced institutions. The disentanglement objective provides a principled mechanism for learning modality-agnostic structural priors, which explains the observed cross-modal transfer (e.g., synthetic-data-trained models transferring to MRI without CT pre-training data). For the broader MIFM research agenda, this work shifts the question from "how to collect more real data" to "how to design synthesis rules that expose the model to sufficient structural variability," opening a scalable and ethically unconstrained pre-training path. It also establishes that fully supervised pre-training on auto-labeled synthetic data can outperform self-supervised pre-training on real data, challenging the prevailing SSL-on-real-data paradigm.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="synthetic-data-pre-training-medical-image-foundation-model-disentanglement-gaussian-synthesis-segmentation-privacy-preserving-multi-modality">synthetic-data #pre-training #medical-image-foundation-model #disentanglement #gaussian-synthesis #segmentation #privacy-preserving #multi-modality</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="synthetic-data-pre-training-medical-image-foundation-model-disentanglement-gaussian-synthesis-segmentation-privacy-preserving-multi-modality">synthetic-data #pre-training #medical-image-foundation-model #disentanglement #gaussian-synthesis #segmentation #privacy-preserving #multi-modality<a class="headerlink" href="#synthetic-data-pre-training-medical-image-foundation-model-disentanglement-gaussian-synthesis-segmentation-privacy-preserving-multi-modality" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7794,7 +7943,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

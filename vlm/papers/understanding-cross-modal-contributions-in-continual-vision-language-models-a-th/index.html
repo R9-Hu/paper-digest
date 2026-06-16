@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -280,8 +402,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -307,7 +435,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -523,6 +651,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -2525,6 +2656,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2700,6 +2834,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3643,6 +3780,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3866,6 +4006,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,13 +7847,13 @@
 
 
 
-<h1 id="understanding-cross-modal-contributions-in-continual-vision-language-models-a-theoretical-perspective">Understanding Cross-Modal Contributions in Continual Vision-Language Models: A Theoretical Perspective</h1>
+<h1 id="understanding-cross-modal-contributions-in-continual-vision-language-models-a-theoretical-perspective">Understanding Cross-Modal Contributions in Continual Vision-Language Models: A Theoretical Perspective<a class="headerlink" href="#understanding-cross-modal-contributions-in-continual-vision-language-models-a-theoretical-perspective" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-12 18:41 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.14883v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>This paper introduces a formal theoretical framework for understanding how vision and language modality contributions drive catastrophic forgetting in continual VLMs. Four pairwise cosine-expectation scores (two cross-modal, two intra-modal) computed from a single frozen forward pass are shown to predict loss drift, gradient alignment masks, and forgetting magnitude. Contribution-guided environment ordering achieves up to 1.74× forgetting reduction on MS-COCO without any architectural change.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Prior continual VLM methods (prompt tuning, adapters, weight interpolation) suppress catastrophic forgetting empirically but none formally characterize which property of the joint image-text embedding space determines how much forgetting occurs, nor how modality-specific alignment varies across a sequence of environments.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>The paper defines four scalar contribution scores as pairwise cosine expectations between environments Et and Et′: cross-modal (ConI→T, ConT→I) and intra-modal (ConI→I, ConT→T), each parameterized by a σ value (0 = identical, 1 = orthogonal). Three theoretical analyses use these scores:</p>
 <ul>
 <li><strong>T1 (Loss decomposition):</strong> Proves under the Environment Smooth Transition assumption that total loss drift ∆LOSS(t→t′) = β₁·ConI→T + β₂·ConT→I + α, decomposing linearly for both CE and CLIP loss components. The CLIP term has zero cross-seed variance under a frozen encoder but can reverse the sign of ∆CE.</li>
@@ -7712,7 +7861,7 @@
 <li><strong>T3 (Forgetting bound and ordering):</strong> Derives a closed-form bound on forgetting Ft as a function of intra-environment Hessian curvature, and bounds the forgetting difference Ft1−Ft2 across two environments by the Hessian of cross-modal contributions. Ordering environments to minimize cumulative contribution cost ΣConIT minimizes total forgetting Fπ.</li>
 </ul>
 <p>Experiments use CLIP (RN50, ViT-B/32, ViT-B/16) on MS-COCO 2017 (5 semantic environments, high cross-modal variance: σI=0.138) and CUB-200-2011 (5 taxonomic environments, low variance: σI=0.063), under both frozen and adaptive protocols, 3 seeds, 120-permutation ordering sweeps.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>T1 (Loss decomposition theorem):</strong> ∆LOSS linearly decomposes into ConI→T and ConT→I; both terms required to predict transition direction; CLIP term is zero-variance under frozen encoder.</li>
 <li><strong>T2 (CBF theorem):</strong> CBF objective reduces analytically to p² under a contribution-normalized mask (verified to machine precision); λ monotonically controls CLV(t) only under adaptive fine-tuning.</li>
@@ -7720,7 +7869,7 @@
 <li><strong>OOD robustness:</strong> Lower ConIT predicts higher pairwise MCM AUROC on COCO (Pearson ≈ −0.42 to −0.55); T3 ordering simultaneously improves cumulative OOD AUROC (0.715→0.757 on COCO).</li>
 <li><strong>Empirical validation boundary:</strong> CUB's near-uniform contributions (σI=0.063) collapse the predictor range (1.16× ratio, positive Pearson), defining when the framework loses discriminative power.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>T1 (COCO, ViT-B/16, frozen, λ=1):</strong> ∆CLIP std=0 across all seeds/epochs; ∆CLIP reverses sign of ∆LOSS on E4→E5; OLS R² rises from ≈0 (frozen) to +0.12 (COCO) and +0.16 (CUB) at epoch 10 under adaptive encoding.</li>
 <li><strong>T2 (CLV(t) sweep, adaptive ViT-B/16):</strong> CLV(t) increases from ≈0.04 (λ=0) to ≈0.50 (λ=5) on CUB; COCO saturates lower (≈0.27–0.36); frozen encoder shows exactly zero sensitivity to λ.</li>
@@ -7733,7 +7882,7 @@
 <li><strong>Pairwise OOD (frozen):</strong> COCO mean AUROC ≈0.89–0.90; CUB ≈0.65–0.70; adaptive fine-tuning degrades COCO to 0.61 and CUB to 0.50.</li>
 <li><strong>Cumulative OOD (ViT-B/16):</strong> T3 ordering: COCO 0.757 vs 0.715 neutral; CUB 0.506 vs 0.488.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Theoretical results rely on the Environment Smooth Transition assumption (Assumption 4.3), which holds approximately only at conservative adaptive encoder learning rates.</li>
 <li>T3 ordering benefit requires substantial cross-modal variation (σI≈0.138 on COCO); near-uniform regimes (CUB σI=0.063) render the predictor uninformative.</li>
@@ -7742,10 +7891,10 @@
 <li>OOD robustness analysis is empirical only; no theoretical guarantees connect contribution scores to OOD AUROC.</li>
 <li>Only CLIP-based architectures are tested; generalization to other VLM families (e.g., BLIP, LLaVA) is unverified.</li>
 </ul>
-<h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models</h2>
+<h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>This work provides the first formal characterization of how CLIP's joint image-text embedding geometry governs catastrophic forgetting in sequential fine-tuning, a practical regime for adapting VLMs to new domains. The cross-modal contribution scores are computable from a single frozen forward pass and require no additional supervision, making them a lightweight diagnostic tool directly applicable to any CLIP-derived VLM. The finding that the CLIP loss component can reverse the direction of CE loss drift—and that λ monotonically controls intra-environment alignment—has direct implications for hyperparameter selection in continual CLIP adaptation methods such as ZSCL and prompt tuning. The unification of forgetting reduction and OOD discriminability under a single contribution-guided ordering criterion opens a theoretically grounded avenue for principled continual VLM algorithm design.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="continual-learning-catastrophic-forgetting-clip-vision-language-models-cross-modal-alignment-ood-detection-theoretical-analysis-environment-ordering">continual-learning #catastrophic-forgetting #clip #vision-language-models #cross-modal-alignment #ood-detection #theoretical-analysis #environment-ordering</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="continual-learning-catastrophic-forgetting-clip-vision-language-models-cross-modal-alignment-ood-detection-theoretical-analysis-environment-ordering">continual-learning #catastrophic-forgetting #clip #vision-language-models #cross-modal-alignment #ood-detection #theoretical-analysis #environment-ordering<a class="headerlink" href="#continual-learning-catastrophic-forgetting-clip-vision-language-models-cross-modal-alignment-ood-detection-theoretical-analysis-environment-ordering" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7804,7 +7953,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

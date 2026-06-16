@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2388,8 +2516,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -2415,7 +2549,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2565,6 +2699,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -3643,6 +3780,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3866,6 +4006,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,15 +7847,15 @@
 
 
 
-<h1 id="designing-unicorn-a-unified-benchmark-for-imaging-in-computational-pathology-radiology-and-natural-language">Designing UNICORN: a Unified Benchmark for Imaging in Computational Pathology, Radiology, and Natural Language</h1>
+<h1 id="designing-unicorn-a-unified-benchmark-for-imaging-in-computational-pathology-radiology-and-natural-language">Designing UNICORN: a Unified Benchmark for Imaging in Computational Pathology, Radiology, and Natural Language<a class="headerlink" href="#designing-unicorn-a-unified-benchmark-for-imaging-in-computational-pathology-radiology-and-natural-language" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-03-03 09:27 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2603.02790v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>UNICORN is the first unified public benchmark for evaluating medical foundation models simultaneously across radiology, digital pathology, and clinical text, spanning 20 tasks under a single standardized protocol. It introduces a two-step evaluation framework that decouples frozen encoder inference from lightweight few-shot adaptation, isolating representation quality. A new aggregate metric—the UNICORN Score—enables direct cross-model, cross-domain comparison.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing medical AI benchmarks are fragmented by task, organ, or modality, making it impossible to assess cross-domain generalization of foundation models under a consistent protocol. Evaluation data are rarely sequestered, enabling leakage, and heterogeneous metrics across benchmarks preclude fair comparison. No single public framework covers the full breadth of tasks (vision, language, vision-language) that a general medical foundation model must handle.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>UNICORN is hosted on Grand Challenge and enforces a containerized two-step pipeline. <strong>Step 1 (Algorithm container):</strong> the submitter's foundation model extracts generic representations from each case (patch-level for dense tasks, case-level for classification/regression) without internet access. <strong>Step 2 (Evaluation container, organizer-controlled):</strong> lightweight adaptors (k-NN to small learned heads) trained on 48 labeled few-shot examples per task transform representations into task-specific predictions; pretrained weights are disallowed in adaptors. For language tasks, the algorithm outputs predictions directly; for vision-language, the model generates text given the task description. All test labels are sequestered. Performance per task is normalized as <code>(S − S_ref) / (S_max − S_ref)</code> anchored at a trivial baseline, then averaged equally across all 20 tasks into the <strong>UNICORN Score</strong>. Domain-specific sub-scores (pathology-vision, radiology-vision, language) are computed analogously.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First unified benchmark evaluating medical foundation models across radiology, pathology, and clinical language under one protocol and leaderboard.</li>
 <li>20 clinically motivated tasks (8 classification, 4 detection, 3 regression, 3 segmentation, 1 NER, 1 caption generation) covering 8 anatomical regions and 4 imaging modalities.</li>
@@ -7714,14 +7863,14 @@
 <li>Strictly sequestered test sets from 2,400+ patients across 17 institutions in 8 countries (3,700+ vision cases, 2,400+ clinical reports), preventing data leakage.</li>
 <li>Open-source adaptor repository and public evaluation code promoting reproducibility; baseline implementation achieves UNICORN Score 0.378.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Baseline model (publicly available foundation models + lightweight adaptors) achieves a <strong>UNICORN Score of 0.378</strong> across all 20 tasks.</li>
 <li>No per-task breakdown for submitted models is reported in this paper (benchmark description paper; leaderboard results are hosted externally at unicorn.grand-challenge.org).</li>
 <li>Benchmark engagement: 270+ researchers across 6 continents participated.</li>
 <li>Dataset scale: &gt;2,400 patients, &gt;3,700 vision cases, &gt;2,400 clinical reports from 17 institutions, 8 countries.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Most test data sourced from a single academic center (Radboud UMC), limiting assessment of cross-scanner and cross-institution generalization.</li>
 <li>Case-level classification/regression tasks require a single vector representation per case, excluding models that depend on dense patch-level prediction heads at inference time.</li>
@@ -7730,10 +7879,10 @@
 <li>No direct comparison to task-specific supervised baselines within the framework yet; prior challenge-winning models have not been re-evaluated under UNICORN.</li>
 <li>Only few-shot (48-example) adaptation is assessed; full fine-tuning regimes are out of scope by design.</li>
 </ul>
-<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine</h2>
+<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine<a class="headerlink" href="#relevance-to-foundation-models-in-medicine" title="Permanent link">&para;</a></h2>
 <p>UNICORN directly addresses the evaluation bottleneck for medical foundation models by providing the first benchmark where a single frozen encoder can be scored across 20 heterogeneous clinical tasks via standardized few-shot adaptation—the paradigm these models are actually intended for. The UNICORN Score gives the community a concrete, comparable signal for generalization quality that existing fragmented benchmarks (UNI, Phikon, CT-FM, CONCH evaluations) cannot provide. For researchers tracking medical foundation models, this benchmark establishes the reference infrastructure needed to distinguish genuinely general representations from task-overfitted ones, and its extensible design means new modalities and tasks can be added as the field matures.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="benchmark-evaluation-foundation-model-few-shot-radiology-pathology-vision-language-multi-task">benchmark #evaluation #foundation-model #few-shot #radiology #pathology #vision-language #multi-task</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="benchmark-evaluation-foundation-model-few-shot-radiology-pathology-vision-language-multi-task">benchmark #evaluation #foundation-model #few-shot #radiology #pathology #vision-language #multi-task<a class="headerlink" href="#benchmark-evaluation-foundation-model-few-shot-radiology-pathology-vision-language-multi-task" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7792,7 +7941,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2388,8 +2516,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -2415,7 +2549,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2565,6 +2699,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -3643,6 +3780,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3866,6 +4006,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,13 +7847,13 @@
 
 
 
-<h1 id="revisiting-2d-foundation-models-for-scalable-3d-medical-image-classification">Revisiting 2D Foundation Models for Scalable 3D Medical Image Classification</h1>
+<h1 id="revisiting-2d-foundation-models-for-scalable-3d-medical-image-classification">Revisiting 2D Foundation Models for Scalable 3D Medical Image Classification<a class="headerlink" href="#revisiting-2d-foundation-models-for-scalable-3d-medical-image-classification" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-12-15 00:01 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2512.12887v3">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>AnyMC3D adapts frozen 2D foundation models (FMs) to 3D medical image classification via lightweight task-specific LoRA adapters (~1M parameters per task) and a query-based attention pooling slice aggregator. It achieves 0.894 average AUROC across a 12-task benchmark, matching or surpassing 3D medical FMs that require 40–50× more trainable parameters. A key finding is that properly adapted general-purpose 2D FMs (e.g., DINOv2/v3) can match domain-specific medical FMs.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Three critical pitfalls plague prior work on medical FMs for 3D classification: (1) <strong>data-regime bias</strong> — evaluation in low-data few-shot settings that are clinically unrepresentative; (2) <strong>suboptimal adaptation</strong> — naive frozen-backbone + average/median pooling strategies that severely underestimate FM capacity; (3) <strong>insufficient task coverage</strong> — benchmarks limited to a single modality or anatomy, preventing assessment of true generalization.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>AnyMC3D freezes a 2D ViT backbone (DINOv2/v3 ViT-L 300M, MedImageInsight DaViT 365M, or MedGemma SigLIP 432M) and adds task-specific lightweight plugins:</p>
 <ul>
 <li><strong>LoRA adaptation</strong> (rank 8, α=16) applied to patch embedding and all self-attention projection layers (~1.2–2M trainable params per task), enabling task-specific in-plane feature refinement without altering the shared backbone.</li>
@@ -7713,7 +7862,7 @@
 <li><strong>Multi-view/modal fusion</strong>: view-specific LoRA adapters and queries encode each MRI view separately; view embeddings are fused by a second attention pooling step.</li>
 <li><strong>Interpretable 3D heatmaps</strong>: per-slice class-to-patch attention maps (averaged over heads) are weighted by slice importance scores from the task query to yield a volumetric saliency map.</li>
 </ul>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Identification and characterization of three pitfalls (data-regime bias, suboptimal adaptation, insufficient task coverage) that have led the field to systematically underestimate 2D FM potential.</li>
 <li>AnyMC3D: a single frozen-backbone framework scalable to arbitrary new 3D classification tasks with ~1M additional parameters per task.</li>
@@ -7721,7 +7870,7 @@
 <li>First-place finish in the VLM3D challenge (118 participants) using only ~0.5M trainable parameters, without task-specific engineering or large-scale CT pretraining.</li>
 <li>Empirical demonstration that general-purpose 2D FMs, when properly adapted, match domain-specific medical FMs.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Average AUROC (10-task benchmark)</strong>: AnyMC3D (MII) = 0.894 (rank 1.7), AnyMC3D (DINOv3) = 0.894 (rank 2.0); best prior baseline MST = 0.869 (rank 4.0); 3D medical FMs VoCo = 0.793, MedicalNet = 0.783.</li>
 <li><strong>Parameter efficiency</strong>: AnyMC3D uses 1.2–2.0M trainable params vs. MST 23.05M, VoCo 50.49M (10–50× reduction).</li>
@@ -7732,7 +7881,7 @@
 <li><strong>Head CT (75 findings)</strong>: AnyMC3D (DINOv2) avg AUC 0.820 vs. DeepCNTD 0.768.</li>
 <li><strong>Data efficiency (T3, 20% data)</strong>: AnyMC3D (DINOv3) AUC 0.924 vs. DenseNet 0.741; outperforms DenseNet trained on 60% of data (3× data efficiency).</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Findings are limited to the evaluated FM backbones; other FMs may exhibit different adaptation characteristics.</li>
 <li>All tasks use in-domain CT/MRI; generalization to out-of-domain modalities (e.g., PET) is untested.</li>
@@ -7741,10 +7890,10 @@
 <li>2D slice-by-slice processing may underperform for tasks requiring fine-grained 3D spatial context (e.g., segmentation), which still favors 3D architectures.</li>
 <li>DINOv3's enhanced spatial features did not improve over DINOv2 for classification; benefit for dense 3D prediction tasks is unexplored.</li>
 </ul>
-<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine</h2>
+<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine<a class="headerlink" href="#relevance-to-foundation-models-in-medicine" title="Permanent link">&para;</a></h2>
 <p>This paper directly challenges two dominant assumptions in medical FM research: that 3D architectures are necessary for 3D tasks, and that medical-domain pretraining is essential for competitive performance. The finding that a properly adapted general-purpose 2D FM (DINOv2) matches medical-specific FMs (MII, MedGemma) shifts the locus of effort from pretraining to adaptation strategy, with significant implications for how the community should allocate investment. The AnyMC3D framework offers a practical scalability paradigm — one frozen backbone, lightweight per-task plugins — that addresses the core bottleneck of deploying FMs across the long tail of clinical 3D imaging tasks. The rigorous multi-task benchmark with realistic data sizes fills a methodological gap and provides a more honest evaluation standard than the low-data regimes that have dominated prior FM papers.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="3d-classification-foundation-models-lora-adaptation-transfer-learning-benchmark-ct-mri-parameter-efficient">3d-classification #foundation-models #lora-adaptation #transfer-learning #benchmark #ct #mri #parameter-efficient</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="3d-classification-foundation-models-lora-adaptation-transfer-learning-benchmark-ct-mri-parameter-efficient">3d-classification #foundation-models #lora-adaptation #transfer-learning #benchmark #ct #mri #parameter-efficient<a class="headerlink" href="#3d-classification-foundation-models-lora-adaptation-transfer-learning-benchmark-ct-mri-parameter-efficient" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7803,7 +7952,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

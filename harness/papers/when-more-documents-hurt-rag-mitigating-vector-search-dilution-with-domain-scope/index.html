@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5587,6 +5733,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -7698,13 +7847,13 @@
 
 
 
-<h1 id="when-more-documents-hurt-rag-mitigating-vector-search-dilution-with-domain-scoped-model-agnostic-retrieval">When More Documents Hurt RAG: Mitigating Vector Search Dilution with Domain-Scoped, Model-Agnostic Retrieval</h1>
+<h1 id="when-more-documents-hurt-rag-mitigating-vector-search-dilution-with-domain-scoped-model-agnostic-retrieval">When More Documents Hurt RAG: Mitigating Vector Search Dilution with Domain-Scoped, Model-Agnostic Retrieval<a class="headerlink" href="#when-more-documents-hurt-rag-mitigating-vector-search-dilution-with-domain-scoped-model-agnostic-retrieval" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-09 18:26 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.11350v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>RAG pipelines degrade severely as heterogeneous corpora scale — a phenomenon the authors formalize as <em>vector search dilution</em> — because dense similarity loses discriminative power across domain boundaries. They propose MASDR-RAG, a multi-agent framework where each agent is a domain-scoped retrieval tool, and its lightweight variant HYBRID-ROUTED (regex + single LLM router + single synthesis call). The core finding is that domain scoping lifts P@10 from 0.77 to 0.86, but naïve multi-agent orchestration collapses faithfulness from 0.61 to 0.35 — the <em>precision–faithfulness paradox</em> — with severity depending on whether the generator is open-source or commercial.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Standard RAG pipelines embed–index–retrieve–generate over a monolithic vector store; as the corpus grows to thousands of heterogeneous documents, the top-k retrieved chunks become semantically plausible but contextually wrong (wrong domain). The authors observe this empirically in a deployed Wyoming DOT chatbot where expanding from 54 to 1,128 documents (88,907 chunks) dropped accuracy from 75% to below 40%, even with hybrid dense+sparse retrieval. No prior work provides a deployable, corpus-intrinsic measurement of this degradation or a retrieval-architecture fix that avoids amplifying faithfulness errors.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p><strong>Dilution formalization:</strong> Define dilution factor δ(q, k★) = 1 − P_global(q)/P_scoped(q), where P_global is the fraction of the top-m retrieval set belonging to the target category over the full corpus and P_scoped is the same fraction when retrieval is restricted to that category's sub-index (≈1 by construction). δ=0 means no dilution; δ→1 is severe.</p>
 <p><strong>MASDR-RAG architecture:</strong>
 1. <em>Domain-scoped retrieval</em>: Nine domain agents, each filtering the Neo4j knowledge graph on <code>document_series</code> metadata, reducing the effective search space 85–98% per agent.
@@ -7712,7 +7861,7 @@
 3. <em>Multi-agent orchestration</em>: A function-calling orchestrator dispatches to up to five tool-call rounds across scoped agents.</p>
 <p><strong>HYBRID-ROUTED</strong> collapses orchestration to at most two LLM calls (one router, one synthesizer), eliminating multi-round synthesis.</p>
 <p>Both systems run hybrid vector+BM25 search within the scoped sub-index, merging results with priority deduplication (vector wins on ties).</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Formal definition and empirical measurement of <em>vector search dilution</em> (δ), with corpus-intrinsic measurement requiring no labeled queries.</li>
 <li>MASDR-RAG framework: single reasoning agent with K domain-scoped retrieval tools; explicit distinction from genuinely autonomous multi-agent RAG (MA-RAG, SCOUT-RAG).</li>
@@ -7721,7 +7870,7 @@
 <li>Cross-DOT replication: dilution mechanism transfers to Caltrans and CDOT corpora when scope axis matches producer-level topical granularity (<code>document_series</code> for WY/CO, <code>section</code> for CA).</li>
 <li>Controlled ablations ruling out routing noise, within-scope reranking, retriever family, and index implementation as sole causes; residual cause is context fragmentation from near-duplicate passages under commercial synthesizers.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>P@10</strong>: Monolithic 0.77 → MASDR-RAG 0.86 (p&lt;0.05, WYDOT Gemini stack, n=200).</li>
 <li><strong>Faithfulness</strong>: Monolithic 0.61 → MASDR-RAG 0.35 (p&lt;0.01); HYBRID-ROUTED recovers to 0.62.</li>
@@ -7732,7 +7881,7 @@
 <li><strong>Cross-DOT dilution correlation</strong>: ρ_CDOT = −0.95, ρ_WYDOT = −0.68, ρ_Caltrans-section = −0.85.</li>
 <li><strong>ColBERTv2 scoped</strong>: Faithfulness 0.860 vs. unscoped 0.780 on Composite-9, confirming scoping benefit extends beyond single-vector encoders.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>The precision–faithfulness paradox is measured with an LLM-as-judge (Qwen-7B); RAGAS-style faithfulness metrics assume a single context window and may over-penalize multi-agent responses, so the measured drop is an upper bound.</li>
 <li>Open-source evaluation is limited to 7–8B parameter models; ≥70B models are untested.</li>
@@ -7740,10 +7889,10 @@
 <li>The adaptive scope-axis recommendation (chunks-per-doc heuristic to choose <code>document_series</code> vs. <code>section</code>) is proposed but not ablated end-to-end.</li>
 <li>Evaluation is on government/enterprise corpora; generalization to knowledge bases without explicit hierarchical metadata is unverified.</li>
 </ul>
-<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses</h2>
+<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>This paper is directly relevant as a <em>deployed harness case study</em>: MASDR-RAG is an agent harness where domain-scoped retrieval tools are registered in an <code>AGENT_REGISTRY</code> and dynamically dispatched by an orchestrator, closely mirroring the tool-routing patterns studied in meta-harness research. The <em>precision–faithfulness paradox</em> is a concrete, quantified failure mode of multi-agent orchestration that any harness designer must account for — specifically, that multi-round synthesis with near-duplicate retrieved evidence degrades output quality, and that this effect is strongly backbone-dependent (commercial vs. open-source generators). The recommendation to "scope first, single synthesis call" is an empirically grounded design principle for RAG harnesses, and the controlled ablation methodology (isolating routing noise, reranking, retriever family, index, fragmentation, and backbone) provides a template for diagnosing harness-level failures beyond the retrieval layer.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="rag-multi-agent-agent-harness-retrieval-vector-search-orchestration-enterprise-rag-benchmarking">rag #multi-agent #agent-harness #retrieval #vector-search #orchestration #enterprise-rag #benchmarking</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="rag-multi-agent-agent-harness-retrieval-vector-search-orchestration-enterprise-rag-benchmarking">rag #multi-agent #agent-harness #retrieval #vector-search #orchestration #enterprise-rag #benchmarking<a class="headerlink" href="#rag-multi-agent-agent-harness-retrieval-vector-search-orchestration-enterprise-rag-benchmarking" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7802,7 +7951,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

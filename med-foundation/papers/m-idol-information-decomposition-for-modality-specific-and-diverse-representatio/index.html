@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2388,8 +2516,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -2415,7 +2549,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2565,6 +2699,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -3643,6 +3780,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3866,6 +4006,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,13 +7847,13 @@
 
 
 
-<h1 id="m-idol-information-decomposition-for-modality-specific-and-diverse-representation-learning-in-medical-foundation-model">M-IDoL: Information Decomposition for Modality-Specific and Diverse Representation Learning in Medical Foundation Model</h1>
+<h1 id="m-idol-information-decomposition-for-modality-specific-and-diverse-representation-learning-in-medical-foundation-model">M-IDoL: Information Decomposition for Modality-Specific and Diverse Representation Learning in Medical Foundation Model<a class="headerlink" href="#m-idol-information-decomposition-for-modality-specific-and-diverse-representation-learning-in-medical-foundation-model" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-04-10 04:06 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2604.08936v2">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>M-IDoL is a self-supervised medical foundation model that addresses "information ambiguity" in multimodal pre-training by decomposing the contrastive objective into two entropy-based terms: one that maximizes inter-modality separation and one that minimizes intra-modality uncertainty. Pre-trained on 1.15M unlabeled images across five imaging modalities, it outperforms 20 existing foundation and modality-specific models on 21 downstream clinical tasks.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing unified medical foundation models (MFMs) apply a single contrastive learning (CL) objective across heterogeneous modalities (X-ray, fundus, OCT, dermoscopy, pathology). This uniformly maximizes mutual information including modality-shared redundancy, collapsing all modalities into one embedding space. The result is <em>information ambiguity</em>: degraded inter-modality specificity (modalities are not separable) and degraded intra-modality diversity (fine-grained semantic discrimination within a modality is suppressed).</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>M-IDoL reformulates the standard contrastive objective by explicitly subtracting the trivariate mutual information term that captures cross-modality redundancy. Because direct estimation of trivariate MI is unstable at scale, the objective is decomposed into two tractable entropy terms:</p>
 <p><strong>max H(X|Z) − H(X|Y,Z)</strong></p>
 <ul>
@@ -7716,7 +7865,7 @@
 </li>
 </ul>
 <p>The two losses are summed: <code>L_M-IDoL = L_route + L_cst</code>. A DINO-style siamese network (student/teacher with EMA) using Swin-B backbone is pre-trained for 100 epochs on 2× NVIDIA A6000 GPUs. At inference, only the teacher encoder is retained; the MoE projector is discarded.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Formal identification of <em>information ambiguity</em> in unified multimodal CL pre-training as excessive modality-shared redundancy.</li>
 <li>Information decomposition framework that reformulates trivariate MI removal into two tractable entropy-based objectives without requiring explicit multivariate MI estimation.</li>
@@ -7724,7 +7873,7 @@
 <li>Intra-modality contrastive loss that operates within modality-separated MoE subspaces, improving fine-grained semantic diversity per modality.</li>
 <li>State-of-the-art results across 21 downstream datasets spanning 5 modalities, outperforming 20 baselines including both modality-specific and unified MFMs.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>vs. unified MFMs</strong> (LVM-Med, UniMed, Unimiss+, MedCoss, CoSMIC): M-IDoL achieves statistically significant improvement (p &lt; 0.05) on most of 21 datasets; average gain &gt;6% over Unimiss+, LVM-Med, and UniMed; &gt;4% over continual-learning MFMs (MedCoss, CoSMIC) on OCT and pathology tasks.</li>
 <li><strong>vs. modality-specific models</strong>:</li>
@@ -7736,7 +7885,7 @@
 <li><strong>Ablation</strong> (Table 2, five datasets): Baseline → +MoE only → +L_route → +L_cst yields monotone improvement; e.g., on RSNA AUC: 87.42 → 88.31 → 91.45 → 93.23%.</li>
 <li><strong>Expert count</strong>: one expert per modality (N=5) chosen; additional experts yield marginal gains.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Pre-training covers only five imaging modalities; generalization to modalities absent from pre-training (e.g., MRI, ultrasound, endoscopy) is untested.</li>
 <li>Requires specifying expert count N equal to the number of modalities; performance sensitivity to N mismatch or unknown modality count is not evaluated.</li>
@@ -7744,10 +7893,10 @@
 <li>Modality labels are not used during pre-training, but the method implicitly assumes modalities are distinct enough to be separable by unsupervised routing — not validated for modalities with high visual overlap.</li>
 <li>Evaluation uses linear probing for pathology but full fine-tuning for other modalities, making cross-modality performance comparisons not strictly apples-to-apples.</li>
 </ul>
-<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine</h2>
+<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine<a class="headerlink" href="#relevance-to-foundation-models-in-medicine" title="Permanent link">&para;</a></h2>
 <p>M-IDoL directly targets a core failure mode of unified medical foundation models — the collapse of heterogeneous imaging modalities into a shared representation space — and provides a principled information-theoretic remedy applicable to any MoE-augmented self-supervised architecture. For researchers tracking MFMs, this establishes a new benchmark across 21 datasets and five modalities while demonstrating that modality-aware pre-training objectives can match or exceed modality-specific specialists without sacrificing generality. The routing-consistency + intra-modality contrastive approach complements ongoing work on continual learning (MedCoss, CoSMIC) and vision-language alignment (UniMed) by offering a single-stage, label-free alternative. The MoE projector design also offers a reusable plug-in for existing MFM backbones.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="medical-foundation-model-multimodal-representation-mixture-of-experts-contrastive-learning-information-theory-modality-specificity-self-supervised-medical-imaging">medical-foundation-model #multimodal-representation #mixture-of-experts #contrastive-learning #information-theory #modality-specificity #self-supervised #medical-imaging</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="medical-foundation-model-multimodal-representation-mixture-of-experts-contrastive-learning-information-theory-modality-specificity-self-supervised-medical-imaging">medical-foundation-model #multimodal-representation #mixture-of-experts #contrastive-learning #information-theory #modality-specificity #self-supervised #medical-imaging<a class="headerlink" href="#medical-foundation-model-multimodal-representation-mixture-of-experts-contrastive-learning-information-theory-modality-specificity-self-supervised-medical-imaging" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7806,7 +7955,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -280,8 +402,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -307,7 +435,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -523,6 +651,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -2525,6 +2656,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2700,6 +2834,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3643,6 +3780,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3866,6 +4006,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,18 +7847,18 @@
 
 
 
-<h1 id="physvla-towards-physically-grounded-vla-for-embodied-robotic-manipulation">PhysVLA: Towards Physically-Grounded VLA for Embodied Robotic Manipulation</h1>
+<h1 id="physvla-towards-physically-grounded-vla-for-embodied-robotic-manipulation">PhysVLA: Towards Physically-Grounded VLA for Embodied Robotic Manipulation<a class="headerlink" href="#physvla-towards-physically-grounded-vla-for-embodied-robotic-manipulation" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-11 20:23 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.13886v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>PhysVLA is a training-free, plug-and-play inference-time wrapper that adds physics awareness to any frozen Vision-Language-Action (VLA) model without touching its weights. It intercepts predicted actions and applies a two-branch correction — a phase-aware finite-state machine and a selective Euler-Lagrange gate — adding under 1 ms overhead per control step. On LIBERO-Spatial, it yields up to +17 pp success and +19 pp stability across four distinct VLA backbones with zero per-task regressions.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>VLA models are trained purely on demonstration data and encode no explicit physical constraints (rigid-body dynamics, contact feasibility, energy balance), producing a "physics gap": they emit kinodynamically inconsistent actions, such as premature grasps or full-velocity placements onto sub-centimetre targets. Off-the-shelf fixes like uniform temporal smoothing (EMA) improve trajectory smoothness but degrade task success by flattening responsive bursts needed during contact; memory-augmented chunking recovers local coherence but lacks global phase-level physical context and increases inference cost.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>PhysVLA wraps a frozen VLA backbone at inference time via two parallel branches applied to each intercepted action vector:</p>
 <p><strong>Branch A — Phase-Aware FSM Injector:</strong> A rule-based finite-state machine detects one of four manipulation phases (approach, grasp, transport, place) using geometric predicates on horizontal end-effector-to-object distances. Each phase applies a qualitatively distinct correction: approach uses a premature-grasp veto (gripper command zeroed when distance ≥ 6 cm); grasp applies a guidance bias (β=0.5) toward a computed waypoint with no smoothing; transport applies a vertical lift bias (+2 cm) and position EMA (α=0.92) to suppress jitter; placement scales action magnitude by proximity to enforce a deceleration ramp.</p>
 <p><strong>Branch B — Selective Euler-Lagrange Gate:</strong> Computes the Euler-Lagrange residual r_EL = M(q)q̈ + C(q,q̇)q̇ + G(q) − τ using MuJoCo's internal dynamics oracle. The gate fires only when ‖r_EL‖ &gt; ε (ε=0.05 N·m), blending an inertia-weighted correction into the action only when kinodynamic inconsistency is detected; otherwise it is a no-op.</p>
 <p>The two branches are combined into a physics candidate a_phys, then blended with the original VLA output via a global capped blender: a_t = 0.95·a_VLA + 0.05·a_phys, with a hard gripper override for deliberate grasp commands. No backbone weights are modified; no per-task or per-backbone hyperparameter tuning is performed.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Empirical characterisation of the "physics gap" in both single-step and chunked VLA models on LIBERO-Spatial, showing uniform temporal smoothing consistently degrades success.</li>
 <li>PhysVLA: a backbone-agnostic, training-free inference-time corrector combining a phase-aware FSM and a selective Euler-Lagrange gate, adding &lt;1 ms latency per step.</li>
@@ -7717,7 +7866,7 @@
 <li>Cross-simulator validation on Robosuite Lift showing ~10× jerk robustness improvement over baseline under Gaussian XY noise.</li>
 <li>Real-world transfer to an Agilex Piper 6-DoF arm with no retraining, achieving 95% vs. 45% baseline placement success.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>LIBERO-Spatial (aggregate over T0–T9, n=5 trials, seed 7):</strong></li>
 <li>OpenVLA: success 36% → 53% (+17 pp), stability 20.1% → 36.8% (+16.7 pp)</li>
@@ -7730,7 +7879,7 @@
 <li><strong>Inference overhead:</strong> ≈0.6 ms per step (Branch A ≈0.2 ms, Branch B ≈0.4 ms) vs. VLA forward pass of 30–90 ms.</li>
 <li><strong>Hard failure ceiling:</strong> Tasks T4 and T9 remain at 0% across all single-step backbones, identified as the structural limit of post-hoc injection for occluded contact-rich targets.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Requires accurate URDF/XML kinematic and inertial parameters; miscalibrated robot models force fallback to data-driven dynamics approximations, losing the closed-form Euler-Lagrange guarantee.</li>
 <li>The 5% blend cap is insufficient to resolve tasks requiring sub-centimetre precision (e.g., T5) where physical structure must be integrated at training time.</li>
@@ -7738,10 +7887,10 @@
 <li>Branch B (EL gate) is evaluated on OpenVLA only; chunked OFT's step-level coherence renders it redundant there, but its standalone contribution is not isolated for force-conditioned or flow-matching heads.</li>
 <li>Simulation dependency: dynamics oracle is sourced from MuJoCo; on-board sensor-based dynamics is left to future work.</li>
 </ul>
-<h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models</h2>
+<h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>PhysVLA addresses a structural deficit of VLA models — the conflation of semantic reasoning with physical plausibility — by treating physics enforcement as a composable inference-time module rather than a training objective, which directly enables reuse of large frozen VLM backbones (e.g., OpenVLA-7B) without retraining. This is highly relevant to researchers tracking VLMs because it demonstrates that post-hoc physical grounding can close a non-trivial performance gap (up to 17 pp on established benchmarks) without modifying the multimodal reasoning layer, suggesting a path toward modular specialisation of general-purpose VLMs for safety-critical embodied tasks. The work also empirically distinguishes failure modes attributable to the VLM backbone's physics blindness from those resolvable by temporal ensembling, contributing a diagnostic framework useful for benchmarking future VLA architectures.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="vla-embodied-ai-physics-informed-robotic-manipulation-inference-time-adaptation-frozen-backbone-finite-state-machine-euler-lagrange">vla #embodied-ai #physics-informed #robotic-manipulation #inference-time-adaptation #frozen-backbone #finite-state-machine #euler-lagrange</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="vla-embodied-ai-physics-informed-robotic-manipulation-inference-time-adaptation-frozen-backbone-finite-state-machine-euler-lagrange">vla #embodied-ai #physics-informed #robotic-manipulation #inference-time-adaptation #frozen-backbone #finite-state-machine #euler-lagrange<a class="headerlink" href="#vla-embodied-ai-physics-informed-robotic-manipulation-inference-time-adaptation-frozen-backbone-finite-state-machine-euler-lagrange" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7800,7 +7949,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

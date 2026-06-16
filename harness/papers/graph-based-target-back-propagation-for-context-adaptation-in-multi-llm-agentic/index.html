@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5587,6 +5733,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -7698,13 +7847,13 @@
 
 
 
-<h1 id="graph-based-target-back-propagation-for-context-adaptation-in-multi-llm-agentic-systems">Graph-based Target Back-Propagation for Context Adaptation in Multi-LLM Agentic Systems</h1>
+<h1 id="graph-based-target-back-propagation-for-context-adaptation-in-multi-llm-agentic-systems">Graph-based Target Back-Propagation for Context Adaptation in Multi-LLM Agentic Systems<a class="headerlink" href="#graph-based-target-back-propagation-for-context-adaptation-in-multi-llm-agentic-systems" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-12 06:27 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.14155v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>GTBP is a framework for automatically tuning the prompts of multi-LLM agentic workflows—modeled as directed acyclic graphs—without touching model weights. It adapts Difference Target Propagation from neural networks: instead of backpropagating gradients, it backpropagates inferred "local target outputs" through the workflow graph so each module receives a precise, stage-specific optimization signal. On three benchmarks it outperforms GEPA and few-shot baselines with comparable or lower training cost.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing context-adaptation methods for multi-LLM pipelines (e.g., GEPA, TextGrad, ACE) suffer from <em>attribution ambiguity</em>: credit for final-output error is assigned to per-module prompts implicitly—via black-box LLM reflection over the entire trajectory—yielding non-deterministic updates and no convergence guarantees. There is no principled mechanism that ties each module's prompt update explicitly to that module's contribution to the overall loss.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>GTBP models the agentic workflow as a DAG G = (V, E); each node is a frozen LLM submodule with a tunable prompt. Three algorithmic phases per training iteration:</p>
 <ol>
 <li><strong>Forward pass (Alg. 1):</strong> execute the graph in topological order, caching each node's input/output.</li>
@@ -7712,14 +7861,14 @@
 <li><strong>Stage-wise prompt update (Alg. 3):</strong> for each tunable node v, an LLM optimizer receives the current prompt, the mini-batch of (input, actual output, target output) triples, and an edit budget n. It revises up to n existing prompt claims and may add one new claim every m⁺ iterations; the edit budget decays by 1 every m⁻ iterations to enforce convergence.</li>
 </ol>
 <p>Theoretically: under simplified single-token, single-transformer-block assumptions, the authors show the implicit weight update ‖ΔW^(t)‖_F = O(t⁻¹) (Theorem 1), that the local objective change is also O(t⁻¹) (Theorem 2), and that the overall loss gap is O(t⁻¹) for a sufficiently capable LLM optimizer (Theorem 3).</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>GTBP framework: explicit graph-structured credit assignment via LLM-guided backward target inference, as opposed to trajectory-level reflection.</li>
 <li>Theoretical stability and descent analysis: stage-wise prompt updates converge (objective change → 0) and induce gradient-aligned implicit weight updates.</li>
 <li>Stage-wise scheduling: edit-budget decay (m⁻) and claim-addition interval (m⁺) hyperparameters that structure prompt growth and stabilize training.</li>
 <li>Empirical validation on HotpotQA, LiveBench-Math, and SubPOP using GPT-4.1-mini as backbone.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>HotpotQA F1:</strong> GTBP 0.800 vs. GEPA 0.770 (+4.0%), vs. Few-shot 0.766, vs. Zero-shot 0.754.</li>
 <li><strong>LiveBench-Math Accuracy:</strong> GTBP 0.669 vs. GEPA 0.641 (+4.4%), vs. Few-shot 0.556, vs. Zero-shot 0.611.</li>
@@ -7727,7 +7876,7 @@
 <li>Training LLM call efficiency: on LiveBench-Math and SubPOP, GTBP uses far fewer calls than GEPA (e.g., 3,580 vs. 1,807 for LiveBench-Math… wait—actually GEPA uses 1,807 calls vs. GTBP 3,580 on LiveBench-Math, but GTBP wins on SubPOP: 1,730 vs. 12,700 GEPA calls). Mixed picture across tasks; comparable or lower total cost in most settings.</li>
 <li>Convergence curves (SubPOP, 200 samples, 60 iterations): WD and rank-match accuracy stabilize after early rapid improvement; prompt length grows monotonically while per-iteration update count decreases—consistent with theoretical predictions.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Theoretical analysis relies on strong simplifying assumptions: single-token setting, single-transformer-block modules, and requires a "sufficiently capable" LLM optimizer—not guaranteed in practice.</li>
 <li>Workflow scope is restricted: experiments use a one-hidden-layer DAG (up to K=4 intermediate nodes + output node), avoiding multi-target ambiguity; generalisation to deeper graphs, branching topologies, tool-calling, or dynamic routing is unvalidated.</li>
@@ -7735,10 +7884,10 @@
 <li>Underperforms fine-tuned open-weight models (e.g., Llama-3-70B on SubPOP) when gradient-based tuning is feasible.</li>
 <li>Multi-target ambiguity when a node branches to multiple successors is explicitly punted to future work.</li>
 </ul>
-<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses</h2>
+<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>GTBP is directly a <em>meta-harness mechanism</em>: it treats a multi-LLM pipeline as a structured computational graph and automates the tuning of all inter-module prompt contracts without human intervention or weight access. The staged, graph-traversal optimization loop is precisely the kind of self-improving harness scaffold relevant to anyone building or studying agentic meta-frameworks—analogous to how a meta-harness orchestrates sub-agents but also optimizes their coordination. The theoretical convergence guarantees and the DAG abstraction offer a principled foundation for harness designers who need reproducible, well-behaved prompt-tuning dynamics, and the approach generalises naturally to any harness that can be expressed as a DAG of LLM calls with tunable prompts.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="agentic-ai-prompt-optimization-credit-assignment-multi-agent-dag-workflow-context-adaptation-automatic-prompt-engineering-meta-harness">agentic-ai #prompt-optimization #credit-assignment #multi-agent #dag-workflow #context-adaptation #automatic-prompt-engineering #meta-harness</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="agentic-ai-prompt-optimization-credit-assignment-multi-agent-dag-workflow-context-adaptation-automatic-prompt-engineering-meta-harness">agentic-ai #prompt-optimization #credit-assignment #multi-agent #dag-workflow #context-adaptation #automatic-prompt-engineering #meta-harness<a class="headerlink" href="#agentic-ai-prompt-optimization-credit-assignment-multi-agent-dag-workflow-context-adaptation-automatic-prompt-engineering-meta-harness" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7797,7 +7946,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

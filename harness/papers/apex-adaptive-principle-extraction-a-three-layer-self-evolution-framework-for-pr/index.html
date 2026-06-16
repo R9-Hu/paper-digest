@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5587,6 +5733,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -7698,13 +7847,13 @@
 
 
 
-<h1 id="apex-adaptive-principle-extraction-a-three-layer-self-evolution-framework-for-production-ai-agents">APEX: Adaptive Principle EXtraction A Three-Layer Self-Evolution Framework for Production AI Agents</h1>
+<h1 id="apex-adaptive-principle-extraction-a-three-layer-self-evolution-framework-for-production-ai-agents">APEX: Adaptive Principle EXtraction A Three-Layer Self-Evolution Framework for Production AI Agents<a class="headerlink" href="#apex-adaptive-principle-extraction-a-three-layer-self-evolution-framework-for-production-ai-agents" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-13 15:47 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.15363v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>APEX is a three-layer co-evolution framework for production AI agents that simultaneously evolves the prompt harness (L1), distills behavioural principles from success traces (L2), and searches workflow DAG topology (L3). Implemented on a real 15-node fleet manager ("Joe") using 114 production traces, it achieves a +90% Health Score improvement over an untuned baseline in a single run costing 4 LLM calls (~270 s) on a local GPU.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Prior self-improvement methods (Self-Harness, EvolveR, AFlow) each target a single axis—harness patching, principle distillation, or workflow topology search—leaving the other two dimensions fixed. Single-axis optimisation misses orthogonal failure modes: a well-patched harness with a suboptimal workflow still fails systematically; good principles without correct harness rules degrade under distribution shift; topology search without a quality harness foundation can <em>reduce</em> net agent quality (shown empirically: L3-only H=0.270 &lt; baseline H=0.300).</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>APEX draws from a shared production trace pool (SQLite DB) and runs three parallel pipelines per evolution cycle:</p>
 <ul>
 <li><strong>L1 (Harness Patching):</strong> Flags failure traces by keyword match (<code>error/fail/wrong/mistake</code> in lesson field), submits top-30 recency-ranked failures to a local LLM (qwen2.5-coder:32b via Ollama), extracts 3 systemic prohibition rules injected into the next-generation system prompt.</li>
@@ -7712,14 +7861,14 @@
 <li><strong>L3 (Topology Evolution):</strong> Maintains a population of workflow DAGs over a fixed node vocabulary (<code>intake, research, plan, code, review, verify, dispatch, summarize</code>), scores each by a hand-crafted structural fitness function (Eq. 2, rewarding <code>review</code>, <code>verify</code>, <code>research</code> nodes, loop-back routing, parallel nodes; penalising &gt;8-node graphs), applies mutation operators (<code>add_node</code>, <code>add_routing</code>, <code>insert_verify</code>) for 3 generations over 10 topologies.</li>
 </ul>
 <p>A composite <strong>APEX Health Score</strong> <code>H = min(0.30, |Δ|×0.10) + min(0.40, |Q|×0.07) + score(τ*)×0.30</code> aggregates all three layers.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Three-layer co-evolution pipeline operating on a single shared production trace pool, requiring no synthetic benchmark and no external API.</li>
 <li>APEX Health Score: composite metric decomposing harness coverage (L1, max 0.30), principle richness (L2, max 0.40), and workflow quality (L3, max 0.30).</li>
 <li>Empirical demonstration of non-additive cross-layer interaction: L3 topology evolution contributes positively <em>only when</em> L1 harness is present; L3-only degrades below baseline.</li>
 <li>Open-source implementation in three composable Python modules, deployable with a local Ollama instance and a trace database.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>APEX Health Score:</strong> 0.570 vs. baseline 0.300 (+90%) and vs. Self-Harness 0.380 (+50%).</li>
 <li><strong>L1:</strong> 3 harness patches extracted (port conflict, frontend stability, crisis detection delay).</li>
@@ -7729,7 +7878,7 @@
 <li><strong>Cost:</strong> 4 LLM calls, ~270 s wall time on local GPU; zero external API dependency.</li>
 <li>Note: L1+L2+L3 equals L1+L3 because L2 principles are stored but not yet injected at harness assembly; projected H ≈ 0.65–0.70 once injection is complete.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>L2 injection incomplete:</strong> Extracted principles are stored but not wired into the harness at assembly time; L2 contributes 0 to actual deployed agent behaviour in the current implementation—the full score gain is not yet realised.</li>
 <li><strong>L3 structural heuristics:</strong> Topology fitness scoring is hand-crafted (Eq. 2), not derived from empirical task-completion rates; may not generalise across agent types.</li>
@@ -7738,10 +7887,10 @@
 <li><strong>Small trace pool:</strong> 114 tasks over 18 days on one fleet; generalisability to other production environments is unvalidated.</li>
 <li><strong>No weight-level learning:</strong> APEX operates at prompt/workflow level only; no gradient-based or LoRA adaptation (flagged as Layer 4 future work).</li>
 </ul>
-<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses</h2>
+<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>APEX is a direct extension of the Self-Harness paradigm (arXiv:2606.09498), framing the harness not as a static prompt wrapper but as one axis of a multi-dimensional self-evolving meta-configuration. For researchers tracking harness and meta-harness systems, APEX demonstrates that the harness patch loop is necessary but insufficient—workflow topology and distilled behavioural principles must co-evolve with it, and the non-additive interaction (L3 regresses without L1) is a structural finding that constrains harness-first architectures. The framework's composable Python module design and production-trace-driven approach directly inform how meta-harness systems should be architected for deployment without synthetic benchmarks.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="self-improvement-harness-meta-harness-agent-workflow-production-agents-principle-distillation-topology-evolution-agentic-ai">self-improvement #harness #meta-harness #agent-workflow #production-agents #principle-distillation #topology-evolution #agentic-ai</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="self-improvement-harness-meta-harness-agent-workflow-production-agents-principle-distillation-topology-evolution-agentic-ai">self-improvement #harness #meta-harness #agent-workflow #production-agents #principle-distillation #topology-evolution #agentic-ai<a class="headerlink" href="#self-improvement-harness-meta-harness-agent-workflow-production-agents-principle-distillation-topology-evolution-agentic-ai" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7800,7 +7949,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

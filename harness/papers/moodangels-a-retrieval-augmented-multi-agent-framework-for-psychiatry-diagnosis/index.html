@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5587,6 +5733,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -7698,12 +7847,12 @@
 
 
 
-<h1 id="moodangels-a-retrieval-augmented-multi-agent-framework-for-psychiatry-diagnosis">MoodAngels: A Retrieval-augmented Multi-agent Framework for Psychiatry Diagnosis</h1>
-<h2 id="tldr">TL;DR</h2>
+<h1 id="moodangels-a-retrieval-augmented-multi-agent-framework-for-psychiatry-diagnosis">MoodAngels: A Retrieval-augmented Multi-agent Framework for Psychiatry Diagnosis<a class="headerlink" href="#moodangels-a-retrieval-augmented-multi-agent-framework-for-psychiatry-diagnosis" title="Permanent link">&para;</a></h1>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>MoodAngels is a retrieval-augmented multi-agent framework for mood disorder diagnosis that decomposes psychiatric scale assessments into item-level granular analysis and orchestrates three specialized diagnostic agents through a structured debate mechanism. It outperforms GPT-4o by 12.3% accuracy on 561 real-world clinical cases. The authors also release MoodSyn, a 1,173-case synthetic dataset generated via diffusion-based tabular synthesis to bypass patient-privacy constraints.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Psychiatric diagnosis lacks objective biomarkers, suffers from symptom overlap across disorders, and depends on subjective self-reports that may conflict with clinician-evaluated scales. Existing LLM-based medical agents are trained on structured clinical evidence (lab results, imaging) unavailable in psychiatry, and clinical datasets cannot be shared publicly due to patient privacy.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>MoodAngels wraps a backbone LLM (GPT-4o or DeepSeek-V3) in a three-layer pipeline:</p>
 <ol>
 <li><strong>Granular-Scale Analysis</strong> — Pearson correlation across 13 clinical scales selects the top-5% questions most predictive of mood disorder, grouping them into five symptom clusters (depressive mood, loss of interest, anxiety, insomnia, suicidal tendencies). Numeric scores are converted to narrative text for better agent interpretability.</li>
@@ -7711,14 +7860,14 @@
 <li><strong>Three Diagnostic Agents + Debate Judge</strong> — Angel.R (no case reference), Angel.D (retrieved cases displayed as context), and Angel.C (retrieved cases compared analytically) each produce independent diagnoses. If they disagree, Positive and Negative Debate Agents argue, and a Judge Agent terminates debate and renders a final verdict.</li>
 </ol>
 <p>MoodSyn is built using TabSyn (VAE + score-based diffusion in latent space) with dynamic loss weighting to preserve intra-scale score consistency during synthesis.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>First multi-agent framework purpose-built for mood disorder (depression, bipolar) diagnosis, tackling symptom overlap and subjective scale reliability.</li>
 <li>Granular item-level scale analysis via Pearson-selected top-5% questions, replacing aggregate total-score inputs.</li>
 <li>Three-agent architecture with graduated reliance on historical cases, synthesized via a multi-round debate-and-judge mechanism.</li>
 <li>MoodSyn: open-source 1,173-case synthetic psychiatric dataset with verified statistical fidelity, ML utility, and privacy guarantees stronger than anonymization.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <p>Real-world test set (561 cases):
 - Angel.R (GPT-4o): ACC 0.920, MCC 0.829 — +12.3% ACC over bare GPT-4o (0.797)
 - multi-Angels (GPT-4o): ACC 0.925, MCC 0.841 — best overall on real data
@@ -7730,17 +7879,17 @@
 - Structured vs. narrative medical record format returned to agent: ACC drops 0.006 (0.920 → 0.914)</p>
 <p>Synthetic data (MoodSyn, 140 cases, DeepSeek-V3 agents):
 - multi-Angels: ACC 0.821, MCC 0.642 vs. DeepSeek-V3 baseline ACC 0.821, MCC 0.601</p>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Input restricted to scale scores and medical records; full clinical diagnosis involves ~1 hour of live patient interview plus real-time clinician judgments not capturable from records alone.</li>
 <li>Borderline cases (mild, sub-threshold symptoms) remain difficult; agents cannot reliably distinguish borderline-normal from mild disorder.</li>
 <li>Record-scale conflicts caused by remission or medication suppression of symptoms are flagged but not reliably resolved.</li>
 <li>Evaluation on a single hospital's dataset limits generalizability across clinical settings and demographics.</li>
 </ul>
-<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses</h2>
+<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>MoodAngels is a domain-specific instantiation of the multi-agent harness pattern: it coordinates heterogeneous specialist agents (Angel.R/D/C), a retrieval subsystem, and a judge/debate orchestrator within a fixed control flow. The structured debate-and-judge mechanism is a concrete implementation of adversarial verification — a harness-level construct that runs multiple agents, detects disagreement, and routes to a resolution sub-pipeline rather than trusting any single agent's output. The ablation design (isolating scale selection vs. record format vs. case retrieval) mirrors harness-level component analysis, making this a useful case study in how domain-specific orchestration choices (graduated RAG reliance, item-level feature engineering) interact with agent coordination quality.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="multi-agent-rag-psychiatry-clinical-diagnosis-debate-mechanism-synthetic-data-llm-agent-domain-specific-harness">multi-agent #rag #psychiatry #clinical-diagnosis #debate-mechanism #synthetic-data #llm-agent #domain-specific-harness</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="multi-agent-rag-psychiatry-clinical-diagnosis-debate-mechanism-synthetic-data-llm-agent-domain-specific-harness">multi-agent #rag #psychiatry #clinical-diagnosis #debate-mechanism #synthetic-data #llm-agent #domain-specific-harness<a class="headerlink" href="#multi-agent-rag-psychiatry-clinical-diagnosis-debate-mechanism-synthetic-data-llm-agent-domain-specific-harness" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7799,7 +7948,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

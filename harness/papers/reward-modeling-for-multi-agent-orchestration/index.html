@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5587,6 +5733,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -7698,15 +7847,15 @@
 
 
 
-<h1 id="reward-modeling-for-multi-agent-orchestration">Reward Modeling for Multi-Agent Orchestration</h1>
+<h1 id="reward-modeling-for-multi-agent-orchestration">Reward Modeling for Multi-Agent Orchestration<a class="headerlink" href="#reward-modeling-for-multi-agent-orchestration" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-11 17:16 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.13598v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Orch-RM is a self-supervised Bradley-Terry reward model trained on intermediate orchestration artifacts from multi-agent LLM systems, enabling quality scoring of orchestration plans without executing sub-agents. It improves MAS test-time scaling and orchestrator training efficiency by up to 10–46× in token usage while achieving up to 8% accuracy gains over baselines.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Training LLM-based orchestrators for Multi-Agent Systems (MAS) requires either expensive human annotations or exhaustive sub-agent rollouts for every training signal. Existing frameworks (e.g., MAS-Orchestra with GRPO) consume over 1B tokens for 100 update steps because reward signals are only available after full trajectory execution. Standard single-agent reward models also fail on MAS due to dynamic role-switching and out-of-distribution conversational structure.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>Orch-RM constructs pairwise orchestration preferences from two self-supervised sources: (1) <strong>specialized-over-base</strong> pairs comparing trained orchestrator πθ outputs against base model π0 outputs, and (2) <strong>correct-over-incorrect</strong> pairs drawn from MAS-Orchestra training logs labeled by final answer correctness. These are mixed at a 3:1 ratio and used to fine-tune a Bradley-Terry reward model (initialized from Skywork-Reward-LLaMA-3.1-8B). The reward model rϕ(x, z) scores orchestration plans z directly — before any sub-agent execution — enabling two downstream applications: (i) Best-of-N selection at inference time by scoring N parallel orchestration samples and running sub-agents only on the winner, and (ii) reward-guided GRPO orchestrator training using normalized advantages computed from Orch-RM scores instead of sparse final-answer rewards.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Orch-RM framework: self-supervised reward model operating at the orchestration level, eliminating the need for human annotations or sub-agent rollouts during scoring.</li>
 <li>Two complementary preference data sources (specialized-over-base, correct-over-incorrect) with ablation showing a 3:1 mix is optimal.</li>
@@ -7714,7 +7863,7 @@
 <li>Integration into orchestrator training (from scratch and continued) using Orch-RM as the GRPO reward signal.</li>
 <li>Demonstrated that orchestration-level supervision alone can train a competitive orchestrator from scratch (61.67% vs. 63.33% MAS-Orchestra on AIME 24&amp;25 majority vote).</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Test-time scaling (AIME 24&amp;25):</strong> Orch-RM Best-of-8 achieves 68.33% accuracy vs. 63.33% majority vote baseline, using 2.38M verification tokens vs. 142.80M for trajectory-level GPT-5-mini judge (17.4% relative gain in accuracy, ~60× token reduction vs. trajectory-level judge).</li>
 <li><strong>Test-time scaling (BrowseComp+):</strong> 14.00% accuracy, surpassing trajectory-level GPT-5-mini (12.50%) while using 8.26M vs. 142.80M tokens (~17× reduction).</li>
@@ -7723,17 +7872,17 @@
 <li><strong>Training from scratch:</strong> Orch-RM lifts base model from 23.33% to 61.67% on AIME 24&amp;25 majority vote, approaching MAS-Orchestra (63.33%) without trajectory-level RL.</li>
 <li>Gains are smaller on HotpotQA and GPQA, where orchestration diversity is limited and orchestration-level discrimination is less effective.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Reward model quality is bounded by the diversity and quality of available orchestrator checkpoints and sampled trajectories; scaling to larger, more diverse datasets is unresolved.</li>
 <li>Orch-RM is trained domain-specifically; cross-domain or multi-task orchestration reward modeling is unexplored.</li>
 <li>Effectiveness degrades when MAS orchestrations are structurally homogeneous (e.g., HotpotQA), where orchestration-level discrimination provides little signal.</li>
 <li>Depends on access to intermediate training artifacts from a pretrained MAS-Orchestra model, limiting cold-start applicability.</li>
 </ul>
-<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses</h2>
+<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>Orch-RM is directly relevant as a learned meta-level scoring component for multi-agent harnesses: it shows that a reward model operating at the orchestration plan level — above individual agent calls — can replace costly full-trajectory execution as the supervisory signal. For meta-harness designers, this establishes that plan selection (which sub-agent topology to dispatch) can be learned and reused across queries without re-running the full pipeline. The Best-of-N orchestration selection pattern maps cleanly onto harness-level routing decisions, and the self-supervised data construction from intermediate artifacts suggests meta-harnesses can bootstrap their own quality signals from execution logs rather than requiring external oracles.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="multi-agent-reward-modeling-orchestration-test-time-scaling-self-supervised-grpo-mas-llm-training">multi-agent #reward-modeling #orchestration #test-time-scaling #self-supervised #grpo #mas #llm-training</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="multi-agent-reward-modeling-orchestration-test-time-scaling-self-supervised-grpo-mas-llm-training">multi-agent #reward-modeling #orchestration #test-time-scaling #self-supervised #grpo #mas #llm-training<a class="headerlink" href="#multi-agent-reward-modeling-orchestration-test-time-scaling-self-supervised-grpo-mas-llm-training" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7792,7 +7941,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

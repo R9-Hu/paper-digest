@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5587,6 +5733,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -7698,19 +7847,19 @@
 
 
 
-<h1 id="mlevolve-a-self-evolving-framework-for-automated-machine-learning-algorithm-discovery">MLEvolve: A Self-Evolving Framework for Automated Machine Learning Algorithm Discovery</h1>
+<h1 id="mlevolve-a-self-evolving-framework-for-automated-machine-learning-algorithm-discovery">MLEvolve: A Self-Evolving Framework for Automated Machine Learning Algorithm Discovery<a class="headerlink" href="#mlevolve-a-self-evolving-framework-for-automated-machine-learning-algorithm-discovery" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-04 00:00 UTC  ·  </em><em>Source:</em><em> HuggingFace  ·  <a href="https://huggingface.co/papers/2606.06473">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>MLEvolve is a self-evolving multi-agent LLM framework for automated ML algorithm discovery that replaces tree-based MCTS with a graph-structured search (Progressive MCGS), adds retrospective memory for experience accumulation, and decouples planning from code generation. It achieves 65.3% average medal rate on MLE-Bench (75 Kaggle tasks) under a 12-hour budget—state-of-the-art among all compared MLE agents—and generalizes to mathematical optimization, outperforming AlphaEvolve on 11/15 tasks.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing LLM-based MLE agents suffer three compounding failures during long-horizon optimization: (1) inter-branch information isolation in tree-based search prevents transfer of successful strategies across trajectories; (2) memoryless search propagates only scalar rewards, discarding rich experiential context from prior iterations; (3) one-shot planner-coder coupling makes iterative refinement unstable and leads to full rewrites at every step.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>MLEvolve integrates three components into a unified multi-agent loop:</p>
 <p><strong>Progressive Monte Carlo Graph Search (MCGS):</strong> Extends MCTS by organizing candidate solutions as a directed graph G=(V, E_T ∪ E_ref), where primary edges E_T preserve the parent-child tree backbone for selection/backpropagation, and reference edges E_ref encode cross-branch information flow without affecting credit assignment. Four expansion operators are defined: primary expansion (no reference), intra-branch evolution (local k-node trajectory), cross-branch reference (top-N nodes across stagnated branches), and multi-branch aggregation (new root drafted from multi-branch trajectory fusion). Selection uses a progressive soft-switch: UCT with time-decaying exploration constant c(t) is mixed with Elite-Guided exploitation (inverse-rank-weighted sampling from global top-K nodes), controlled by a schedule w(t)→w_min that empirically reduces branch-selection entropy from ~4.8 to ~2.8 effective active branches. Stagnation triggers (branch-level: τ_branch consecutive non-improving expansions; global-level: τ_global steps without global-best improvement) activate graph-based operators.</p>
 <p><strong>Retrospective Memory:</strong> A static domain knowledge base (task-type-indexed model + usage guidelines, used for cold-start initialization) combined with a dynamic global memory storing (plan, code, metric, analysis, feedback) records per executed node. Retrieval uses BM25 ⊕ FAISS vector search fused via Reciprocal Rank Fusion (RRF). Stage-aware queries: planning stage retrieves on the free-text plan; debugging stage queries on the error message.</p>
 <p><strong>Hierarchical Planning with Adaptive Code Generation:</strong> A Planner agent generates a module-level structured specification (what/why); a Coder agent selects among Base (full rewrite), Stepwise (module-by-module), or Diff (targeted patch edit) modes based on current search state.</p>
 <p>Backbone LLM: Gemini-3.1-Pro-preview (temperature 1.0). Budget: 500 expansion steps, 12 hours, 21 vCPUs, 234 GB RAM, 1× H200.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Progressive MCGS</strong>: graph-based extension of MCTS with reference edges enabling cross-branch information flow; entropy-inspired progressive exploration-to-exploitation scheduling.</li>
 <li><strong>Retrospective Memory</strong>: hybrid BM25+FAISS retrieval with RRF fusion over accumulated search records; cold-start domain knowledge base; no additional LLM calls required for reflection.</li>
@@ -7718,7 +7867,7 @@
 <li>State-of-the-art on MLE-Bench full set (65.3% medal rate, 34.7% gold, 100% valid submission) at half the standard 24-hour budget.</li>
 <li>Cross-domain generalization: best result on 11/15 AlphaEvolve mathematical optimization tasks.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>MLE-Bench (75 tasks, 12 h budget):</strong></li>
 <li>Average medal rate: <strong>65.3%</strong> (vs. best prior proprietary MARS+: 62.7%, AIBuildAI: 63.1%, both at 24 h)</li>
@@ -7735,7 +7884,7 @@
 <li><strong>Beat ratio over time:</strong> MLEvolve reaches 98.2% vs. Vanilla MCTS plateau at ~70.7% on representative tasks.</li>
 <li><strong>Entropy dynamics:</strong> Effective active branch count decays from 4.8 → 2.8 (MLEvolve) vs. static ~4.3 (Vanilla MCTS).</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Evaluated on a single backbone (Gemini-3.1-Pro-preview) for the main results; multi-LLM comparison is partial (image/NLP/audio subset only, no full-leaderboard numbers for other backbones).</li>
 <li>Requires substantial compute per task (21 vCPUs, 234 GB RAM, H200 GPU, 12 h); not feasible for resource-constrained settings.</li>
@@ -7743,10 +7892,10 @@
 <li>Stagnation thresholds (τ_branch, τ_global) and schedule hyperparameters (c₀, c_min, w_min) require tuning; sensitivity not systematically reported beyond ablations.</li>
 <li>Generalization tested only on mathematical optimization as a second domain; broader AI-for-Science applicability is asserted but not yet demonstrated.</li>
 </ul>
-<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses</h2>
+<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>MLEvolve is itself a meta-harness: it orchestrates multiple specialized LLM agents (planner, coder, reviewer, debugger) through a structured iterative loop that governs when to call each agent, which context to inject (retrieved memory records, cross-branch references), and how to select code generation granularity—all decisions made programmatically by the framework rather than by any single model. The Progressive MCGS + Retrospective Memory design pattern—where the harness maintains persistent structured state across agent calls and uses that state to route future calls—is directly analogous to the orchestration layer concerns of multi-agent meta-harnesses tracking research pipelines. The finding that intra-branch evolution (trajectory-aware context injection) dominates the ablation gains (13.64 pp from memory alone) concretely quantifies the value of stateful context management in iterative agent harnesses, a key design axis for anyone building self-improving agentic pipelines.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="agentic-ai-meta-harness-multi-agent-mcts-automated-ml-self-evolving-long-horizon-search-algorithm">agentic-ai #meta-harness #multi-agent #mcts #automated-ml #self-evolving #long-horizon #search-algorithm</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="agentic-ai-meta-harness-multi-agent-mcts-automated-ml-self-evolving-long-horizon-search-algorithm">agentic-ai #meta-harness #multi-agent #mcts #automated-ml #self-evolving #long-horizon #search-algorithm<a class="headerlink" href="#agentic-ai-meta-harness-multi-agent-mcts-automated-ml-self-evolving-long-horizon-search-algorithm" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7805,7 +7954,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

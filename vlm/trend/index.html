@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -280,8 +402,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -307,7 +435,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -645,6 +773,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2512,6 +2643,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2687,6 +2821,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3630,6 +3767,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3853,6 +3993,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5468,6 +5611,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5709,6 +5855,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7674,11 +7823,11 @@
 
 
 
-<h1 id="trend-analysis-vision-language-models">Trend Analysis — Vision-Language Models</h1>
+<h1 id="trend-analysis-vision-language-models">Trend Analysis — Vision-Language Models<a class="headerlink" href="#trend-analysis-vision-language-models" title="Permanent link">&para;</a></h1>
 <p><em>Generated 2026-06-15 from 64 digested papers.</em></p>
-<h2 id="overview">Overview</h2>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>Vision-Language Models have matured from contrastive image-text encoders into a sprawling ecosystem where a pretrained VLM is the substrate for embodied control, scientific tooling, automated evaluation, and mechanistic study. The digests in this window — overwhelmingly clustered in June 2026 — show the field's center of gravity having shifted decisively toward <strong>Vision-Language-Action (VLA) models</strong> for robotics and toward <strong>reinforcement-learned reasoning</strong> (GRPO/RLVR) on top of instruction-tuned backbones like Qwen2.5/3-VL. Alongside the capability push, a parallel current of <strong>interpretability and robustness</strong> work is dissecting <em>how</em> VLMs ground language in pixels (gaze heads, truth heads, mirage behavior) and <em>how</em> they fail under adversarial perturbation or distribution shift. The dominant deployment pattern is no longer training a monolithic model but <strong>wrapping a frozen VLM</strong> as an oracle, pseudo-labeler, planner, or judge inside a larger pipeline. The state of play is one of consolidation around a few backbones and rapid specialization into vertical domains (medical, X-ray security, spacecraft, lab automation, OCR).</p>
-<h2 id="timeline">Timeline</h2>
+<h2 id="timeline">Timeline<a class="headerlink" href="#timeline" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>2021</strong>: Contrastive era — CLIP-style image-level alignment establishes zero-shot transfer but bakes in "bag-of-words" compositional blindness and a uniform label prior.</li>
 <li><strong>2023</strong>: Instruction-tuned MLLMs (LLaVA, BLIP) connect frozen vision encoders to LLM backbones via projection layers, making free-form VQA and captioning routine.</li>
@@ -7689,11 +7838,11 @@
 <li><strong>2026-06 (interpretability turn)</strong>: Causal head-level analyses (gaze heads, truth heads, mirage probes) and frozen-VLM-as-oracle pipelines proliferate simultaneously.</li>
 <li><strong>2026-06 (robustness &amp; eval)</strong>: Adversarial-robustness audits of MLLM judges, reward-distribution distillation, and QA-based domain evaluation signal a maturing evaluation discipline.</li>
 </ul>
-<h2 id="how-the-field-developed">How the field developed</h2>
+<h2 id="how-the-field-developed">How the field developed<a class="headerlink" href="#how-the-field-developed" title="Permanent link">&para;</a></h2>
 <p>The earliest anchors here (all NeurIPS 2025) capture VLMs being <em>recruited</em> into harder regimes rather than redesigned. <strong>GoalLadder</strong> uses a VLM (Gemini 2.0 Flash) as a noisy preference oracle to shape RL rewards, with Elo rating to denoise feedback; <strong>World-aware Planning Narratives (WAP)</strong> turns ALFRED trajectories into curriculum data that lifts a 7B planner from 4.7% to 62.7% on EB-ALFRED; and <strong>Revisiting the Bouba-Kiki Effect</strong> documents that CLIP does <em>not</em> robustly reproduce human cross-modal associations — an early signal that surface competence masks shallow grounding. Together they frame the two threads that dominate later: <em>use VLMs as components in embodied loops</em> and <em>interrogate whether their grounding is real</em>.</p>
 <p>By June 2026 the VLA thread has exploded into a full sub-field with its own internal debates. The capability frontier is set by integrated stacks like <strong>Hy-Embodied-0.5-VLA</strong> (custom mocap hardware, 4B MoT backbone, flow-matching action expert, reward-free offline RL across five robot platforms) and unified embodied foundation models like <strong>Embodied-R1.5</strong> (8B Qwen3-VL emitting language, coordinates, and trajectories as text). But the more telling development is the proliferation of <em>diagnostic and corrective</em> VLA work: <strong>Encoder Winners Do Not Reliably Transfer</strong> shows top-1 vision encoders don't survive backbone rescaling; <strong>APT</strong> and <strong>World Pilot</strong> attack the core pathology that randomly-initialized action experts learn visual shortcuts that bypass language and corrupt the VLM; <strong>PhysVLA</strong> bolts physics constraints onto frozen policies at inference; and <strong>AVA-VLA (Think Less, Act Early)</strong> replaces explicit chain-of-thought with RL-optimized latent reasoning for a 6× speedup. The field is no longer just building bigger VLAs — it is auditing their failure modes (multilingual collapse, trajectory-redirection attacks, the "physics gap") and patching them, often without retraining.</p>
 <p>In parallel, <strong>RL-based reasoning</strong> migrated wholesale from text LLMs into multimodal settings. GRPO/RLVR appears across self-questioning compositional reasoning, meme moderation, and iterative spatial self-correction (IVT), while <strong>CORA</strong> identifies a new pathology — RLVR rewards only the final answer, so reasoning traces drift out of agreement with answers — and fixes it with a consistency reward model. The third major movement is <strong>mechanistic interpretability turning causal</strong>: rather than correlational probing, <strong>Gaze Heads</strong>, <strong>Truth Stays in the Family</strong>, and <strong>Mirage Probes</strong> isolate small sets of attention heads that <em>causally</em> control visual grounding and truthfulness, and intervene on them (mask, reweight) without retraining. Finally, the long-running <strong>CLIP/test-time-adaptation</strong> lineage continued maturing into careful empiricism (TTABC's finding that adaptation gains come from evidence quality, not optimization intensity) and principled posterior corrections (LSA for label shift, BCP for multi-label co-occurrence).</p>
-<h2 id="current-state-major-clusters">Current state &amp; major clusters</h2>
+<h2 id="current-state-major-clusters">Current state &amp; major clusters<a class="headerlink" href="#current-state-major-clusters" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>VLA models &amp; embodied control (largest cluster).</strong> Spans full stacks (<strong>Hy-Embodied-0.5-VLA</strong>, <strong>LabVLA</strong>, <strong>MotionVLA</strong>), unified embodied foundation models (<strong>Embodied-R1.5</strong>), efficiency (<strong>RT-VLA</strong> distillation, <strong>AVA-VLA</strong> latent reasoning), training-free correction wrappers (<strong>PhysVLA</strong>, <strong>World Pilot</strong>), and diagnostic studies (<strong>Encoder Winners Do Not Reliably Transfer</strong>, <strong>APT</strong>). A notable shift is toward <em>action-free</em> supervision via world models: <strong>µ0</strong> predicts 3D interaction traces from human+robot video, <strong>World Model Self-Distillation</strong> turns video diffusion into task solvers, and <strong>VoLo</strong> orchestrates VLA/WAM rollouts as interruptible tools.</li>
 <li><strong>Mechanistic interpretability &amp; grounding faithfulness.</strong> <strong>Gaze Heads</strong> (9% of heads causally steer which region is described), <strong>Truth Stays in the Family</strong> (truthful heads inherited from base LLM to MLLM descendants), and <strong>Mirage Probes</strong> (correct answers without images, linearly decodable) form a coherent program: locate the small causal circuits behind grounding and intervene cheaply.</li>
@@ -7703,7 +7852,7 @@
 <li><strong>Efficiency: token routing &amp; adaptation.</strong> <strong>ALVTS</strong> and <strong>Reroute, Don't Remove</strong> both reject permanent token pruning for recoverable per-layer selection; <strong>Latent Memory</strong> compresses evidence to one token; CLIP-TTA work (<strong>TTABC</strong>, <strong>LSA</strong>, <strong>BCP</strong>, multi-label) continues.</li>
 <li><strong>Vertical domains.</strong> Medical (<strong>CPS4</strong>, <strong>OpenMedQ</strong>, <strong>ReportQA</strong>, pediatric tumor), X-ray security (<strong>OneFocus</strong>), OCR (<strong>PP-OCRv6</strong>, where 34.5M params beat billion-scale VLMs), spacecraft (<strong>SAM3 prompting</strong>), cultural heritage captioning, and compositionality (<strong>MACCO</strong>).</li>
 </ul>
-<h2 id="open-problems">Open problems</h2>
+<h2 id="open-problems">Open problems<a class="headerlink" href="#open-problems" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>The action-language imbalance in VLAs.</strong> Action experts learn visual shortcuts and corrupt pretrained language representations; APT, World Pilot, and Knowledge Insulation are partial fixes, not settled solutions. OOD instruction generalization remains brittle.</li>
 <li><strong>Grounding vs. mirage.</strong> VLMs answer correctly without images and inflate benchmarks; Mirage Probes shows this is two distinct mechanisms (spurious-image vs. textual-bias) needing different mitigations — neither fully solved.</li>
@@ -7714,7 +7863,7 @@
 <li><strong>Encoder/backbone choices don't transfer across scale</strong>, undermining cheap small-scale ablation as a design methodology.</li>
 <li><strong>Token-efficiency ceilings.</strong> Even recoverable routing (Reroute, ALVTS) still trades grounding for compression at aggressive ratios; specialized small models (PP-OCRv6) still beat VLMs on precise localization.</li>
 </ul>
-<h2 id="predicted-next-steps">Predicted next steps</h2>
+<h2 id="predicted-next-steps">Predicted next steps<a class="headerlink" href="#predicted-next-steps" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Inference-time, training-free correction wrappers become the dominant VLA deployment pattern.</strong> PhysVLA, World Pilot, and VoLo all add capability to frozen policies; expect a standardized "VLA middleware" layer (physics gates, world-action priors, failure-recovery orchestration) decoupled from backbone training, because per-task retraining is operationally prohibitive (cf. spacecraft prompt-only expansion).</li>
 <li><strong>Causal-head interventions productize into reliability tools.</strong> Given Gaze Heads' 83% steering accuracy and TruthProbe's retraining-free hallucination reduction, expect head-reweighting to be packaged as drop-in decoding-time modules and applied to safety/grounding across model <em>families</em> (exploiting inherited heads), not single checkpoints.</li>
@@ -7724,7 +7873,7 @@
 <li><strong>Multilingual VLA benchmarks and alignment methods (MPCA-style) standardize</strong>, as embodied deployment globalizes and the English bias is now quantified.</li>
 <li><strong>Recoverable/dynamic token budgets replace fixed pruning</strong> across LVLM serving stacks, since both ALVTS and Reroute independently show permanent deletion is the flaw, not the scorer.</li>
 </ul>
-<h2 id="key-papers">Key papers</h2>
+<h2 id="key-papers">Key papers<a class="headerlink" href="#key-papers" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>The Truth Stays in the Family: Enhancing Contextual Grounding via Inherited Truthful Heads</strong> (2026-06-14, ICML 2026) — shows truthfulness circuits are inherited base-LLM→MLLM, enabling family-level, retraining-free hallucination control.</li>
 <li><strong>Gaze Heads: How VLMs Look at What They Describe</strong> (2026-06-12) — isolates ~9% of heads that causally control visual grounding and steers output regions at 83% accuracy via attention masking alone.</li>
@@ -7798,7 +7947,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

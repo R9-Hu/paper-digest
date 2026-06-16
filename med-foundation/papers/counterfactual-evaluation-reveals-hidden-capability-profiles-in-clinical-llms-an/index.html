@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2388,8 +2516,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -2415,7 +2549,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2565,6 +2699,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -3643,6 +3780,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3866,6 +4006,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,13 +7847,13 @@
 
 
 
-<h1 id="counterfactual-evaluation-reveals-hidden-capability-profiles-in-clinical-llms-and-agents">Counterfactual Evaluation Reveals Hidden Capability Profiles in Clinical LLMs and Agents</h1>
+<h1 id="counterfactual-evaluation-reveals-hidden-capability-profiles-in-clinical-llms-and-agents">Counterfactual Evaluation Reveals Hidden Capability Profiles in Clinical LLMs and Agents<a class="headerlink" href="#counterfactual-evaluation-reveals-hidden-capability-profiles-in-clinical-llms-and-agents" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-05-28 21:37 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2605.30590v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Standard coverage-based evaluation of clinical LLMs (checking whether outputs overlap with reference recommendations) cannot detect whether a model actually responds to changed patient facts. This paper introduces the Causal Sensitivity Score (CSS), a pre-registered counterfactual metric that mutates oncology tumor-board cases along five clinically meaningful dimensions and scores whether model recommendations update in the correct direction. Benchmarking six frontier models reveals that CSS and coverage-based rankings are nearly opposite, exposing a universal surgery-status blind spot invisible to coverage metrics.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Coverage-based metrics (e.g., weighted recall against expert-consensus treatment lists) measure output overlap with reference answers but cannot distinguish a model that reasons from patient facts from one that produces the same recommendation regardless of input. This "look-right vs. be-right" gap is sharpened in tool-using agents, which can retrieve correct information yet still ignore it. No prior clinical LLM evaluation framework measures input responsiveness as a first-class property.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>The authors define the <strong>Causal Sensitivity Score (CSS)</strong>: for each (model, case, intervention) triple, a baseline recommendation is generated from the unmodified patient packet, then an intervened recommendation from a mutated packet. A judge LLM (gpt-5.4 by default, claude-opus-4-7 for self-judging avoidance) scores the pair <code>{0.0, 0.5, 1.0}</code> — no change / acknowledged-but-unchanged / updated correctly — per a <strong>pre-registered</strong> scoring rule committed before any model is evaluated.</p>
 <p>Interventions span five families pre-registered in a YAML catalog:
 - <strong>A</strong> — biomarker flip (HER2/ER/PD-L1 status swap; <em>n</em>=129 eligible)
@@ -7713,7 +7862,7 @@
 - <strong>D</strong> — surgery-status toggle (resection history added/removed; <em>n</em>=306)
 - <strong>E</strong> — stage perturbation (<em>n</em>=5, underpowered)</p>
 <p>The cohort is 224 oncology tumor-board cases (median ~80k chars each) with expert-consensus ground-truth labels. Six frontier models are evaluated in single-shot inference and, for Family D, in a ReAct tool-using agent setting where interventions propagate through tool returns rather than the prompt. CSS is compared against the published <strong>Consensus Match Score (CMS)</strong>, a weighted recall: <code>CMS = 0.6R_strong + 0.2R_tacit + 0.15(1−V_refusal) + 0.05P_extra</code>.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Pre-registered interventional metric (CSS) for clinical LLMs that measures input responsiveness rather than output coverage, with a YAML catalog committed before evaluation.</li>
 <li>Empirical demonstration of near-rank-reversal between CSS and CMS across six frontier models (Spearman ρ = −0.49; all six models change rank).</li>
@@ -7722,7 +7871,7 @@
 <li>Cross-judge replication (uniform claude-opus-4-7) preserving rank order (ρ = +1.00) and three-rater medical-professional validation confirming aggregate family failure rates (Family D: LLM mean 0.10 vs. human mean 0.09).</li>
 <li>CSS framed as a candidate dense reward signal for future agentic RL in clinical AI.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>CMS vs. CSS rank reversal</strong>: grok-4.20-reasoning ranks 6th on CMS (0.480) but 1st on CSS (0.473); gpt-5 ranks 1st on CMS (0.610) but 4th on CSS (0.427); gpt-5.4 ranks 4th on CMS (0.575) but last on CSS (0.309).</li>
 <li><strong>Family D universal failure</strong>: all six models score ≤17.2% CSS on surgery-status interventions (grok-4.20: 17.2%; gpt-5.4: 3.9%; claude-opus-4-7: 11.9%; claude-sonnet-4-6: 8.3%; gpt-5: 8.2%; gpt-5.4-mini: 14.2%).</li>
@@ -7732,7 +7881,7 @@
 <li><strong>Judge robustness</strong>: uniform-Opus replication yields identical rank order (ρ = +1.00); inter-judge κ = 0.61–0.69 on {0, 0.5, 1.0}; Opus is 4–7pp stricter, so gpt-5.4's last-place finish (already Opus-judged by default) is conservative.</li>
 <li><strong>Human validation</strong>: LLM-vs-majority κ = 0.46 (69/100 exact agreement); per-family aggregate CSS rates agree closely (Family D LLM 0.10 vs. human 0.09).</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>With only six models, the rank-correlation test is underpowered (permutation <em>p</em> = 0.36); rank reversal is descriptive, not inferential.</li>
 <li>Regex-based mutations admit three failure modes scored 0.0 under the pre-registered rule: semantic no-ops, incomplete propagation across chart sections, and medical incoherence (59% of Family D human-annotated rows flagged as incoherent, e.g., curative resection inserted into a metastatic case).</li>
@@ -7742,10 +7891,10 @@
 <li>Agent setting conflates tool-use structure, ReAct prompting, and sectioned retrieval; gpt-5.4 persistence is consistent with structural responsiveness but not proven causal.</li>
 <li>Family E has only <em>n</em>=5 eligible cases; no conclusions drawn.</li>
 </ul>
-<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine</h2>
+<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine<a class="headerlink" href="#relevance-to-foundation-models-in-medicine" title="Permanent link">&para;</a></h2>
 <p>CSS directly addresses the reliability gap in clinical foundation-model evaluation: that a model which memorizes treatment patterns can pass coverage benchmarks without actually processing patient-specific information, which is a critical safety concern for oncology decision support. The finding that all six frontier models — including the current strongest general-purpose LLMs — fail surgery-status interventions at near-floor rates underscores that clinical deployment readiness cannot be inferred from standard benchmarks alone. The metric's transfer to tool-using agents is particularly relevant as clinical AI increasingly adopts agentic architectures (EHR retrieval, multi-step reasoning), where the "retrieval-without-update" failure mode identified here has direct patient-safety implications. CSS's formulation as a candidate dense reward signal also connects to the emerging agenda of using RL to fine-tune clinical foundation models for reliable reasoning under patient-state change.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="clinical-ai-evaluation-metric-counterfactual-probing-llm-agents-oncology-benchmark-causal-sensitivity-reward-signal">clinical-ai #evaluation-metric #counterfactual-probing #llm-agents #oncology #benchmark #causal-sensitivity #reward-signal</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="clinical-ai-evaluation-metric-counterfactual-probing-llm-agents-oncology-benchmark-causal-sensitivity-reward-signal">clinical-ai #evaluation-metric #counterfactual-probing #llm-agents #oncology #benchmark #causal-sensitivity #reward-signal<a class="headerlink" href="#clinical-ai-evaluation-metric-counterfactual-probing-llm-agents-oncology-benchmark-causal-sensitivity-reward-signal" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7804,7 +7953,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5709,6 +5855,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7674,11 +7823,11 @@
 
 
 
-<h1 id="trend-analysis-harnesses-meta-harnesses">Trend Analysis — Harnesses / Meta-Harnesses</h1>
+<h1 id="trend-analysis-harnesses-meta-harnesses">Trend Analysis — Harnesses / Meta-Harnesses<a class="headerlink" href="#trend-analysis-harnesses-meta-harnesses" title="Permanent link">&para;</a></h1>
 <p><em>Generated 2026-06-15 from 64 digested papers.</em></p>
-<h2 id="overview">Overview</h2>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>A "harness" is the scaffold wrapped around a frozen model — its prompts, tools, memory, control flow, and skill library — and over the window covered by these digests it shifts from an unnamed implementation detail to a first-class, formally typed, and independently optimizable object. The decisive empirical claim driving the field is that scaffolding, not model scale, now governs end-to-end agent performance: <strong>Claw-SWE-Bench</strong> measures a 27.4 pp Pass@1 spread from harness choice alone under a fixed model, and <strong>WebChallenger</strong> isolates 39.4 points attributable purely to scaffolding design. This has bifurcated the area into (a) <em>harness engineering</em> — better fixed scaffolds (memory abstractions, observation gating, control-flow ownership) — and (b) <em>meta-harnesses</em> — systems that automatically search, evolve, or learn the harness itself from execution traces. The current frontier is co-evolution of harness and model, label-free retrospective optimization, and treating the surrounding environment (permissions, budgets, oversight) rather than the workflow as the primary design object. The work is overwhelmingly recent (a dense cluster in June 2026), benchmark-heavy, and still lacks consensus on what the canonical harness interface or evaluation protocol should be.</p>
-<h2 id="timeline">Timeline</h2>
+<h2 id="timeline">Timeline<a class="headerlink" href="#timeline" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>2025</strong>: Multi-agent frameworks ship as hand-crafted fixed pipelines (<strong>MoodAngels</strong>, <strong>MAGNET</strong>); <strong>AutoRedTeamer</strong> introduces lifelong self-updating of an attack library — an early hint of self-modifying scaffolds.</li>
 <li><strong>2026-05</strong>: Harness named as an object of study; trajectory-driven skill self-adaptation (<strong>SkillAdaptor</strong>), ecosystem auditing (<strong>OpenSkillEval</strong>), and four-role harness loops (<strong>Crafter</strong>) appear; <strong>WorldMemArena</strong> coins "harness-based memory agents" as a comparison class.</li>
@@ -7690,12 +7839,12 @@
 <li><strong>2026-06-13/14</strong>: <strong>APEX</strong> co-evolves three harness layers at once; <strong>LLM-as-Code</strong> argues control flow must leave the LLM entirely.</li>
 <li><strong>2026-06-15</strong>: <strong>VisualClaw</strong> generalizes multi-timescale self-evolving harnesses to streaming multimodal deployment.</li>
 </ul>
-<h2 id="how-the-field-developed">How the field developed</h2>
+<h2 id="how-the-field-developed">How the field developed<a class="headerlink" href="#how-the-field-developed" title="Permanent link">&para;</a></h2>
 <p><strong>Phase 1 — Implicit, hand-crafted scaffolds (2025).</strong> The NeurIPS-era papers treat the harness as plumbing. <strong>MoodAngels</strong> (structured debate over psychiatric scales), <strong>MAGNET</strong> (one agent per retrieved video + meta-agent synthesis), and the FEA/medical frameworks each hard-wire roles, control flow, and tool routing to one domain. The scaffold is real and load-bearing but never isolated or measured. <strong>AutoRedTeamer</strong> is the outlier that foreshadows everything after: it lets the system mine new attack vectors from literature and integrate them into its own library, making the scaffold a moving target rather than a fixed artifact.</p>
 <p><strong>Phase 2 — Naming the object and self-evolving its pieces (late May 2026).</strong> The harness becomes an explicit noun. <strong>SkillAdaptor</strong> does step-level fault attribution to revise specific skills rather than reflecting over whole trajectories; <strong>OpenSkillEval</strong> audits the open <em>skill ecosystem</em> and finds skill availability does not guarantee usage; <strong>Crafter</strong> formalizes a Designer–Executor–Verifier–Reviser loop over a shared evolving spec; <strong>WorldMemArena</strong> runs the first controlled comparison of long-context vs. hand-engineered vs. <em>harness-based</em> memory agents. The shared move is decomposing the scaffold into addressable components (skills, memory, roles) that can be edited or evolved independently of weights.</p>
 <p><strong>Phase 3 — Meta-harness optimization (early June 2026).</strong> Attention shifts from editing pieces to optimizing the whole. <strong>RHO</strong> lifts SWE-Bench Pro 59%→78% using only unlabeled past trajectories and self-preference ranking — the key unlock being label-free editing of <em>executable</em> tools, not just memory. <strong>Bayesian-Agent</strong> puts this on probabilistic footing with feature-conditioned posteriors driving auditable rewrite actions (explore/patch/split/compress/retire). The methodological complement, <strong>Claw-SWE-Bench</strong>, makes the harness a controlled variable and exposes that prior SWE-bench numbers conflated model, harness, and task.</p>
 <p><strong>Phase 4 — Formalization, learned control, and co-evolution (mid June 2026).</strong> The field reaches for theory and structure. <strong>HarnessX</strong> defines a harness as a typed object <code>H=(M,C)</code> composed via a substitution algebra and evolves it through a trace-driven engine, drawing an explicit operational mirror between symbolic harness adaptation and RL (+14.5% avg, +4.7% more from harness–model co-evolution via cross-harness GRPO). <strong>APEX</strong> co-evolves three layers (prompt harness, distilled principles, workflow DAG) simultaneously, showing single-axis optimization misses orthogonal failures. <strong>HarnessBridge</strong> replaces the hand-coded scaffold with a learned 0.8B bidirectional policy that compresses observations and gates actions. Simultaneously, two structural counter-currents emerge: <strong>LLM-as-Code</strong> argues deterministic control flow should leave the probabilistic model entirely (86.8% OSWorld in 15 steps vs. 80.4% in 100), and <strong>EurekAgent</strong> argues the real design object is the <em>environment</em> (permissions, budgets, oversight) around an already-capable CLI agent, not the workflow. <strong>Recursive Agent Harnesses</strong> closes the loop by making the full harness the recursive unit.</p>
-<h2 id="current-state-major-clusters">Current state &amp; major clusters</h2>
+<h2 id="current-state-major-clusters">Current state &amp; major clusters<a class="headerlink" href="#current-state-major-clusters" title="Permanent link">&para;</a></h2>
 <p><strong>1. Harness-as-typed-object &amp; composition algebras.</strong> <strong>HarnessX</strong> (substitution algebra over hook-indexed processors) and <strong>AgentSpec</strong> (typed Perception–Memory–Reasoning–Reflection–Action loop with swappable modules) treat the harness as a formal, composable structure. AgentSpec's central finding — scaffold <em>compatibility</em> and module interaction effects dominate individual module strength — defines this cluster's research question.</p>
 <p><strong>2. Meta-harness optimization (label-free / trace-driven).</strong> <strong>RHO</strong> (DPP coreset + self-ranking), <strong>Bayesian-Agent</strong> (posterior-guided rewrites), <strong>APEX</strong> (three-layer co-evolution), and <strong>GTBP</strong> (Difference Target Propagation backpropagating "local targets" through a workflow DAG to fix attribution ambiguity in GEPA/TextGrad-style tuning) all optimize the scaffold from traces without touching weights.</p>
 <p><strong>3. Learned runtime controllers.</strong> <strong>HarnessBridge</strong> learns the bidirectional generator↔environment policy itself; <strong>Orch-RM</strong> trains a reward model over orchestration artifacts to score plans without executing sub-agents (10–46× token savings). These move <em>runtime</em> mediation from heuristics to learned policies.</p>
@@ -7703,7 +7852,7 @@
 <p><strong>5. Harness-as-controlled-variable (evaluation).</strong> <strong>Claw-SWE-Bench</strong> (adapter protocol, harness as experimental axis), <strong>WorldMemArena</strong> (harness-based vs. hand-engineered memory), <strong>OpenSkillEval</strong> (skill ecosystem audit), and <strong>AgentFairBench</strong> (scaffold axis: direct→CoT→multi-agent→tool-augmented) instrument the harness as something to be measured.</p>
 <p><strong>6. Environment &amp; containment as the design object.</strong> <strong>EurekAgent</strong> (environment engineering for reliability) and <strong>The Containment Gap</strong> (zero native containment compliance in LangChain/AutoGPT/OpenAI Agents SDK; sub-ms validators eliminate memory-poisoning) reframe the harness boundary as a safety/reliability surface, not just a performance one.</p>
 <p><strong>7. Multi-timescale &amp; deployment harnesses.</strong> <strong>VisualClaw</strong> (CPU frame gate + hot/cold skill injector + offline evolver) and the production-trace systems (<strong>APEX</strong> on a 15-node fleet) extend meta-harnesses to streaming and ops settings.</p>
-<h2 id="open-problems">Open problems</h2>
+<h2 id="open-problems">Open problems<a class="headerlink" href="#open-problems" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>No canonical harness interface.</strong> HarnessX, AgentSpec, Claw-SWE-Bench, and the PMRRA loop all propose different decompositions; there is no agreed type signature for "a harness," blocking portable evaluation.</li>
 <li><strong>Module interaction effects are unmodeled.</strong> AgentSpec shows destructive/constructive interactions dominate, but no optimizer (APEX, HarnessX) yet <em>predicts</em> compatibility — search is empirical and per-deployment.</li>
@@ -7713,7 +7862,7 @@
 <li><strong>Containment is absent by default.</strong> The Containment Gap shows a single memory-poisoning write yields 100% targeted corruption; meta-harnesses that <em>rewrite themselves</em> widen this attack surface with no standard integrity model.</li>
 <li><strong>Cost accounting.</strong> WorldMemArena flags harness-based agents as flexible but expensive and less reliable; few meta-harness papers report the amortized search/evolution cost against the gains.</li>
 </ul>
-<h2 id="predicted-next-steps">Predicted next steps</h2>
+<h2 id="predicted-next-steps">Predicted next steps<a class="headerlink" href="#predicted-next-steps" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Co-evolution becomes the default.</strong> HarnessX's cross-harness GRPO (+4.7%) and APEX's three-layer loop will converge into systems that jointly update harness <em>and</em> weights from the same trace pool; expect a near-term paper unifying RHO-style label-free harness search with RL fine-tuning on the trajectories that search generates.</li>
 <li><strong>Harness search gets a learned compatibility prior.</strong> Given AgentSpec's interaction-effect finding, the next optimizers will train a surrogate that predicts module-pair compatibility, turning HarnessX/APEX's blind search into guided search — falsifiable via reduced search budget at equal final quality.</li>
@@ -7723,7 +7872,7 @@
 <li><strong>Orchestration reward models generalize.</strong> Orch-RM (scoring plans without execution) will extend from multi-agent orchestration to scoring <em>harness edits</em> pre-deployment, giving meta-harnesses a cheap inner-loop critic and cutting the rollout cost WorldMemArena flagged.</li>
 <li><strong>Environment engineering becomes a named subfield.</strong> EurekAgent's thesis — environment, not workflow, is the binding constraint — will be operationalized into reusable "environment layers" (permissions, budgets, shared memory, oversight) packaged independently of any one agent.</li>
 </ul>
-<h2 id="key-papers">Key papers</h2>
+<h2 id="key-papers">Key papers<a class="headerlink" href="#key-papers" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Claw-SWE-Bench: A Benchmark for Evaluating OpenClaw-style Agent Harnesses on Coding Tasks</strong> (2026-06-10, Arxiv) — Establishes the field's central empirical claim by isolating harness effect (27.4 pp) from model effect under fixed tasks/budgets.</li>
 <li><strong>HarnessX: A Composable, Adaptive, and Evolvable Agent Harness Foundry</strong> (2026-06-12, Arxiv) — Most complete formalization: typed harness object, substitution algebra, trace-driven evolution, and harness–model co-evolution (+14.5% avg).</li>
@@ -7797,7 +7946,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

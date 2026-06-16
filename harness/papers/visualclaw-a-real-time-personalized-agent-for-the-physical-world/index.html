@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5587,6 +5733,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -7698,19 +7847,19 @@
 
 
 
-<h1 id="visualclaw-a-real-time-personalized-agent-for-the-physical-world">VisualClaw: A Real-Time, Personalized Agent for the Physical World</h1>
+<h1 id="visualclaw-a-real-time-personalized-agent-for-the-physical-world">VisualClaw: A Real-Time, Personalized Agent for the Physical World<a class="headerlink" href="#visualclaw-a-real-time-personalized-agent-for-the-physical-world" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-15 06:58 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.16295v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>VisualClaw is a self-evolving multimodal agent that addresses three VLM deployment gaps—dense video upload cost, static scaffolds, and missing agentic evaluation—through a three-timescale harness: a CPU-only cascaded frame gate, a hot/cold skill injector, and a memory-augmented offline evolver. It cuts per-question API cost by −98.1% on average versus full-frame upload while improving accuracy on video-QA benchmarks, and transfers the same self-evolution stack to a new 200-scenario agentic benchmark (VisualClawArena) where it outperforms non-evolving baselines by up to +8.2 macro accuracy points.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Deploying VLMs for real-time, streaming video tasks faces three unsolved gaps simultaneously: (1) dense frame upload makes API cost prohibitive at scale (e.g., a 30-min clip at 1 fps costs ~1.93M input tokens per question); (2) the agent scaffold is fixed at deployment and cannot adapt from its own failures without weight updates; (3) standard video-QA benchmarks test one-shot answer selection rather than whether agents can use visual evidence inside tool-using workspaces with file manipulation and executable checks.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>VisualClaw is a three-timescale scaffold wrapped around frozen cloud VLM weights:</p>
 <p><strong>Per-frame (~10 µs, edge):</strong> A cascaded gate G processes streaming frames with three CPU-only stages—perceptual hash (dHash) for near-duplicate rejection, a 128-dim encoder (HSV histogram, luminance, edge density, texture), and an adaptive change gate with temporally-decaying thresholds—emitting MAJOR/MINOR/SKIP verdicts online without buffering the full clip. Only MAJOR frames are forwarded to the cloud.</p>
 <p><strong>Per-question (~10 ms, cloud):</strong> A hot/cold skill injector embeds each question with a sentence-transformer, inlines the top-k skills ("hot tier") as full markdown cards into the system prompt, and exposes remaining skills as a compact name+description catalogue ("cold tier"), decoupling per-question prompt cost from bank size.</p>
 <p><strong>Per-session (offline):</strong> After every Nevo=15 failures, an LLM evolver E updates the skill bank S using retrieved failure trajectories and confidence-gated episodic memories. Two variants: <strong>Cat.</strong> appends raw retrieved memories to the evolution prompt; <strong>Guide</strong> prepends an instruction prefix telling the evolver to abstract reusable skills rather than echo scenario specifics. Two bank-hygiene filters maintain quality: F1 rejects near-duplicate entries via token-Jaccard overlap at evolve-time; F2 prunes skills whose per-skill hit rate lags the bank mean.</p>
 <p>VisualClawArena (200 scenarios, 3,106 total steps) is curated via a five-stage pipeline—candidate generation, timestamped workspace construction, paired text-only/with-clip leakage filtering, multimodal criteria selection, and health checks—averaging 24.4 steps and 18.1 visual-required steps per scenario, scored by executable checkers rather than bare answer matching.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>CPU-only cascaded frame gate that runs online (no full-clip access), no LLM in the selection loop, and no GPU—first such mechanism in this comparison set</li>
 <li>Hot/cold hybrid skill injection bounding prompt cost at O(k) regardless of bank size</li>
@@ -7718,7 +7867,7 @@
 <li>VisualClawArena: 200-scenario multimodal agentic benchmark with executable-check scoring, supporting both Codex and Claude Code backends via a staged-workspace bridge</li>
 <li>Demonstration that the same evolution stack transfers from single-call video-QA to multi-step agentic execution</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Video-QA accuracy (streaming vs. Plain baseline, Gemini 3 Flash):</strong> avg +3.85%, peak +15.80% on EgoSchema; EgoPlan-Bench +4.23%</li>
 <li><strong>FullEvo on offline Uniform-8 baseline (Gemini 3 Flash):</strong> +13.00% EgoSchema (60.6%→73.6%), +12.15% EgoPlan-Bench, +5.34% V-MME long, +3.50% NextQA</li>
@@ -7729,7 +7878,7 @@
 <li><strong>VisualClawArena (Claude Code):</strong> VisualClaw Cat. 52.16% macro; +3.16 over w/o FullEvo; +8.17 over Uniform-8 (43.99%); Cascade-8 costs −9.5% vs. Uniform-8</li>
 <li><strong>Difficulty stratification:</strong> FullEvo gains concentrate on Hard scenarios (+5.4 Codex, +5.3 Claude Code over w/o FullEvo); slight regression on Easy (already-saturated) scenarios</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Evolution is triggered only after accumulating Nevo=15 failures; the scaffold is static until that threshold is crossed</li>
 <li>Guide variant (best for video-QA) underperforms Cat. in agentic settings—the two modes require different deployment decisions with no automatic selector</li>
@@ -7738,10 +7887,10 @@
 <li>Offline evolver adds per-session latency (uses Claude Haiku 4.5); cost of evolution calls is not reported for video-QA experiments, only for VisualClawArena</li>
 <li>Cascade gate parameters (τmajor=0.30, 10 s silence ceiling) are fixed; sensitivity analysis is deferred to appendices not reproduced here</li>
 </ul>
-<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses</h2>
+<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>VisualClaw is architecturally a meta-harness: it wraps frozen VLM weights with an externally-evolving scaffold (skill bank + episodic memory) that updates itself between inference calls without gradient-based training—exactly the "scaffold-as-the-unit-of-adaptation" pattern central to meta-harness research. The three-timescale design (per-frame gate / per-question injection / per-session evolution) provides a concrete, implemented template for composing harness layers with qualitatively different update frequencies. VisualClawArena's staged-workspace bridge—which plugs both Codex and Claude Code as interchangeable backends behind a common scoring contract—is itself a harness abstraction demonstrating how to evaluate scaffold improvements independently of backend choice. For researchers building or benchmarking agentic harnesses, the Cat./Guide distinction and the bank-hygiene filters (dedup + utility pruning) are directly reusable design patterns for managing growing prompt-side knowledge stores without context saturation.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="multimodal-agent-skill-evolution-memory-augmented-video-efficiency-agent-scaffold-meta-harness-benchmark-streaming-video">multimodal-agent #skill-evolution #memory-augmented #video-efficiency #agent-scaffold #meta-harness #benchmark #streaming-video</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="multimodal-agent-skill-evolution-memory-augmented-video-efficiency-agent-scaffold-meta-harness-benchmark-streaming-video">multimodal-agent #skill-evolution #memory-augmented #video-efficiency #agent-scaffold #meta-harness #benchmark #streaming-video<a class="headerlink" href="#multimodal-agent-skill-evolution-memory-augmented-video-efficiency-agent-scaffold-meta-harness-benchmark-streaming-video" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7800,7 +7949,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

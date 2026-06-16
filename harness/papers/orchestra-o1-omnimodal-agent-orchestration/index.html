@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5587,6 +5733,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -7698,26 +7847,26 @@
 
 
 
-<h1 id="orchestra-o1-omnimodal-agent-orchestration">Orchestra-o1: Omnimodal Agent Orchestration</h1>
+<h1 id="orchestra-o1-omnimodal-agent-orchestration">Orchestra-o1: Omnimodal Agent Orchestration<a class="headerlink" href="#orchestra-o1-omnimodal-agent-orchestration" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-10 04:50 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.13707v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Orchestra-o1 is an omnimodal multi-agent orchestration framework that decouples high-level planning from modality-specialized sub-agent execution, supporting text, image, audio, and video tasks within a unified dependency-aware parallel scheduling loop. It introduces DA-GRPO, an offline RL algorithm that trains a compact 8B open-source orchestrator by aligning step-level orchestration decisions with expert trajectories. On the OmniGAIA benchmark, it achieves 72.8% accuracy (proprietary setting), outperforming Gemini-3-Pro by 10.3%.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing LLM agent orchestration frameworks are either restricted to text/vision-language tasks or use rigid linear sub-agent pipelines, making them ill-suited for omnimodal tasks where text, image, audio, and video must coexist and interact. Native omnimodal LLMs handle all modalities in a single context and underperform on tasks requiring long-horizon reasoning or fine-grained cross-modal understanding (e.g., Gemini-3-Pro achieves only 62.5% on OmniGAIA under a ReAct wrapper).</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>Orchestra-o1 is structured as a three-level hierarchical policy:</p>
 <p><strong>Scaffold layer</strong>: A main agent maintains a latent dependency graph G_t over sub-goals. At each round it selects a parallel-ready batch P_t ⊆ R_t (nodes whose predecessors are complete), respecting cost budget B_t and a parallelism cap K_max. Independent sub-tasks are dispatched asynchronously; dependent ones wait.</p>
 <p><strong>Backend/tool selection</strong>: Each sub-agent backend b is described by a skill vector φ(b) over five capability dimensions (text, image, audio, video, code) plus cost/latency profiles. The main agent matches sub-task requirement vectors r(u) to backends via a cost-aware dot-product objective (Eq. 5). Tool subsets T*(u) are selected similarly via sparse coverage (Eq. 7).</p>
 <p><strong>Context memory</strong>: After each delegation round, results are summarized into structured history H_t. A compressed context C_t+1 is maintained within a token budget L_ctx by maximising information relevance to the query (Eq. 20). The loop terminates when a learned stopping probability exceeds τ_stop.</p>
 <p><strong>DA-GRPO training</strong>: Standard GRPO is adapted for orchestration by scoring each sampled decision offline from reconstructed states without re-executing sub-agents. A four-component rubric reward covers format correctness (binary), action validity (binary), tool reasonableness (0–3), and decision quality (0–3), with weights α=(0.1, 0.1, 0.2, 0.6). Claude-Haiku-4.5 serves as the reward model. 300 seed examples yield ~1,200 verified training samples after cascade quality-gate filtering (anchor coverage, deduplication, modal-bypass test, numerical sandbox check, LLM judge). Orchestra-o1-8B is fine-tuned from Qwen3-8B on 8×H20 GPUs.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Orchestra-o1 framework</strong>: dependency-aware parallel orchestration for heterogeneous omnimodal tasks, with modality-aware task decomposition, online sub-agent specialization, flexible model/tool backends.</li>
 <li><strong>DA-GRPO</strong>: offline RL training objective that provides dense step-level supervision over delegation, tool assignment, backend selection, parallel scheduling, and stopping decisions — avoiding costly live sub-agent rollouts during training.</li>
 <li><strong>Seed-based data curation pipeline</strong>: five rewrite strategies (pivot swapping, temporal shifting, numerical recombination, entity-sibling querying, multi-hop reordering) with cascade verification gates to generate diverse omnimodal training examples.</li>
 <li><strong>Theoretical grounding</strong>: Proposition 1 (round-level latency advantage of parallel vs. linear orchestration, speedup ≤ K_t); Proposition 2 (information-theoretic justification that specialized orchestration has strictly lower Bayes risk than a native omnidmodal agent under mild assumptions).</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Orchestra-o1-GPT-5</strong>: 72.8% overall on OmniGAIA vs. Gemini-3-Pro 62.5% (+10.3%) and AOrchestra-GPT-5 40.0% (+32.8%).</li>
 <li><strong>Difficulty breakdown (proprietary)</strong>: 80.3% easy / 75.0% medium / 56.4% hard; vs. AOrchestra 45.1% / 40.0% / 32.1% (absolute gains of ~35%, 35%, 24%).</li>
@@ -7725,7 +7874,7 @@
 <li><strong>Efficiency</strong>: Orchestra-o1-GPT-5 achieves 72.8% at aggregate cost 341.6 vs. AOrchestra's 40.0% at cost 565.7 — simultaneously higher accuracy and lower cost.</li>
 <li><strong>Category gains</strong>: consistent improvements across geography, technology, history, sport, art, movie, science, food on OmniGAIA.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>OmniGAIA is the sole benchmark; generalization to other omnimodal settings (e.g., real-time interactive tasks, streaming modalities) is undemonstrated.</li>
 <li>DA-GRPO training data covers only 1,200 verified examples derived from 300 seeds — limited diversity and scale.</li>
@@ -7734,10 +7883,10 @@
 <li>The information-theoretic proof (Proposition 2) relies on the assumption that the main agent aggregates sub-agent evidence without information loss, which is not guaranteed in practice.</li>
 <li>Proprietary backbone (GPT-5) required for SOTA performance; the open-source 8B model lags by 42.8 percentage points.</li>
 </ul>
-<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses</h2>
+<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>Orchestra-o1 is a concrete, formally specified multi-agent harness in which the orchestrator layer itself is a learnable policy — precisely the meta-harness paradigm where the harness logic (decomposition, routing, scheduling, stopping) is not hand-coded but trained end-to-end. DA-GRPO is notable as a training recipe that operates on reconstructed harness states offline, making it cost-efficient to improve the harness controller without re-executing the full pipeline. The dependency-graph representation of sub-task relationships formalizes the scheduling semantics that most meta-harness frameworks leave implicit, offering a blueprint for how harness coordination logic can be made both parallelism-aware and verifiably optimal in latency. This paper connects directly to work on recursive agent harnesses and reward modeling for orchestration by providing an end-to-end trained example of both.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="multi-agent-orchestration-omnimodal-reinforcement-learning-grpo-agent-scheduling-meta-harness-benchmark">multi-agent #orchestration #omnimodal #reinforcement-learning #grpo #agent-scheduling #meta-harness #benchmark</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="multi-agent-orchestration-omnimodal-reinforcement-learning-grpo-agent-scheduling-meta-harness-benchmark">multi-agent #orchestration #omnimodal #reinforcement-learning #grpo #agent-scheduling #meta-harness #benchmark<a class="headerlink" href="#multi-agent-orchestration-omnimodal-reinforcement-learning-grpo-agent-scheduling-meta-harness-benchmark" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7796,7 +7945,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

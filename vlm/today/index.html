@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -280,8 +402,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -307,7 +435,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -531,6 +659,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2398,6 +2529,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2573,6 +2707,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3516,6 +3653,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3739,6 +3879,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5354,6 +5497,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5595,6 +5741,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7475,11 +7624,11 @@
 
 
 
-<h1 id="todays-digest-vision-language-models">🆕 Today's Digest — Vision-Language Models</h1>
+<h1 id="todays-digest-vision-language-models">🆕 Today's Digest — Vision-Language Models<a class="headerlink" href="#todays-digest-vision-language-models" title="Permanent link">&para;</a></h1>
 <p><em>New papers/posts collected 2026-06-15.</em></p>
-<blockquote>
-<p>[!success] 64 new today</p>
-</blockquote>
+<div class="admonition success">
+<p class="admonition-title">64 new today</p>
+</div>
 <table>
 <thead>
 <tr>
@@ -7492,7 +7641,7 @@
 <tr>
 <td>2026-06-14</td>
 <td><a href="../papers/the-truth-stays-in-the-family-enhancing-contextual-grounding-via-inherited-truth/">The Truth Stays in the Family: Enhancing Contextual Grounding via Inherited Truthful Heads in Model Lineages</a></td>
-<td>ICML 2026</td>
+<td><span class="venue">ICML 2026</span></td>
 </tr>
 <tr>
 <td>2026-06-14</td>
@@ -7552,7 +7701,7 @@
 <tr>
 <td>2026-06-13</td>
 <td><a href="../papers/keep-it-in-mind-user-centric-continual-spatial-intelligence-reasoning-in-egocent/">Keep It in Mind: User Centric Continual Spatial Intelligence Reasoning in Egocentric Video Streams</a></td>
-<td>ICML</td>
+<td><span class="venue">ICML</span></td>
 </tr>
 <tr>
 <td>2026-06-13</td>
@@ -7567,7 +7716,7 @@
 <tr>
 <td>2026-06-13</td>
 <td><a href="../papers/think-less-act-early-reinforced-latent-reasoning-with-early-exit-in-vision-langu/">Think Less, Act Early: Reinforced Latent Reasoning with Early Exit in Vision-Language-Action Models</a></td>
-<td>ICML 2026</td>
+<td><span class="venue">ICML 2026</span></td>
 </tr>
 <tr>
 <td>2026-06-13</td>
@@ -7597,7 +7746,7 @@
 <tr>
 <td>2026-06-12</td>
 <td><a href="../papers/cora-analyzing-and-bridging-thinking-answer-gap-in-multimodal-rlvr-via-consisten/">CORA: Analyzing and bridging thinking-answer gap in Multimodal RLVR via Consistency-Oriented Reasoning Alignment</a></td>
-<td>EMNLP 2026</td>
+<td><span class="venue">EMNLP 2026</span></td>
 </tr>
 <tr>
 <td>2026-06-12</td>
@@ -7612,7 +7761,7 @@
 <tr>
 <td>2026-06-12</td>
 <td><a href="../papers/one-layer-s-trash-is-another-layer-s-treasure-adaptive-layer-wise-visual-token-s/">One Layer's Trash is Another Layer's Treasure: Adaptive Layer-wise Visual Token Selection in LVLMs</a></td>
-<td>CVPR 2026</td>
+<td><span class="venue">CVPR 2026</span></td>
 </tr>
 <tr>
 <td>2026-06-12</td>
@@ -7682,7 +7831,7 @@
 <tr>
 <td>2026-06-11</td>
 <td><a href="../papers/cross-modal-masked-compositional-concept-modeling-for-enhancing-visio-linguistic/">Cross-Modal Masked Compositional Concept Modeling for Enhancing Visio-Linguistic Compositionality</a></td>
-<td>ACL 2026</td>
+<td><span class="venue">ACL 2026</span></td>
 </tr>
 <tr>
 <td>2026-06-11</td>
@@ -7722,7 +7871,7 @@
 <tr>
 <td>2026-06-11</td>
 <td><a href="../papers/openmedq-broad-open-pretraining-for-medical-vision-language-models/">OpenMedQ: Broad Open Pretraining for Medical Vision-Language Models</a></td>
-<td>MIDL</td>
+<td><span class="venue">MIDL</span></td>
 </tr>
 <tr>
 <td>2026-06-11</td>
@@ -7797,17 +7946,17 @@
 <tr>
 <td>2025-01-01</td>
 <td><a href="../papers/goalladder-incremental-goal-discovery-with-vision-language-models/">GoalLadder: Incremental Goal Discovery with Vision-Language Models</a></td>
-<td>NeurIPS 2025</td>
+<td><span class="venue">NeurIPS 2025</span></td>
 </tr>
 <tr>
 <td>2025-01-01</td>
 <td><a href="../papers/cross-modal-associations-in-vision-and-language-models-revisiting-the-bouba-kiki/">Cross-modal Associations in Vision and Language Models: Revisiting the Bouba-Kiki Effect</a></td>
-<td>NeurIPS 2025</td>
+<td><span class="venue">NeurIPS 2025</span></td>
 </tr>
 <tr>
 <td>2025-01-01</td>
 <td><a href="../papers/world-aware-planning-narratives-enhance-large-vision-language-model-planner/">World-aware Planning Narratives Enhance Large Vision-Language Model Planner</a></td>
-<td>NeurIPS 2025</td>
+<td><span class="venue">NeurIPS 2025</span></td>
 </tr>
 </tbody>
 </table>
@@ -7866,7 +8015,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

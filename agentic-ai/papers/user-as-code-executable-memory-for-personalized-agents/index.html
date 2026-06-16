@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3506,8 +3640,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -3533,7 +3673,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -3731,6 +3871,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,19 +7847,19 @@
 
 
 
-<h1 id="user-as-code-executable-memory-for-personalized-agents">User as Code: Executable Memory for Personalized Agents</h1>
+<h1 id="user-as-code-executable-memory-for-personalized-agents">User as Code: Executable Memory for Personalized Agents<a class="headerlink" href="#user-as-code-executable-memory-for-personalized-agents" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-15 13:39 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.16707v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>User as Code (UaC) proposes representing an agent's user model as executable typed Python code rather than unstructured text, knowledge graphs, or fact stores. A two-phase pipeline (append-only fact extraction → periodic structured code generation) converts raw conversation into typed Python dataclasses plus deterministic constraint functions. This enables both competitive factual recall (78.8% on LOCOMO) and capabilities retrieval-based systems cannot support at all: aggregate inference (99% vs. 6–43% for retrieval baselines) and proactive, unsolicited safety alerts.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing LLM agent memory systems (Mem0, A-MEM, MemMachine, Hindsight, knowledge graphs) store user state as text, extracted facts, or graph nodes—formats that separate <em>representation</em> from <em>verification</em>. This creates two structural failures: (1) conflicting facts coexist unresolved with no version history, and (2) aggregate queries ("how many international trips did I take last year?") and rule-based proactive alerts ("passport expires before booked departure") are structurally impossible under top-k retrieval, which only ever surfaces a handful of records at once.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>UaC models the user as a self-evolving Python software project consisting of typed dataclasses (state), Python functions (constraints), and a compact manifest (always-loaded summary + <code>ACTIVE_ALERTS</code>).</p>
 <p><strong>Phase 1 – Memorize (per session, append-only):</strong> A thinking-enabled LLM (Gemini 3 Flash, budget 8192) extracts ~50–75 atomic facts per session as flat strings with resolved absolute dates, appended to a never-overwritten log. Facts are also indexed in ChromaDB alongside raw conversation chunks.</p>
 <p><strong>Phase 2 – Structure (periodic, full-corpus):</strong> A thinking-enabled LLM (budget 16384) regenerates the entire typed Python state from scratch from all accumulated facts—not incrementally edited—producing dataclass instances (<code>date()</code> fields, typed lists, <code>notes: list[str]</code> for hard-to-type facts) organized into domain packages (<code>travel/</code>, <code>health/</code>, <code>finance/</code>, …). Regenerating from the full corpus rather than editing incrementally limits information loss to 0.18% of facts.</p>
 <p><strong>Retrieval uses three concatenated channels:</strong> (1) structured code state (full <code>state.py</code>, up to 6K chars); (2) fact-vector retrieval (top-20 from ChromaDB over the fact log); (3) raw archive retrieval (top-10 session chunks). The LLM is instructed to prefer the structured channel on conflicts.</p>
 <p><strong>Proactive alerts</strong> emerge from a generate–verify–review loop: the coding agent writes Python constraints against the typed state, the interpreter executes them deterministically in a sandbox, and results are persisted in <code>ACTIVE_ALERTS</code> in the manifest, visible at session start without any user query.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Two-phase memory architecture</strong> (append-only log + periodic full-corpus code regeneration), reaching 78.8% on LOCOMO (within 1.0pp of full-context upper bound; McNemar p=0.65) and 83.0% on LongMemEval (tied with MemMachine and Full Context).</li>
 <li><strong>Active Service benchmark</strong>: 60 scenarios across 5 constraint categories—first benchmark measuring memory-triggered proactive alerts without a user query; UaC achieves 100% on 40 standard and 85% on 20 hard scenarios.</li>
@@ -7719,7 +7868,7 @@
 <li><strong>Cross-LLM robustness</strong>: substituting GPT-5.4 throughout yields statistical tie (p=0.82) vs. Gemini; re-judging with Claude Opus 4.7 preserves rankings (Cohen's κ ≥ 0.74).</li>
 <li>Open-source implementation with same-backbone comparisons against five memory systems on five benchmarks.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>LOCOMO (n=600):</strong> UaC 78.8% vs. Full Context 79.8% (p=0.65, tied), MemMachine 72.7% (p=0.003), Hindsight 69.7% (p=1.5×10⁻⁵), EverMemOS 55.5%, A-MEM 51.8%, Mem0 29.3%.</li>
 <li><strong>LongMemEval (n=500):</strong> UaC 83.0%, statistically tied with MemMachine 84.8% (p=0.33) and Full Context 85.4% (p=0.19); ahead of EverMemOS 76.4% (p=0.002), Hindsight 73.0%, A-MEM 49.6%, Mem0 23.8%.</li>
@@ -7728,7 +7877,7 @@
 <li><strong>Token cost:</strong> UaC structuring amortizes to ~15× cheaper than reloading raw records after 3–11 queries; wall time for structuring stays at 30–40s across 19–200 session corpora.</li>
 <li><strong>Cross-LLM:</strong> UaC (GPT-5.4) 80.8% on 120-QA LOCOMO subset vs. 82.5% Gemini (p=0.82).</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Input cap at ~500K characters:</strong> cost flattens around n=100 sessions; authors acknowledge this motivates hierarchical structuring for production scale.</li>
 <li><strong>Temporal reasoning gap:</strong> UaC lags Full Context on LongMemEval temporal-reasoning subcategory (65% vs. 74%), where extraction occasionally drops timestamps needed for multi-session date arithmetic.</li>
@@ -7738,10 +7887,10 @@
 <li><strong>Structured phase is LLM-driven and mildly stochastic:</strong> fact extraction varies across runs (~1–2% variance in fact count audited).</li>
 <li><strong>No user study or real deployment data:</strong> evaluation is entirely LLM-as-judge on benchmark conversations.</li>
 </ul>
-<h2 id="relevance-to-agentic-ai-llm-agents">Relevance to Agentic AI / LLM Agents</h2>
+<h2 id="relevance-to-agentic-ai-llm-agents">Relevance to Agentic AI / LLM Agents<a class="headerlink" href="#relevance-to-agentic-ai-llm-agents" title="Permanent link">&para;</a></h2>
 <p>UaC directly addresses the persistent-memory problem that limits long-running personalized agents: how to accumulate, organize, and act on a growing user model across sessions without paying full-context costs every turn. The paper's core insight—that executable code is a better medium than text for agent memory because it collapses representation and verification into one interpreter-runnable artifact—connects to a broader trend in agentic AI (CodeAct, Voyager, Program-of-Thoughts) of using code as a first-class substrate for reasoning and state. The proactive alerting capability is particularly significant for agents tracking real-world obligations (health, travel, finance), since it demonstrates a memory system that initiates consequential actions rather than waiting for user queries—a core requirement for autonomous, long-horizon agents. The append-only log + periodic structured checkpoint pattern is also directly compatible with RL-based memory policy training (Memory-R1, AgeMem), making UaC an interesting foundation for future learned memory management.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="agent-memory-personalization-executable-memory-long-term-memory-proactive-agents-code-as-representation-benchmark-rag">agent-memory #personalization #executable-memory #long-term-memory #proactive-agents #code-as-representation #benchmark #rag</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="agent-memory-personalization-executable-memory-long-term-memory-proactive-agents-code-as-representation-benchmark-rag">agent-memory #personalization #executable-memory #long-term-memory #proactive-agents #code-as-representation #benchmark #rag<a class="headerlink" href="#agent-memory-personalization-executable-memory-long-term-memory-proactive-agents-code-as-representation-benchmark-rag" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7800,7 +7949,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

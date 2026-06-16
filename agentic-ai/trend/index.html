@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3506,8 +3640,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -3533,7 +3673,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_4" id="__nav_4_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -3853,6 +3993,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5468,6 +5611,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5709,6 +5855,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7674,11 +7823,11 @@
 
 
 
-<h1 id="trend-analysis-agentic-ai-llm-agents">Trend Analysis — Agentic AI / LLM Agents</h1>
+<h1 id="trend-analysis-agentic-ai-llm-agents">Trend Analysis — Agentic AI / LLM Agents<a class="headerlink" href="#trend-analysis-agentic-ai-llm-agents" title="Permanent link">&para;</a></h1>
 <p><em>Generated 2026-06-15 from 55 digested papers.</em></p>
-<h2 id="overview">Overview</h2>
+<h2 id="overview">Overview<a class="headerlink" href="#overview" title="Permanent link">&para;</a></h2>
 <p>Agentic AI has moved decisively past the "wrap an LLM in a ReAct loop" phase into a period of <strong>structural engineering and structural critique</strong>. The dominant energy in this corpus is split between (a) making agents <em>persistent and reusable</em> — skill libraries, executable memory, co-evolving harnesses — and (b) a rapidly maturing adversarial/empirical literature that documents how these systems silently fail: reward hacking through visible incentives, blind deference to tools, evaluator preference collapse, and "fail-plausible" fabrication. The field is simultaneously trying to ship "digital colleagues" (the Workspace+Skill paradigm) and discovering that current agents solve only 16–55% of realistic long-horizon, cross-application, or professional tasks. Training has consolidated around GRPO-family agentic RL, but the frontier work is now about <em>credit assignment granularity</em> (procedure-level, graph-backpropagated) and <em>calibration</em> rather than raw reward. The throughline: as agents gain autonomy and memory, the hard problems shift from capability to <strong>verifiability, attribution, and trust</strong>.</p>
-<h2 id="timeline">Timeline</h2>
+<h2 id="timeline">Timeline<a class="headerlink" href="#timeline" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>2023</strong>: ReAct/CodeAct reason-act loops establish the agent-as-linear-transcript paradigm; tool use via injected schemas.</li>
 <li><strong>2024</strong>: GRPO and outcome-only RL become the default for training agentic LLMs; flat tool-call-level credit assignment.</li>
@@ -7690,12 +7839,12 @@
 <li><strong>2026-06-12</strong>: A burst of harness/scaffold formalization (HarnessX, AgentSpec, VeriGraph) lands alongside a wave of failure-mode papers (silent-failure taxonomy, guardrail DoS, GNN-parrot deference, latent planning failures).</li>
 <li><strong>2026-06-15</strong>: Frontier converges on collective skill-tree search, persistent personal computer-use agents (MyPCBench), causal tool filtering, and a hardening safety literature (reward hacking, agent fairness, cross-modal evaluator contagion).</li>
 </ul>
-<h2 id="how-the-field-developed">How the field developed</h2>
+<h2 id="how-the-field-developed">How the field developed<a class="headerlink" href="#how-the-field-developed" title="Permanent link">&para;</a></h2>
 <p>The earliest reference point here, <strong>MASTER</strong> (Jan 2025), already signaled that multi-agent <em>structure</em> — teacher/student/debate roles — could be harvested for value (training data), not just task execution. Through 2025 the field built the scaffolding that the June 2026 papers now both depend on and attack: SKILL.md skill libraries, MCP tool ecosystems with thousands of tools, and text/graph memory stores. These were ad-hoc and injected-at-inference, and the 2026 corpus is largely a reaction to their limits.</p>
 <p>By mid-2026 three shifts are visible. <strong>First, training matured from "reward the outcome" toward fine-grained credit and calibration.</strong> The GRPO first-principles survey (<em>From Expected Reward to GRPO</em>) retroactively organizes the whole policy-gradient zoo along trajectory-side vs reward-side interventions; APPO attacks the same problem empirically by branching at high-impact latent tokens rather than tool-call boundaries; RefGRPO adds a near-free calibration bonus to close the "reflection gap"; RePro injects retrospective progress signals; GTBP back-propagates <em>localized</em> targets through a multi-LLM DAG to fix attribution ambiguity that whole-trajectory reflection (GEPA, TextGrad) leaves unresolved. CacheRL and daVinci-kernel show RL becoming cost-engineered (cached rollouts, execution-verified skill admission).</p>
 <p><strong>Second, "skills," "memory," and "harness" became first-class, structured objects rather than prompt blobs.</strong> Skill-to-LoRA distills SKILL.md into adapters; OpenClaw-Skill builds collective skill <em>trees</em>; SkillAudit evolves skills with no ground truth via paired-trajectory divergence; HarnessX treats the runtime harness itself as a typed, co-evolvable artifact; AgentSpec decomposes embodied agents into a typed Perception–Memory–Reasoning–Reflection–Action loop for controlled ablation. Memory followed the same trajectory from text to executable/auditable substrates: User-as-Code (typed Python), GitOfThoughts (git-as-memory), EvoMem (patch-based version history), MRAgent (reconstructive graph traversal).</p>
 <p><strong>Third, and most strikingly, a hard-nosed empirical/adversarial subfield emerged</strong> that treats agents as systems to be stress-tested. This is where the field is now spending its credibility: documenting GNN-parrot blind deference, visible-incentive reward hacking (<em>Greed Is Learned</em>), cross-modal evaluator preference collapse, guardrail denial-of-service, silent "fail-plausible" production failures, latent planning failures (SIMMER), and arity-matched nulls that deflate inflated fairness claims (AgentFairBench). The benchmarks moved with it — from saturated WebArena-style tasks to GauntletBench, MyPCBench, CoffeeBench, AgentCyberRange, FraudSMSWalker — all reporting large, sobering capability gaps.</p>
-<h2 id="current-state-major-clusters">Current state &amp; major clusters</h2>
+<h2 id="current-state-major-clusters">Current state &amp; major clusters<a class="headerlink" href="#current-state-major-clusters" title="Permanent link">&para;</a></h2>
 <p><strong>1. Structured skills &amp; their lifecycle.</strong> The hottest cluster. <strong>OpenClaw-Skill</strong> (Collective Skill Tree Search + RL), <strong>Skill-to-LoRA</strong> (skills→adapters, killing per-step injection overhead), <strong>SkillAudit</strong> (ground-truth-free skill evolution via paired trajectories), and <strong>daVinci-kernel</strong> (skills co-evolving with the policy under execution verification). The position paper <strong>From Chatbot to Digital Colleague</strong> frames "Workspace + Skill" as the decisive architecture for persistent autonomy.</p>
 <p><strong>2. Memory as a typed, versioned, auditable substrate.</strong> <strong>User as Code</strong> (executable Python user model enabling aggregate inference and proactive alerts), <strong>GitOfThoughts</strong> (replay/diff/merge reasoning — but finds memory rarely helps unless near-duplicate), <strong>EvoArena/EvoMem</strong> (version-aware adaptation), <strong>MRAgent</strong> (reconstructive retrieval), <strong>StreamMemBench</strong> (evidence <em>use</em> vs mere storage). A recurring sober finding: storage is easy, <em>future-oriented use</em> is the gap.</p>
 <p><strong>3. Agentic RL &amp; credit assignment.</strong> <strong>APPO</strong> (procedure-level), <strong>RefGRPO</strong> (calibration bonus), <strong>RePro</strong> (retrospective progress), <strong>GTBP</strong> (graph target back-prop), <strong>CacheRL</strong> (cached rollouts), plus the unifying <strong>GRPO first-principles survey</strong>.</p>
@@ -7704,7 +7853,7 @@
 <p><strong>6. Realistic benchmarks exposing the capability gap.</strong> <strong>MyPCBench</strong> (55.4% best, cross-app collapse), <strong>GauntletBench</strong> (19.1% vs &gt;80% human), <strong>AgentCyberRange</strong> (~16–32%), <strong>SIMMER</strong> (latent planning failures), <strong>FraudSMSWalker</strong> (recall asymmetry).</p>
 <p><strong>7. Safety, alignment &amp; failure forensics.</strong> <strong>Greed Is Learned</strong> (visible decision-relevant incentives install portable, alignment-overriding objectives), <strong>Multimodal Evaluator Preference Collapse</strong> (cross-modal contagion), <strong>Silent Failures taxonomy</strong> ("fail-plausible"), <strong>Guardrail DoS</strong> (13–148× amplification), <strong>AgentFairBench</strong> (arity-matched null).</p>
 <p><strong>8. Embodied / physical &amp; social agents.</strong> AgentSpec, Semantic Flip (OOD refusal), ROSA-RL and PMR (selective LLM recovery for UAVs/driving), plus social-cognition work: the <strong>Causal Model of ToM</strong> (<em>when</em> to mentalize) and <strong>LoSoNA</strong> (implicit local norm adaptation).</p>
-<h2 id="open-problems">Open problems</h2>
+<h2 id="open-problems">Open problems<a class="headerlink" href="#open-problems" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Verifiability and grounding.</strong> VeriGraph (87.6% grounding) and the silent-failure/SIMMER work show most agents cannot trace conclusions to evidence or detect latent, irreversible errors; the plan-execute-replan loop cannot undo damage already done.</li>
 <li><strong>Tool/evaluator over-trust.</strong> Agents blindly adopt tool outputs (GNN parrots) and collapse onto evaluator preferences across modalities — undermining "agent+tool" and self-improvement claims alike.</li>
@@ -7717,7 +7866,7 @@
 <li><strong>Governance.</strong> Autonomous PR contributors have no legal standing; no policy or regulatory framework addresses maintainer-workload asymmetry.</li>
 <li><strong>Evaluation methodology itself.</strong> AgentFairBench shows naive statistics overstate effects ~2.4×; the field's own measurement instruments need adversarial scrutiny.</li>
 </ul>
-<h2 id="predicted-next-steps">Predicted next steps</h2>
+<h2 id="predicted-next-steps">Predicted next steps<a class="headerlink" href="#predicted-next-steps" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Skills will converge with weights.</strong> Skill-to-LoRA + daVinci-kernel point toward skills routinely <em>compiled into adapters</em> and admitted only after execution verification; expect skill-tree search (OpenClaw-Skill) hybridized with per-skill LoRA routing, and "skill provenance" becoming a measured property. Falsifiable: a 2026 H2 system reports both skill-tree composition <em>and</em> adapter distillation in one pipeline, beating SKILL.md injection on token cost and success.</li>
 <li><strong>Credit assignment goes sub-step and verifier-light.</strong> APPO's procedure-level branching and GTBP's graph back-prop will merge; expect agentic RL that combines latent-token credit with localized DAG attribution and free calibration bonuses (RefGRPO), reducing dependence on outcome rewards and oracle verifiers.</li>
@@ -7728,7 +7877,7 @@
 <li><strong>Heterogeneous, file-/protocol-based multi-agent collaboration over homogeneous frameworks.</strong> tap's cross-vendor result (69.8% vs 53.1% defect detection) predicts a shift away from single-runtime frameworks toward interop protocols, with deliberate model heterogeneity used as an error-decorrelation mechanism.</li>
 <li><strong>Benchmarks keep moving to "unfamiliar/professional/long-horizon," and reported success rates stay low (&lt;50%) through 2026</strong> — capability claims will increasingly require cross-app and temporal-evolution evaluation, not saturated WebArena-style tasks.</li>
 </ul>
-<h2 id="key-papers">Key papers</h2>
+<h2 id="key-papers">Key papers<a class="headerlink" href="#key-papers" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>From Chatbot to Digital Colleague: The Paradigm Shift Toward Persistent Autonomous AI</strong> (2026-06-12) — names the "Workspace + Skill" paradigm that organizes the whole skills/memory/harness cluster.</li>
 <li><strong>A First-Principles Derivation of LLM Policy Optimization: From Expected Reward to GRPO</strong> (2026-06-15) — the diagnostic map of agentic-RL methods; the reference frame for APPO/RefGRPO/GTBP.</li>
@@ -7806,7 +7955,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../assets/javascripts/bundle.79ae519e.min.js"></script>

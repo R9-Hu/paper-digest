@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2388,8 +2516,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -2415,7 +2549,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2565,6 +2699,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -3643,6 +3780,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3866,6 +4006,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,13 +7847,13 @@
 
 
 
-<h1 id="imaging-anchored-multiomics-in-cardiovascular-disease-integrating-cardiac-imaging-bulk-single-cell-and-spatial-transcriptomics">Imaging-anchored Multiomics in Cardiovascular Disease: Integrating Cardiac Imaging, Bulk, Single-cell, and Spatial Transcriptomics</h1>
+<h1 id="imaging-anchored-multiomics-in-cardiovascular-disease-integrating-cardiac-imaging-bulk-single-cell-and-spatial-transcriptomics">Imaging-anchored Multiomics in Cardiovascular Disease: Integrating Cardiac Imaging, Bulk, Single-cell, and Spatial Transcriptomics<a class="headerlink" href="#imaging-anchored-multiomics-in-cardiovascular-disease-integrating-cardiac-imaging-bulk-single-cell-and-spatial-transcriptomics" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-01-10 23:30 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2601.07871v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>A systematic review proposing an "imaging-anchored multiomics" framework for cardiovascular disease in which cardiac imaging (echocardiography, CMR, CT) acts as the primary spatial reference and bulk, single-cell, and spatial transcriptomics supply cell-type- and location-specific molecular context. The review surveys representation learning per modality, multimodal fusion architectures, radiogenomics pipelines, and spatial alignment strategies. Single-cell and spatial foundation models are highlighted as a near-term pathway toward scalable cardiovascular multiomics.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Cardiac imaging and transcriptomic assays are routinely co-generated in large cohorts but remain siloed in separate analysis pipelines, preventing mechanistic interpretation of imaging phenotypes in terms of underlying cell states, gene-expression programmes, and tissue architecture. Classical metrics (ejection fraction, LGE burden) discard the spatial richness that could bridge voxel-level imaging to cell-level molecular biology.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>The review organises the problem into four methodological layers:</p>
 <ol>
 <li>
@@ -7720,7 +7869,7 @@
 <p><strong>Integrative pipelines</strong> — Radiogenomics maps imaging features to gene/pathway scores via regression, DCCA, or GNNs with biological-prior graphs and Mendelian randomisation for causal inference. Spatial alignment proceeds in stages: histology-to-block-face registration → spot-grid mapping via fiducials → deformable warping of in vivo to ex vivo imaging. Virtual transcriptomics predicts gene-expression modules directly from images, exemplified by predicting inflammatory plaque genes from coronary CT angiography radiomics.</p>
 </li>
 </ol>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Formal "imaging-anchored" framing that elevates imaging to the primary spatial coordinate system rather than treating it as one of many parallel modalities.</li>
 <li>Comprehensive taxonomy of fusion architectures (early/intermediate/late, graph-based, contrastive) with explicit discussion of missing-modality handling and small-sample constraints.</li>
@@ -7728,13 +7877,13 @@
 <li>Review of exemplar frameworks: MOFA+, scVI/totalVI, multimodal VAEs (MVAE, MoPoE-VAE), cross-modal ECG–CMR autoencoders, radiotranscriptomic perivascular fat signatures, and human MI/plaque spatial atlases.</li>
 <li>Positioning of single-cell, spatial, and multimodal medical foundation models as near-term generic encoders for cardiovascular imaging-omics.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <p>This is a review; no new experimental benchmarks are reported. Cited empirical anchors include:
 - Cross-modal cardiovascular autoencoder (ECG + CMR + clinical) scaled to tens of thousands of individuals demonstrating imaging imputation and latent-space GWAS.
 - Radiotranscriptomic perivascular fat score (coronary CT radiomics → adipose gene-expression modules) improving cardiac mortality prediction beyond standard CT risk factors.
 - Spatial multi-omic MI atlas (31 samples, 23 patients; snRNA-seq + snATAC-seq + Visium) delineating infarct core, border zone, and remote myocardium at single-cell and spatial resolution.
 - Coronary plaque spatial transcriptomics studies linking immune niches and inflammatory gene modules to CT/invasive imaging morphology features.</p>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Review scope is deliberately narrowed to imaging–transcriptomics; proteomics, metabolomics, and epigenomics are mentioned but not systematically surveyed.</li>
 <li>Paired imaging–omics cohorts remain small (tens to hundreds of patients), constraining high-capacity deep fusion models and increasing overfitting risk.</li>
@@ -7743,10 +7892,10 @@
 <li>Benchmarking frameworks with standardised tasks, splits, and cross-centre validation are absent for imaging–omics integration in cardiology.</li>
 <li>Domain shift from scanner and protocol heterogeneity in imaging, and from platform/chemistry variation in omics, remain unsolved for joint models.</li>
 </ul>
-<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine</h2>
+<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine<a class="headerlink" href="#relevance-to-foundation-models-in-medicine" title="Permanent link">&para;</a></h2>
 <p>The review is directly relevant to foundation model research: it surveys large-scale transformer and state-space single-cell models (trained on tens of millions of cells across tissues and species) as transferable encoders for cardiovascular multiomics, and discusses multimodal medical foundation models (coupling imaging, text, and clinical data) as backbones for adding omic inputs. It frames spatial transcriptomics foundation models—some trained on hundreds of thousands of spots—as the missing link between voxel-level imaging and cell-level molecular biology, pointing to an architectural pattern (pretrained unimodal encoders + cross-modal contrastive or generative fusion) that is already standard in radiology VLMs and now needs extension to molecular channels. The practical gaps identified (small paired datasets, missing modalities, batch effects, no standard benchmarks) are precisely the challenges that future cardiovascular foundation models must address to reach clinical translation.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="multiomics-cardiovascular-spatial-transcriptomics-radiogenomics-foundation-models-multimodal-fusion-single-cell-sequencing-representation-learning">multiomics #cardiovascular #spatial-transcriptomics #radiogenomics #foundation-models #multimodal-fusion #single-cell-sequencing #representation-learning</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="multiomics-cardiovascular-spatial-transcriptomics-radiogenomics-foundation-models-multimodal-fusion-single-cell-sequencing-representation-learning">multiomics #cardiovascular #spatial-transcriptomics #radiogenomics #foundation-models #multimodal-fusion #single-cell-sequencing #representation-learning<a class="headerlink" href="#multiomics-cardiovascular-spatial-transcriptomics-radiogenomics-foundation-models-multimodal-fusion-single-cell-sequencing-representation-learning" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7805,7 +7954,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

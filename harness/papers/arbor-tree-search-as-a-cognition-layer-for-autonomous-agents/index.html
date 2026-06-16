@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5587,6 +5733,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -7698,13 +7847,13 @@
 
 
 
-<h1 id="arbor-tree-search-as-a-cognition-layer-for-autonomous-agents">Arbor: Tree Search as a Cognition Layer for Autonomous Agents</h1>
+<h1 id="arbor-tree-search-as-a-cognition-layer-for-autonomous-agents">Arbor: Tree Search as a Cognition Layer for Autonomous Agents<a class="headerlink" href="#arbor-tree-search-as-a-cognition-layer-for-autonomous-agents" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-10 18:14 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.12563v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Arbor is a multi-agent framework that reformulates full-stack LLM inference optimization as heuristic-scored stateful tree search, using an Orchestrator–Critic checks-and-balances architecture with dynamically-constructed Domain Specialists. A shared search tree serves as working memory across agents, propagating failures as constraints and expanding dynamically as bottlenecks shift. On six production models on AMD MI355X GPUs, Arbor achieves +40%–+193% throughput over vendor-optimized baselines in multi-day autonomous campaigns.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing autonomous optimization agents (AlphaEvolve, AVO, KernelSkill, Astra) operate on isolated, stateless targets within a single stack layer. Cross-layer performance optimization—where a kernel change can expose a framework bug that regresses serving throughput—requires navigating a stateful, dynamically expanding action space where failures at one layer invalidate progress at another, and no prior system tolerates or extracts signal from cascading cross-layer failures.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>Arbor formulates optimization as heuristic tree search over T = (V, E). Each node encodes an action and its outcome (kept/reverted/crashed); the path root→node is the cumulative intervention sequence. The search state S_t tracks the tree, a scored candidate queue, outcome history with diagnostic annotations, and current agent assignments.</p>
 <p><strong>Scoring heuristic:</strong>
 <div class="highlight"><pre><span></span><code>h(a) = [g(a)/c(a)] · (1 − r_acc) · (1 − r_crash) · m_gap + C√(ln N / (1 + n_cat))
@@ -7713,7 +7862,7 @@ where g(a) is expected gain (profiled GPU time share × category speedup prior),
 <p>The <strong>Orchestrator</strong> drives depth-first search: profile → score → dispatch → gate (accuracy + e2e benchmark) → update tree → re-score. It does not implement optimizations; it constructs Domain Specialist agents dynamically per task by composing prompts from hardware context, Knowledge Base entries, and prior failure history. Multiple specialists run in parallel with GPU-aware scheduling.</p>
 <p>The <strong>Critic</strong> operates over the full trajectory with four sub-capabilities: guardrails (measurement integrity), root-cause analysis (crash/regression diagnosis enabling constrained retries), introspection (evaluating whether a reverted idea warrants a refined sub-action), and stability monitoring (long-horizon health tracking, publishing constraints that prune branches).</p>
 <p>A <strong>persistent Knowledge Base</strong> accumulates validated techniques, failure modes, and parameter-level findings across campaigns. KB entries initialize scoring priors (r_acc, r_crash, g(a)) and are directly composed into specialist prompts, enabling warm-start transfer.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Formulation of cross-layer performance optimization as stateful tree search with dynamic expansion: profiling after kept actions reveals new bottlenecks, spawning branches that did not exist at initialization.</li>
 <li>Checks-and-balances multi-agent architecture: Orchestrator pursues aggressive gains; Critic enforces stability constraints; neither can act unilaterally.</li>
@@ -7721,7 +7870,7 @@ where g(a) is expected gain (profiled GPU time share × category speedup prior),
 <li>Persistent KB that makes each campaign start from strictly stronger priors than the last, with KB entries composed directly into dynamically-constructed specialist prompts.</li>
 <li>Demonstrated hardware-agnostic reproducibility: cross-generation validation on MI300X, run-to-run variance ≤2 percentage points.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>gpt-oss-120b</strong> (MoE 120B, MXFP4, MI355X): +48% throughput (4405 → 6515 tok/s/GPU); 9/30 actions kept, 16 reverted with diagnostic insight, 3 crash with recovery.</li>
 <li><strong>DeepSeek-R1-0528</strong> (FP8, MI355X): +90% throughput; compound of MTP speculative decoding, CK GEMM rewrites, fused allreduce, config tuning.</li>
@@ -7734,7 +7883,7 @@ where g(a) is expected gain (profiled GPU time share × category speedup prior),
 <li>39% of kernel-level improvements regress end-to-end throughput when deployed into the serving pipeline, motivating the gating requirement.</li>
 <li>Baselines: InferenceX vendor-optimized configurations (SemiAnalysis 2026) representing extensive manual engineering team effort.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Agent quality is tied to the underlying LLM backend capability tier; no systematic comparison across model families performed.</li>
 <li>All primary experiments on AMD Instinct GPUs (MI355X, MI300X); not yet evaluated on NVIDIA GPUs.</li>
@@ -7742,10 +7891,10 @@ where g(a) is expected gain (profiled GPU time share × category speedup prior),
 <li>Evaluation domain restricted to LLM inference serving; extensions to training or single-operator optimization are not demonstrated.</li>
 <li>KB maturity is a prerequisite for learned value-model extensions; the system is not yet at the scale where a learned prior can replace the hand-crafted scoring heuristic.</li>
 </ul>
-<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses</h2>
+<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>Arbor is a canonical example of a <strong>meta-harness</strong>: rather than writing an optimizer for a specific target, it constructs a general orchestration layer that dynamically assembles specialist sub-agents at runtime and routes work through a structured search process—precisely the "harness over harnesses" pattern. The tree as shared working memory, with failures propagating upward as branch constraints and successes triggering re-profiling that expands the frontier, is a concrete instantiation of stateful meta-level control that goes beyond simple agent-loop wrappers. The Orchestrator–Critic checks-and-balances design addresses a key open problem in harness research: preventing individual agents from corrupting shared state (measurement integrity, accuracy gating) while sustaining long-horizon campaigns. The persistent Knowledge Base enabling warm-start transfer across campaigns is directly applicable to any meta-harness that must generalize across tasks or environments.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="multi-agent-tree-search-meta-harness-orchestration-llm-inference-optimization-persistent-knowledge-base-agentic-systems-checks-and-balances">multi-agent #tree-search #meta-harness #orchestration #llm-inference-optimization #persistent-knowledge-base #agentic-systems #checks-and-balances</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="multi-agent-tree-search-meta-harness-orchestration-llm-inference-optimization-persistent-knowledge-base-agentic-systems-checks-and-balances">multi-agent #tree-search #meta-harness #orchestration #llm-inference-optimization #persistent-knowledge-base #agentic-systems #checks-and-balances<a class="headerlink" href="#multi-agent-tree-search-meta-harness-orchestration-llm-inference-optimization-persistent-knowledge-base-agentic-systems-checks-and-balances" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7804,7 +7953,7 @@ where g(a) is expected gain (profiled GPU time share × category speedup prior),
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

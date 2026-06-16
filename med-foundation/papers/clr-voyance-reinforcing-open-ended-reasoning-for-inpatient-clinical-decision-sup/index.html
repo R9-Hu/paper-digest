@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2388,8 +2516,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -2415,7 +2549,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_3" id="__nav_3_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -2565,6 +2699,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -3643,6 +3780,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3866,6 +4006,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,17 +7847,17 @@
 
 
 
-<h1 id="clr-voyance-reinforcing-open-ended-reasoning-for-inpatient-clinical-decision-support-with-outcome-aware-rubrics">CLR-voyance: Reinforcing Open-Ended Reasoning for Inpatient Clinical Decision Support with Outcome-Aware Rubrics</h1>
+<h1 id="clr-voyance-reinforcing-open-ended-reasoning-for-inpatient-clinical-decision-support-with-outcome-aware-rubrics">CLR-voyance: Reinforcing Open-Ended Reasoning for Inpatient Clinical Decision Support with Outcome-Aware Rubrics<a class="headerlink" href="#clr-voyance-reinforcing-open-ended-reasoning-for-inpatient-clinical-decision-support-with-outcome-aware-rubrics" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-05-10 14:51 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2605.09584v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>CLR-voyance reformulates inpatient clinical reasoning as a Partially Observable Markov Decision Process (POMDP) and trains small language models (8B/4B) via GRPO with per-case, outcome-grounded rubrics derived from real EHR future trajectories. The resulting 8B model (84.91% on CLR-POMDP) outperforms GPT-5 (77.83%) and MedGemma-27B (66.66%) on inpatient clinical decision support, has been deployed at a partner hospital for 6+ months, and has processed 1.03T+ tokens.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing clinical-LLM evaluations collapse the inherently sequential, partially observable structure of inpatient reasoning into one of three flawed paradigms: (1) closed-form exam-style MCQ benchmarks that frontier models have saturated and that don't predict real-world performance; (2) longitudinal-EHR benchmarks that leak the full admission (including the answer) into the input; or (3) reward signals grounded in static clinical references rather than in the patient's actual downstream care trajectory. No prior work jointly provides outcome-grounded training, clinician-aligned evaluation, and real hospital deployment for open-ended inpatient reasoning.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p><strong>CLR-POMDP formulation.</strong> Each MIMIC-IV admission is treated as a POMDP <code>M = (S, A, O, T, Z, r)</code>. A temporal split at <code>k ~ N(n/2, n/6)</code> divides a chronologically ordered event stream into a policy-visible <em>past</em> and an oracle-only <em>future</em> (~65K-token context, raw JSON event-level EHR, no pre-summarisation). Four clinical action-space categories are instantiated per split: Diagnosis, Treatment, Procedural Decision, Uncertainty/Risk-Benefit.</p>
 <p><strong>Grounded Judge.</strong> An oracle LLM with access to the full future generates (query <code>q</code>, reference answer <code>y*</code>, reference reasoning <code>ρ*</code>, supporting future events <code>src</code>, per-case rubric <code>R</code>). The rubric has pass/fail criteria weighted in <code>[-10, +10]</code> on five axes: Accuracy, Completeness, ContextAwareness, CommunicationQuality, InstructionFollowing. The scalar reward is <code>r_rub = clip[0,1](Σ_{i: j_i=true} p_i / Σ_{i: p_i&gt;0} p_i)</code> — normalised by positive weights so negative safety criteria drive the score down without inflating the ceiling.</p>
 <p><strong>Post-training.</strong> Qwen3-8B and MedGemma-4B are post-trained with GRPO (G=4/8 completions per prompt, group-relative advantage, KL penalty). Total reward: <code>r_total = r_rub + r_format + r_tag</code>. After GRPO, weight-space merging (DELLA-Linear or Breadcrumbs, optionally composed with Activation-Informed Merging) recovers generalist capabilities eroded by domain-specialized RL.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>CLR-POMDP</strong>: first POMDP-style inpatient EHR benchmark built from MIMIC-IV that functions as both training distribution and evaluation harness, with strict past/future isolation.</li>
 <li><strong>Grounded Judge + per-case adaptive rubrics</strong>: first rubric-as-reward signal for open-ended clinical decision tasks conditioned on a real patient's downstream care trajectory; eliminates static reference grounding.</li>
@@ -7716,7 +7865,7 @@
 <li><strong>Large-scale clinician validation</strong>: 4 board-certified physicians across 2 specialty cohorts (spine/orthopaedic, general medicine/obesity) validate rubric quality, judge alignment, and blinded model preferences; GPT-5 is worst-aligned judge due to 100% self-preference.</li>
 <li><strong>Production hospital deployment</strong>: 6+ months, thousands of daily inpatient notes, 1.03T+ tokens processed; only clinical decision support system directly integrated into routine inpatient workflows at this scale.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>CLR-voyance-8B aggregate: 84.91%</strong> vs. GPT-5 77.83% (+7.08 pp), Qwen3-8B GRPO (no merge) 77.95%, GPT-4.1 75.74%, MedGemma-27B 66.66%, HuatuoGPT-o1-7B 51.24%; Wilcoxon p &lt; 10⁻³⁰⁰.</li>
 <li>Per-axis over GPT-5: +21.36 pp Completeness (80.93 vs. 59.57), +11.08 pp Accuracy (80.73 vs. 69.65), +4.05 pp ContextAwareness (86.16 vs. 82.11); GPT-5 retains +3.38 pp CommunicationQuality, +0.98 pp InstructionFollowing.</li>
@@ -7729,7 +7878,7 @@
 <li>Rubric curation (n=2,496 rater-criterion pairs): 89.1% AI-generated criteria accepted as-is; Grounded Judge achieves κ=0.42 against clinician verdicts (substantial agreement).</li>
 <li>DeepSeek-R1-Distill-Qwen-7B scores 11.99% (near-zero clinical transferability from math/code GRPO).</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>CLR-POMDP is derived exclusively from MIMIC-IV (a single US academic hospital system); generalizability to other EHR systems, languages, and healthcare contexts is unverified.</li>
 <li>The Grounded Judge (oracle LLM) is a proprietary or large open model; rubric quality is partially bounded by that model's clinical knowledge and generation artifacts.</li>
@@ -7740,10 +7889,10 @@
 <li>Clinician preference is cohort-specific (spine vs. obesity gap on Table 2), suggesting persona-centric policy training is needed for clinical utility across specialties.</li>
 <li>The obesity cohort blinded preference over GPT-5 (48.0% win rate) indicates near-parity, not superiority, in that domain.</li>
 </ul>
-<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine</h2>
+<h2 id="relevance-to-foundation-models-in-medicine">Relevance to Foundation Models in Medicine<a class="headerlink" href="#relevance-to-foundation-models-in-medicine" title="Permanent link">&para;</a></h2>
 <p>CLR-voyance directly addresses a core open problem for clinical foundation models: replacing exam-style closed-form evaluation with outcome-grounded, open-ended reasoning evaluation and training signals that mirror actual clinical decision-making under uncertainty. The POMDP + per-case adaptive rubric paradigm offers a replicable blueprint for anchoring RL post-training to real patient outcomes rather than static references, applicable to any EHR-linked cohort. The model merging strategy (GRPO task vector + base interpolation) is a practical recipe for specializing small clinical LMs without capability regression, directly relevant to on-premise hospital deployment constraints. The clinician alignment study's finding that LLM-as-a-judge selection is dominated by cohort×judge interaction rather than model size challenges the standard practice of using a single large judge for clinical evaluation.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="clinical-decision-support-rlhf-grpo-ehr-pomdp-rubric-reward-model-merging-inpatient-reasoning">clinical-decision-support #rlhf #grpo #ehr #pomdp #rubric-reward #model-merging #inpatient-reasoning</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="clinical-decision-support-rlhf-grpo-ehr-pomdp-rubric-reward-model-merging-inpatient-reasoning">clinical-decision-support #rlhf #grpo #ehr #pomdp #rubric-reward #model-merging #inpatient-reasoning<a class="headerlink" href="#clinical-decision-support-rlhf-grpo-ehr-pomdp-rubric-reward-model-merging-inpatient-reasoning" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7802,7 +7951,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

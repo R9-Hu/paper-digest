@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../harness/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -280,8 +402,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -307,7 +435,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_2" id="__nav_2_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -523,6 +651,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -2525,6 +2656,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2700,6 +2834,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3643,6 +3780,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3866,6 +4006,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5481,6 +5624,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -5722,6 +5868,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -7698,18 +7847,18 @@
 
 
 
-<h1 id="arm-an-autoregressive-large-multimodal-model-with-unified-discrete-representations">ARM: An AutoRegressive Large Multimodal Model with Unified Discrete Representations</h1>
+<h1 id="arm-an-autoregressive-large-multimodal-model-with-unified-discrete-representations">ARM: An AutoRegressive Large Multimodal Model with Unified Discrete Representations<a class="headerlink" href="#arm-an-autoregressive-large-multimodal-model-with-unified-discrete-representations" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-09 00:00 UTC  ·  </em><em>Source:</em><em> HuggingFace  ·  <a href="https://huggingface.co/papers/2606.11188">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>ARM is a 7B autoregressive large multimodal model that unifies image understanding, generation, and instruction-guided editing through a single next-token prediction framework over discrete visual tokens. Its key innovation is a unified visual tokenizer trained with four complementary objectives (caption, pixel reconstruction, sigmoid contrastive, feature distillation) that preserves both semantic discriminability and fine-grained appearance detail. Applying GRPO-based reinforcement learning on top reveals an unexpected cross-task synergy: optimizing generation also improves editing, and vice versa.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing unified multimodal models suffer from a structural mismatch: understanding tasks favor high-level semantic encoders (CLIP/SigLIP), while generation tasks require fine-grained reconstruction-oriented encoders (VQ-VAE). Most systems either maintain two separate visual encoders—incurring redundant context overhead and inference cost—or compromise understanding performance to prioritize synthesis fidelity when using a single generation-oriented tokenizer.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>ARM is built in three stages:</p>
 <p><strong>1. Unified Discrete Visual Tokenizer.</strong> A frozen SigLIP2-SO400M-512 encoder provides semantic features; a learned projection module maps these into a compact latent space quantized via Finite Scalar Quantization (FSQ, 65K codebook). The tokenizer is trained end-to-end with four objectives: caption loss (ℒ_cap, cross-entropy via a frozen 0.5B Qwen2.5 LM), pixel reconstruction loss (ℒ_pix, rectified-flow DiT decoder in pixel space to avoid VAE bottleneck), sigmoid contrastive loss (ℒ_sig, aligns quantized visual tokens with SigLIP2 text embeddings), and feature distillation loss (ℒ_feat, cosine distance to original SigLIP2 visual features). Detokenization at inference uses a full FLUX.1[dev] latent DiT as a high-capacity renderer conditioned on the quantized tokens. Trained on 2.2B image-text pairs.</p>
 <p><strong>2. Autoregressive LMM.</strong> A Qwen2.5-7B backbone with an appended linear head for visual token prediction models all modalities via standard next-token prediction (ℒ_ARM) over interleaved text+visual token sequences. Four training stages: pre-training (2.5T tokens), continual training (2.5T tokens, higher resolution, more interleaved data), SFT (0.2B high-quality instruction-following tokens), then RL.</p>
 <p><strong>3. Preference Alignment via GRPO.</strong> Group Relative Policy Optimization is applied exclusively to visual token prediction. For text-to-image, GPT-o3 scores object appearance, attributes, and spatial relationships; for editing, GPT-4.1 evaluates instruction following, region preservation, and visual quality. Rollout size K=16; rewards are normalized within-group to compute advantages. Joint RL (T2I RL → Edit RL → Joint RL) yields the best overall performance.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li>A unified FSQ-based visual tokenizer with four complementary supervision signals that simultaneously preserves semantic alignment (for understanding) and fine-grained appearance (for generation/editing) in a shared discrete latent space.</li>
 <li>A fully autoregressive 7B model trained on interleaved multimodal sequences that achieves competitive understanding, generation, and editing without separate visual encoders.</li>
@@ -7717,7 +7866,7 @@
 <li>Empirical finding that a semantically-aligned tokenizer reduces dependence on classifier-free guidance, enabling inference acceleration.</li>
 <li>Ablation showing each tokenizer loss component contributes: ℒ_sig and ℒ_feat are critical for codebook utilization (usage jumps from 69.4% to 75.6% with all losses) and zero-shot recognition (0.2% → 80.2% ImageNet ZS).</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <p><strong>Understanding (Table 3):</strong>
 - POPE: 87.3 (vs. Emu3: not reported, VILA-U: 83.2, Janus-Pro: 85.8 among discrete unified models)
 - MMMU: 40.2 (vs. Emu3: 31.6, Chameleon: 22.4)
@@ -7733,7 +7882,7 @@
 - T2I RL alone raises GEdit from 5.75 → 5.92 and GenEval from 0.79 → 0.85
 - Edit RL alone raises GenEval from 0.79 → 0.80 and GEdit from 5.75 → 6.31
 - Sequential T2I→Edit→Joint RL achieves best across all tasks with no understanding degradation</p>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Detokenization relies on a high-capacity FLUX.1[dev] diffusion decoder as a separate module; this partially externalizes rendering quality and adds inference cost despite conceptual unification.</li>
 <li>Reward models (GPT-o3 for T2I, GPT-4.1 for editing) are proprietary, making the RL stage difficult to reproduce or scale independently.</li>
@@ -7741,10 +7890,10 @@
 <li>Codebook perplexity remains low (0.28 even with all losses), suggesting codebook under-utilization may still be a bottleneck at scale.</li>
 <li>No evaluation of video generation or understanding, limiting claims of full multimodal unification.</li>
 </ul>
-<h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models</h2>
+<h2 id="relevance-to-vision-language-models">Relevance to Vision-Language Models<a class="headerlink" href="#relevance-to-vision-language-models" title="Permanent link">&para;</a></h2>
 <p>ARM directly advances the unified VLM paradigm by eliminating the dual-encoder architecture that most prior work (Janus-Pro, Bagel) relies on, instead learning a single discrete representation adequate for both perception and synthesis—a key open challenge in the field. The tokenizer design and four-objective training recipe offer a reusable blueprint for practitioners building unified VLMs on top of frozen semantic encoders like SigLIP2. The GRPO finding—that preference alignment on visual tokens induces cross-task synergy without hurting understanding—has implications for how the community should think about post-training alignment in multimodal settings. The CFG-reduction result also suggests that semantic tokenization may unlock inference efficiency gains currently unavailable to VQ-VAE-based autoregressive generators.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="vlm-unified-multimodal-autoregressive-discrete-tokenization-image-generation-image-editing-reinforcement-learning-grpo">vlm #unified-multimodal #autoregressive #discrete-tokenization #image-generation #image-editing #reinforcement-learning #grpo</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="vlm-unified-multimodal-autoregressive-discrete-tokenization-image-generation-image-editing-reinforcement-learning-grpo">vlm #unified-multimodal #autoregressive #discrete-tokenization #image-generation #image-editing #reinforcement-learning #grpo<a class="headerlink" href="#vlm-unified-multimodal-autoregressive-discrete-tokenization-image-generation-image-editing-reinforcement-learning-grpo" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7803,7 +7952,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

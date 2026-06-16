@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5587,6 +5733,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -7698,13 +7847,13 @@
 
 
 
-<h1 id="open-swe-traces-advancing-dual-mode-multilingual-distillation-for-software-engineering-agents">Open-SWE-Traces: Advancing Dual-Mode Multilingual Distillation for Software Engineering Agents</h1>
+<h1 id="open-swe-traces-advancing-dual-mode-multilingual-distillation-for-software-engineering-agents">Open-SWE-Traces: Advancing Dual-Mode Multilingual Distillation for Software Engineering Agents<a class="headerlink" href="#open-swe-traces-advancing-dual-mode-multilingual-distillation-for-software-engineering-agents" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-14 22:10 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.16038v1">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Open-SWE-Traces is a corpus of 207,489 agentic software engineering trajectories across nine programming languages, synthesized by running two frontier LLMs through two agent harnesses (OpenHands and SWE-agent) on real-world PRs from SWE-rebench-v2. The dataset is explicitly structured for <strong>dual-mode distillation</strong>—pairing "thinking" (chain-of-thought) traces from MiniMax-M2.5 with "non-thinking" execution traces from Qwen3.5-122B. Fine-tuning Qwen3-Coder-30B-A3B on this corpus yields a model reaching 61.7% on SWE-bench Verified.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>The SWE agent field has outpaced its training infrastructure: multilingual evaluation benchmarks (Multi-SWEbench, SWE-PolyBench) now exist, but the community lacks large-scale, diverse <strong>interaction traces</strong> and pre-built containerized environments to train models against them. Existing datasets are either Python-only, too small, or lack the thinking/non-thinking modality split needed for switchable-reasoning agents.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p>The pipeline has four stages:</p>
 <ol>
 <li><strong>Repository selection</strong> — 20,000 real-world PRs filtered from SWE-rebench-v2 (20 languages → 9 permissively licensed languages: Python, Go, TS, JS, Rust, Java, PHP, C, C++).</li>
@@ -7713,7 +7862,7 @@
 <li><strong>TrajectoryScanner (git-hacking detection)</strong> — AST-based auditor categorizes every Bash command into a risk hierarchy; trajectories using banned git introspection commands (<code>reflog</code>, <code>blame</code>, <code>log</code>, <code>diff</code> outside safe contexts) are removed.</li>
 </ol>
 <p>Distillation trains Qwen3-30B-A3B variants (Thinking, Instruct, Coder) on the full corpus with SFT (lr=1e-5, batch=32, ctx=131k, 3 epochs). Dual-mode inference is controlled via <code>/think</code> and <code>/no_think</code> prompt triggers.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>Open-SWE-Traces corpus</strong>: 207,489 trajectories across 9 languages and 4 harness×modality combinations; ~40.6% of traces contain a verified-passing patch (65,244 resolved).</li>
 <li><strong>Dual-mode distillation strategy</strong>: explicit separation of thinking vs. non-thinking trajectories enabling a single model to switch reasoning modes at inference time.</li>
@@ -7721,7 +7870,7 @@
 <li><strong>TrajectoryScanner</strong>: AST-based git-hacking detector that filters adversarial trajectory shortcuts from training data.</li>
 <li><strong>Ablation study</strong> isolating effects of harness choice, Python-only vs. multilingual data, resolved-only vs. full corpus filtering, and thinking vs. non-thinking modality.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>SWE-bench Verified</strong>: Open-SWE-Agent <code>/no_think</code> achieves <strong>61.7%</strong> (MSWEA) / 60.2% (MOH); <code>/think</code> achieves 59.3% / 59.1%. Base Qwen3-Coder-30B-A3B: 51.6%.</li>
 <li><strong>SWE-bench Multilingual</strong>: Open-SWE-Agent <code>/no_think</code> achieves <strong>57.1%</strong> (MSWEA) / 48.4% (MOH). Base: 33.5%.</li>
@@ -7731,7 +7880,7 @@
 <li>Thinking traces reduce avg. assistant turns per trajectory by 38% (94.08 → 58.22) in OpenHands; non-thinking is superior at inference for resolved rate in most settings.</li>
 <li>Cross-harness generalization: MSWEA-trained models transfer to MOH more cleanly than MOH-trained models to MSWEA.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Student models inherit biases and errors of teacher models (MiniMax-M2.5, Qwen3.5-122B); no mitigation beyond ensemble diversity.</li>
 <li>Environmental stochasticity introduces score variance; triple-run averaging only partially mitigates this.</li>
@@ -7740,10 +7889,10 @@
 <li>Coverage limited to nine languages despite SWE-rebench-v2 spanning twenty; C and C++ are heavily underrepresented (983 combined trajectories vs. 48k for Python).</li>
 <li>Dual-mode advantage in resolved rate favors no-think at current training scale; authors hypothesize think-mode gains require more data.</li>
 </ul>
-<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses</h2>
+<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>This paper is directly relevant because it treats <strong>agent harnesses as first-class experimental variables</strong>: it runs the same LLMs through both OpenHands and SWE-agent, quantifies cross-harness generalization gaps, and identifies harness-specific failure modes (loop exhaustion in MOpenHands, patch rendering bugs in MSWEA for Go). The finding that harness choice causes consistent, framework-structural performance degradation—independent of language—is a concrete empirical result for anyone designing or comparing harness scaffolds. The multi-stage filtering pipeline (TrajectoryScanner, execution aggregation, schema normalization across heterogeneous harness logs) is itself a <strong>meta-harness</strong> layer that unifies outputs from multiple scaffolds into a common format for downstream training.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="swe-agent-trajectory-dataset-distillation-harness-evaluation-multilingual-benchmark-agent-scaffolding-data-pipeline">swe-agent #trajectory-dataset #distillation #harness-evaluation #multilingual #benchmark #agent-scaffolding #data-pipeline</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="swe-agent-trajectory-dataset-distillation-harness-evaluation-multilingual-benchmark-agent-scaffolding-data-pipeline">swe-agent #trajectory-dataset #distillation #harness-evaluation #multilingual #benchmark #agent-scaffolding #data-pipeline<a class="headerlink" href="#swe-agent-trajectory-dataset-distillation-harness-evaluation-multilingual-benchmark-agent-scaffolding-data-pipeline" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7802,7 +7951,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

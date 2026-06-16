@@ -46,10 +46,12 @@
         
         
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
-        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Inter:300,300i,400,400i,700,700i%7CJetBrains+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Inter";--md-code-font:"JetBrains Mono"}</style>
       
     
+    
+      <link rel="stylesheet" href="../../../stylesheets/extra.css">
     
     <script>__md_scope=new URL("../../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
@@ -67,7 +69,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -90,7 +92,7 @@
 
   
 
-<header class="md-header md-header--shadow" data-md-component="header">
+<header class="md-header md-header--shadow md-header--lifted" data-md-component="header">
   <nav class="md-header__inner md-grid" aria-label="Header">
     <a href="../../.." title="Paper Digest" class="md-header__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -125,7 +127,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Dark mode"  type="radio" name="__palette" id="__palette_0">
     
       <label class="md-header__button md-icon" title="Dark mode" for="__palette_1" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
@@ -135,7 +137,7 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="teal"  aria-label="Light mode"  type="radio" name="__palette" id="__palette_1">
     
       <label class="md-header__button md-icon" title="Light mode" for="__palette_0" hidden>
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
@@ -195,13 +197,131 @@
     
   </nav>
   
+    
+      
+<nav class="md-tabs" aria-label="Tabs" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../../.." class="md-tabs__link">
+        
+  
+  
+    
+  
+  Home
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../vlm/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Vision-Language Models
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../med-foundation/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Foundation Models in Medicine
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../../agentic-ai/" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Agentic AI / LLM Agents
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../" class="md-tabs__link">
+          
+  
+  
+    
+  
+  Harnesses / Meta-Harnesses
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+    
+  
 </header>
     
     <div class="md-container" data-md-component="container">
       
       
-        
-          
         
       
       <main class="md-main" data-md-component="main">
@@ -215,8 +335,10 @@
                     
 
 
+  
 
-<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navigation" data-md-level="0">
   <label class="md-nav__title" for="__drawer">
     <a href="../../.." title="Paper Digest" class="md-nav__button md-logo" aria-label="Paper Digest" data-md-component="logo">
       
@@ -277,6 +399,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -519,6 +644,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -2386,6 +2514,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -2561,6 +2692,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -3504,6 +3638,9 @@
     
     
     
+      
+      
+    
     
     <li class="md-nav__item md-nav__item--nested">
       
@@ -3727,6 +3864,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--nested">
@@ -5344,8 +5484,14 @@
     
     
     
+      
+        
+        
+      
+      
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
       
         
         
@@ -5371,7 +5517,7 @@
             </a>
             
               
-              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="0">
+              <label class="md-nav__link " for="__nav_5" id="__nav_5_label" tabindex="">
                 <span class="md-nav__icon md-icon"></span>
               </label>
             
@@ -5587,6 +5733,9 @@
       
     
     
+    
+      
+      
     
     
     <li class="md-nav__item md-nav__item--active md-nav__item--nested">
@@ -7698,13 +7847,13 @@
 
 
 
-<h1 id="denovoswe-scaling-long-horizon-environments-for-generating-entire-repositories-from-scratch">DeNovoSWE: Scaling Long-Horizon Environments for Generating Entire Repositories from Scratch</h1>
+<h1 id="denovoswe-scaling-long-horizon-environments-for-generating-entire-repositories-from-scratch">DeNovoSWE: Scaling Long-Horizon Environments for Generating Entire Repositories from Scratch<a class="headerlink" href="#denovoswe-scaling-long-horizon-environments-for-generating-entire-repositories-from-scratch" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-09 11:37 UTC  ·  </em><em>Source:</em><em> HuggingFace  ·  <a href="https://huggingface.co/papers/2606.10728">link</a></em></p>
-<h2 id="tldr">TL;DR</h2>
+<h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>DeNovoSWE is a large-scale dataset of 4,818 whole-repository-generation tasks, each requiring an agent to implement a complete Python repository from synthesized documentation. It is constructed via a sandboxed multi-agent divide-and-conquer pipeline with iterative critic-repair, and uses a difficulty-aware trajectory filtering strategy for SFT data curation. Fine-tuning Qwen3-30B-A3B on this data raises its BeyondSWE-Doc2Repo score from 5.8% to 47.2%.</p>
-<h2 id="problem">Problem</h2>
+<h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
 <p>Existing SWE training datasets (SWE-Gym, Scale-SWE, OpenSWE) are almost entirely centered on single-issue bug fixes in existing codebases. This leaves a critical data gap for long-horizon, whole-repository generation—a qualitatively harder task requiring architect-level planning across interdependent files, APIs, and components. Benchmarks (BeyondSWE, NL2RepoBench) expose this gap but contain only 50–104 evaluation instances, far too few for training. Additionally, constructing verifiable repository-generation tasks is non-trivial: raw GitHub documentation is incomplete, evaluation must be executable, and agents can exploit leakage channels to recover reference implementations.</p>
-<h2 id="method">Method</h2>
+<h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
 <p><strong>Dataset construction pipeline (DeNovoSWE-Data):</strong></p>
 <ol>
 <li><strong>Divide phase:</strong> An overview-writer agent summarizes the repository; a capability-writer agent partitions it into functional capabilities and maps each to concrete modules/functions/classes. Repository profiling runs unit tests to capture runtime traces, classifying components as direct, core-indirect, or non-core-indirect—only the first two are documented, preserving task realism.</li>
@@ -7717,14 +7866,14 @@
 - Weights fused via convex combination; optimal weights found by maximizing absolute Pearson correlation with empirical rollout pass rates on a calibration subset (grid search over the 2-simplex).
 - Five difficulty tiers with monotonically relaxed score thresholds: [0.0,0.2)→0.90, [0.2,0.4)→0.85, [0.4,0.6)→0.80, [0.6,0.8)→0.70, [0.8,1.0]→0.60.
 - Trajectories generated by DeepSeek-V4-Pro (3 rollouts per instance, 3 more for failures); ~11k trajectories retained after filtering. SFT uses loss masking on failed tool invocations and heredoc operations.</p>
-<h2 id="key-contributions">Key Contributions</h2>
+<h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>DeNovoSWE-Data</strong>: 4,818 verifiable document-to-repository instances, ~46× larger than prior dataset NL2Repo (104 instances); average test coverage 85.5%, median 89.6%.</li>
 <li><strong>Automated sandboxed construction pipeline</strong> combining divide-and-conquer capability decomposition, runtime trace profiling, and iterative critic-repair documentation synthesis—no human annotation.</li>
 <li><strong>Difficulty-aware trajectory filtering</strong> with instance-specific thresholds calibrated against empirical rollout pass rates, outperforming fixed global thresholds.</li>
 <li><strong>DeNovoSWE-Agent</strong>: fine-tuned Qwen3-30B-A3B and Qwen3.5-35B-A3B models demonstrating substantial gains on held-out benchmarks.</li>
 </ul>
-<h2 id="results">Results</h2>
+<h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Qwen3-30B-A3B-Instruct (base): 5.8% BeyondSWE-Doc2Repo, 4.3% NL2RepoBench.</li>
 <li>Scale-SWE-Agent (issue-level data): 29.2% Doc2Repo, 18.3% NL2Repo.</li>
@@ -7735,7 +7884,7 @@
 <li>Ablation: difficulty-aware filtering (0.500) outperforms best fixed-threshold baseline (0.488) on Doc2Repo; same pattern on NL2Repo (0.271 vs. 0.264).</li>
 <li>All results averaged over 3 independent trials.</li>
 </ul>
-<h2 id="limitations">Limitations</h2>
+<h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
 <li>Dataset is Python-only (via Scale-SWE Docker framework); generalization to other languages not demonstrated.</li>
 <li>Documentation quality depends on GPT-5.4/5.5 at construction time; errors in synthesis propagate to task validity.</li>
@@ -7744,10 +7893,10 @@
 <li>NL2RepoBench results for proprietary models are not reported (dashes in Table 3), making full comparison with frontier systems incomplete.</li>
 <li>SFT-only training; no RL or preference-optimization experiments are reported.</li>
 </ul>
-<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses</h2>
+<h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
 <p>DeNovoSWE is itself a multi-agent construction harness: a sandboxed pipeline of specialized agents (overview writer, capability writer, profiler, draft/critic/repair) that orchestrate each other to produce training data at scale, with LLM-as-judge arbitration and strict sandboxing/containment policies enforced at the environment level. The leakage-prevention infrastructure—runtime command restriction, multi-channel cache purging, git-history sanitization, and LLM-based circumvention auditing—is a concrete engineering template for harness-level containment, directly relevant to work on agentic containment and evaluation integrity. The difficulty-aware filtering mechanism addresses a meta-level challenge for harnesses that generate their own training data: how to curate trajectories from a heterogeneous task distribution without biasing coverage toward easy instances.</p>
-<h2 id="tags">Tags</h2>
-<h1 id="swe-agent-long-horizon-repository-generation-dataset-construction-multi-agent-sandboxing-trajectory-filtering-sft">swe-agent #long-horizon #repository-generation #dataset-construction #multi-agent #sandboxing #trajectory-filtering #sft</h1>
+<h2 id="tags">Tags<a class="headerlink" href="#tags" title="Permanent link">&para;</a></h2>
+<h1 id="swe-agent-long-horizon-repository-generation-dataset-construction-multi-agent-sandboxing-trajectory-filtering-sft">swe-agent #long-horizon #repository-generation #dataset-construction #multi-agent #sandboxing #trajectory-filtering #sft<a class="headerlink" href="#swe-agent-long-horizon-repository-generation-dataset-construction-multi-agent-sandboxing-trajectory-filtering-sft" title="Permanent link">&para;</a></h1>
 
 
 
@@ -7806,7 +7955,7 @@
     
       
       
-      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+      <script id="__config" type="application/json">{"annotate": null, "base": "../../..", "features": ["navigation.tabs", "navigation.tabs.sticky", "navigation.indexes", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.suggest", "search.highlight"], "search": "../../../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
     
     
       <script src="../../../assets/javascripts/bundle.79ae519e.min.js"></script>

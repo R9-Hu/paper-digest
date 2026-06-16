@@ -1,0 +1,8 @@
+[Unit]
+Description=Paper Digest — verify the overnight run and desktop-notify
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/renjiu/Research/code/paperDigest
+Environment=PATH=/home/renjiu/.nvm/versions/node/v20.19.6/bin:/usr/local/bin:/usr/bin:/bin
+ExecStart=/home/renjiu/Research/code/paperDigest/.venv/bin/python -m harness.verify

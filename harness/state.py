@@ -245,6 +245,19 @@ def meta_set(conn, key: str, value: str) -> None:
     conn.execute("INSERT OR REPLACE INTO meta (key, value) VALUES (?,?)", (key, value))
 
 
+def week_usage(conn) -> int:
+    """Number of papers digested since the start of the current ISO week (Mon 00:00).
+
+    A harness-side proxy for weekly Claude usage — used to throttle the heavy
+    past-month backfill as the weekly session limit approaches."""
+    today = dt.date.today()
+    monday = today - dt.timedelta(days=today.weekday())
+    row = conn.execute(
+        "SELECT COUNT(*) FROM papers WHERE digested_at >= ?", (monday.isoformat(),)
+    ).fetchone()
+    return row[0] if row else 0
+
+
 def prior_year_digested(conn, before_year: int):
     """Digested (not yet compacted) papers published before `before_year`."""
     return conn.execute(

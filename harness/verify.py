@@ -35,8 +35,13 @@ def summary() -> str:
         briefs = c.execute(
             "SELECT COUNT(*) FROM meta WHERE key LIKE 'today_brief:%' AND value != ''"
         ).fetchone()[0]
+        cfg = config.load_config()
+        wk = state.week_usage(c)
+        pct = (100.0 * wk / cfg.weekly_digest_budget) if cfg.weekly_digest_budget else 0
+    conserve = " CONSERVE" if pct >= cfg.weekly_conserve_threshold * 100 else ""
     return (f"2026-job={_service_result('paper-digest-2026.service')} · pending={pending} · "
-            f"2026[{y2026}] · in-brief={briefs}/{len(config.load_config().topics)}")
+            f"2026[{y2026}] · in-brief={briefs}/{len(cfg.topics)} · "
+            f"week={wk}/{cfg.weekly_digest_budget} ({pct:.0f}%{conserve})")
 
 
 def main() -> int:

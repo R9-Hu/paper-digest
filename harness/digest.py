@@ -242,14 +242,23 @@ def _produce(cfg: Config, topic: Topic, row, shared=None):
     return cid, slug, out_path.relative_to(config.ROOT).as_posix(), None, tldr, shared_out
 
 
-def digest_topic(conn, cfg: Config, topic: Topic, should_continue=None) -> int:
+def digest_topic(conn, cfg: Config, topic: Topic, should_continue=None,
+                 max_per_topic: int | None = None) -> int:
     """Digest all pending papers for a topic, running `digest_concurrency`
     LLM calls in parallel. Worker threads do the LLM/file work; this (main)
     thread owns all sqlite writes — sqlite connections aren't thread-safe.
 
     Processed in waves of `digest_concurrency`; `should_continue()` is checked
-    before each wave so the run can stop cleanly when the digest window closes."""
-    pending = state.pending_digests(conn, topic.slug)
+    before each wave so the run can stop cleanly when the digest window closes.
+
+    `max_per_topic` caps how many (newest-first) pending papers are digested this
+    run — used by weekly-conserve mode to do only today's daily digests and defer
+    the backlog until the weekly session renews."""
+    pending = state.pending_digests(conn, topic.slug)   # newest (published) first
+    if max_per_topic is not None and len(pending) > max_per_topic:
+        log.info("[%s] conserve mode: digesting newest %d of %d pending (rest deferred)",
+                 topic.slug, max_per_topic, len(pending))
+        pending = pending[:max_per_topic]
     log.info("[%s] %d papers to digest (concurrency=%d)",
              topic.slug, len(pending), cfg.digest_concurrency)
     if not pending:

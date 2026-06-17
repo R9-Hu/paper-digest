@@ -111,6 +111,15 @@ def main(argv=None) -> int:
             log.warning("outside digest window — missed-paper refetch will be skipped "
                         "(use --ignore-window to force)")
         with state.connect() as conn:
+            # Honor the weekly-session guard: skip past-month compaction near the limit.
+            used, budget = state.week_usage(conn), cfg.weekly_digest_budget
+            if (budget > 0 and not args.ignore_window
+                    and used >= cfg.weekly_conserve_threshold * budget):
+                log.warning("weekly usage %d/%d (>=%.0f%%) — skipping past-month compaction until "
+                            "the week renews (use --ignore-window to force)", used, budget,
+                            cfg.weekly_conserve_threshold * 100)
+                publish.publish(conn, cfg, deploy=not args.no_deploy)
+                return 0
             if args.compact_months is not None:
                 year = args.compact_months
                 today = dt.date.today()
@@ -165,6 +174,19 @@ def main(argv=None) -> int:
 
     totals = {"downloaded": 0, "digested": 0}
     with state.connect() as conn:
+        # Weekly-session guard: as the weekly Claude limit approaches, do only the
+        # daily digest and defer the heavy past-month backfill/compaction until the
+        # week renews. `conserve` trips at weekly_conserve_threshold of the budget.
+        used = state.week_usage(conn)
+        budget = cfg.weekly_digest_budget
+        conserve = (budget > 0 and not args.ignore_window
+                    and used >= cfg.weekly_conserve_threshold * budget)
+        if not args.dry_run:
+            log.info("weekly usage: %d/%d digests (%.0f%%)%s", used, budget,
+                     (100.0 * used / budget) if budget else 0,
+                     " — CONSERVE: daily digest only, deferring past-month work" if conserve else "")
+        daily_cap = cfg.max_papers_per_topic_per_run if conserve else None
+
         for topic in topics:
             if "fetch" in stages:
                 if args.backfill_year is not None:
@@ -178,7 +200,8 @@ def main(argv=None) -> int:
                     for p in res["new"]:
                         log.info("  NEW [%s %s] %s", p.source, p.year, p.title[:90])
             if "digest" in stages and not args.dry_run and digest_ok:
-                totals["digested"] += digest.digest_topic(conn, cfg, topic, should_continue=can_llm)
+                totals["digested"] += digest.digest_topic(conn, cfg, topic, should_continue=can_llm,
+                                                           max_per_topic=daily_cap)
 
         # Build the RAG card cache before synthesis so trend/brief steps run off
         # compact cards (not full papers). Incremental — cheap when nothing changed.
@@ -192,7 +215,8 @@ def main(argv=None) -> int:
 
         # Auto-compaction of prior-year papers (storage saver) — opt-in, daily runs only.
         # Scheduled month/year compaction (fires on the 1st; needs the window for refetch+digest).
-        if not args.dry_run and not args.no_compact and not args.stage and digest_ok:
+        # Skipped in conserve mode — it's past-month fetch+digest we defer near the weekly limit.
+        if not args.dry_run and not args.no_compact and not args.stage and digest_ok and not conserve:
             compact.run_scheduled(conn, cfg, topics, should_continue=can_llm)
 
         # Drop the (regenerable) text-extraction cache once digesting is done.

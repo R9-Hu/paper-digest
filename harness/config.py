@@ -51,6 +51,8 @@ class Config:
     digest_window_end: int
     wait_for_token_reset: bool
     rate_limit_max_wait_sec: int
+    weekly_digest_budget: int
+    weekly_conserve_threshold: float
     monthly_keep: int
     yearly_keep: int
     topics: list[Topic]
@@ -99,6 +101,8 @@ def load_config(path: Path | str = CONFIG_PATH) -> Config:
         digest_window_end=int(g.get("digest_window_end", 6)),
         wait_for_token_reset=bool(g.get("wait_for_token_reset", True)),
         rate_limit_max_wait_sec=int(float(g.get("rate_limit_max_wait_hours", 6)) * 3600),
+        weekly_digest_budget=int(g.get("weekly_digest_budget", 2500)),
+        weekly_conserve_threshold=float(g.get("weekly_conserve_threshold", 0.8)),
         monthly_keep=int(g.get("monthly_keep", 100)),
         yearly_keep=int(g.get("yearly_keep", 400)),
         topics=topics,

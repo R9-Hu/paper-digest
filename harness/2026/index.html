@@ -659,8 +659,6 @@
       
         
       
-        
-      
     
     
     
@@ -775,34 +773,6 @@
     
   
     Cascaded Sparse Autoencoders Learn Multi-Level Visual Concepts in Multimodal LLMs
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../vlm/2026/papers/the-truth-stays-in-the-family-enhancing-contextual-grounding-via-inherited-truth/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The Truth Stays in the Family: Enhancing Contextual Grounding via Inherited Truthful Heads in Model Lineages
   
 
     
@@ -4980,18 +4950,6 @@
       
         
       
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
-        
-      
     
     
     
@@ -5034,174 +4992,6 @@
 
           </label>
           <ul class="md-nav__list" data-md-scrollfix>
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="papers/harnessbridge-learnable-bidirectional-controller-for-llm-agent-harness/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HarnessBridge: Learnable Bidirectional Controller for LLM Agent Harness
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="papers/the-containment-gap-how-deployed-agentic-ai-frameworks-fail-public-facing-safety/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    The Containment Gap: How Deployed Agentic AI Frameworks Fail Public-Facing Safety Requirements
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="papers/claw-swe-bench-a-benchmark-for-evaluating-openclaw-style-agent-harnesses-on-codi/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Claw-SWE-Bench: A Benchmark for Evaluating OpenClaw-style Agent Harnesses on Coding Tasks
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="papers/webchallenger-a-reliable-and-efficient-generalist-web-agent/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    WebChallenger: A Reliable and Efficient Generalist Web Agent
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="papers/bayesian-agent-posterior-guided-skill-evolution-for-llm-agent-harnesses/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Bayesian-Agent: Posterior-Guided Skill Evolution for LLM Agent Harnesses
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="papers/retrospective-harness-optimization-improving-llm-agents-via-self-preference-over/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    Retrospective Harness Optimization: Improving LLM Agents via Self-Preference over Trajectory Rollouts
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
             
               
                 
@@ -5492,10 +5282,10 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#papers-38" class="md-nav__link">
+  <a href="#papers-24" class="md-nav__link">
     <span class="md-ellipsis">
       
-        📄 Papers (38)
+        📄 Papers (24)
       
     </span>
   </a>
@@ -5520,7 +5310,7 @@
 
 
 <h1 id="harnesses-meta-harnesses-2026">Harnesses / Meta-Harnesses — 2026<a class="headerlink" href="#harnesses-meta-harnesses-2026" title="Permanent link">&para;</a></h1>
-<p>🆕 <strong><a href="today/">Today's Digest</a></strong> — 7 in the latest batch</p>
+<p>🆕 <strong><a href="today/">Today's Digest</a></strong> — 6 in the latest batch</p>
 <h2 id="timeline">🕒 Timeline<a class="headerlink" href="#timeline" title="Permanent link">&para;</a></h2>
 <ul>
 <li><strong>2022</strong>: ReAct-style LLM-as-orchestrator becomes the default agent loop (model decides tool, loop, and stop)—the baseline these papers react against.</li>
@@ -5538,9 +5328,9 @@
 <p>This collection captures a sharp 2026 inflection in which the <em>agent harness</em>—the scaffold of prompts, tools, memory, control flow, and skills wrapped around a frozen model—becomes a first-class, optimizable object rather than hand-tuned glue. The unifying claim across the strongest papers is that, with the backbone held fixed, harness design accounts for performance swings rivaling or exceeding a model-tier upgrade (e.g., Claw-SWE-Bench measures 27.4 pp of Pass@1 attributable to harness alone; WebChallenger isolates 39.4 points from scaffolding). A second-order theme—<em>meta-harnesses</em>—then asks how to automatically compose, evolve, learn, or formally type the harness itself (HarnessX, HarnessBridge, RHO, APEX, Bayesian-Agent). Running alongside is a counter-current arguing the harness should <em>shrink</em>: deterministic programs own control flow and the LLM is invoked only at reasoning leaves (LLM-as-Code, EurekAgent's environment engineering). The field is simultaneously building the benchmarks needed to make "harness" a controlled experimental variable and discovering that current systems collapse on long-horizon, closed-loop, and cross-application tasks.</p>
 </div>
 <p>➡️ <strong><a href="trend/">Read the full trend analysis</a></strong></p>
-<h2 id="papers-38">📄 Papers (38)<a class="headerlink" href="#papers-38" title="Permanent link">&para;</a></h2>
-<p>➡️ <strong><a href="papers-list/">Paper list</a></strong> — full table of 38 papers.
-  ·  ⭐ <strong>8 key papers</strong> (see <em>Key papers</em> in the left nav).</p>
+<h2 id="papers-24">📄 Papers (24)<a class="headerlink" href="#papers-24" title="Permanent link">&para;</a></h2>
+<p>➡️ <strong><a href="papers-list/">Paper list</a></strong> — full table of 24 papers.
+  ·  ⭐ <strong>2 key papers</strong> (see <em>Key papers</em> in the left nav).</p>
 
 
 

@@ -79,6 +79,7 @@
   font-size: .7rem; font-weight: 600; white-space: nowrap; letter-spacing: .01em;
 }
 .md-typeset .venue-none { color: var(--md-default-fg-color--lighter); }
+.md-typeset .reason { font-size: .78rem; color: var(--md-default-fg-color--light); font-style: italic; }
 /* Tag chips (Material tags plugin) */
 .md-typeset .md-tag {
   border-radius: 6px; font-size: .68rem; font-weight: 600;

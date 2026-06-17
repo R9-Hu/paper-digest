@@ -243,16 +243,43 @@ def _month_counts(rows) -> list[str]:
 
 
 def _timeline_bullets(trend_md: str | None, rows) -> list[str]:
-    """Concise, timestamped timeline. Prefer the Analyst's Timeline section;
-    fall back to per-month paper counts so the section is never empty."""
+    """Month-stepped timeline. Prefer the Analyst's Timeline section, grouping its
+    entries by their `**YYYY-MM**` timestamp — a month with multiple milestones is
+    rendered as a header with sub-bullets. Falls back to per-month paper counts."""
+    raw = []
     if trend_md:
         section = _extract_section(trend_md, "Timeline")
         if section:
-            bullets = [ln.rstrip() for ln in section.splitlines()
-                       if ln.lstrip().startswith(("-", "*"))]
-            if bullets:
-                return bullets
-    return _month_counts(rows)
+            raw = [ln.strip() for ln in section.splitlines() if ln.lstrip().startswith(("-", "*"))]
+    if not raw:
+        return _month_counts(rows)
+
+    groups: list[tuple[str | None, list[str]]] = []   # ordered (month-key, [texts])
+    by_key: dict[str, list[str]] = {}
+    for b in raw:
+        body = b.lstrip("-*").strip()
+        m = re.match(r"\*\*(.+?)\*\*\s*[:：\-—]?\s*(.*)", body)
+        key = m.group(1).strip() if m else None
+        text = (m.group(2).strip() if m else body).strip()
+        if key is None:
+            groups.append((None, [text]))
+        elif key in by_key:
+            by_key[key].append(text)            # same month → merge under one header
+        else:
+            by_key[key] = [text]
+            groups.append((key, by_key[key]))
+
+    out = []
+    for key, texts in groups:
+        texts = [t for t in texts if t]
+        if key is None:
+            out += [f"- {t}" for t in texts]
+        elif len(texts) <= 1:
+            out.append(f"- **{key}**" + (f": {texts[0]}" if texts else ""))
+        else:                                   # multiple milestones in one month → sub-bullets
+            out.append(f"- **{key}**")
+            out += [f"    - {t}" for t in texts]
+    return out
 
 
 def _intro_section(topic) -> list[str]:
@@ -294,29 +321,6 @@ def _paper_table_row(e: dict, link_prefix: str) -> str:
     year's papers/ dir relative to the page being written."""
     return (f"| {e['date']} | [{e['title_esc']}]({link_prefix}{e['pslug']}.md) "
             f"| {e['venue_cell']} | {e['why_cell']} |")
-
-
-def _month_review_lines(topic_name: str, year: int, mm: str, entries: list[dict]) -> list[str]:
-    """A 'month in review' page (mirrors the year-in-review): highlights + the
-    month's paper table. Built from cached data — no LLM call."""
-    name = _MONTHS[int(mm)]
-    n = len(entries)
-    lines = [f"# 🗓️ {name} {year} — {topic_name}", "",
-             f"*{n} paper{'s' if n != 1 else ''} digested in {year}-{mm}.*", ""]
-    # Highlights: venue/key papers first, then most recent.
-    highlights = sorted(entries, key=lambda e: (e["is_key"], e["has_venue"], e["date"]),
-                        reverse=True)[:6]
-    if highlights:
-        lines += ["> [!abstract] Highlights", ""]
-        for e in highlights:
-            snip = " ".join((e["tldr"] or "").split())[:150]
-            venue = f" _({e['venue_text']})_" if e["venue_text"] else ""
-            lines.append(f"- **[{e['title_esc']}](papers/{e['pslug']}.md)**{venue} — {snip}")
-        lines.append("")
-    lines += [f"## 📄 Papers ({n})", "", "| Date | Paper | Venue | Why selected |",
-              "| --- | --- | --- | --- |"]
-    lines += [_paper_table_row(e, "papers/") for e in entries]
-    return lines
 
 
 def _norm_title(t: str) -> str:
@@ -532,7 +536,7 @@ def build_site(conn, cfg: Config) -> None:
                 (ydir / "trend.md").write_text(trend_md, encoding="utf-8")
 
             key_norms = _key_titles(trend_md)
-            key_nav, paper_rows, entries = [], [], []
+            key_nav, entries = [], []
             used_slugs: set[str] = set()
             for row in rows:
                 src = config.ROOT / (row["digest_path"] or "")
@@ -573,29 +577,27 @@ def build_site(conn, cfg: Config) -> None:
                      "why_cell": why_cell, "tldr": tldr, "is_key": is_key,
                      "mm": (pub[5:7] if len(pub) >= 7 else None)}
                 entries.append(e)
-                paper_rows.append(_paper_table_row(e, "papers/"))   # full-year table (Why column)
                 if is_current and latest_dd and (row["digested_at"] or "").startswith(latest_dd):
                     today_items.append({
                         "title": row["title"], "pslug": pslug, "venue": v, "tldr": tldr,
                         "row": f"| {date} | [{_esc(row['title'])}](papers/{pslug}.md) | {venue_cell} |",
                         "reason": reason, "text_norm": _norm_title(raw)})
 
-            # Per-month pages ("organize papers by month") — each mirrors the year-in-review.
-            month_nav = []
+            # Full paper-list page, grouped by month (newest month first).
             months_present = sorted({e["mm"] for e in entries if e["mm"]}, reverse=True)
-            for mm in months_present:
-                m_entries = [e for e in entries if e["mm"] == mm]
-                (ydir / f"{mm}.md").write_text(
-                    "\n".join(_month_review_lines(topic.name, year, mm, m_entries)) + "\n",
-                    encoding="utf-8")
-                month_nav.append({f"{_MONTHS[int(mm)]} ({len(m_entries)})":
-                                  f"{topic.slug}/{year}/{mm}.md"})
-
-            # Full paper-list page (the leaf 'Paper list' nav item opens this table).
-            plist = [f"# {topic.name} — {year} · Paper list ({len(paper_rows)})", ""]
-            plist += (["| Date | Paper | Venue | Why selected |",
-                       "| --- | --- | --- | --- |"] + paper_rows
-                      if paper_rows else ["_No papers yet._"])
+            plist = [f"# {topic.name} — {year} · Paper list ({len(entries)})", ""]
+            if entries:
+                hdr = ["| Date | Paper | Venue | Why selected |", "| --- | --- | --- | --- |"]
+                for mm in months_present:
+                    m_entries = [e for e in entries if e["mm"] == mm]
+                    plist += [f"## {_MONTHS[int(mm)]} {year} ({len(m_entries)})", ""] + hdr
+                    plist += [_paper_table_row(e, "papers/") for e in m_entries] + [""]
+                undated = [e for e in entries if not e["mm"]]
+                if undated:
+                    plist += [f"## Undated ({len(undated)})", ""] + hdr
+                    plist += [_paper_table_row(e, "papers/") for e in undated] + [""]
+            else:
+                plist += ["_No papers yet._"]
             (ydir / "papers-list.md").write_text("\n".join(plist) + "\n", encoding="utf-8")
 
             if is_current:
@@ -615,19 +617,13 @@ def build_site(conn, cfg: Config) -> None:
             page = [f"# {topic.name} — {year}", "", digest_link, ""]
             page += _timeline_section(trend_md, rows)
             page += _trend_digest_section(trend_md, trend_link)
-            page += [f"## 📄 Papers ({len(paper_rows)})", "",
-                     f"➡️ **[Paper list](papers-list.md)** — full table of {len(paper_rows)} papers."]
+            page += [f"## 📄 Papers ({len(entries)})", "",
+                     f"➡️ **[Paper list](papers-list.md)** — {len(entries)} papers, grouped by month."]
             if key_nav:
                 page.append(f"  ·  ⭐ **{len(key_nav)} key papers** (see _Key papers_ in the left nav).")
-            if month_nav:
-                page += ["", "## 🗓️ By month", ""]
-                page += [f"- **[{_MONTHS[int(mm)]} {year}]({mm}.md)** — "
-                         f"{sum(1 for e in entries if e['mm'] == mm)} papers"
-                         for mm in months_present]
             (ydir / "index.md").write_text("\n".join(page) + "\n", encoding="utf-8")
 
-            # Year nav group (super-title) → overview / Trend / digest / Key papers /
-            # Paper list, then a month subtitle per month (newest first).
+            # Year nav group (super-title) → overview / Trend / digest / Key papers / Paper list.
             children = [f"{topic.slug}/{year}/index.md"]
             if has_trend:
                 children.append({"Trend analysis": f"{topic.slug}/{year}/trend.md"})
@@ -635,7 +631,6 @@ def build_site(conn, cfg: Config) -> None:
             if key_nav:
                 children.append({"Key papers": key_nav})        # expandable, key paper pages
             children.append({"Paper list": f"{topic.slug}/{year}/papers-list.md"})  # leaf → table
-            children += month_nav                                # month subtitles under the year
             year_nav.append({str(year): children})
 
             badge = f"{len(today_items)} in latest batch" if is_current else "year in review"

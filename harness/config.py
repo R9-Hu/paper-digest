@@ -49,6 +49,8 @@ class Config:
     digest_max_chars: int
     digest_window_start: int
     digest_window_end: int
+    wait_for_token_reset: bool
+    rate_limit_max_wait_sec: int
     monthly_keep: int
     yearly_keep: int
     topics: list[Topic]
@@ -95,6 +97,8 @@ def load_config(path: Path | str = CONFIG_PATH) -> Config:
         digest_max_chars=int(g.get("digest_max_chars", 30000)),
         digest_window_start=int(g.get("digest_window_start", 21)),
         digest_window_end=int(g.get("digest_window_end", 6)),
+        wait_for_token_reset=bool(g.get("wait_for_token_reset", True)),
+        rate_limit_max_wait_sec=int(float(g.get("rate_limit_max_wait_hours", 6)) * 3600),
         monthly_keep=int(g.get("monthly_keep", 100)),
         yearly_keep=int(g.get("yearly_keep", 400)),
         topics=topics,

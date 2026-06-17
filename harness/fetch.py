@@ -146,7 +146,8 @@ def _llm_rank(cfg: Config, topic: Topic, papers: list[Paper], k: int) -> list[Pa
         f"No prose outside the JSON.\n\n" + "\n".join(lines)
     )
     try:
-        out = llm.run_claude(prompt, cfg.rank_model, cfg, system=RANK_SYSTEM)
+        # Don't block fetch/publish on a usage limit — fall back to the heuristic.
+        out = llm.run_claude(prompt, cfg.rank_model, cfg, system=RANK_SYSTEM, wait_on_limit=False)
     except llm.LLMError as e:
         log.warning("[%s] LLM rank failed (%s); using heuristic", topic.slug, e)
         return None

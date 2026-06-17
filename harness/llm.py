@@ -43,6 +43,15 @@ def _is_rate_limited(text: str) -> bool:
     return bool(text and _RATE_PAT.search(text))
 
 
+def _next_window_end(cfg) -> float:
+    """Epoch of the next digest-window end (cfg.digest_window_end hour, local)."""
+    now = dt.datetime.now()
+    end = now.replace(hour=int(cfg.digest_window_end) % 24, minute=0, second=0, microsecond=0)
+    if end <= now:
+        end += dt.timedelta(days=1)
+    return end.timestamp()
+
+
 def _parse_reset(text: str) -> float | None:
     """Best-effort parse of when the limit resets → epoch seconds (local), or None.
 
@@ -78,7 +87,8 @@ def _parse_reset(text: str) -> float | None:
 
 def run_claude(prompt: str, model: str, cfg: Config,
                system: str | None = None, allow_tools: bool = True,
-               timeout: int | None = None, wait_on_limit: bool | None = None) -> str:
+               timeout: int | None = None, wait_on_limit: bool | None = None,
+               respect_window: bool = True) -> str:
     cmd = [
         cfg.claude_bin, "-p",
         "--model", model,
@@ -99,6 +109,11 @@ def run_claude(prompt: str, model: str, cfg: Config,
     # wait_on_limit=False so they fall back immediately instead of blocking.
     do_wait = cfg.wait_for_token_reset if wait_on_limit is None else wait_on_limit
     max_wait = cfg.rate_limit_max_wait_sec if do_wait else 0
+    # Window-aware: never wait past the end of the digest window (so a depleted quota
+    # resumes within the night, not into work hours). When the window is far off
+    # (daytime manual runs), the max-wait cap dominates instead.
+    if max_wait > 0 and respect_window:
+        max_wait = min(max_wait, max(0.0, _next_window_end(cfg) - time.time()))
     wait_deadline = time.monotonic() + max_wait
     while True:
         try:

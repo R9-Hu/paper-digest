@@ -2,7 +2,7 @@
 Description=Verify the Paper Digest overnight run tomorrow morning (one-shot)
 
 [Timer]
-OnCalendar=2026-06-17 07:30:00
+OnCalendar=2026-06-17 08:30:00
 Persistent=true
 Unit=paper-digest-verify.service
 

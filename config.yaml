@@ -14,8 +14,8 @@ global:
   claude_timeout_sec: 600              # per-call timeout for headless claude -p
   digest_concurrency: 3                # parallel claude -p digests (lower = gentler on rate limits)
   digest_max_chars: 30000              # paper text sent per digest (lower = fewer input tokens)
-  digest_window_start: 21              # only DIGEST between these hours (24h), to avoid
-  digest_window_end: 6                 # exhausting the rate limit during work time
+  digest_window_start: 23              # only DIGEST between these hours (24h): 23:00-08:00,
+  digest_window_end: 8                 # to avoid exhausting the rate limit during work time
   wait_for_token_reset: true           # if the subscription usage limit is hit mid-run, WAIT for it to renew and resume (vs failing the paper)
   rate_limit_max_wait_hours: 6         # cap on how long a single call will wait for the quota to reset
   monthly_keep: 100                    # 1st of month: keep top N/topic for the previous month

@@ -1,10 +1,10 @@
 [Unit]
-Description=Run Paper Digest daily at 08:00 (catches up missed runs after downtime)
+Description=Run Paper Digest daily at 09:00 (after the 23:00-08:00 digest window; catches up missed runs)
 
 [Timer]
-OnCalendar=*-*-* 08:00:00
+OnCalendar=*-*-* 09:00:00
 Persistent=true
-# Spread the trigger a little so an exact-8:00 wake isn't required.
+# Spread the trigger a little so an exact-9:00 wake isn't required.
 AccuracySec=1min
 
 [Install]

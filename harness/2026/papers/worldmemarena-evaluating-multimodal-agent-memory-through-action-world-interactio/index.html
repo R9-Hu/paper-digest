@@ -3355,8 +3355,6 @@
       
         
       
-        
-      
     
     
     
@@ -3639,34 +3637,6 @@
     
   
     When the Tool Decides: LLM Agents Defer Blindly to Graph Neural Network Tools, and Stronger Backbones Defer More
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../agentic-ai/2026/papers/harnessx-a-composable-adaptive-and-evolvable-agent-harness-foundry/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HarnessX: A Composable, Adaptive, and Evolvable Agent Harness Foundry
   
 
     
@@ -6084,20 +6054,6 @@
       
       
       
-        <a href="../../../../tags/#tag:evaluation" class="md-tag">evaluation</a>
-      
-    
-      
-      
-      
-      
-        <a href="../../../../tags/#tag:harness" class="md-tag">harness</a>
-      
-    
-      
-      
-      
-      
         <a href="../../../../tags/#tag:multimodal" class="md-tag">multimodal</a>
       
     
@@ -6113,44 +6069,49 @@
 
 
 <h1 id="worldmemarena-evaluating-multimodal-agent-memory-through-action-world-interaction">WorldMemArena: Evaluating Multimodal Agent Memory Through Action-World Interaction<a class="headerlink" href="#worldmemarena-evaluating-multimodal-agent-memory-through-action-world-interaction" title="Permanent link">&para;</a></h1>
-<p><em>🕒 </em><em>Published (v1):</em><em> 2026-05-28 00:00 UTC  ·  </em><em>Source:</em><em> HuggingFace  ·  <a href="https://huggingface.co/papers/2605.29341">link</a></em></p>
+<p><em>🕒 </em><em>Published (v1):</em><em> 2026-05-28 04:27 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="https://arxiv.org/abs/2605.29341">link</a></em></p>
+<div class="admonition tip">
+<p class="admonition-title">Why this paper was selected</p>
+<p>WorldMemArena: memory must track evolving world state and revise stale entries</p>
+</div>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>WorldMemArena is a multimodal multi-session benchmark (461 tasks, 24K QA pairs) that evaluates agent memory as a four-stage lifecycle—write, maintain, retrieve, use—embedded in an Action–World Interaction Loop. It enables the first controlled head-to-head comparison of long-context, manually designed (RAG/external memory), and harness-based memory agents. Key finding: harness-based agents are more flexible than hand-engineered pipelines but remain computationally expensive and less reliable.</p>
+<p>WorldMemArena is a multimodal multi-session benchmark of 461 tasks that evaluates agent memory not as static recall but as a four-stage lifecycle (write → maintain → retrieve → use) embedded in an Action–World Interaction Loop. It is the first benchmark to provide stage-level diagnostic annotations and to run a head-to-head comparison of long-context, RAG, external memory, and harness-based memory agents. Key finding: higher memory quality does not guarantee better downstream QA; harness-based agents are more flexible but remain costly and less reliable.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
-<p>Existing memory benchmarks measure static recall over dialogue, collapse evaluation to final QA accuracy, and reduce visual observations to captions—making it impossible to localize failures to specific lifecycle stages (write vs. maintain vs. retrieve vs. use). Critically, no benchmark allowed principled comparison between hand-designed memory pipelines and harness-based agents that author and reorganize their own memory during interaction.</p>
+<p>Existing memory benchmarks (a) test recall over static dialogue rather than dynamic agent execution, (b) collapse evaluation to final-answer accuracy with no lifecycle breakdown, and (c) convert visual observations to captions, making multimodal evidence underexamined. Crucially, no prior work provides a principled comparison between hand-designed memory pipelines and harnesses that self-author memory, so the relative value of harness-based memory is unknown.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>The authors formalize multimodal agent memory as an <strong>Action–World Interaction Loop</strong>: at each step the agent observes a partially visible world state <code>o_t = Ω(z_t)</code>, selects action <code>a_t = π(o_t, m_t)</code>, and receives environment feedback <code>(z_{t+1}, f_t) = ε(z_t, a_t)</code>. Trajectories are segmented into multi-session instances under two regimes:
-- <strong>Lifelong Evolution</strong>: synthetic hidden world states evolve across sessions (personal and project scenarios across 6 domains).
-- <strong>Agentic Execution</strong>: real agent trajectories (GUI + embodied, 10 subcategories) split at subgoal boundaries.</p>
-<p>Each session is annotated with gold memory points, state update markers, distractor interference points, and per-question evidence chains. Evaluation covers Stage 1 (memory recall + LLM-as-Judge for correctness/hallucination/irrelevance), Stage 2 (update handling: revised memory retained, old version removed), Stage 3 (retrieval: recall + NDCG@k), and Stage 4 (QA-Correct/Hallucination/Omission via LLM judge + F1 + BLEU-1).</p>
-<p>Three paradigm classes are evaluated: long-context base models (GPT-5.4-mini, Qwen3.5+, Gemini 3 Flash, DeepSeek V4, Claude Haiku 4.5), manually designed memory systems (RAG via UniversalRAG/Qwen3-VL-Embedding; external memory via MemGPT, Mem0, A-Mem, M2A, ViLoMem, MIRIX, AUGUSTUS, SimpleMem), and harness-based agents (OpenClaw + GPT-5.4/DeepSeek-V4, Codex + GPT-5.4-nano).</p>
+<p>Memory is formalized as an <strong>Action–World Interaction Loop</strong>: at step <span class="arithmatex">\(t\)</span>, the agent observes <span class="arithmatex">\(o_t = \Omega(z_t)\)</span>, acts according to <span class="arithmatex">\(a_t = \pi(o_t, m_t)\)</span>, and the environment transitions as <span class="arithmatex">\((z_{t+1}, f_t) = \mathcal{E}(z_t, a_t)\)</span>. A trajectory <span class="arithmatex">\(\tau\)</span> is segmented into sessions <span class="arithmatex">\(\tau^{(1)} \circ \cdots \circ \tau^{(S)}\)</span>; within each session the agent sees only local context while world state persists across sessions.</p>
+<p>Four lifecycle stages are made <strong>independently evaluable</strong>:
+1. <strong>Write</strong> — selective retention: <span class="arithmatex">\(\Delta_s = \text{Write}(m_{s-1}, \tau^{(s)})\)</span>
+2. <strong>Maintain</strong> — revision and consolidation: <span class="arithmatex">\(m_s = \text{Maintain}(m_{s-1}, \Delta_s)\)</span>
+3. <strong>Retrieve</strong> — decision-relevant evidence: <span class="arithmatex">\(R_{s,q} = \text{Retrieve}(m_s, q)\)</span>
+4. <strong>Use</strong> — faithful answer generation: <span class="arithmatex">\(\hat{y}_{s,q} = \text{Answer}(q, R_{s,q})\)</span></p>
+<p>The benchmark covers two regimes: <strong>Lifelong Evolution</strong> (evolving personal/project states across sessions, 6 domains) and <strong>Agentic Execution</strong> (real agent trajectories from GUI and embodied environments). Sessions are annotated with gold memory points, state-update markers, distractors, and per-question evidence chains. Three system classes are evaluated: long-context agents (GPT-5.4-mini, Qwen3.5, Gemini 3, DeepSeek V4, Claude Haiku 4.5), manually designed systems (RAG via UniversalRAG, external memory via MemGPT/A-Mem/MIRIX/etc.), and harness-based agents (OpenClaw + Codex paired with GPT-5.4 or DeepSeek-V4).</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Formalization of multimodal agent memory as an Action–World Interaction Loop with an observable four-stage lifecycle (write → maintain → retrieve → use).</li>
-<li>WorldMemArena benchmark: 461 multi-session tasks, avg 18.4 sessions/sample, ~9.1K tokens/sample, 15,595 images, 24,258 QA pairs with stage-level annotations (gold memory points, update markers, distractors, evidence chains).</li>
-<li>First unified evaluation enabling direct comparison across long-context, hand-engineered, and harness-based memory paradigms under identical conditions.</li>
-<li>Identification of four failure modes: write≠use, multimodal bottleneck, domain instability, and harness cost/reliability trade-off.</li>
+<li>Formalization of multimodal agent memory as an Action–World Interaction Loop with a four-stage lifecycle that is architecture-agnostic and independently evaluable.</li>
+<li>WorldMemArena: 461 multi-session tasks, 24,258 QA pairs, 15,595 images, average 18.4 sessions and ~9.1K tokens per sample, spanning dialogue and agentic interaction.</li>
+<li>Stage-level annotations (gold memory points, state updates, distractors, evidence chains) enabling write/maintain/retrieve/use diagnosis rather than aggregate accuracy.</li>
+<li>First unified evaluation of long-context, RAG, external memory, and harness-based memory paradigms on a shared benchmark.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>High memory recall ≠ high QA accuracy</strong>: Qwen3-VL-Embedding achieves 86.22% memory recall and 98.15% correctness but only 51.86% QA-Correct; MemGPT achieves 57.81% QA-Correct with 85.20% recall and the highest retrieval coverage (84.99% RC).</li>
-<li><strong>Update handling is universally weak</strong>: all systems score ~52–59% on update handling, dominated by append-only behavior rather than revise/delete/merge.</li>
-<li><strong>Harness agents vs. designed systems</strong>: OpenClaw-DeepSeek V4 achieves 50.29% QA-Correct (comparable to top external memory systems) but at ~100K tokens/session vs. ~20–40K for most designed systems (Figure 7).</li>
-<li><strong>Long-context agents</strong>: DeepSeek V4 leads base models at 69.13% QA-Correct (larger context window benefit); Claude Haiku 4.5 scores 36.71%.</li>
-<li><strong>Agentic Execution is harder than Lifelong Evolution</strong> for all systems; embodied/visual navigation tasks are the hardest subcategory.</li>
-<li><strong>Multimodal</strong>: simple visual fact recall is stable; visual update and cross-modal reasoning show high variance and lower performance across all systems.</li>
-<li><strong>Retrieval saturation</strong>: increasing retrieval k (NDCG@k/Recall@k) does not monotonically improve QA accuracy; redundant/outdated evidence degrades performance.</li>
+<li><strong>Best QA-C</strong>: MemGPT (57.81%), followed by A-Mem (54.63%); RAG Qwen3-VL-Embedding achieves 51.86%.</li>
+<li><strong>Best Retrieval Coverage (RC)</strong>: MemGPT (84.99%), RAG Qwen3-VL-Embedding (73.44%), A-Mem (74.19%).</li>
+<li><strong>Memory quality ≠ QA quality</strong>: Qwen3-VL-Embedding and M2A achieve high memory recall (86.22%, 86.83%) and correctness (98.15%, 97.47%) yet QA-C is only 51.86% and 50.14%, respectively — lower than MemGPT which has lower recall.</li>
+<li><strong>Multimodal systems underperform text-based ones</strong>: ViLoMem and MIRIX have multimodal inputs but post QA-C of 49.77% and 44.46%, while text-only MemGPT reaches 57.81%.</li>
+<li><strong>Harness-based agents</strong> (OpenClaw, Codex) are more flexible and better at adapting to diverse tasks but are harder to decompose (lifecycle stages not individually measurable) and remain costly and less reliable than structured manual systems.</li>
+<li>Systems degrade on Agentic Execution relative to Lifelong Evolution; performance also varies substantially across domains.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Harness-based agent evaluation is limited to end-to-end QA because internal memory state is not exposed for lifecycle decomposition.</li>
-<li>Benchmark is constructed via automated pipeline with human review, but gold memory points for Lifelong Evolution are synthetically derived from hidden world states, which may not capture all natural memory patterns.</li>
-<li>Evaluation of Stage 4 relies on LLM-as-Judge (GPT-5.4-mini), introducing potential evaluator bias.</li>
-<li>Coverage is weighted toward text-rich tasks; purely visual/spatial memory (e.g., navigation maps) remains underrepresented.</li>
-<li>No training or fine-tuning experiments; all results are zero-shot inference, leaving open how systems respond to targeted memory training.</li>
+<li>Harness-based agents can only be evaluated end-to-end because their internal memory state is not exposed, making stage-level diagnosis impossible for the most agent-native paradigm.</li>
+<li>Lifelong Evolution tasks are partially synthetic (world states generated from templates), which may not capture all real-world complexity.</li>
+<li>Multimodal evaluation relies on LLM-as-a-Judge with GPT-5.4-mini as evaluator, introducing potential bias.</li>
+<li>At ~9.1K tokens/sample with 18.4 sessions, costs for harness-based agents are not reported quantitatively.</li>
+<li>The paper is limited to memory within a single agent; multi-agent shared memory is not addressed.</li>
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
-<p>WorldMemArena directly benchmarks harness-based memory agents (OpenClaw, Codex) against hand-engineered pipelines, providing the first quantitative evidence that harness-managed memory is more adaptive in dynamic agentic settings but incurs 2–5× token cost and lower reliability than structured alternatives. For researchers building or evaluating harnesses, the four-stage lifecycle framework (write/maintain/retrieve/use) offers a principled decomposition that exposes <em>where</em> a harness's memory strategy fails—not just whether end-task accuracy is acceptable. The finding that harness memory outperforms designed pipelines on complex agentic tasks but underperforms on simpler long-horizon evolution tasks informs when to invest in harness-native memory versus lightweight RAG. The benchmark's distractor and update annotations are directly applicable to evaluating harness memory-coherence under state change, a critical stress test for any meta-harness that manages its own scratchpad or context.</p>
+<p>WorldMemArena is among the first benchmarks to treat <strong>harness-based memory</strong> (agents like OpenClaw and Codex that self-author and reorganize memory during execution) as a first-class experimental condition, directly operationalizing the question of whether emergent self-management beats hand-engineered pipelines. The central finding — harness memory is more flexible but costlier and less reliable — gives practitioners concrete, empirically-grounded guidance on when to invest in harness-authored memory versus structured RAG or external memory modules. The four-stage lifecycle framework (write/maintain/retrieve/use) is itself a meta-level decomposition that can guide harness designers in instrumenting and auditing each stage of their own pipelines. The inability to decompose harness internals into the four stages also flags a tooling gap: meta-harnesses need introspection APIs that expose intermediate memory states for this kind of evaluation.</p>
 <h2 id="related-in-this-collection">🔗 Related in this collection<a class="headerlink" href="#related-in-this-collection" title="Permanent link">&para;</a></h2>
 <ul>
 <li><a href="../../../../agentic-ai/2025/papers/a-mem-agentic-memory-for-llm-agents/">A-Mem: Agentic Memory for LLM Agents</a></li>

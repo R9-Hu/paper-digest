@@ -3355,8 +3355,6 @@
       
         
       
-        
-      
     
     
     
@@ -3639,34 +3637,6 @@
     
   
     When the Tool Decides: LLM Agents Defer Blindly to Graph Neural Network Tools, and Stronger Backbones Defer More
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../agentic-ai/2026/papers/harnessx-a-composable-adaptive-and-evolvable-agent-harness-foundry/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HarnessX: A Composable, Adaptive, and Evolvable Agent Harness Foundry
   
 
     
@@ -6096,43 +6066,46 @@
 
 <h1 id="crafter-a-multi-agent-harness-for-editable-scientific-figure-generation-from-diverse-inputs">Crafter: A Multi-Agent Harness for Editable Scientific Figure Generation from Diverse Inputs<a class="headerlink" href="#crafter-a-multi-agent-harness-for-editable-scientific-figure-generation-from-diverse-inputs" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-05-28 00:00 UTC  ·  </em><em>Source:</em><em> HuggingFace  ·  <a href="https://huggingface.co/papers/2605.30611">link</a></em></p>
+<div class="admonition tip">
+<p class="admonition-title">Why this paper was selected</p>
+<p>Multi-agent harness for editable scientific figure generation from diverse inputs</p>
+</div>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>CRAFTER is a multi-agent harness that wraps an arbitrary image-generation backend with a shared evolving structured specification, enabling reliable cross-type scientific figure generation without architectural changes to the underlying generator. A companion system, CRAFTEDITOR, applies the same harness pattern to convert raster outputs into editable SVGs. Both are evaluated on the newly introduced CRAFTBENCH, a 279-sample benchmark spanning three figure types and four input conditions.</p>
+<p>CRAFTER is a multi-agent harness that wraps any image-generation backend with structured planning, critique, and revision loops to produce publication-quality scientific figures across diverse figure types and input conditions. A companion system, CRAFTEDITOR, applies the same harness pattern to convert raster outputs into editable SVGs. Together they form the first end-to-end generation-to-editing pipeline for scientific figures.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
-<p>Existing scientific figure generators are narrow: they target a single figure type (typically text-to-methodology-diagram), accept only text input, and produce static rasters that cannot be locally revised. High inter-sample output variance on structured layouts and prompt degradation from accumulated free-text corrections make iterative repair with existing systems unreliable.</p>
+<p>Existing scientific figure generators are narrow: each targets a single figure type (methodology diagrams, posters, etc.) under text-only input, and produces static raster outputs that cannot be locally edited. Iterative free-text repair degrades quality due to contradictory prompt accumulation, and stronger generator backbones do not fix structured-layout failures such as garbled labels or misaligned connectors.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>CRAFTER formalizes a four-role harness loop—Designer (D), Executor (E), Verifier (V), Reviser (R)—over a shared, evolving structured specification S. At each round t: D proposes a plan pₜ from Sₜ₋₁; E renders an artifact aₜ; V emits a <em>directive</em> diagnostic dₜ (per-dimension scores, identified defects, suggested corrections—not a scalar); R writes <em>typed edits</em> (structured operations: add layout constraint, ban artifact category, resize named element) back into S, keeping it internally consistent rather than appending free text. Three mechanisms address specific failure modes:</p>
-<ol>
-<li><strong>Diversity-driven plan exploration</strong>: D proposes K candidate plans in parallel; the convergence judge picks the best before refinement begins, escaping structurally unsuitable framings early.</li>
-<li><strong>Structured corrective layer</strong>: typed edits replace free-text revision instructions, preventing the contradictory-directive accumulation that erodes faithfulness silently.</li>
-<li><strong>Verify-then-refine with a directive critic</strong>: up to T=3 refinement rounds with best-so-far reversion; an early-exit gate bypasses the loop when the first output already meets acceptance thresholds.</li>
-</ol>
-<p>CRAFTEDITOR reuses the same four-role harness for raster-to-SVG conversion via three phases: (1) instruction-driven canvas cleaning (a VLM designer authors a keep/delete plan; an image editor executes it; a verifier loops up to T=3); (2) element captioning, grounding, and classification; (3) iterative SVG composition with a hybrid critic (VLM for global layout fidelity + programmatic checkers for text overflow, arrow endpoints, element overlap).</p>
-<p>CRAFTBENCH is a 279-sample benchmark drawn from arXiv preprints (18 subject areas), award-tier conference posters, and research blogs, with four tasks (text-to-image, mask-completion, key-element composition, sketch-conditioned) across three figure styles, curated through multi-stage filtering and unanimous graduate-level annotation for reference-conditioned samples.</p>
+<p>The core abstraction is a <strong>harness loop</strong> over a shared evolving specification <span class="arithmatex">\(S\)</span>, formalized as four roles iterated per round <span class="arithmatex">\(t\)</span>:</p>
+<div class="arithmatex">\[p_t = D(\text{input}, S_{t-1}), \quad a_t = E(p_t), \quad d_t = V(a_t, \text{input}, S_{t-1}), \quad S_t = R(d_t, S_{t-1})\]</div>
+<p>where <span class="arithmatex">\(D\)</span> is a designer/planner, <span class="arithmatex">\(E\)</span> is a pluggable executor (image generator or SVG code generator), <span class="arithmatex">\(V\)</span> is a directive critic emitting per-dimension diagnostics rather than scalar scores, and <span class="arithmatex">\(R\)</span> writes <strong>typed edits</strong> (structured operations: add layout constraint, ban artifact category, resize named element) into <span class="arithmatex">\(S\)</span> rather than appending free text. Three mechanisms specialize the harness for CRAFTER: (1) <strong>diversity-driven plan exploration</strong> — <span class="arithmatex">\(D\)</span> proposes <span class="arithmatex">\(K\)</span> candidate visual plans in parallel, the best is selected before refinement begins; (2) <strong>structured corrective layer</strong> — <span class="arithmatex">\(R\)</span> converts diagnostics into typed edits on <span class="arithmatex">\(S\)</span>, keeping the specification internally consistent; (3) <strong>verify-then-refine with directive critic</strong> — up to <span class="arithmatex">\(T=3\)</span> refinement rounds with best-so-far reversion for non-monotonic regressions.</p>
+<p>CRAFTEDITOR instantiates the same four-role loop for raster-to-SVG conversion via three sequential phases: (a) instruction-driven canvas cleaning (VLM designer + instructable image editor + verifier, <span class="arithmatex">\(T=3\)</span>); (b) per-element captioning/grounding/classification; (c) iterative SVG assembly with a <strong>hybrid critic</strong> combining a VLM for global layout fidelity and programmatic checkers for text overflow, arrow-endpoint accuracy, and element overlap (<span class="arithmatex">\(T=4\)</span>).</p>
+<p>CRAFTBENCH is a 279-sample benchmark spanning three figure types (academic, poster, infographic) and four input conditions (text-to-image, mask-completion, key-element composition, sketch-conditioned), curated from arXiv, conference posters, and research blogs with unanimous graduate-annotator agreement on all reference-conditioned samples. Evaluation uses a per-image (non-pairwise) Gemini 3.5 Flash judge scoring task-specific aspects, reporting win-rate against human-drawn targets.</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
-<li>A formal harness abstraction (D/E/V/R loop over a shared evolving specification) instantiated in CRAFTER (figure generation) and CRAFTEDITOR (raster-to-SVG), forming the first end-to-end generation-to-editing pipeline for scientific figures.</li>
-<li>Three targeted mechanisms: diversity-driven plan exploration, structured corrective layer (typed edits vs. free-text), and verify-then-refine with directive critic—each independently validated by ablation.</li>
-<li>CRAFTBENCH: first benchmark covering three figure types × four input conditions (279 samples) with human annotation, paired with a per-image VLM-as-judge evaluation protocol that removes pairwise position bias.</li>
+<li>A unified harness abstraction with formal four-role loop (Designer, Executor, Verifier, Reviser) instantiated in CRAFTER (figure generation) and CRAFTEDITOR (raster-to-SVG), forming the first end-to-end generation-to-editing pipeline for scientific figures.</li>
+<li>Three harness mechanisms: diversity-driven parallel plan exploration, structured corrective layer (typed edits vs. free-text accumulation), and directive critic with verify-then-refine loop.</li>
+<li>CRAFTBENCH: 279-sample benchmark covering 3 figure types × 4 input conditions with human quality annotation and a bias-reduced VLM-as-judge protocol.</li>
+<li>CRAFTEDITOR's hybrid critic combining VLM + programmatic checkers for SVG structural validation.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
-<li><strong>PaperBanana-Bench</strong>: CRAFTER (w/ Nano Banana 2) scores 50.34% overall vs. 33.73% for PaperBanana (same backbone, +16.61 pt) and 15.07% for standalone Nano Banana 2 (+35.27 pt).</li>
-<li><strong>CRAFTBENCH</strong>: CRAFTER (w/ Nano Banana 2) scores 50.20% overall vs. 28.00% for PaperBanana (same backbone, +22.20 pt); CRAFTER is the only method to improve over its backbone uniformly across every dimension and every task on both benchmarks.</li>
-<li>Backbone substitution (Nano Banana 2 → Pro) shifts CRAFTER's score by only 0.34 pt on PaperBanana-Bench and 2.10 pt on CRAFTBENCH, confirming harness-vs-executor independence.</li>
-<li><strong>Ablations on PaperBanana-Bench</strong>: removing plan exploration −8.56 pt; removing corrective layer −8.90 pt; removing refinement loop −5.48 pt; removing directive critic −5.04 pt.</li>
-<li><strong>CRAFTEDITOR</strong> (80-sample held-out set, 3-VLM ensemble): overall 8.04 vs. AutoFigure-Edit 6.91 and Edit-Banana 3.69; removing iterative composition −2.15 pt; removing agentic cleaning −0.33 pt.</li>
+<li>On <strong>PaperBanana-Bench</strong>, CRAFTER (w/ Nano Banana 2) scores 64.21% overall vs. 61.68% for the strongest agentic baseline PaperBanana (+2.53 pt); gap over standalone Nano Banana 2 is +16.26 pt overall (up to +41.43 pt on conciseness).</li>
+<li>On <strong>CRAFTBENCH</strong> overall, CRAFTER (w/ Nano Banana 2) scores 50.20% vs. 28.00% for PaperBanana (+22.20 pt); PaperBanana's gain over its backbone collapses from 22.60 pt on PaperBanana-Bench to 8.10 pt on CRAFTBENCH, and it falls below its backbone on the sketch task.</li>
+<li>CRAFTER is the only method that improves over its backbone uniformly across every quality dimension and every task on both benchmarks.</li>
+<li>Ablations: removing any single component causes a 5.04–8.90 point drop.</li>
+<li>Backbone swap (Nano Banana 2 → Pro) shifts CRAFTER's overall score by only 0.34 pt (PaperBanana-Bench) and 2.10 pt (CRAFTBENCH), confirming executor-agnosticism.</li>
+<li>Open-source standalone generators (GLM-Image, Qwen-Image) score 0.00% overall on both benchmarks; GPT-Image-2 returns valid outputs for only 260/279 CRAFTBENCH inputs.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
-<li>CRAFTER is not uniformly successful; failure cases analyzed in Appendix K–L but not detailed in the main text.</li>
-<li>CRAFTBENCH covers only three figure types; broader coverage (e.g., charts, plots, equations) is not addressed.</li>
-<li>Evaluation relies on VLM-as-judge (Gemini 3.5 Flash), which may have its own biases despite the human-study validation.</li>
-<li>GPT-Image-2 returned valid outputs for only 260/279 CRAFTBENCH inputs due to instability and content-safety refusals, limiting baseline comparability.</li>
-<li>Computational cost scales with K (candidate plans) and T (refinement rounds); cost analysis is deferred to Appendix D.</li>
+<li>CRAFTER is not uniformly successful (failure analysis deferred to appendices K/L, not reproduced in the provided text).</li>
+<li>Evaluation relies on VLM judges (Gemini 3.5 Flash), introducing potential model-specific biases despite the non-pairwise redesign.</li>
+<li>CRAFTBENCH's reference-conditioned tasks (mask, sketch, key-element) are drawn entirely from academic figures, limiting poster/infographic coverage for those conditions.</li>
+<li>The <span class="arithmatex">\(K\)</span> candidate plans and <span class="arithmatex">\(T\)</span> refinement rounds introduce multiplicative inference cost; adaptive <span class="arithmatex">\(K\)</span> is mentioned but cost analysis is not provided in the excerpt.</li>
+<li>The harness depends on an "instructable image editor" for canvas cleaning in CRAFTEDITOR; reliability of this component under diverse poster layouts is unquantified.</li>
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
-<p>CRAFTER is a direct, worked instantiation of the harness pattern—explicitly citing Young (2025) and Pan et al. (2026) on agent harnesses—and provides one of the clearest formal accounts of the D/E/V/R loop structure with a shared evolving specification as memory. The paper's central empirical claim is that the harness layer, not backbone strength, is the primary driver of quality and generalization, quantified by showing that backbone swaps shift scores by &lt;3 points while harness ablations shift scores by 5–9 points. For researchers tracking harness and meta-harness design, the structured corrective layer (typed edits vs. free-text accumulation) and the pluggable executor architecture are the most transferable design principles, directly addressing a known failure mode (prompt contradiction accumulation) in any iterative agentic loop.</p>
+<p>This paper is a direct instantiation and formal articulation of the harness pattern as an engineering primitive: it explicitly cites and extends [Young 2025, Pan et al. 2026, Si et al. 2026] as the harness lineage, and frames its central argument as "what is needed is not a better generator but a harness." The four-role loop (Designer, Executor, Verifier, Reviser) with a shared evolving structured specification is a reusable abstraction that generalizes across both generation (CRAFTER) and post-processing (CRAFTEDITOR) tasks without architectural change — a concrete demonstration that harness design subsumes task-specific tuning. The typed-edit structured corrective layer directly addresses a known failure mode in iterative LLM harnesses (free-text prompt accumulation causing contradictions), offering a transferable design pattern. CRAFTBENCH and the executor-swap experiments provide empirical evidence that harness design quality dominates executor quality, a key hypothesis for meta-harness research.</p>
 
 
 

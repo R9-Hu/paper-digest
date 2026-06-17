@@ -3355,8 +3355,6 @@
       
         
       
-        
-      
     
     
     
@@ -3639,34 +3637,6 @@
     
   
     When the Tool Decides: LLM Agents Defer Blindly to Graph Neural Network Tools, and Stronger Backbones Defer More
-  
-
-    
-  </span>
-  
-  
-
-      </a>
-    </li>
-  
-
-              
-            
-              
-                
-  
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../../../../agentic-ai/2026/papers/harnessx-a-composable-adaptive-and-evolvable-agent-harness-foundry/" class="md-nav__link">
-        
-  
-  
-  <span class="md-ellipsis">
-    
-  
-    HarnessX: A Composable, Adaptive, and Evolvable Agent Harness Foundry
   
 
     
@@ -6066,7 +6036,21 @@
       
       
       
+        <a href="../../../../tags/#tag:agentic-ai" class="md-tag">agentic-ai</a>
+      
+    
+      
+      
+      
+      
         <a href="../../../../tags/#tag:benchmark" class="md-tag">benchmark</a>
+      
+    
+      
+      
+      
+      
+        <a href="../../../../tags/#tag:evaluation" class="md-tag">evaluation</a>
       
     
       
@@ -6089,51 +6073,57 @@
 
 <h1 id="openskilleval-automatically-auditing-the-open-skill-ecosystem-for-llm-agents">OpenSkillEval: Automatically Auditing the Open Skill Ecosystem for LLM Agents<a class="headerlink" href="#openskilleval-automatically-auditing-the-open-skill-ecosystem-for-llm-agents" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-05-28 00:00 UTC  ·  </em><em>Source:</em><em> HuggingFace  ·  <a href="https://huggingface.co/papers/2605.23657">link</a></em></p>
+<div class="admonition tip">
+<p class="admonition-title">Why this paper was selected</p>
+<p>Automated auditing of the open skill ecosystem for LLM agents; lifecycle reliability lens</p>
+</div>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
-<p>OpenSkillEval is an automatic evaluation framework that audits both skill-augmented LLM agent systems and the open-source skills themselves, using dynamically generated real-world task instances rather than static benchmarks. It evaluates 30 community-contributed skills across 677 tasks in five artifact-production categories, revealing that skill availability does not guarantee usage and that skill benefit is strongly model- and framework-dependent.</p>
+<p>OpenSkillEval is an automatic evaluation framework that audits both skill-augmented LLM agent systems and the skills themselves across five real-world task categories. It dynamically generates task instances from evolving artifacts rather than relying on static benchmarks, and finds that skill availability does not guarantee effective skill usage—agents read provided skills in only ~48% of cases on average under realistic settings.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>
-<p>The open-source skill ecosystem (structured workflow instructions for LLM agents) has expanded rapidly, but there is no systematic way to evaluate: (1) whether agents actually use injected skills, (2) how agent framework × model × skill interactions affect performance, or (3) how to select skills given cost-performance trade-offs. Static benchmarks fail to capture evolving real-world task distributions.</p>
+<p>The open-source skill ecosystem (structured workflow instructions distilled for LLMs) has expanded rapidly, but no systematic evaluation exists to assess: (1) how different agent frameworks interact with skills during execution, (2) how to measure skill quality objectively, or (3) how to guide skill selection under cost-performance trade-offs. Static benchmarks cannot keep pace with evolving user needs, and community popularity metrics (download counts) correlate poorly with actual task performance.</p>
 <h2 id="method">Method<a class="headerlink" href="#method" title="Permanent link">&para;</a></h2>
-<p>OpenSkillEval has three automated pipelines:</p>
+<p>OpenSkillEval decomposes into three automated pipelines:</p>
 <ol>
 <li>
-<p><strong>Artifact-driven case generation</strong>: For five task categories (PPT generation, web design, poster generation, data visualization, report generation), existing high-quality artifacts are collected from external repositories; LLMs reverse-engineer them into structured task specifications and natural-language instructions; a verifier LLM filters incoherent instances. Result: 677 dynamically generated instances using Claude-4.6-Opus and GPT-5.2 as generators.</p>
+<p><strong>Artifact-driven Case Generation</strong>: For each of five task categories, high-quality existing artifacts (websites, datasets, documents) are reverse-engineered by LLMs into structured task specifications <span class="arithmatex">\((T)\)</span> plus natural-language instructions <span class="arithmatex">\((I)\)</span>, then filtered by a verifier LLM for coherence. This produces 677 task instances generated via Claude-4.6-Opus and GPT-5.2.</p>
 </li>
 <li>
-<p><strong>Skill collection</strong>: 30 skills curated from public repositories (clawhub.ai, skills.sh, openskills.space, skillsmp.com), filtered by community download count, organized per task category.</p>
+<p><strong>Skill Collection</strong>: 30 community skills are curated from repositories (clawhub.ai, skills.sh, openskills.space, skillsmp.com), filtered by download count to favor higher-adoption skills.</p>
 </li>
 <li>
-<p><strong>Evaluation pipeline</strong>: Two complementary tracks — (a) <em>trajectory trace analysis</em> using the Agent Trajectory Interchange Format (ATIF) with an agent-as-judge that decomposes skills into workflow steps and checks follow/skip/contradict rates against actual execution traces; (b) <em>artifact analysis</em> using task-specific rubrics (VLM-as-judge, agent-as-judge, code-based data accuracy checks, interaction simulation for web design) on a 1–5 scale across dimensions such as completeness, content quality, visual design, and fidelity.</p>
+<p><strong>Evaluation Pipeline</strong>: Two complementary views—</p>
 </li>
+<li><em>Trajectory trace analysis</em>: Uses ATIF (Agent Trajectory Interchange Format) to normalize execution traces across heterogeneous agent frameworks (Claude Code, Codex, Gemini CLI, Kimi Code CLI); an agent-as-judge procedure decomposes each skill into intended workflow steps and scores whether agents follow, skip, or contradict each step.</li>
+<li><em>Artifact analysis</em>: Task-specific rubrics assess completeness, content quality, and visual design; web design uses agent-based interaction simulation; report generation and data visualization use code-based numerical accuracy checks.</li>
 </ol>
+<p>The framework supports a <strong>default</strong> setting (skill placed in agent-accessible path) and a <strong>force-using</strong> setting (explicit directive injected into task prompt).</p>
 <h2 id="key-contributions">Key Contributions<a class="headerlink" href="#key-contributions" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Dynamic benchmark of 677 task instances auto-generated from evolving real-world artifacts across five categories, enabling continuous refresh.</li>
-<li>Systematic trajectory-level audit revealing that agents read skill files in only ~48% of cases under default settings (as low as 20% for Claude Opus 4.6), even when the skill is accessible.</li>
-<li>Quantified step-level adherence: even under forced skill usage (~94% read rate), agents still skip or contradict prescribed workflow steps at measurable rates.</li>
-<li>Per-task, per-model, per-skill performance × cost analysis across 9 agent systems (Claude Code + Claude 4.6 series, Codex + GPT-5.x, Gemini CLI, Kimi Code CLI, DeepSeek V4 Pro, GLM-5.1, MiniMax M2.7).</li>
-<li>Empirical finding that many high-download skills fail to outperform the no-skill baseline, and that a weaker model with good skills and framework can match a stronger base model.</li>
+<li>Artifact-driven dynamic benchmark generation pipeline that auto-refreshes as source content evolves, avoiding benchmark contamination.</li>
+<li>Unified skill collection and organization infrastructure tracking 30 open-source skills across five task domains.</li>
+<li>ATIF-based trajectory trace analysis enabling cross-framework comparison of skill adherence at step granularity.</li>
+<li>Empirical finding that skill read rate under realistic default settings averages only ~48%; Claude Opus 4.6 reads skills in only ~20% of cases.</li>
+<li>Evidence that force-using raises read rate to ~94% but does not eliminate autonomous step-skipping or skill contradiction.</li>
+<li>Practical design guidelines for skill format, length, and prior richness.</li>
 </ul>
 <h2 id="results">Results<a class="headerlink" href="#results" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Under default deployment, average skill read rate across agents: <strong>~48%</strong>; Claude Opus 4.6 specifically: <strong>~20%</strong>.</li>
-<li>Force-using setting raises average read rate to <strong>94%</strong> and shifts first skill access from step 4.4 to step 3.3.</li>
-<li>Top overall performers: <strong>Claude Opus 4.6 (Claude Code framework, avg 4.51/5)</strong> and <strong>GPT-5.5 (Codex, avg 4.47/5)</strong>; lowest: DeepSeek V4 Pro (3.76) and GLM-5.1 (4.03) when run in adapted frameworks.</li>
-<li>GPT-5.5 under Codex achieves best efficiency: lowest token consumption while maintaining top-tier performance; GPT-5.3-codex uses fewer tokens than GPT-5.2.</li>
-<li>Poster generation and presentation generation are the hardest categories (visual design subscores typically &lt;4.0) and most token-intensive; web design interactive functionality is already near ceiling for most models.</li>
-<li>Skill augmentation is heterogeneous: GPT-5.3-codex frequently performs <em>worse</em> with skills than without; some skills (e.g., ppt-master) provide consistent gains; many popular skills yield no meaningful improvement over the no-skill baseline.</li>
+<li>Under the <strong>default</strong> setting, agents read <code>SKILL.md</code> in ~48% of cases on average across frameworks; Claude Opus 4.6 reads at ~20%, Kimi K2.6 at ~75%.</li>
+<li>The <strong>force-using</strong> setting raises average read rate to ~94% and shifts first skill access from step 4.4 to step 3.3 in the trajectory.</li>
+<li>Even after reading, agents follow only a fraction of prescribed steps: step-adherence breakdowns show substantial Skip and Contra proportions across all agents (exact per-agent split visible in Figure 3b but precise overall means not stated in the provided excerpt).</li>
+<li>A weaker base model paired with well-designed skills and a suitable framework can match a stronger base model without skills.</li>
+<li>Many high-download-count community skills fail to outperform base agents without skills while incurring additional input cost.</li>
 </ul>
 <h2 id="limitations">Limitations<a class="headerlink" href="#limitations" title="Permanent link">&para;</a></h2>
 <ul>
-<li>Skill set is a time-sensitive snapshot; community repositories evolve, so rankings may shift.</li>
-<li>Filtering skills by download count introduces popularity bias; low-download but high-quality skills are excluded.</li>
-<li>Evaluation relies on LLM/VLM-as-judge scoring, which inherits model-specific biases.</li>
-<li>Force-using setting (explicit directive to read skill file) departs from realistic deployment; it artificially inflates skill-read rates and may not reflect organic user behavior.</li>
-<li>Only five task categories covering artifact-generation tasks; findings may not generalize to tool-use, planning, or dialogue-centric agent settings.</li>
-<li>Adaptation of non-native models (e.g., GLM-5.1) into Claude Code framework introduces framework-model mismatch confounds.</li>
+<li>Skill collection is a time-snapshot; repositories are continuously updated so findings may not generalize beyond the collection date.</li>
+<li>The 30-skill selection is filtered by download count, which may exclude niche but high-quality skills.</li>
+<li>The provided text does not include final aggregated artifact quality scores across all 677 instances, making it difficult to quantify the magnitude of skill benefit vs. baseline.</li>
+<li>Evaluation rubrics rely heavily on LLM-as-judge and agent-as-judge, introducing potential judge-model bias.</li>
+<li>The five task categories (all artifact-producing, multi-step, creative/analytical) may not generalize to instruction-following or reasoning-heavy tasks where skills are used differently.</li>
 </ul>
 <h2 id="relevance-to-harnesses-meta-harnesses">Relevance to Harnesses / Meta-Harnesses<a class="headerlink" href="#relevance-to-harnesses-meta-harnesses" title="Permanent link">&para;</a></h2>
-<p>OpenSkillEval is itself a meta-harness: an automated orchestration layer that wraps multiple agent frameworks, drives them through dynamically constructed task instances, collects execution traces via ATIF, and applies multi-modal judges to produce cross-system evaluation reports. Its trajectory interchange format (ATIF) is a direct analog to the kind of unified observation interface that meta-harnesses need to inspect sub-agent behavior uniformly across heterogeneous backends. The finding that agents autonomously decide whether to follow injected workflow instructions is directly relevant to harness designers who rely on skills or system-prompt procedures to steer sub-agents — skill compliance cannot be assumed and must be enforced or verified at the harness level. The cost-performance scatter analysis across 30 skills × 9 models provides an empirical template for how a production meta-harness should instrument and compare pluggable workflow modules.</p>
+<p>OpenSkillEval is itself a <strong>meta-harness</strong>: it wraps multiple heterogeneous agent frameworks (Claude Code, Codex, Gemini CLI, Kimi Code CLI) under a unified evaluation infrastructure, normalizing their execution traces via ATIF to enable apples-to-apples comparison—exactly the cross-framework orchestration abstraction that meta-harness work concerns. The artifact-driven dynamic benchmark generation pipeline is a harness-level component that automatically refreshes task instances as real-world content evolves, demonstrating how meta-harnesses can decouple evaluation stability from static dataset maintenance. The trajectory adherence analysis—decomposing skills into steps and scoring agent compliance—provides a blueprint for how meta-harnesses can introspect sub-agent behavior rather than treating agents as black boxes. For researchers building harnesses over skill-augmented agents, the finding that ~52% of agents ignore skills under default placement is a critical design constraint: harnesses cannot assume skills are consumed just because they are accessible.</p>
 
 
 

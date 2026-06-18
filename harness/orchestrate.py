@@ -174,9 +174,11 @@ def main(argv=None) -> int:
 
     totals = {"downloaded": 0, "digested": 0}
     with state.connect() as conn:
-        # Weekly-session guard: as the weekly Claude limit approaches, do only the
-        # daily digest and defer the heavy past-month backfill/compaction until the
-        # week renews. `conserve` trips at weekly_conserve_threshold of the budget.
+        # Weekly-session guard. The daily fetch+digest ALWAYS runs; the "makeup" of
+        # previous papers (the pending backlog + month/year compaction) runs only while
+        # weekly usage is below the threshold. At/above it, `conserve` digests just
+        # TODAY's collection (papers fetched today) and defers the backlog until the
+        # week renews.
         used = state.week_usage(conn)
         budget = cfg.weekly_digest_budget
         conserve = (budget > 0 and not args.ignore_window
@@ -184,8 +186,10 @@ def main(argv=None) -> int:
         if not args.dry_run:
             log.info("weekly usage: %d/%d digests (%.0f%%)%s", used, budget,
                      (100.0 * used / budget) if budget else 0,
-                     " — CONSERVE: daily digest only, deferring past-month work" if conserve else "")
-        daily_cap = cfg.max_papers_per_topic_per_run if conserve else None
+                     " — CONSERVE: today's daily digest only, backlog makeup deferred" if conserve else "")
+        # Below threshold → digest everything pending (daily + backlog makeup).
+        # At/above → only papers fetched today.
+        conserve_day = dt.date.today().isoformat() if conserve else None
 
         for topic in topics:
             if "fetch" in stages:
@@ -201,7 +205,7 @@ def main(argv=None) -> int:
                         log.info("  NEW [%s %s] %s", p.source, p.year, p.title[:90])
             if "digest" in stages and not args.dry_run and digest_ok:
                 totals["digested"] += digest.digest_topic(conn, cfg, topic, should_continue=can_llm,
-                                                           max_per_topic=daily_cap)
+                                                           fetched_on=conserve_day)
 
         # Build the RAG card cache before synthesis so trend/brief steps run off
         # compact cards (not full papers). Incremental — cheap when nothing changed.

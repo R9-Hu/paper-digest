@@ -243,7 +243,7 @@ def _produce(cfg: Config, topic: Topic, row, shared=None):
 
 
 def digest_topic(conn, cfg: Config, topic: Topic, should_continue=None,
-                 max_per_topic: int | None = None) -> int:
+                 max_per_topic: int | None = None, fetched_on: str | None = None) -> int:
     """Digest all pending papers for a topic, running `digest_concurrency`
     LLM calls in parallel. Worker threads do the LLM/file work; this (main)
     thread owns all sqlite writes — sqlite connections aren't thread-safe.
@@ -254,7 +254,7 @@ def digest_topic(conn, cfg: Config, topic: Topic, should_continue=None,
     `max_per_topic` caps how many (newest-first) pending papers are digested this
     run — used by weekly-conserve mode to do only today's daily digests and defer
     the backlog until the weekly session renews."""
-    pending = state.pending_digests(conn, topic.slug)   # newest (published) first
+    pending = state.pending_digests(conn, topic.slug, fetched_on=fetched_on)   # newest first
     if max_per_topic is not None and len(pending) > max_per_topic:
         log.info("[%s] conserve mode: digesting newest %d of %d pending (rest deferred)",
                  topic.slug, max_per_topic, len(pending))

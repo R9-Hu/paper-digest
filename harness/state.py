@@ -150,15 +150,21 @@ def mark_failed(conn, canonical_id: str, topic_slug: str, error: str) -> None:
     )
 
 
-def pending_digests(conn, topic_slug: str = None) -> list[sqlite3.Row]:
-    """Papers fetched (or previously failed) but not yet digested."""
+def pending_digests(conn, topic_slug: str = None, fetched_on: str = None) -> list[sqlite3.Row]:
+    """Papers fetched (or previously failed) but not yet digested.
+
+    `fetched_on` (YYYY-MM-DD) restricts to papers collected on that date — used for
+    a 'digest today's daily collection only' run that leaves the backlog alone."""
     q = "SELECT * FROM papers WHERE digest_status IN ('fetched','failed')"
-    args: tuple = ()
+    args: list = []
     if topic_slug:
         q += " AND topic_slug=?"
-        args = (topic_slug,)
+        args.append(topic_slug)
+    if fetched_on:
+        q += " AND substr(fetched_at,1,10)=?"
+        args.append(fetched_on)
     q += " ORDER BY published DESC"
-    return conn.execute(q, args).fetchall()
+    return conn.execute(q, tuple(args)).fetchall()
 
 
 def digested_for_topic(conn, topic_slug: str) -> list[sqlite3.Row]:

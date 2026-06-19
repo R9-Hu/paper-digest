@@ -28,7 +28,7 @@ topics:
     slug: vlm
     earliest_date: 2025-01-01
     arxiv_categories: [cs.CV, cs.CL, cs.LG]
-    keywords: ["vision-language", "VLM", "multimodal LLM", "vision language model"]
+    keywords: ["vision-language", "VLM", "multimodal LLM", "vision language model", "vision-language-action", "latent action model", "egocentric human video robot", "closed-loop video evaluator", "VLM token pruning", "VLM calibration medical", "sim-to-real VLA transfer"]
     huggingface: true
     conferences: [CVPR, ICCV, NeurIPS, ICLR]
     intro: >
@@ -42,7 +42,7 @@ topics:
     slug: med-foundation
     earliest_date: 2025-01-01
     arxiv_categories: [eess.IV, cs.CV, cs.LG]
-    keywords: ["medical foundation model", "clinical LLM", "generalist medical AI", "medical image foundation"]
+    keywords: ["medical foundation model", "clinical LLM", "generalist medical AI", "medical image foundation", "federated medical foundation model", "differential privacy medical imaging", "multi-site aggregation radiology", "medical foundation model robustness perturbation", "clinical safety scaling law", "3D self-supervised medical pretraining"]
     huggingface: true
     conferences: [MICCAI, CVPR, NeurIPS]
     intro: >
@@ -56,7 +56,7 @@ topics:
     slug: agentic-ai
     earliest_date: 2025-01-01
     arxiv_categories: [cs.AI, cs.CL, cs.LG]
-    keywords: ["LLM agent", "multi-agent", "tool use", "agentic", "autonomous agent"]
+    keywords: ["LLM agent", "multi-agent", "tool use", "agentic", "autonomous agent", "memory governance agent", "over-privileged tool selection", "credit assignment RLVR", "verbal reinforcement learning", "multi-agent communication protocol benchmark", "long-horizon stateful agent", "agent privacy extraction"]
     huggingface: true
     conferences: [NeurIPS, ICLR, ICML]
     intro: >
@@ -69,7 +69,7 @@ topics:
     slug: harness
     earliest_date: 2025-01-01
     arxiv_categories: [cs.AI, cs.CL, cs.SE]
-    keywords: ["agent harness", "agent scaffolding", "agent orchestration", "agent framework", "agentic workflow"]
+    keywords: ["agent harness", "agent scaffolding", "agent orchestration", "agent framework", "agentic workflow", "intent-execution gap", "harness failure taxonomy", "self-evolving agent framework", "computer-use agent benchmark", "tool program interface", "agentic programming LLM-as-code", "least-privilege agent"]
     huggingface: true
     conferences: [NeurIPS, ICLR]
     intro: >

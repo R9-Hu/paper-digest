@@ -23,6 +23,7 @@
   panel.innerHTML =
     '<div id="ask-head">✦ Ask Claude <span style="opacity:.65;font-weight:400">· local · your subscription</span><button id="ask-x" title="close">×</button></div>' +
     '<div id="ask-msgs"></div>' +
+    '<div id="ask-actions"><button id="ask-next" type="button">📋 What to read next</button></div>' +
     '<form id="ask-form"><textarea id="ask-in" rows="2" placeholder="Ask a follow-up about this paper…"></textarea><button id="ask-send">Send</button></form>';
   document.body.appendChild(fab); document.body.appendChild(panel);
   var msgs = panel.querySelector('#ask-msgs');
@@ -50,6 +51,19 @@
       .finally(function () { btn.disabled = false; });
   };
 
+  function topicSlug() { return location.pathname.replace(/^\/+/, '').split('/')[0] || ''; }
+  panel.querySelector('#ask-next').onclick = function () {
+    panel.style.display = 'flex'; fab.style.display = 'none';
+    var pending = add('assistant', '…finding what to read next');
+    var b = panel.querySelector('#ask-next'); b.disabled = true;
+    fetch('/recommend', { method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ topic: topicSlug() }) })
+      .then(function (r) { return r.json(); })
+      .then(function (j) { pending.textContent = j.answer || ('\u26a0 ' + (j.error || 'no response')); })
+      .catch(function (err) { pending.textContent = '\u26a0 ' + err; })
+      .finally(function () { b.disabled = false; });
+  };
+
   var css = document.createElement('style');
   css.textContent =
     '#ask-fab{position:fixed;right:18px;bottom:18px;z-index:1000;background:#d97757;color:#fff;border:none;border-radius:24px;padding:.6rem 1rem;font-weight:600;cursor:pointer;box-shadow:0 2px 10px rgba(0,0,0,.25)}' +
@@ -60,6 +74,8 @@
     '.ask-msg{padding:.5rem .7rem;border-radius:10px;white-space:pre-wrap;line-height:1.45}' +
     '.ask-user{align-self:flex-end;background:#d97757;color:#fff;max-width:85%}' +
     '.ask-assistant{align-self:flex-start;background:rgba(127,127,127,.16);max-width:96%}' +
+    '#ask-actions{padding:.4rem .5rem 0}' +
+    '#ask-next{width:100%;background:rgba(217,119,87,.12);color:#d97757;border:1px solid rgba(217,119,87,.5);border-radius:8px;padding:.4rem;font-weight:600;cursor:pointer;font-size:.8rem}' +
     '#ask-form{display:flex;gap:.4rem;padding:.5rem;border-top:1px solid rgba(127,127,127,.25)}' +
     '#ask-in{flex:1;resize:none;border:1px solid rgba(127,127,127,.35);border-radius:8px;padding:.4rem;font:inherit;background:transparent;color:inherit}' +
     '#ask-send{background:#d97757;color:#fff;border:none;border-radius:8px;padding:0 .9rem;font-weight:600;cursor:pointer}';

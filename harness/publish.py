@@ -120,6 +120,14 @@ SITE_CSS = """\
 .md-typeset .md-button.chatgpt-btn:focus {
   background: #0e8e6f; border-color: #0e8e6f; color: #fff;
 }
+/* "Ask Claude" follow-up button */
+.md-typeset .md-button.claude-btn {
+  background: #d97757; color: #fff; border-color: #d97757; font-weight: 600; margin-left: .4rem;
+}
+.md-typeset .md-button.claude-btn:hover,
+.md-typeset .md-button.claude-btn:focus {
+  background: #c4623f; border-color: #c4623f; color: #fff;
+}
 /* Tag chips (Material tags plugin) */
 .md-typeset .md-tag {
   border-radius: 6px; font-size: .68rem; font-weight: 600;
@@ -485,10 +493,13 @@ def _followup_panel(fm: dict, tldr: str) -> str:
         prompt += f". TL;DR: {snippet}"
     prompt += (". I have follow-up questions about it. Give a one-line orientation, "
                "then help me dig into the method, results, and limitations.")
-    chat = "https://chatgpt.com/?q=" + quote(prompt)
+    q = quote(prompt)
+    chatgpt = "https://chatgpt.com/?q=" + q
+    claude = "https://claude.ai/new?q=" + q
     return ("> [!question] Ask a follow-up\n"
-            "> Open ChatGPT pre-loaded with this paper's context.\n\n"
-            f'[💬 Ask ChatGPT]({chat}){{ .md-button .chatgpt-btn target="_blank" rel="noopener" }}')
+            "> Open an assistant pre-loaded with this paper's context.\n\n"
+            f'[💬 Ask ChatGPT]({chatgpt}){{ .md-button .chatgpt-btn target="_blank" rel="noopener" }}'
+            f'[✦ Ask Claude]({claude}){{ .md-button .claude-btn target="_blank" rel="noopener" }}')
 
 
 def _extract_tldr(digest_md: str) -> str:

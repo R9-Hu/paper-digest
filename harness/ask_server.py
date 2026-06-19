@@ -19,13 +19,27 @@ import sys
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
-from . import config, llm, publish, skills, state
+import datetime as dt
+
+from . import config, llm, publish, rag, skills, state
 
 SERVE_DIR = config.SITE_DIR / "_build"
 SYSTEM = (
     "You are a precise research assistant answering follow-up questions about one "
     "specific paper. Be concise and technical, ground answers in the provided context, "
     "and say clearly when something cannot be determined from it."
+)
+_WTRN_SYSTEM = (
+    "You are a research reading-list curator. From a set of candidate papers you pick "
+    "the few that best repay a busy researcher's limited attention, ordered by what to "
+    "read first, with a one-line reason each. Honor the user's stated values and what "
+    "they want to avoid."
+)
+_WTRN_PROMPT = (
+    'Topic: "{topic}". From the {n} candidate papers below, recommend the top 5 to read '
+    "next, most important first. For each: \"**Title** — one-line reason (what you'll learn "
+    '/ why it matters to me)\". Prefer papers that match what I value and skip what I avoid. '
+    "Output only the list.\n\n{cards}"
 )
 
 
@@ -58,6 +72,36 @@ def _answer(payload: dict, cfg) -> dict:
         return {"error": str(e)}
 
 
+def _recommend(payload: dict, cfg) -> dict:
+    """'What to read next' for a topic — runs the what-to-read-next skill over the
+    topic's recent high-impact cards (profile-aware)."""
+    slug = (payload.get("topic") or "").strip()
+    if not slug:
+        return {"error": "no topic"}
+    t = cfg.topic(slug)
+    name = t.name if t else slug
+    with state.connect() as conn:
+        cards = rag.cards_for(conn, slug, year=dt.date.today().year, limit=30, order="impact")
+        if not cards:
+            cards = rag.cards_for(conn, slug, limit=30, order="impact")
+    if not cards:
+        return {"error": f"no papers tracked for '{slug}' yet"}
+    lines = []
+    for c in cards:
+        v = f" [{c['venue']}]" if c.get("venue") else ""
+        tl = " ".join((c.get("tldr") or "").split())[:160]
+        lines.append(f"- {c['title']}{v} — {tl}")
+    sk = skills.load_skill("what-to-read-next", {"system": _WTRN_SYSTEM, "prompt": _WTRN_PROMPT})
+    prompt = sk.prompt.format(topic=name, n=len(cards), cards="\n".join(lines))
+    try:
+        ans = llm.run_claude(prompt, cfg.digest_model, cfg,
+                             system=skills.with_profile(sk.system, cfg),
+                             allow_tools=False, wait_on_limit=False)
+        return {"answer": ans}
+    except llm.LLMError as e:
+        return {"error": str(e)}
+
+
 class Handler(SimpleHTTPRequestHandler):
     cfg = None
 
@@ -72,7 +116,8 @@ class Handler(SimpleHTTPRequestHandler):
         self.end_headers()
 
     def do_POST(self):
-        if self.path.split("?")[0] != "/ask":
+        route = self.path.split("?")[0]
+        if route not in ("/ask", "/recommend"):
             self.send_error(404)
             return
         n = int(self.headers.get("Content-Length") or 0)
@@ -80,7 +125,8 @@ class Handler(SimpleHTTPRequestHandler):
             payload = json.loads(self.rfile.read(n) or b"{}")
         except ValueError:
             payload = {}
-        body = json.dumps(_answer(payload, self.cfg)).encode("utf-8")
+        result = _recommend(payload, self.cfg) if route == "/recommend" else _answer(payload, self.cfg)
+        body = json.dumps(result).encode("utf-8")
         self.send_response(200)
         self._cors()
         self.send_header("Content-Type", "application/json")

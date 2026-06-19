@@ -69,7 +69,9 @@ def parse_args(argv=None):
     p.add_argument("--rag-query", metavar="TEXT",
                    help="retrieve the most relevant paper cards for TEXT (debug), then exit")
     p.add_argument("--review", action="store_true",
-                   help="run the weekly review/复盘 (E) now, publish, then exit")
+                   help="run the weekly review (E) now, publish, then exit")
+    p.add_argument("--apply-suggestions", action="store_true",
+                   help="merge the latest review's suggested keywords into config.yaml, then exit")
     return p.parse_args(argv)
 
 
@@ -103,6 +105,17 @@ def main(argv=None) -> int:
             ok = review.run_review(conn, cfg)
             log.info("[E] review %s", "written" if ok else "skipped (no data / failed)")
             publish.publish(conn, cfg, deploy=not args.no_deploy)
+        return 0
+
+    if args.apply_suggestions:
+        with state.connect() as conn:
+            applied = review.apply_suggestions(conn, cfg)
+        if applied:
+            for slug, kws in applied.items():
+                log.info("[E] +keywords %s: %s", slug, ", ".join(kws))
+            log.info("[E] updated config.yaml — review the diff and re-run fetch to use them")
+        else:
+            log.info("[E] no new keywords to apply (run --review first, or none suggested)")
         return 0
 
     if args.rag_query:

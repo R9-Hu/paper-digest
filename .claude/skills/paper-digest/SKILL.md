@@ -42,8 +42,11 @@ Then run a fetch (optionally `--topic <slug>`).
   documents commands).
 - **User identity/needs live in `profile.md`** (injected into selection/relevance/trends/
   review/ask). Edit it to retune what's surfaced.
-- **Review/复盘 (E)** keyword suggestions are suggest-only: read them on the Review page /
-  `reviews/`, then copy accepted keywords into `config.yaml` topics yourself.
+- **Review (E)** keyword suggestions: read them on the Review page / `reviews/`. Apply
+  them with `.venv/bin/python -m harness.orchestrate --apply-suggestions` (merges into
+  `config.yaml`, deduped, comments preserved), or copy chosen ones in by hand.
+- **Ask panel** (`harness.ask_server`) also has a "What to read next" button → `/recommend`
+  (profile-aware reading list for the current topic via the `what-to-read-next` skill).
 
 ## Notes for the agent
 - Always use `.venv/bin/python`, not system python.

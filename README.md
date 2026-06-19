@@ -66,9 +66,13 @@ review (E) also fires automatically once per ISO week on the first in-window run
 - **`profile.md`** — your identity/needs (YAML frontmatter + notes). Layered onto each
   skill's system prompt at runtime so collection/digests/trends reflect *you*. Absent
   file → no injection (original behavior).
-- **Review/复盘** — `harness.review` writes `reviews/<ISO-week>.md`, stores it in the
+- **Review** — `harness.review` writes `reviews/<ISO-week>.md`, stores it in the
   `meta` table, and renders the **Review** dashboard page (site + Obsidian `_Review.md`).
-  Keyword suggestions are **suggest-only**: copy accepted ones into `config.yaml`.
+  Keyword suggestions default to **suggest-only**; opt in to apply them with
+  `--apply-suggestions` (merges them into `config.yaml`, deduped, comments preserved).
+- **Ask panel** (local, `harness.ask_server`) — besides per-paper Q&A, a
+  **"What to read next"** button calls `/recommend` to get a profile-aware, ranked
+  reading list for the current topic (via the `what-to-read-next` skill).
 
 ### Model checking
 

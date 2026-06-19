@@ -118,3 +118,55 @@ def run_review(conn, cfg) -> bool:
     conn.commit()
     log.info("review written for %s", week)
     return True
+
+
+def _replace_keywords(text: str, slug: str, merged: list[str]) -> tuple[str, bool]:
+    """Rewrite the single-line `keywords: [...]` of the topic with `slug`, preserving
+    the rest of config.yaml (comments, order). Single-line flow lists only."""
+    lines = text.split("\n")
+    si = next((i for i, l in enumerate(lines)
+               if re.match(rf"^\s*slug:\s*{re.escape(slug)}\s*$", l)), None)
+    if si is None:
+        return text, False
+    for j in range(si + 1, len(lines)):
+        if re.match(r"^\s*-\s*name:", lines[j]):
+            break  # next topic block; keywords not found in this one
+        m = re.match(r"^(\s*)keywords:\s*\[", lines[j])
+        if m and "]" in lines[j]:   # single-line list only (avoid corrupting multi-line)
+            kw = ", ".join(json.dumps(k) for k in merged)
+            lines[j] = f"{m.group(1)}keywords: [{kw}]"
+            return "\n".join(lines), True
+    return text, False
+
+
+def apply_suggestions(conn, cfg) -> dict:
+    """OPT-IN flowback: merge the latest review's suggested keywords into config.yaml
+    (dedup, case-insensitive), preserving comments/order. Returns {slug: [added...]}."""
+    raw = state.meta_get(conn, "review:suggestions")
+    try:
+        sugg = json.loads(raw) if raw else {}
+    except (ValueError, TypeError):
+        sugg = {}
+    add = (sugg.get("add_keywords") or {}) if isinstance(sugg, dict) else {}
+    if not add:
+        return {}
+    import yaml
+    text = config.CONFIG_PATH.read_text(encoding="utf-8")
+    data = yaml.safe_load(text) or {}
+    cur = {t["slug"]: [str(k) for k in (t.get("keywords") or [])]
+           for t in data.get("topics", [])}
+    applied: dict[str, list[str]] = {}
+    for slug, kws in add.items():
+        if slug not in cur or not isinstance(kws, list):
+            continue
+        have = {k.lower() for k in cur[slug]}
+        new = [k for k in kws if isinstance(k, str) and k.strip() and k.lower() not in have]
+        if not new:
+            continue
+        text2, ok = _replace_keywords(text, slug, cur[slug] + new)
+        if ok:
+            text = text2
+            applied[slug] = new
+    if applied:
+        config.CONFIG_PATH.write_text(text, encoding="utf-8")
+    return applied

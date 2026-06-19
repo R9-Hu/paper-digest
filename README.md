@@ -1,17 +1,25 @@
-# Paper Digest Meta-Harness
+# Paper Digest — a self-growing knowledge base
 
-A personal research radar. Every day at **08:00** it:
+A personal research radar built as a **self-growing knowledge-base loop**
+(Claude + Obsidian + a webpage):
 
-1. **Collects** newly published papers for each topic you track — from **arXiv**,
-   **HuggingFace** daily papers, and (best-effort) **top conferences** — downloads
-   the PDFs into `paper/<topic>/` named `[<Place> <Year>] <Title>.pdf`.
-2. **Digests** each new paper with a Claude agent into a structured note.
-3. **Analyzes** the research trend per topic (how it developed → current state →
-   predicted next steps).
-4. **Publishes** to a **GitHub Pages** website and your **Obsidian** vault.
+- **A · 收集 Collect** — newly published papers per tracked topic from **arXiv**,
+  **HuggingFace** daily papers, and (best-effort) **top conferences**; deduped and
+  ranked, the highest-impact ones downloaded to `paper/<topic>/`.
+- **B · 处理 Digest** — each paper reduced by a Claude agent to a structured note.
+- **C · 技能/方法库 Skill library** — the reusable *methodologies* behind every step
+  (selection, digest, trends, review) live as **editable files in `skills/`**, not
+  buried in code. Edit them, add new ones; the library accrues. See [`skills/README.md`](skills/README.md).
+- **D · 沉淀+输出 Precipitate & output** — per-topic/per-year **trend** maps, a hybrid
+  **RAG card cache**, and publishing to a **GitHub Pages** site + your **Obsidian** vault.
+- **E · 回流/复盘 Review & flow back** — a weekly **review** synthesizes the week, spots
+  gaps, and **suggests next focus / keywords / new skills**, surfaced on the site's
+  **Review** dashboard so the base keeps improving.
 
-Three agents map to the pipeline: **Collector** (Python) → **Digester** (`claude -p`)
-→ **Analyst** (`claude -p`). Agents spawn subagents when useful.
+Who the base serves is set once in [`profile.md`](profile.md) (identity + what you
+value); it's injected into selection, relevance, trends, review, and the ask panel.
+The pipeline runs as Python (**Collect**) → `claude -p` agents (**Digest/Trends/Review**)
+→ **Publisher**; each LLM step's prompt comes from the editable skill library.
 
 ## Setup
 
@@ -43,9 +51,24 @@ Edit [`config.yaml`](config.yaml):
 .venv/bin/python -m harness.orchestrate --topic vlm                 # one topic, full chain
 .venv/bin/python -m harness.orchestrate --stage digest              # only the digest stage
 .venv/bin/python -m harness.orchestrate --since 2025-06-01          # override earliest date
+.venv/bin/python -m harness.orchestrate --review                    # run the weekly review/复盘 now, then publish
 ```
 
-Stages: `fetch` · `digest` · `trends` · `publish` (default: all in order).
+Stages: `fetch` · `digest` · `trends` · `publish` (default: all in order). The weekly
+review (E) also fires automatically once per ISO week on the first in-window run.
+
+## Skill library (C) & profile
+
+- **`skills/<name>.md`** — each step's prompt/methodology, editable without touching
+  Python (`digest`, `impact-ranking`, `relevance`, `trend-synthesis`, `daily-brief`,
+  `followup-qa`, `review`, …). Missing/old file → built-in default is used, so nothing
+  breaks. Format + list: [`skills/README.md`](skills/README.md).
+- **`profile.md`** — your identity/needs (YAML frontmatter + notes). Layered onto each
+  skill's system prompt at runtime so collection/digests/trends reflect *you*. Absent
+  file → no injection (original behavior).
+- **Review/复盘** — `harness.review` writes `reviews/<ISO-week>.md`, stores it in the
+  `meta` table, and renders the **Review** dashboard page (site + Obsidian `_Review.md`).
+  Keyword suggestions are **suggest-only**: copy accepted ones into `config.yaml`.
 
 ### Model checking
 

@@ -13,7 +13,7 @@ import subprocess
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
-from . import config, llm, state
+from . import config, llm, skills, state
 from .config import Config, Topic
 
 log = logging.getLogger("harness.digest")
@@ -176,6 +176,9 @@ def _front_matter(row, topic: Topic, digest_body: str) -> str:
 
 
 REL_SYSTEM = "You explain, concisely and concretely, why a paper matters to a specific research topic."
+_REL_PROMPT = ("Paper: {title}\nTL;DR: {tldr}\n\nIn 2-4 sentences, explain this paper's "
+               "relevance to the research topic \"{topic}\" — why it matters for someone "
+               "tracking it and how it connects to the broader line of work. Output only prose.")
 
 
 def _tldr_of(body: str) -> str:
@@ -192,10 +195,10 @@ def _split_relevance(body: str):
 
 
 def _relevance(cfg: Config, topic: Topic, title: str, tldr: str) -> str:
-    prompt = (f"Paper: {title}\nTL;DR: {tldr}\n\nIn 2-4 sentences, explain this paper's "
-              f"relevance to the research topic \"{topic.name}\" — why it matters for someone "
-              f"tracking it and how it connects to the broader line of work. Output only prose.")
-    return llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=REL_SYSTEM))
+    sk = skills.load_skill("relevance", {"system": REL_SYSTEM, "prompt": _REL_PROMPT})
+    prompt = sk.prompt.format(title=title, tldr=tldr, topic=topic.name)
+    return llm.strip_code_fence(llm.run_claude(
+        prompt, cfg.digest_model, cfg, system=skills.with_profile(sk.system, cfg)))
 
 
 def _produce(cfg: Config, topic: Topic, row, shared=None):
@@ -223,8 +226,9 @@ def _produce(cfg: Config, topic: Topic, row, shared=None):
             text = text[:cap]
             if not text.strip():
                 return cid, slug, None, "no extractable text", None, None
-            prompt = PROMPT_TMPL.format(topic=topic.name, title=row["title"], text=text)
-            full = llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=SYSTEM))
+            sk = skills.load_skill("digest", {"system": SYSTEM, "prompt": PROMPT_TMPL})
+            prompt = sk.prompt.format(topic=topic.name, title=row["title"], text=text)
+            full = llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=sk.system))
             body, relevance = _split_relevance(full)
             tldr = _tldr_of(body)
             shared_out = body

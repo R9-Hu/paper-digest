@@ -9,7 +9,7 @@ import datetime as dt
 import logging
 import re
 
-from . import config, llm, rag, state
+from . import config, llm, rag, skills, state
 from .config import Config, Topic
 
 log = logging.getLogger("harness.trends")
@@ -65,6 +65,11 @@ Rules:
 {corpus}
 """
 
+_BRIEF_SYSTEM = "You are a research news editor writing a crisp daily briefing."
+_BRIEF_PROMPT = ("Below are the TL;DRs of {n} papers just added for the topic "
+                 "'{topic}'. In 3-4 sentences, summarize what this batch is collectively "
+                 "about — the dominant themes and threads. Output only the prose paragraph.\n\n{chunks}")
+
 
 def _strip_front_matter(md: str) -> str:
     if md.startswith("---"):
@@ -114,9 +119,11 @@ def analyze_topic_year(conn, cfg: Config, topic: Topic, year: int) -> bool:
     corpus, n = _build_corpus_year(conn, topic, year)
     if n == 0:
         return False
-    prompt = PROMPT_TMPL.format(topic=f"{topic.name} ({year})", n=n, corpus=corpus)
+    sk = skills.load_skill("trend-synthesis", {"system": SYSTEM, "prompt": PROMPT_TMPL})
+    prompt = sk.prompt.format(topic=f"{topic.name} ({year})", n=n, corpus=corpus)
     try:
-        body = llm.strip_code_fence(llm.run_claude(prompt, cfg.trend_model, cfg, system=SYSTEM))
+        body = llm.strip_code_fence(llm.run_claude(
+            prompt, cfg.trend_model, cfg, system=skills.with_profile(sk.system, cfg)))
     except llm.LLMError as e:
         log.warning("[%s %d] trend analysis failed: %s", topic.slug, year, e)
         return False
@@ -164,14 +171,10 @@ def summarize_today(conn, cfg: Config, topic: Topic) -> bool:
             if p.exists():
                 tl = _tldr_of(p.read_text(encoding="utf-8"))
         chunks.append(f"- {r['title']}: {tl}")
-    prompt = (f"Below are the TL;DRs of {len(rows)} papers just added for the topic "
-              f"'{topic.name}'. In 3-4 sentences, summarize what this batch is collectively "
-              f"about — the dominant themes and threads. Output only the prose paragraph.\n\n"
-              + "\n".join(chunks)[:60000])
+    sk = skills.load_skill("daily-brief", {"system": _BRIEF_SYSTEM, "prompt": _BRIEF_PROMPT})
+    prompt = sk.prompt.format(n=len(rows), topic=topic.name, chunks="\n".join(chunks)[:60000])
     try:
-        text = llm.strip_code_fence(llm.run_claude(
-            prompt, cfg.digest_model, cfg,
-            system="You are a research news editor writing a crisp daily briefing."))
+        text = llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=sk.system))
     except llm.LLMError as e:
         log.warning("[%s] today brief failed: %s", topic.slug, e)
         return False

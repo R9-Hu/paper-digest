@@ -19,7 +19,7 @@ import sys
 from functools import partial
 from http.server import SimpleHTTPRequestHandler, ThreadingHTTPServer
 
-from . import config, llm, publish, state
+from . import config, llm, publish, skills, state
 
 SERVE_DIR = config.SITE_DIR / "_build"
 SYSTEM = (
@@ -46,10 +46,12 @@ def _answer(payload: dict, cfg) -> dict:
             who = "User" if m.get("role") == "user" else "Assistant"
             lines.append(f'{who}: {m.get("content", "")}')
     lines.append(f"\nUser: {question}\nAssistant:")
+    sk = skills.load_skill("followup-qa", {"system": SYSTEM})
     try:
         # allow_tools=False keeps it fast/grounded; wait_on_limit=False so a hit
         # weekly limit returns an error instead of blocking the panel.
-        ans = llm.run_claude("\n".join(lines), cfg.digest_model, cfg, system=SYSTEM,
+        ans = llm.run_claude("\n".join(lines), cfg.digest_model, cfg,
+                             system=skills.with_profile(sk.system, cfg),
                              allow_tools=False, wait_on_limit=False)
         return {"answer": ans}
     except llm.LLMError as e:

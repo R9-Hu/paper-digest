@@ -18,7 +18,7 @@ import time
 
 import requests
 
-from . import config, llm, naming, state
+from . import config, llm, naming, skills, state
 from .config import Config, Topic
 from .models import Paper
 from .sources import arxiv_source, conf_source, hf_source, impact
@@ -110,6 +110,17 @@ RANK_SYSTEM = (
     "research groups, labs, authors, and venues. You judge which new papers are most "
     "likely to be high-impact and worth a busy researcher's attention."
 )
+_RANK_PROMPT = (
+    'Topic: "{topic}".\n'
+    "From the {n} candidate papers below, choose the {k} MOST likely to be "
+    "high-impact and influential for a researcher tracking this topic. Weigh: the "
+    "reputation and track record of the authors and their research group/lab, the "
+    "venue (top-tier acceptance/awards), and the novelty and significance of the work.\n"
+    "Return ONLY a JSON array of the {k} chosen items, most important first. Each item is "
+    '{{"i": <candidate number>, "why": "<<=15-word reason this paper is worth reading>"}}. '
+    'Example: [{{"i": 3, "why": "DeepMind RLHF team; NeurIPS oral; first to scale verifier rewards"}}]. '
+    "No prose outside the JSON.\n\n{candidates}"
+)
 
 
 # Bounds so a single ranking call stays cheap: never feed the LLM more than
@@ -134,20 +145,12 @@ def _llm_rank(cfg: Config, topic: Topic, papers: list[Paper], k: int) -> list[Pa
         abstract = " ".join((p.abstract or "").split())[:240]
         venue = f" [{p.venue}]" if p.venue else ""
         lines.append(f"{i}. {p.title}{venue} — {authors}. {abstract}")
-    prompt = (
-        f"Topic: \"{topic.name}\".\n"
-        f"From the {len(papers)} candidate papers below, choose the {k} MOST likely to be "
-        f"high-impact and influential for a researcher tracking this topic. Weigh: the "
-        f"reputation and track record of the authors and their research group/lab, the "
-        f"venue (top-tier acceptance/awards), and the novelty and significance of the work.\n"
-        f"Return ONLY a JSON array of the {k} chosen items, most important first. Each item is "
-        f'{{"i": <candidate number>, "why": "<<=15-word reason this paper is worth reading>"}}. '
-        f'Example: [{{"i": 3, "why": "DeepMind RLHF team; NeurIPS oral; first to scale verifier rewards"}}]. '
-        f"No prose outside the JSON.\n\n" + "\n".join(lines)
-    )
+    sk = skills.load_skill("impact-ranking", {"system": RANK_SYSTEM, "prompt": _RANK_PROMPT})
+    prompt = sk.prompt.format(topic=topic.name, n=len(papers), k=k, candidates="\n".join(lines))
     try:
         # Don't block fetch/publish on a usage limit — fall back to the heuristic.
-        out = llm.run_claude(prompt, cfg.rank_model, cfg, system=RANK_SYSTEM, wait_on_limit=False)
+        out = llm.run_claude(prompt, cfg.rank_model, cfg,
+                             system=skills.with_profile(sk.system, cfg), wait_on_limit=False)
     except llm.LLMError as e:
         log.warning("[%s] LLM rank failed (%s); using heuristic", topic.slug, e)
         return None

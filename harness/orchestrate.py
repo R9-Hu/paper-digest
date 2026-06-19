@@ -10,7 +10,7 @@ import datetime as dt
 import logging
 import sys
 
-from . import compact, config, digest, fetch, modelcheck, publish, rag, state, trends
+from . import compact, config, digest, fetch, modelcheck, publish, rag, review, state, trends
 
 STAGES = ["fetch", "digest", "trends", "publish"]
 
@@ -68,6 +68,8 @@ def parse_args(argv=None):
                    help="(re)build the RAG card cache + FTS5/embedding index, then exit")
     p.add_argument("--rag-query", metavar="TEXT",
                    help="retrieve the most relevant paper cards for TEXT (debug), then exit")
+    p.add_argument("--review", action="store_true",
+                   help="run the weekly review/复盘 (E) now, publish, then exit")
     return p.parse_args(argv)
 
 
@@ -94,6 +96,13 @@ def main(argv=None) -> int:
     if args.build_index:
         with state.connect() as conn:
             log.info("rag: %s", rag.build_index(conn))
+        return 0
+
+    if args.review:
+        with state.connect() as conn:
+            ok = review.run_review(conn, cfg)
+            log.info("[E] review %s", "written" if ok else "skipped (no data / failed)")
+            publish.publish(conn, cfg, deploy=not args.no_deploy)
         return 0
 
     if args.rag_query:
@@ -154,7 +163,7 @@ def main(argv=None) -> int:
 
     since = dt.date.fromisoformat(args.since) if args.since else None
     stages = [args.stage] if args.stage else STAGES
-    log.info("=== run start | topics=%s | stages=%s ===",
+    log.info("=== cycle A收集→B处理→C技能→D输出→E复盘 | topics=%s | stages=%s ===",
              [t.slug for t in topics], stages)
 
     # Pre-flight: verify the pinned models still respond; auto-fall-back to the
@@ -216,6 +225,13 @@ def main(argv=None) -> int:
             for topic in topics:
                 trends.analyze_topic(conn, cfg, topic)
                 trends.summarize_today(conn, cfg, topic)
+
+        # E 回流/复盘: once per ISO week, on the first in-window non-conserve full run.
+        # One cheap LLM call; results land on the Review dashboard at publish.
+        if (not args.dry_run and digest_ok and not args.stage and not conserve
+                and review.due(conn)):
+            log.info("[E] weekly review/复盘 due — running")
+            review.run_review(conn, cfg)
 
         # Auto-compaction of prior-year papers (storage saver) — opt-in, daily runs only.
         # Scheduled month/year compaction (fires on the 1st; needs the window for refetch+digest).

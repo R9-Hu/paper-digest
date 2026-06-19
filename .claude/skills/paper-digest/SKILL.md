@@ -22,6 +22,9 @@ Run from the project root using the project venv.
 - **Single stage:** `.venv/bin/python -m harness.orchestrate --stage {fetch|digest|trends|publish}`
 - **Override backfill date:** `... --stage fetch --since 2025-06-01`
 - **Build/sync without deploying:** `.venv/bin/python -m harness.orchestrate --stage publish --no-deploy`
+- **Weekly review/复盘 (E):** `.venv/bin/python -m harness.orchestrate --review` — one LLM call
+  synthesizing the week (themes, gaps, suggested keywords/skills); writes `reviews/<ISO-week>.md`
+  + the site's **Review** dashboard. Otherwise fires automatically once per ISO week.
 - **Check model availability:** `.venv/bin/python -m harness.orchestrate --check-models`
   (probes the pinned models via `claude -p`; reports + auto-falls-back to the family
   alias if an ID was retired). Daily runs do this pre-flight automatically;
@@ -31,6 +34,16 @@ Run from the project root using the project venv.
 Edit `config.yaml` → append (or modify) a block under `topics` with `name`, `slug`,
 `earliest_date`, `arxiv_categories`, `keywords`, `huggingface`, `conferences`.
 Then run a fetch (optionally `--topic <slug>`).
+
+## Skills, profile, review (self-growing cycle)
+- **Prompt methodology lives in `skills/<name>.md`** (editable, not in Python). To change
+  how papers are selected/digested/analyzed/reviewed, edit the skill file — a missing file
+  falls back to the in-code default. This is distinct from *this* Claude-Code skill (which
+  documents commands).
+- **User identity/needs live in `profile.md`** (injected into selection/relevance/trends/
+  review/ask). Edit it to retune what's surfaced.
+- **Review/复盘 (E)** keyword suggestions are suggest-only: read them on the Review page /
+  `reviews/`, then copy accepted keywords into `config.yaml` topics yourself.
 
 ## Notes for the agent
 - Always use `.venv/bin/python`, not system python.

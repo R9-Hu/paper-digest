@@ -612,6 +612,39 @@ def _rich_today_lines(topic_name: str, day: str, brief: str | None, items: list)
 # ----------------------------------------------------------------------------- #
 # GitHub Pages (MkDocs Material)
 # ----------------------------------------------------------------------------- #
+def _review_page_lines(conn, cfg) -> list[str]:
+    """The Review / 复盘 dashboard (E): metrics band + suggested keywords + the
+    latest weekly review note (from meta, written by harness.review)."""
+    week = state.meta_get(conn, "review:latest_week") or "—"
+    body = state.meta_get(conn, "review:latest")
+    used = state.week_usage(conn)
+    budget = cfg.weekly_digest_budget
+    pct = int(100 * used / budget) if budget else 0
+    conserve = pct >= int(cfg.weekly_conserve_threshold * 100)
+    lines = ["---", "hide:", "  - navigation", "  - toc", "---",
+             "# 🔁 Review / 复盘", "",
+             f"`week {week}`  ·  `{used}/{budget} digests this week ({pct}%)`"
+             + ("  ·  ⏸️ conserve mode" if conserve else ""), ""]
+    try:
+        sugg = json.loads(state.meta_get(conn, "review:suggestions") or "{}")
+    except (ValueError, TypeError):
+        sugg = {}
+    add_kw = (sugg.get("add_keywords") or {}) if isinstance(sugg, dict) else {}
+    if add_kw:
+        lines += ["> [!tip] Suggested keywords — copy into `config.yaml` if you agree", ">"]
+        for slug, kws in add_kw.items():
+            if kws:
+                lines.append(f"> - **{slug}**: " + ", ".join(str(k) for k in kws))
+        lines.append("")
+    if body:
+        lines += [body, ""]
+    else:
+        lines += ["> [!note] No review yet", "",
+                  "_The weekly 复盘 runs on the first overnight run of each ISO week, "
+                  "or on demand via `python -m harness.orchestrate --review`._"]
+    return lines
+
+
 def build_site(conn, cfg: Config) -> None:
     docs = config.SITE_DIR / "docs"
     if docs.exists():
@@ -619,7 +652,7 @@ def build_site(conn, cfg: Config) -> None:
     docs.mkdir(parents=True, exist_ok=True)
 
     today = dt.date.today().isoformat()
-    nav = [{"Home": "index.md"}, {"Tags": "tags.md"}]
+    nav = [{"Home": "index.md"}, {"Review": "review.md"}, {"Tags": "tags.md"}]
     tag_alias, tag_keep = build_tag_vocab(conn)   # compact, merged tag vocabulary
     name_loc, ambiguous = {}, set()   # paper name -> (display, slug, year, pslug)
     written_pages = []                # (page_path, self_name, body_lower) for cross-linking
@@ -808,6 +841,9 @@ def build_site(conn, cfg: Config) -> None:
         '<div class="grid cards" markdown>', "",
     ] + home_cards + ["</div>"]
     (docs / "index.md").write_text("\n".join(home_lines) + "\n", encoding="utf-8")
+
+    # Review / 复盘 dashboard (E).
+    (docs / "review.md").write_text("\n".join(_review_page_lines(conn, cfg)) + "\n", encoding="utf-8")
 
     # Tags index page (Material tags plugin populates it) + custom theme assets.
     (docs / "tags.md").write_text(
@@ -1162,6 +1198,17 @@ def sync_obsidian(conn, cfg: Config) -> None:
                     f"{topic_total} papers · {topic_today} new today")
         for (year, n, rel) in year_links:
             home.append("    - " + _md_link(f"{year} ({n})", f"{folder}/{rel}"))
+
+    # Mirror the latest weekly review (复盘) into the vault.
+    review_body = state.meta_get(conn, "review:latest")
+    if review_body:
+        rweek = state.meta_get(conn, "review:latest_week") or ""
+        (vault / "_Review.md").write_text(
+            "\n".join(["---", "title: Weekly Review", "cssclasses: [paper-trend]", "---",
+                       f"# 🔁 Weekly Review — {rweek}", "", review_body]) + "\n",
+            encoding="utf-8")
+        home.insert(len(home), "")
+        home.append(f"---\n\n🔁 {_md_link('Weekly Review', '_Review.md')} — {rweek}")
 
     (vault / "Home.md").write_text("\n".join(home) + "\n", encoding="utf-8")
     log.info("obsidian vault synced (beautified): %s", vault)

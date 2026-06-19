@@ -12,6 +12,7 @@ import logging
 import re
 import shutil
 import subprocess
+from urllib.parse import quote
 
 import yaml
 
@@ -111,6 +112,14 @@ SITE_CSS = """\
 }
 .md-typeset .venue-none { color: var(--md-default-fg-color--lighter); }
 .md-typeset .reason { font-size: .78rem; color: var(--md-default-fg-color--light); font-style: italic; }
+/* "Ask ChatGPT" follow-up button */
+.md-typeset .md-button.chatgpt-btn {
+  background: #10a37f; color: #fff; border-color: #10a37f; font-weight: 600;
+}
+.md-typeset .md-button.chatgpt-btn:hover,
+.md-typeset .md-button.chatgpt-btn:focus {
+  background: #0e8e6f; border-color: #0e8e6f; color: #fff;
+}
 /* Tag chips (Material tags plugin) */
 .md-typeset .md-tag {
   border-radius: 6px; font-size: .68rem; font-weight: 600;
@@ -456,9 +465,30 @@ def _site_digest(md: str, alias: dict, keep: set, reason: str | None = None) -> 
     parts = [f"---\n{_dump_fm(fm)}\n---", head]
     if reason:
         parts.append(f"> [!tip] Why this paper was selected\n> {reason}")
+    tldr = next((b for t, b in body_secs if t.lower().startswith("tl;dr")), "")
+    parts.append(_followup_panel(fm, tldr))
     for title, body in body_secs:
         parts.append(f"## {title}\n\n{body}" if body else f"## {title}")
     return "\n\n".join(parts) + "\n"
+
+
+def _followup_panel(fm: dict, tldr: str) -> str:
+    """An 'Ask a follow-up' panel that opens ChatGPT pre-loaded with this paper's
+    context (title, link, TL;DR) so the reader can ask follow-up questions."""
+    title = (fm.get("title") or "").strip()
+    url = (fm.get("url") or "").strip()
+    prompt = f'I\'m reading the paper "{title}"'
+    if url:
+        prompt += f" ({url})"
+    snippet = " ".join((tldr or "").split())[:500]
+    if snippet:
+        prompt += f". TL;DR: {snippet}"
+    prompt += (". I have follow-up questions about it. Give a one-line orientation, "
+               "then help me dig into the method, results, and limitations.")
+    chat = "https://chatgpt.com/?q=" + quote(prompt)
+    return ("> [!question] Ask a follow-up\n"
+            "> Open ChatGPT pre-loaded with this paper's context.\n\n"
+            f'[💬 Ask ChatGPT]({chat}){{ .md-button .chatgpt-btn target="_blank" rel="noopener" }}')
 
 
 def _extract_tldr(digest_md: str) -> str:

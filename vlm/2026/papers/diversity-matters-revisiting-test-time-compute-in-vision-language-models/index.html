@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Mrinmaya Sachan (ETH); ICML 2026; systematic study of test-time compute in VLMs</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Diversity%20Matters%3A%20Revisiting%20Test-Time%20Compute%20in%20Vision-Language%20Models%22%20%28https%3A//arxiv.org/abs/2605.30713%29.%20TL%3BDR%3A%20Test-time%20compute%20%28TTC%29%20strategies%20from%20the%20LLM%20literature%20transfer%20poorly%20to%20VLMs%20due%20to%20low%20output%20diversity%3A%20majority%20voting%20yields%20only%202%E2%80%934%25%20gains%20under%20CoT%20and%20zero%20gain%20under%20direct%20answering%2C%20while%20feature-based%20heuristics%20fail%20entirely.%20The%20paper%20proves%20that%20voting%20improvement%20is%20monotonically%20decreasing%20in%20inter-prediction%20dependency%2C%20and%20proposes%20Entropy-based%20TTC%20%28ETTC%29%2C%20which%20selects%20the%20minimum-entropy%20prediction%20in%20multi-model%20ensembles%20rather%20than%20counting%20votes%2C%20consistently%20outp.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Test-time compute (TTC) strategies from the LLM literature transfer poorly to VLMs due to low output diversity: majority voting yields only 2–4% gains under CoT and zero gain under direct answering, while feature-based heuristics fail entirely. The paper proves that voting improvement is monotonically decreasing in inter-prediction dependency, and proposes Entropy-based TTC (ETTC), which selects the minimum-entropy prediction in multi-model ensembles rather than counting votes, consistently outperforming both voting and the best single model.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

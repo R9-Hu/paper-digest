@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>CVPR 2026; data-free CLIP interpretability via SVD; no activation data required</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22From%20Weights%20to%20Concepts%3A%20Data-Free%20Interpretability%20of%20CLIP%20via%20Singular%20Vector%20Decomposition%22%20%28https%3A//arxiv.org/abs/2603.24653%29.%20TL%3BDR%3A%20SITH%20%28Semantic%20Inspection%20of%20Transformer%20Heads%29%20is%20a%20data-free%2C%20training-free%20interpretability%20framework%20that%20explains%20CLIP%27s%20attention%20heads%20by%20decomposing%20their%20value-output%20%28VO%29%20weight%20matrices%20via%20SVD%20and%20mapping%20each%20singular%20vector%20to%20human-interpretable%20concepts.%20The%20core%20algorithm%2C%20COMP%20%28Coherent%20Orthogonal%20Matching%20Pursuit%29%2C%20finds%20sparse%2C%20semantically%20coherent%20concept%20attributions%20by%20jointly%20optimizing%20reconstruction%20fidelity%20and%20intra-set%20semantic%20coherence.%20SITH%20enables%20weight-space%20e.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>SITH (Semantic Inspection of Transformer Heads) is a data-free, training-free interpretability framework that explains CLIP's attention heads by decomposing their value-output (VO) weight matrices via SVD and mapping each singular vector to human-interpretable concepts. The core algorithm, COMP (Coherent Orthogonal Matching Pursuit), finds sparse, semantically coherent concept attributions by jointly optimizing reconstruction fidelity and intra-set semantic coherence. SITH enables weight-space edits—amplifying or suppressing specific singular vectors—that improve downstream performance without retraining.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

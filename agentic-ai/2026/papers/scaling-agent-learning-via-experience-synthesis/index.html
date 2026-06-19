@@ -5999,6 +5999,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Experience synthesis for efficient RL agent training without costly rollouts</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Scaling%20Agent%20Learning%20via%20Experience%20Synthesis%22%20%28https%3A//openreview.net/forum%3Fid%3Dcf7qpBwttr%29.%20TL%3BDR%3A%20DreamGym%20is%20a%20unified%20RL%20framework%20that%20replaces%20costly%20real-environment%20rollouts%20with%20a%20reasoning-based%20%2A%2Aexperience%20model%2A%2A%20%E2%80%94%20an%20LLM%20that%20synthesizes%20state%20transitions%20and%20reward%20signals%20via%20chain-of-thought%20%E2%80%94%20enabling%20scalable%20online%20RL%20for%20LLM%20agents.%20It%20pairs%20this%20with%20an%20experience%20replay%20buffer%20and%20a%20curriculum%20task%20generator%20that%20selects%20tasks%20by%20reward%20entropy.%20On%20WebArena%20%28not%20RL-ready%29%2C%20it%20outperforms%20all%20baselines%20by%20%3E30%25%3B%20in%20sim-to-real%20transfer%20it%20achieves%20%3E40%25%20gains%20over%20from-scra.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>DreamGym is a unified RL framework that replaces costly real-environment rollouts with a reasoning-based <strong>experience model</strong> — an LLM that synthesizes state transitions and reward signals via chain-of-thought — enabling scalable online RL for LLM agents. It pairs this with an experience replay buffer and a curriculum task generator that selects tasks by reward entropy. On WebArena (not RL-ready), it outperforms all baselines by &gt;30%; in sim-to-real transfer it achieves &gt;40% gains over from-scratch real-env RL using &lt;10% of the real data.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

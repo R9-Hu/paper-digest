@@ -5860,6 +5860,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; reversible primitive-composition alignment for tight-budget continual VL learning</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Reversible%20Primitive%E2%80%93Composition%20Alignment%20for%20Continual%20Vision%E2%80%93Language%20Learning%22%20%28https%3A//openreview.net/forum%3Fid%3DeiTy6AYeQi%29.%20TL%3BDR%3A%20COMPO-REALIGN%20addresses%20the%20phenomenon%20where%20continual%20VLMs%20preserve%20primitive%20%28attribute/object%29%20recognition%20but%20catastrophically%20forget%20compositional%20binding%20under%20sequential%20adaptation%20with%20tight%20rehearsal%20budgets%20and%20no%20task%20IDs.%20The%20method%20enforces%20reversible%20primitive%E2%80%93composition%20alignment%20through%20a%20Cayley-transform%20orthogonal%20composer%2C%20a%20multi-positive%20InfoNCE%20objective%2C%20and%20a%20spectral%20trust%20region%20that%20clips%20gradient%20steps%20when%20alignment%20sensitivity%20inflates.%20It%20sets%20new%20state%20of%20the%20art.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>COMPO-REALIGN addresses the phenomenon where continual VLMs preserve primitive (attribute/object) recognition but catastrophically forget compositional binding under sequential adaptation with tight rehearsal budgets and no task IDs. The method enforces reversible primitive–composition alignment through a Cayley-transform orthogonal composer, a multi-positive InfoNCE objective, and a spectral trust region that clips gradient steps when alignment sensitivity inflates. It sets new state of the art on compositional DIL and multi-domain MTIL retrieval, improving Avg R@1 by +2.4 and reducing forgetting by ~40%.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

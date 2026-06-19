@@ -5860,6 +5860,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Test-time perturbation learning corrects VLA trajectory overfitting; CVPR 2026</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Test-Time%20Perturbation%20Learning%20with%20Delayed%20Feedback%20for%20Vision-Language-Action%20Models%22%20%28https%3A//arxiv.org/abs/2604.18107%29.%20TL%3BDR%3A%20Vision-Language-Action%20%28VLA%29%20models%20suffer%20from%20%2Atrajectory%20overfitting%2A%E2%80%94memorizing%20spurious%20correlations%20between%20visual%20context%20and%20action%20sequences%20rather%20than%20grounding%20decisions%20in%20task%20semantics.%20This%20paper%20proposes%20%2A%2APDF%2A%2A%20%28Perturbation%20learning%20with%20Delayed%20Feedback%29%2C%20a%20verifier-free%20test-time%20adaptation%20framework%20that%20combines%20uncertainty-guided%20data%20augmentation%20with%20a%20lightweight%20logit-perturbation%20module%20trained%20on%20delayed%20episodic%20feedback.%20PDF%20achieves%20%2B7.4%25%20success%20rate%20on%20LIBERO%20a.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Vision-Language-Action (VLA) models suffer from <em>trajectory overfitting</em>—memorizing spurious correlations between visual context and action sequences rather than grounding decisions in task semantics. This paper proposes <strong>PDF</strong> (Perturbation learning with Delayed Feedback), a verifier-free test-time adaptation framework that combines uncertainty-guided data augmentation with a lightweight logit-perturbation module trained on delayed episodic feedback. PDF achieves +7.4% success rate on LIBERO and +10.3 HNS on Atari-57 without modifying base model parameters.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

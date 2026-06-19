@@ -5867,6 +5867,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>NVIDIA+AllenAI; novel KD paradigm for small-student VLMs addressing mode collapse</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Zone%20of%20Proximal%20Policy%20Optimization%3A%20Teacher%20in%20Prompts%2C%20Not%20Gradients%22%20%28https%3A//arxiv.org/abs/2606.18216%29.%20TL%3BDR%3A%20ZPPO%20addresses%20two%20failure%20modes%20in%20small-student%20training%20%E2%80%94%20logit-imitation%20brittleness%20in%20knowledge%20distillation%20and%20zero-advantage%20collapse%20in%20RL%20%E2%80%94%20by%20keeping%20the%20teacher%20exclusively%20inside%20the%20prompt%20rather%20than%20the%20policy%20gradient.%20It%20constructs%20two%20reformulated%20prompts%20%28BCQ%20and%20NCQ%29%20for%20hard%20questions%20and%20uses%20a%20prompt%20replay%20buffer%20to%20amplify%20learning%20signals%20within%20the%20student%27s%20zone%20of%20proximal%20development.%20On%20a%2031-benchmark%20suite%20covering%20VLM%2C%20LLM%2C%20and%20Video%20tasks%2C%20ZPPO%20consistently%20ou.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>ZPPO addresses two failure modes in small-student training — logit-imitation brittleness in knowledge distillation and zero-advantage collapse in RL — by keeping the teacher exclusively inside the prompt rather than the policy gradient. It constructs two reformulated prompts (BCQ and NCQ) for hard questions and uses a prompt replay buffer to amplify learning signals within the student's zone of proximal development. On a 31-benchmark suite covering VLM, LLM, and Video tasks, ZPPO consistently outperforms both distillation and GRPO at all four student scales.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

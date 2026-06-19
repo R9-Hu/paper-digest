@@ -5860,6 +5860,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Dynamic tool gating and lazy schema loading eliminates MCP harness tax overhead</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Tool%20Attention%20Is%20All%20You%20Need%3A%20Dynamic%20Tool%20Gating%20and%20Lazy%20Schema%20Loading%20for%20Eliminating%20the%20MCP/Tools%20Tax%20in%20Scalable%20Agentic%20Workflows%22%20%28https%3A//arxiv.org/abs/2604.21816%29.%20TL%3BDR%3A%20MCP%27s%20stateless%2C%20eager%20schema%20injection%20imposes%20a%20per-turn%20%22Tools%20Tax%22%20of%2010k%E2%80%9360k%20tokens%20in%20typical%20multi-server%20deployments%2C%20degrading%20LLM%20reasoning%20and%20inflating%20costs.%20Tool%20Attention%20is%20a%20middleware%20mechanism%20that%20replaces%20full-catalog%20injection%20with%20dynamic%2C%20query-conditioned%20schema%20selection%20via%20embedding-based%20scoring%2C%20stateful%20gating%2C%20and%20two-phase%20lazy%20loading.%20On%20a%20calibrated%20120-tool%2C%206-server%20simulation%20it%20reduces%20per-turn%20tool%20tokens%20by%2095%25%20%2847.3k%20%E2%86%92%202.4k%29%3B%20downstream%20task-success%20and.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>MCP's stateless, eager schema injection imposes a per-turn "Tools Tax" of 10k–60k tokens in typical multi-server deployments, degrading LLM reasoning and inflating costs. Tool Attention is a middleware mechanism that replaces full-catalog injection with dynamic, query-conditioned schema selection via embedding-based scoring, stateful gating, and two-phase lazy loading. On a calibrated 120-tool, 6-server simulation it reduces per-turn tool tokens by 95% (47.3k → 2.4k); downstream task-success and cost figures are projections, not live measurements.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

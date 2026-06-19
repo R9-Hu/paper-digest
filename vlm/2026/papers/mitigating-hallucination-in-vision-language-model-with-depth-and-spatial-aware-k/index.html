@@ -5860,6 +5860,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; depth and spatial-aware KV cache refinement reduces VLM hallucination</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Mitigating%20Hallucination%20in%20Vision-Language%20Model%20with%20Depth%20and%20Spatial-aware%20Key-Value%20Refinement%22%20%28https%3A//openreview.net/forum%3Fid%3DFHTt9ipAra%29.%20TL%3BDR%3A%20Visual%20hallucinations%20in%20VLMs%20arise%20when%20key%20vectors%20scatter%20isotropically%20in%20the%20KV%20cache%2C%20severing%20cross-modal%20attention%20from%20image%20content.%20DSCR%20%28Depth%20and%20Spatial-aware%20Cache%20Refinement%29%20is%20a%20training-free%2C%20plug-and-play%20method%20that%20injects%20monocular%20depth%20and%202D%20spatial%20proximity%20into%20the%20visual%20KV%20cache%20at%20inference%20time%20to%20restore%20coherent%20key-vector%20clustering.%20It%20yields%20up%20to%2041.6%25%20accuracy%20gains%20across%20multiple%20hallucination%20benchmarks%20without%20modifying%20model%20weights..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Visual hallucinations in VLMs arise when key vectors scatter isotropically in the KV cache, severing cross-modal attention from image content. DSCR (Depth and Spatial-aware Cache Refinement) is a training-free, plug-and-play method that injects monocular depth and 2D spatial proximity into the visual KV cache at inference time to restore coherent key-vector clustering. It yields up to 41.6% accuracy gains across multiple hallucination benchmarks without modifying model weights.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

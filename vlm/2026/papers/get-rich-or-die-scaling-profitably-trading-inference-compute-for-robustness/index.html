@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Inference-time compute improves OOD robustness in VLMs; ICLR 2026 analysis</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Get%20RICH%20or%20Die%20Scaling%3A%20Profitably%20Trading%20Inference%20Compute%20for%20Robustness%22%20%28https%3A//openreview.net/forum%3Fid%3DPLZx2hpauY%29.%20TL%3BDR%3A%20This%20paper%20proposes%20the%20%2A%2ARobustness%20from%20Inference%20Compute%20Hypothesis%20%28RICH%29%2A%2A%3A%20inference-compute%20defenses%20against%20adversarial%20attacks%20become%20more%20effective%20as%20a%20model%27s%20training%20data%20better%20reflects%20components%20of%20the%20attacked%20data.%20Experiments%20across%20VLMs%20with%20varying%20adversarial%20training%20levels%20confirm%20a%20%22rich-get-richer%22%20dynamic%20where%20test-time%20compute%20scaling%20yields%20robustness%20gains%20only%20when%20the%20base%20model%20is%20already%20sufficiently%20robust.%20By%20lightweight%20adversarial%20finetuning%20of%20InternVL%203..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>This paper proposes the <strong>Robustness from Inference Compute Hypothesis (RICH)</strong>: inference-compute defenses against adversarial attacks become more effective as a model's training data better reflects components of the attacked data. Experiments across VLMs with varying adversarial training levels confirm a "rich-get-richer" dynamic where test-time compute scaling yields robustness gains only when the base model is already sufficiently robust. By lightweight adversarial finetuning of InternVL 3.5 gpt-oss 20B's vision encoder, the authors create the first adversarially robust RL-tuned reasoning VLM.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

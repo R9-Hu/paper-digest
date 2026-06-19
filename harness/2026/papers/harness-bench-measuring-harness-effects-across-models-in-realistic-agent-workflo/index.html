@@ -5860,6 +5860,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Harness-Bench directly benchmarks harness effects on model outputs; fills critical measurement gap</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Harness-Bench%3A%20Measuring%20Harness%20Effects%20across%20Models%20in%20Realistic%20Agent%20Workflows%22%20%28https%3A//arxiv.org/abs/2605.27922%29.%20TL%3BDR%3A%20Harness-Bench%20is%20a%20diagnostic%20benchmark%20that%20isolates%20the%20%2Aharness%2A%20%E2%80%94%20the%20execution%20layer%20managing%20context%2C%20tools%2C%20state%2C%20permissions%2C%20and%20recovery%20%E2%80%94%20as%20the%20primary%20axis%20of%20evaluation%20across%20shared%20task%20environments%20and%20model%20backends.%20Across%205%2C194%20trajectories%20over%20106%20sandboxed%20tasks%2C%20it%20shows%20a%2023.8-point%20performance%20gap%20between%20harness%20configurations%20under%20the%20same%20models%2C%20demonstrating%20that%20agent%20capability%20cannot%20be%20attributed%20to%20the%20base%20model%20alone.%20The%20benchmark%20further%20identifies%20recur.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Harness-Bench is a diagnostic benchmark that isolates the <em>harness</em> — the execution layer managing context, tools, state, permissions, and recovery — as the primary axis of evaluation across shared task environments and model backends. Across 5,194 trajectories over 106 sandboxed tasks, it shows a 23.8-point performance gap between harness configurations under the same models, demonstrating that agent capability cannot be attributed to the base model alone. The benchmark further identifies recurring execution-alignment failures where plausible model reasoning decouples from tool feedback, workspace state, or verifiable output contracts.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

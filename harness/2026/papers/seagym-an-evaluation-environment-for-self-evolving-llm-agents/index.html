@@ -5992,6 +5992,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Defines and benchmarks 'agent harness' as execution layer; Tsinghua; fills key evaluation gap</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22SEAGym%3A%20An%20Evaluation%20Environment%20for%20Self-Evolving%20LLM%20Agents%22%20%28https%3A//arxiv.org/abs/2606.17546%29.%20TL%3BDR%3A%20SEAGym%20is%20an%20evaluation%20environment%20that%20converts%20static%20agent%20benchmarks%20into%20dynamic%20self-evolution%20task%20sources%20with%20train%20batches%2C%20frozen%20validation%20views%2C%20held-out%20ID/OOD%20transfer%2C%20replay%20diagnostics%2C%20and%20cost%20records.%20It%20formalizes%20the%20mutable%20%2A%2Aagent%20harness%2A%2A%20%E2%80%94%20prompts%2C%20memory%2C%20tools%2C%20middleware%2C%20orchestration%20logic%20%E2%80%94%20as%20the%20evolving%20object%2C%20and%20provides%20a%20common%20rollout/update%20interface%20for%20comparing%20heterogeneous%20self-evolving%20methods.%20Experiments%20on%20Terminal-Bench%202.0%20and%20HLE%20with%20ACE.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>SEAGym is an evaluation environment that converts static agent benchmarks into dynamic self-evolution task sources with train batches, frozen validation views, held-out ID/OOD transfer, replay diagnostics, and cost records. It formalizes the mutable <strong>agent harness</strong> — prompts, memory, tools, middleware, orchestration logic — as the evolving object, and provides a common rollout/update interface for comparing heterogeneous self-evolving methods. Experiments on Terminal-Bench 2.0 and HLE with ACE, TF-GRPO, and AHE reveal that validation gains routinely fail to transfer, useful intermediate snapshots can catastrophically regress, and batch size effects are non-monotonic.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

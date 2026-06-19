@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Microsoft Research + Amazon authors; harness self-optimization without ground-truth labels</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Retrospective%20Harness%20Optimization%3A%20Improving%20LLM%20Agents%20via%20Self-Preference%20over%20Trajectory%20Rollouts%22%20%28https%3A//huggingface.co/papers/2606.05922%29.%20TL%3BDR%3A%20RHO%20is%20a%20self-supervised%20method%20that%20improves%20an%20LLM%20agent%27s%20harness%E2%80%94its%20tools%2C%20skills%2C%20and%20executable%20instructions%E2%80%94using%20only%20unlabeled%20past%20trajectories%2C%20requiring%20no%20validation%20set.%20It%20selects%20a%20diversity-and-difficulty-balanced%20coreset%20via%20a%20Determinantal%20Point%20Process%2C%20re-solves%20those%20tasks%20in%20parallel%2C%20extracts%20self-validation%20and%20self-consistency%20signals%2C%20and%20picks%20the%20best%20of%20%24N%24%20candidate%20harness%20updates%20via%20pairwise%20self-preference.%20A%20single%20round%20raises%20SWE-Bench%20Pro%20pass%20rate%20from%2059.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>RHO is a self-supervised method that improves an LLM agent's harness—its tools, skills, and executable instructions—using only unlabeled past trajectories, requiring no validation set. It selects a diversity-and-difficulty-balanced coreset via a Determinantal Point Process, re-solves those tasks in parallel, extracts self-validation and self-consistency signals, and picks the best of <span class="arithmatex">\(N\)</span> candidate harness updates via pairwise self-preference. A single round raises SWE-Bench Pro pass rate from 59% to 78%.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; Fourier approximation compresses large multimodal models with strong efficiency</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22LLaVA-FA%3A%20Learning%20Fourier%20Approximation%20for%20Compressing%20Large%20Multimodal%20Models%22%20%28https%3A//openreview.net/forum%3Fid%3DDYO9cA1uIU%29.%20TL%3BDR%3A%20LLaVA-FA%20compresses%20large%20multimodal%20models%20by%20performing%20joint%20low-rank%20plus%20quantization%20decomposition%20in%20the%20Fourier%20%28frequency%29%20domain%20rather%20than%20the%20spatial%20domain.%20The%20key%20insight%20is%20that%202D-DFT%20de-correlates%20weight%20matrices%2C%20yielding%20more%20compact%20singular%20value%20spectra%20and%20conjugate%20symmetry%20that%20halves%20the%20number%20of%20learnable%20parameters.%20The%20result%20is%20a%20family%20of%20efficient%20VLMs%20%281B%E2%80%937B%20activated%20parameters%29%20that%20outperform%20same-scale%20baselines%20across%20comprehension%20and%20hallucination%20bench.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>LLaVA-FA compresses large multimodal models by performing joint low-rank plus quantization decomposition in the Fourier (frequency) domain rather than the spatial domain. The key insight is that 2D-DFT de-correlates weight matrices, yielding more compact singular value spectra and conjugate symmetry that halves the number of learnable parameters. The result is a family of efficient VLMs (1B–7B activated parameters) that outperform same-scale baselines across comprehension and hallucination benchmarks.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

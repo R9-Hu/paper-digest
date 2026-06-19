@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>DAVE encoder captures low-level spatial structure improving document VLM performance</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22DAVE%3A%20A%20VLM%20Vision%20Encoder%20for%20Document%20Understanding%20and%20Web%20Agents%22%20%28https%3A//openreview.net/forum%3Fid%3Dkgk0NqjsoW%29.%20TL%3BDR%3A%20DAVE%20is%20a%20specialized%20vision%20encoder%20for%20VLMs%20that%20addresses%20the%20structural/spatial%20deficiency%20of%20standard%20contrastive%20encoders%20%28e.g.%2C%20SigLIP%29%20on%20document%20and%20web%20images.%20It%20uses%20a%20two-stage%20pipeline%E2%80%94MAE-based%20self-supervised%20pretraining%20on%2020M%20unlabeled%20document/web%20images%2C%20followed%20by%20supervised%20autoregressive%20pretraining%20with%20weight-space%20merging%20and%20generalist-encoder%20ensemble%20fusion%E2%80%94to%20produce%20a%20decoder-agnostic%2C%20domain-specialized%20encoder.%20DAVE%20outperforms%20SigLIP%202%20by%20an%20average%20of%2010.5%25%20a.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>DAVE is a specialized vision encoder for VLMs that addresses the structural/spatial deficiency of standard contrastive encoders (e.g., SigLIP) on document and web images. It uses a two-stage pipeline—MAE-based self-supervised pretraining on 20M unlabeled document/web images, followed by supervised autoregressive pretraining with weight-space merging and generalist-encoder ensemble fusion—to produce a decoder-agnostic, domain-specialized encoder. DAVE outperforms SigLIP 2 by an average of 10.5% across eight document and web benchmarks and improves web agent performance (Mind2Web) by 5% over the best baseline.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

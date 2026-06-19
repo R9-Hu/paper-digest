@@ -5856,6 +5856,11 @@
 
 <h1 id="flow-modularized-agentic-workflow-automation">Flow: Modularized Agentic Workflow Automation<a class="headerlink" href="#flow-modularized-agentic-workflow-automation" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-01-01  ·  </em><em>Source:</em><em> ICLR  ·  </em><em>Venue:</em><em> ICLR 2025  ·  <a href="https://openreview.net/forum?id=sLKDbuyq99">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Flow%3A%20Modularized%20Agentic%20Workflow%20Automation%22%20%28https%3A//openreview.net/forum%3Fid%3DsLKDbuyq99%29.%20TL%3BDR%3A%20Flow%20is%20a%20multi-agent%20framework%20that%20represents%20the%20agentic%20workflow%20as%20an%20Activity-on-Vertex%20%28AOV%29%20DAG%2C%20enabling%20both%20parallel%20subtask%20execution%20and%20continuous%20runtime%20refinement%20when%20subtasks%20fail.%20It%20selects%20among%20%24K%24%20LLM-generated%20workflow%20candidates%20by%20maximizing%20a%20parallelism%20score%20%24P_%7Bavg%7D%24%20and%20minimizing%20dependency%20complexity%20%24C_%7Bdependency%7D%24%2C%20then%20re-runs%20this%20selection%20loop%20dynamically%20throughout%20execution..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Flow is a multi-agent framework that represents the agentic workflow as an Activity-on-Vertex (AOV) DAG, enabling both parallel subtask execution and continuous runtime refinement when subtasks fail. It selects among <span class="arithmatex">\(K\)</span> LLM-generated workflow candidates by maximizing a parallelism score <span class="arithmatex">\(P_{avg}\)</span> and minimizing dependency complexity <span class="arithmatex">\(C_{dependency}\)</span>, then re-runs this selection loop dynamically throughout execution.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

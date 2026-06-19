@@ -5860,6 +5860,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Agora: LLM agents autonomously detect bugs in production-level consensus protocols</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Agora%3A%20Toward%20Autonomous%20Bug%20Detection%20in%20Production-Level%20Consensus%20Protocols%20with%20LLM%20Agents%22%20%28https%3A//arxiv.org/abs/2605.29910%29.%20TL%3BDR%3A%20Agora%20is%20a%20domain-aware%20three-agent%20LLM%20framework%20that%20autonomously%20detects%20protocol-level%20logic%20bugs%20in%20distributed%20consensus%20implementations%20by%20combining%20hypothesis-driven%20testing%20%28HDT%29%20with%20specialized%20agents%20for%20orchestration%2C%20attack-scenario%20synthesis%2C%20and%20test%20generation.%20Applied%20to%20four%20consensus%20protocol%20codebases%20%28Raft%2C%20EPaxos%2C%20HotStuff%2C%20BullShark%29%2C%20Agora%20discovers%2015%20previously%20unknown%20zero-day%20logic%20bugs%20while%20all%20single-agent%20ReAct%20baselines%20find%20zero%20protocol-level%20bugs.%20The%20key%20ins.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Agora is a domain-aware three-agent LLM framework that autonomously detects protocol-level logic bugs in distributed consensus implementations by combining hypothesis-driven testing (HDT) with specialized agents for orchestration, attack-scenario synthesis, and test generation. Applied to four consensus protocol codebases (Raft, EPaxos, HotStuff, BullShark), Agora discovers 15 previously unknown zero-day logic bugs while all single-agent ReAct baselines find zero protocol-level bugs. The key insight is that detecting safety-violating logic bugs requires global state reasoning across execution stages, which single-agent approaches structurally cannot do.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

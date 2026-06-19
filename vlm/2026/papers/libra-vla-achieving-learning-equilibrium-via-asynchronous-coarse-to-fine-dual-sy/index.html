@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Asynchronous coarse-to-fine dual system balances VLA learning equilibrium; ACL 2026</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Libra-VLA%3A%20Achieving%20Learning%20Equilibrium%20via%20Asynchronous%20Coarse-to-Fine%20Dual-System%22%20%28https%3A//arxiv.org/abs/2604.24921%29.%20TL%3BDR%3A%20Libra-VLA%20introduces%20a%20coarse-to-fine%20dual-system%20VLA%20architecture%20that%20decomposes%20robotic%20action%20generation%20into%20a%20discrete%20Semantic%20Planner%20%28macro-directional%20intent%29%20and%20a%20continuous%20diffusion-based%20Action%20Refiner%20%28fine-grained%20alignment%29%2C%20connected%20asynchronously%20via%20an%20intent%20buffer.%20The%20key%20empirical%20finding%20is%20that%20model%20performance%20follows%20an%20inverted-U%20curve%20with%20respect%20to%20action%20discretization%20granularity%2C%20peaking%20when%20learning%20difficulty%20is%20balanced%20between%20the%20two%20sub-systems.%20On%20LI.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Libra-VLA introduces a coarse-to-fine dual-system VLA architecture that decomposes robotic action generation into a discrete Semantic Planner (macro-directional intent) and a continuous diffusion-based Action Refiner (fine-grained alignment), connected asynchronously via an intent buffer. The key empirical finding is that model performance follows an inverted-U curve with respect to action discretization granularity, peaking when learning difficulty is balanced between the two sub-systems. On LIBERO, Libra-VLA achieves 97.2% average success rate, surpassing all prior baselines including <span class="arithmatex">\(\pi_0\)</span> and GR00T-N1.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

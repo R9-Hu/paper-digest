@@ -5978,6 +5978,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Christopher Ré (Stanford) + Linderman; first info-theoretic framework for multi-LM agentic systems</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22An%20Information%20Theoretic%20Perspective%20on%20Agentic%20System%20Design%22%20%28https%3A//openreview.net/forum%3Fid%3DisFHz8qf20%29.%20TL%3BDR%3A%20This%20paper%20proposes%20an%20information-theoretic%20framework%20for%20designing%20compressor-predictor%20agentic%20systems%2C%20introducing%20a%20mutual%20information%20%28MI%29%20estimator%20to%20quantify%20compression%20quality%20in%20a%20task-agnostic%20way.%20The%20key%20finding%20is%20that%20scaling%20the%20compressor%20LM%20is%20substantially%20more%20effective%20than%20scaling%20the%20predictor%2C%20and%20that%20MI%20rate%20strongly%20predicts%20downstream%20performance%20%28%24r%20%3D%20-0.84%24%2C%20%24R%5E2%20%3D%200.71%24%29.%20A%203B%20local%20compressor%20can%20recover%2099%25%20of%20frontier-LM%20accuracy%20on%20Deep%20Research%20benchmarks%20at.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>This paper proposes an information-theoretic framework for designing compressor-predictor agentic systems, introducing a mutual information (MI) estimator to quantify compression quality in a task-agnostic way. The key finding is that scaling the compressor LM is substantially more effective than scaling the predictor, and that MI rate strongly predicts downstream performance (<span class="arithmatex">\(r = -0.84\)</span>, <span class="arithmatex">\(R^2 = 0.71\)</span>). A 3B local compressor can recover 99% of frontier-LM accuracy on Deep Research benchmarks at 26% of API costs.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

@@ -5860,6 +5860,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Goal-level energy accounting metric; new efficiency unit for multi-step agentic AI</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Energy%20per%20Successful%20Goal%3A%20Goal-Level%20Energy%20Accounting%20for%20Agentic%20AI%20Systems%22%20%28https%3A//arxiv.org/abs/2605.22883%29.%20TL%3BDR%3A%20Current%20AI%20energy%20benchmarks%20normalize%20by%20inference%20invocation%2C%20which%20systematically%20undercounts%20the%20true%20cost%20of%20agentic%20workflows%20where%20retries%2C%20planning%20steps%2C%20and%20failure-recovery%20cycles%20multiply%20energy%20consumption.%20This%20paper%20introduces%20A-LEMS%2C%20a%20measurement%20framework%20redefining%20the%20fundamental%20unit%20as%20Energy%20per%20Successful%20Goal%20%28EpG%29%2C%20and%20demonstrates%20that%20agentic%20workflows%20consume%204.33%C3%97%20more%20energy%20per%20successful%20goal%20than%20linear%20baselines.%20Crucially%2C%20the%20overhead%20is%20driven%20by%20orchestrati.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Current AI energy benchmarks normalize by inference invocation, which systematically undercounts the true cost of agentic workflows where retries, planning steps, and failure-recovery cycles multiply energy consumption. This paper introduces A-LEMS, a measurement framework redefining the fundamental unit as Energy per Successful Goal (EpG), and demonstrates that agentic workflows consume 4.33× more energy per successful goal than linear baselines. Crucially, the overhead is driven by orchestration structure—not inference compute—and inverts below 1.0× for tool-augmented tasks where agentic dispatch eliminates costly token generation.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

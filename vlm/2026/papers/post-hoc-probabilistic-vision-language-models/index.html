@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; post-hoc probabilistic VLMs with calibrated uncertainty in joint space</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Post-hoc%20Probabilistic%20Vision-Language%20Models%22%20%28https%3A//openreview.net/forum%3Fid%3DXLiUcvHfzS%29.%20TL%3BDR%3A%20BayesVLM%20applies%20a%20Laplace%20approximation%20post-hoc%20to%20the%20linear%20projection%20layers%20of%20pre-trained%20VLMs%20%28CLIP%2C%20SigLIP%29%20to%20obtain%20principled%20Bayesian%20uncertainty%20estimates%20over%20cosine%20similarities%20without%20retraining.%20The%20method%20derives%20an%20analytical%20Gaussian%20approximation%20%28ProbCosine%29%20for%20the%20distribution%20over%20cosine%20similarity%2C%20enabling%20efficient%20uncertainty%20propagation.%20It%20demonstrates%20improved%20calibration%20over%20vanilla%20CLIP%20and%20enables%20uncertainty-driven%20active%20fine-tuning%20with%20substantial%20gains%20.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>BayesVLM applies a Laplace approximation post-hoc to the linear projection layers of pre-trained VLMs (CLIP, SigLIP) to obtain principled Bayesian uncertainty estimates over cosine similarities without retraining. The method derives an analytical Gaussian approximation (ProbCosine) for the distribution over cosine similarity, enabling efficient uncertainty propagation. It demonstrates improved calibration over vanilla CLIP and enables uncertainty-driven active fine-tuning with substantial gains over deterministic baselines.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

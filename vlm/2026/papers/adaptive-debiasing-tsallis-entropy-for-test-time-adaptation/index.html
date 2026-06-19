@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; Tsallis entropy debiasing corrects CLIP's built-in bias during TTA</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Adaptive%20Debiasing%20Tsallis%20Entropy%20for%20Test-Time%20Adaptation%22%20%28https%3A//openreview.net/forum%3Fid%3DdHj8hC081K%29.%20TL%3BDR%3A%20CLIP%20and%20similar%20VLMs%20suffer%20from%20prediction%20bias%20toward%20head/tail%20classes%20due%20to%20imbalanced%20pretraining%20data%2C%20which%20corrupts%20Shannon%20Entropy-based%20view%20selection%20during%20test-time%20adaptation%20%28TTA%29.%20This%20paper%20proposes%20Adaptive%20Debiasing%20Tsallis%20Entropy%20%28ADTE%29%2C%20a%20generalized%20entropy%20formulation%20with%20class-specific%2C%20bias-derived%20parameters%20%24q%5El%20%5Cin%20%280%2C1%29%24%20that%20corrects%20this%20bias%20without%20distribution-specific%20hyperparameter%20tuning.%20ADTE%20outperforms%20all%20SOTA%20TTA%20methods%20on%20ImageNet%20and%20its%20five%20vari.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>CLIP and similar VLMs suffer from prediction bias toward head/tail classes due to imbalanced pretraining data, which corrupts Shannon Entropy-based view selection during test-time adaptation (TTA). This paper proposes Adaptive Debiasing Tsallis Entropy (ADTE), a generalized entropy formulation with class-specific, bias-derived parameters <span class="arithmatex">\(q^l \in (0,1)\)</span> that corrects this bias without distribution-specific hyperparameter tuning. ADTE outperforms all SOTA TTA methods on ImageNet and its five variants plus 10 cross-domain benchmarks.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

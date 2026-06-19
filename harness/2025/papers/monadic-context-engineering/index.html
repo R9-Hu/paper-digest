@@ -5853,6 +5853,11 @@
 
 <h1 id="monadic-context-engineering">Monadic Context Engineering<a class="headerlink" href="#monadic-context-engineering" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-12-27 01:52 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="https://arxiv.org/abs/2512.22431">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Monadic%20Context%20Engineering%22%20%28https%3A//arxiv.org/abs/2512.22431%29.%20TL%3BDR%3A%20Monadic%20Context%20Engineering%20%28MCE%29%20proposes%20using%20the%20Functor%E2%86%92Applicative%E2%86%92Monad%20hierarchy%20from%20functional%20programming%20as%20a%20formal%20architectural%20foundation%20for%20LLM%20agent%20workflows.%20It%20introduces%20%60AgentMonad%60%2C%20a%20monad%20transformer%20stack%20%28%60StateT%20S%20%28EitherT%20E%20IO%29%60%29%20that%20unifies%20state%20threading%2C%20error%20short-circuiting%2C%20and%20async%20side%20effects%20into%20a%20single%20composable%20abstraction.%20The%20framework%20extends%20to%20Meta-Agents%20that%20treat%20sub-agent%20workflow%20construction%20as%20monadic%20metaprogramming..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Monadic Context Engineering (MCE) proposes using the Functor→Applicative→Monad hierarchy from functional programming as a formal architectural foundation for LLM agent workflows. It introduces <code>AgentMonad</code>, a monad transformer stack (<code>StateT S (EitherT E IO)</code>) that unifies state threading, error short-circuiting, and async side effects into a single composable abstraction. The framework extends to Meta-Agents that treat sub-agent workflow construction as monadic metaprogramming.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

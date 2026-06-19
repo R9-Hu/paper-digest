@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Recoverable visual token routing; practical KV-cache and attention cost reduction for VLMs</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Reroute%2C%20Don%27t%20Remove%3A%20Recoverable%20Visual%20Token%20Routing%20for%20Vision-Language%20Models%22%20%28https%3A//huggingface.co/papers/2606.12412%29.%20TL%3BDR%3A%20Reroute%20is%20a%20training-free%20plug-in%20that%20replaces%20the%20irreversible%20%22rank-and-remove%22%20action%20in%20decoder-side%20visual%20token%20pruning%20with%20recoverable%20routing%3A%20tokens%20ranked%20low%20at%20one%20decoder%20stage%20are%20deferred%20%28not%20deleted%29%20and%20re-compete%20for%20selection%20at%20subsequent%20stages.%20Applied%20to%20FastV%2C%20PDrop%2C%20and%20N%C3%BCwa%20across%20LLaVA-1.5-7B%2C%20Qwen2.5-VL-7B%2C%20and%20Qwen3.5-9B-Hybrid%2C%20it%20consistently%20improves%20visual%20grounding%20under%20aggressive%20token%20reduction%20while%20preserving%20general%20VQA%20performance%20at%20matched%20theoretic.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Reroute is a training-free plug-in that replaces the irreversible "rank-and-remove" action in decoder-side visual token pruning with recoverable routing: tokens ranked low at one decoder stage are deferred (not deleted) and re-compete for selection at subsequent stages. Applied to FastV, PDrop, and Nüwa across LLaVA-1.5-7B, Qwen2.5-VL-7B, and Qwen3.5-9B-Hybrid, it consistently improves visual grounding under aggressive token reduction while preserving general VQA performance at matched theoretical FLOPs and KV-cache cost.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

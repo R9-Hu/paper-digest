@@ -5867,6 +5867,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; Talking Points: pixel-precise keypoint comprehension via natural language</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Talking%20Points%3A%20Describing%20and%20Localizing%20Pixels%22%20%28https%3A//openreview.net/forum%3Fid%3DFcGQVshxMP%29.%20TL%3BDR%3A%20Talking%20Points%20introduces%20a%20bidirectional%20pixel-level%20grounding%20framework%20consisting%20of%20a%20Point%20Descriptor%20%28image%2Bkeypoint%20%E2%86%92%20free-form%20natural%20language%29%20and%20a%20Point%20Localizer%20%28description%20%E2%86%92%20pixel%20coordinates%29%2C%20pushing%20VLM%20grounding%20from%20object/region%20granularity%20down%20to%20individual%20pixels.%20They%20synthesize%20a%2020K%2B%20dataset%20%28LlamaPointInPart%29%20of%20image%E2%80%93keypoint%E2%80%93description%20triplets%20and%20fine-tune%20the%20descriptor%20via%20GRPO%20with%20the%20localizer%20as%20a%20reward%20model%20for%20cross-category%20generalization.%20The%20method%20.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Talking Points introduces a bidirectional pixel-level grounding framework consisting of a Point Descriptor (image+keypoint → free-form natural language) and a Point Localizer (description → pixel coordinates), pushing VLM grounding from object/region granularity down to individual pixels. They synthesize a 20K+ dataset (LlamaPointInPart) of image–keypoint–description triplets and fine-tune the descriptor via GRPO with the localizer as a reward model for cross-category generalization. The method doubles the OMG-LLaVA baseline and outperforms ChatGPT-5 and human annotators on the new benchmark.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

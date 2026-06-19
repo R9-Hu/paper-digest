@@ -5842,6 +5842,11 @@
 
 <h1 id="optimizing-agentic-language-model-inference-via-speculative-tool-calls">Optimizing Agentic Language Model Inference via Speculative Tool Calls<a class="headerlink" href="#optimizing-agentic-language-model-inference-via-speculative-tool-calls" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-12-17 18:22 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="https://arxiv.org/abs/2512.15834">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Optimizing%20Agentic%20Language%20Model%20Inference%20via%20Speculative%20Tool%20Calls%22%20%28https%3A//arxiv.org/abs/2512.15834%29.%20TL%3BDR%3A%20This%20paper%20identifies%20tool-call%20interruptions%20as%20the%20dominant%20inference%20bottleneck%20for%20LM-based%20agents%E2%80%94each%20call%20evicts%20the%20sequence%2C%20stalls%20generation%2C%20and%20forces%20re-prefill.%20It%20introduces%20%2Aspeculative%20tool%20calling%2A%20in%20two%20variants%20%28client-side%20and%20engine-side%29%20that%20pre-execute%20tools%20using%20a%20smaller%20model%20in%20parallel%20with%20main-model%20generation%2C%20achieving%20up%20to%20196%20tok/s%20throughput%20improvement%20and%20up%20to%2021%25%20per-agent%20time%20savings..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>This paper identifies tool-call interruptions as the dominant inference bottleneck for LM-based agents—each call evicts the sequence, stalls generation, and forces re-prefill. It introduces <em>speculative tool calling</em> in two variants (client-side and engine-side) that pre-execute tools using a smaller model in parallel with main-model generation, achieving up to 196 tok/s throughput improvement and up to 21% per-agent time savings.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

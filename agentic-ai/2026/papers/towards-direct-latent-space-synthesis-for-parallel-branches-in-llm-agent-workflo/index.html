@@ -5835,6 +5835,11 @@
 
 <h1 id="towards-direct-latent-space-synthesis-for-parallel-branches-in-llm-agent-workflows">Towards Direct Latent-Space Synthesis for Parallel Branches in LLM-Agent Workflows<a class="headerlink" href="#towards-direct-latent-space-synthesis-for-parallel-branches-in-llm-agent-workflows" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2026-06-12 17:39 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="http://arxiv.org/abs/2606.14672v1">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Towards%20Direct%20Latent-Space%20Synthesis%20for%20Parallel%20Branches%20in%20LLM-Agent%20Workflows%22%20%28http%3A//arxiv.org/abs/2606.14672v1%29.%20TL%3BDR%3A%20Parallel-Synthesis%20is%20a%20plug-and-play%20framework%20that%20lets%20a%20synthesizer%20LLM%20directly%20consume%20KV%20caches%20produced%20by%20parallel%20worker%20agents%2C%20bypassing%20text%20serialization%20entirely.%20It%20matches%20or%20outperforms%20text-based%20synthesis%20on%207%20of%209%20benchmarks%20while%20reducing%20time-to-first-token%20by%202.5%C3%97%E2%80%9311%C3%97.%20The%20key%20insight%20is%20that%20re-prefilling%20worker%20outputs%20as%20text%20is%20redundant%20and%20discards%20the%20DAG%20structure%20inherent%20in%20parallel%20agent%20workflows..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Parallel-Synthesis is a plug-and-play framework that lets a synthesizer LLM directly consume KV caches produced by parallel worker agents, bypassing text serialization entirely. It matches or outperforms text-based synthesis on 7 of 9 benchmarks while reducing time-to-first-token by 2.5×–11×. The key insight is that re-prefilling worker outputs as text is redundant and discards the DAG structure inherent in parallel agent workflows.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

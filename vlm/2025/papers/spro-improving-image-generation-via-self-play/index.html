@@ -5856,6 +5856,11 @@
 
 <h1 id="spro-improving-image-generation-via-self-play">SPRO: Improving Image Generation via Self-Play<a class="headerlink" href="#spro-improving-image-generation-via-self-play" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-01-01  ·  </em><em>Source:</em><em> NeurIPS  ·  </em><em>Venue:</em><em> NeurIPS 2025  ·  <a href="https://openreview.net/forum?id=A4JiifkTzq">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22SPRO%3A%20Improving%20Image%20Generation%20via%20Self-Play%22%20%28https%3A//openreview.net/forum%3Fid%3DA4JiifkTzq%29.%20TL%3BDR%3A%20SPRO%20%28Self-Play%20Reward%20Optimization%29%20is%20an%20annotation-free%20framework%20that%20uses%20a%20VLM%20%28Guider-VLM%29%20trained%20via%20iterative%20DPO%20self-play%20to%20generate%20reward-optimized%20prompts%20for%20diffusion%20models%2C%20then%20fine-tunes%20the%20diffusion%20model%20on%20the%20resulting%20high-reward%20synthetic%20images.%20The%20three-stage%20pipeline%E2%80%94prompt-space%2C%20image-space%2C%20and%20joint%20optimization%E2%80%94achieves%20~30%25%20average%20improvement%20across%20aesthetic%2C%20engagement%2C%20and%20user-preference%20objectives%20without%20any%20human-labeled%20data..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>SPRO (Self-Play Reward Optimization) is an annotation-free framework that uses a VLM (Guider-VLM) trained via iterative DPO self-play to generate reward-optimized prompts for diffusion models, then fine-tunes the diffusion model on the resulting high-reward synthetic images. The three-stage pipeline—prompt-space, image-space, and joint optimization—achieves ~30% average improvement across aesthetic, engagement, and user-preference objectives without any human-labeled data.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

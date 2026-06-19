@@ -5856,6 +5856,11 @@
 
 <h1 id="superclip-clip-with-simple-classification-supervision">SuperCLIP: CLIP with Simple Classification Supervision<a class="headerlink" href="#superclip-clip-with-simple-classification-supervision" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-01-01  ·  </em><em>Source:</em><em> NeurIPS  ·  </em><em>Venue:</em><em> NeurIPS 2025  ·  <a href="https://openreview.net/forum?id=EeIEvZlmVg">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22SuperCLIP%3A%20CLIP%20with%20Simple%20Classification%20Supervision%22%20%28https%3A//openreview.net/forum%3Fid%3DEeIEvZlmVg%29.%20TL%3BDR%3A%20SuperCLIP%20augments%20CLIP%27s%20contrastive%20training%20objective%20with%20a%20token-level%20classification%20loss%20by%20treating%20raw%20text%20subword%20tokens%20%28IDF-weighted%20K-hot%20vectors%29%20as%20classification%20targets%20for%20the%20vision%20encoder%20via%20a%20single%20lightweight%20linear%20head.%20This%20costs%20only%200.077%25%20additional%20FLOPs%20and%20requires%20no%20extra%20annotated%20data%2C%20yet%20consistently%20improves%20zero-shot%20classification%2C%20image-text%20retrieval%2C%20and%20purely%20visual%20tasks%20across%20model%20scales..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>SuperCLIP augments CLIP's contrastive training objective with a token-level classification loss by treating raw text subword tokens (IDF-weighted K-hot vectors) as classification targets for the vision encoder via a single lightweight linear head. This costs only 0.077% additional FLOPs and requires no extra annotated data, yet consistently improves zero-shot classification, image-text retrieval, and purely visual tasks across model scales.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

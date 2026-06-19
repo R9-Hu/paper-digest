@@ -5849,6 +5849,11 @@
 
 <h1 id="fault-tolerant-sandboxing-for-ai-coding-agents-a-transactional-approach-to-safe-autonomous-execution">Fault-Tolerant Sandboxing for AI Coding Agents: A Transactional Approach to Safe Autonomous Execution<a class="headerlink" href="#fault-tolerant-sandboxing-for-ai-coding-agents-a-transactional-approach-to-safe-autonomous-execution" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-12-14 19:03 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="https://arxiv.org/abs/2512.12806">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Fault-Tolerant%20Sandboxing%20for%20AI%20Coding%20Agents%3A%20A%20Transactional%20Approach%20to%20Safe%20Autonomous%20Execution%22%20%28https%3A//arxiv.org/abs/2512.12806%29.%20TL%3BDR%3A%20This%20paper%20proposes%20a%20transactional%20sandboxing%20framework%20for%20AI%20coding%20agents%20that%20wraps%20every%20tool-call%20in%20an%20ACID-style%20snapshot/rollback%20mechanism%2C%20enforced%20by%20a%20lightweight%20policy%20engine.%20Deployed%20on%20a%20Proxmox/EVPN%20testbed%20with%20the%20Minimind-MoE%20SLM%20%28~26M%20params%29%2C%20it%20achieves%20100%25%20interception%20of%20destructive%20commands%20and%20100%25%20rollback%20success%20at%20only%2014.5%25%20latency%20overhead%20%28~1.8s%20per%20transaction%29..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>This paper proposes a transactional sandboxing framework for AI coding agents that wraps every tool-call in an ACID-style snapshot/rollback mechanism, enforced by a lightweight policy engine. Deployed on a Proxmox/EVPN testbed with the Minimind-MoE SLM (~26M params), it achieves 100% interception of destructive commands and 100% rollback success at only 14.5% latency overhead (~1.8s per transaction).</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

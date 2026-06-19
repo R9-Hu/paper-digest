@@ -5849,6 +5849,11 @@
 
 <h1 id="learning-to-instruct-for-visual-instruction-tuning">Learning to Instruct for Visual Instruction Tuning<a class="headerlink" href="#learning-to-instruct-for-visual-instruction-tuning" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-01-01  ·  </em><em>Source:</em><em> NeurIPS  ·  </em><em>Venue:</em><em> NeurIPS 2025  ·  <a href="https://openreview.net/forum?id=NQSWkmjODD">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Learning%20to%20Instruct%20for%20Visual%20Instruction%20Tuning%22%20%28https%3A//openreview.net/forum%3Fid%3DNQSWkmjODD%29.%20TL%3BDR%3A%20L2T%20%28Learning%20to%20InstrucT%29%20augments%20standard%20visual%20instruction%20tuning%20%28VIT%29%20by%20extending%20the%20training%20loss%20to%20also%20predict%20the%20instruction%20sequence%20%28minus%20boilerplate%20template%20tokens%29%2C%20forcing%20the%20model%20to%20proactively%20attend%20to%20image%20content.%20This%20acts%20as%20a%20zero-cost%20regularizer%3A%20no%20extra%20data%2C%20%3C1%25%20compute%20overhead%2C%20yet%20yields%20up%20to%208.5%25%20overall%20improvement%20across%2016%20benchmarks%20and%20up%20to%2017.6%25%20on%20captioning..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>L2T (Learning to InstrucT) augments standard visual instruction tuning (VIT) by extending the training loss to also predict the instruction sequence (minus boilerplate template tokens), forcing the model to proactively attend to image content. This acts as a zero-cost regularizer: no extra data, &lt;1% compute overhead, yet yields up to 8.5% overall improvement across 16 benchmarks and up to 17.6% on captioning.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

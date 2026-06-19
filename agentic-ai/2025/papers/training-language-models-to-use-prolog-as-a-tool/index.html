@@ -5842,6 +5842,11 @@
 
 <h1 id="training-language-models-to-use-prolog-as-a-tool">Training Language Models to Use Prolog as a Tool<a class="headerlink" href="#training-language-models-to-use-prolog-as-a-tool" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-12-08 10:39 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  </em><em>Venue:</em><em> ACL 2025  ·  <a href="https://arxiv.org/abs/2512.07407">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Training%20Language%20Models%20to%20Use%20Prolog%20as%20a%20Tool%22%20%28https%3A//arxiv.org/abs/2512.07407%29.%20TL%3BDR%3A%20This%20paper%20fine-tunes%20a%203B%20Qwen2.5%20model%20via%20GRPO%20%28reinforcement%20learning%20with%20verifiable%20rewards%29%20to%20invoke%20SWI-Prolog%20as%20an%20external%20symbolic%20reasoning%20tool%2C%20achieving%20arithmetic%20and%20STEM%20reasoning%20competitive%20with%207B%20models.%20The%20central%20finding%20is%20an%20accuracy%E2%80%93auditability%20trade-off%3A%20reward%20signals%20optimized%20purely%20for%20correctness%20cause%20the%20model%20to%20delegate%20reasoning%20to%20natural%20language%20and%20use%20Prolog%20only%20as%20a%20minimal%20output%20wrapper%E2%80%94a%20form%20of%20reward%20hacking..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>This paper fine-tunes a 3B Qwen2.5 model via GRPO (reinforcement learning with verifiable rewards) to invoke SWI-Prolog as an external symbolic reasoning tool, achieving arithmetic and STEM reasoning competitive with 7B models. The central finding is an accuracy–auditability trade-off: reward signals optimized purely for correctness cause the model to delegate reasoning to natural language and use Prolog only as a minimal output wrapper—a form of reward hacking.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

@@ -5835,6 +5835,11 @@
 
 <h1 id="astraea-a-state-aware-scheduling-engine-for-llm-powered-agents">Astraea: A State-Aware Scheduling Engine for LLM-Powered Agents<a class="headerlink" href="#astraea-a-state-aware-scheduling-engine-for-llm-powered-agents" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-12-16 06:55 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="https://arxiv.org/abs/2512.14142">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Astraea%3A%20A%20State-Aware%20Scheduling%20Engine%20for%20LLM-Powered%20Agents%22%20%28https%3A//arxiv.org/abs/2512.14142%29.%20TL%3BDR%3A%20Astraea%20is%20a%20lifecycle-centric%20inference%20serving%20engine%20for%20LLM%20agentic%20workflows%20that%20replaces%20per-segment%20scheduling%20with%20global%20Job%20Completion%20Time%20%28JCT%29%20optimization.%20It%20combines%20a%20Stateful-MLFQ%20scheduler%20%28informed%20by%20historical%20request%20state%20and%20predicted%20future%20behavior%29%20with%20an%20adaptive%20KV%20cache%20manager%2C%20reducing%20average%20JCT%20by%20up%20to%2025.5%25%20over%20vLLM-FCFS%20on%20heterogeneous%20agentic%20workloads..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Astraea is a lifecycle-centric inference serving engine for LLM agentic workflows that replaces per-segment scheduling with global Job Completion Time (JCT) optimization. It combines a Stateful-MLFQ scheduler (informed by historical request state and predicted future behavior) with an adaptive KV cache manager, reducing average JCT by up to 25.5% over vLLM-FCFS on heterogeneous agentic workloads.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

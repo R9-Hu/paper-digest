@@ -5867,6 +5867,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; hybrid VLA training combining CoT with diffusion-based actions</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Hybrid%20Training%20for%20Vision-Language-Action%20Models%22%20%28https%3A//openreview.net/forum%3Fid%3DIBJtOltTbx%29.%20TL%3BDR%3A%20Hybrid%20Training%20%28HyT%29%20is%20a%20framework%20that%20trains%20Vision-Language-Action%20%28VLA%29%20models%20on%20both%20chain-of-thought%20%28CoT%29%20reasoning%20traces%20and%20direct%20action%20prediction%20via%20a%20modality%20variable%2C%20enabling%20the%20model%20to%20internalize%20CoT%20knowledge%20without%20generating%20thoughts%20at%20inference%20time.%20This%20decouples%20the%20performance%20benefits%20of%20embodied%20CoT%20from%20its%20inference-time%20cost%2C%20matching%20ECoT%20accuracy%20at%20standard%20VLA%20speed%20%28~3%20Hz%20vs.%20ECoT%27s%20~1%20Hz%29.%20The%20core%20insight%20is%20that%20CoT%27s%20value%20lies%20primarily%20in%20shapin.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Hybrid Training (HyT) is a framework that trains Vision-Language-Action (VLA) models on both chain-of-thought (CoT) reasoning traces and direct action prediction via a modality variable, enabling the model to internalize CoT knowledge without generating thoughts at inference time. This decouples the performance benefits of embodied CoT from its inference-time cost, matching ECoT accuracy at standard VLA speed (~3 Hz vs. ECoT's ~1 Hz). The core insight is that CoT's value lies primarily in shaping learned representations, not in runtime thought generation.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

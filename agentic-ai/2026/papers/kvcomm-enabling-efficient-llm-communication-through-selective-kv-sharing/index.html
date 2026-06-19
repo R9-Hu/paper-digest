@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>KV-sharing cuts inter-LLM communication cost in multi-agent pipeline inference</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22KVComm%3A%20Enabling%20Efficient%20LLM%20Communication%20through%20Selective%20KV%20Sharing%22%20%28https%3A//openreview.net/forum%3Fid%3DF7rUng23nw%29.%20TL%3BDR%3A%20KVComm%20is%20a%20communication%20framework%20for%20multi-agent%20LLM%20systems%20that%20replaces%20natural-language%20or%20hidden-state%20messaging%20with%20selective%20sharing%20of%20key-value%20%28KV%29%20pairs%20across%20transformer%20layers.%20A%20layer%20selection%20strategy%20combining%20per-layer%20attention%20importance%20scores%20with%20a%20Gaussian%20prior%20identifies%20the%20most%20informative%20subset%20of%20layers%20to%20transmit.%20With%20only%2030%E2%80%9370%25%20of%20layers%27%20KV%20pairs%20shared%2C%20KVComm%20matches%20or%20exceeds%20the%20%22Skyline%22%20upper%20bound%20of%20directly%20concatenating%20both%20inputs%2C%20while%20cutt.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>KVComm is a communication framework for multi-agent LLM systems that replaces natural-language or hidden-state messaging with selective sharing of key-value (KV) pairs across transformer layers. A layer selection strategy combining per-layer attention importance scores with a Gaussian prior identifies the most informative subset of layers to transmit. With only 30–70% of layers' KV pairs shared, KVComm matches or exceeds the "Skyline" upper bound of directly concatenating both inputs, while cutting computation by 2.5–6×.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICML 2026; immunizing VLMs against open-world adversarial semantic vulnerabilities</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Immuno-VLM%3A%20Immunizing%20Large%20Vision-Language%20Models%20via%20Generative%20Semantic%20Antibodies%20for%20Open-World%20Trustworthiness%22%20%28https%3A//arxiv.org/abs/2605.30745%29.%20TL%3BDR%3A%20Immuno-VLM%20addresses%20the%20%22Hubris%20of%20Semantics%22%20in%20large%20VLMs%20%E2%80%94%20their%20tendency%20to%20force-fit%20OOD%20inputs%20into%20known%20categories%20with%20high%20confidence%20%E2%80%94%20by%20borrowing%20the%20biological%20principle%20of%20thymic%20negative%20selection.%20The%20framework%20uses%20an%20LLM%20as%20a%20%22Computational%20Thymus%22%20to%20hallucinate%20textual%20descriptions%20of%20near-OOD%20concepts%20%28%22Semantic%20Antibodies%22%29%2C%20projects%20them%20into%20the%20shared%20embedding%20space%20to%20bound%20decision%20regions%2C%20and%20trains%20a%20lightweight%20adapter%20to%20explicitly%20repel%20these%20antibodies%20while%20.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Immuno-VLM addresses the "Hubris of Semantics" in large VLMs — their tendency to force-fit OOD inputs into known categories with high confidence — by borrowing the biological principle of thymic negative selection. The framework uses an LLM as a "Computational Thymus" to hallucinate textual descriptions of near-OOD concepts ("Semantic Antibodies"), projects them into the shared embedding space to bound decision regions, and trains a lightweight adapter to explicitly repel these antibodies while retaining in-distribution performance.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

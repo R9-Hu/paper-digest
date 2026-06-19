@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Formal DAG model composing specialized agents with risk-sensitive workflow guarantees</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Risk-Sensitive%20Agent%20Compositions%22%20%28https%3A//openreview.net/forum%3Fid%3DiHQIacMKka%29.%20TL%3BDR%3A%20This%20paper%20formalizes%20agentic%20workflows%20as%20directed%20acyclic%20graphs%20%28agent%20graphs%29%20and%20addresses%20the%20problem%20of%20selecting%20agent%20compositions%20that%20minimize%20tail-risk%20measures%E2%80%94value-at-risk%20%28%24%5Ctext%7BVaR%7D_%5Calpha%24%29%20and%20conditional%20value-at-risk%20%28%24%5Ctext%7BCVaR%7D_%5Calpha%24%29%E2%80%94over%20safety%2C%20fairness%2C%20and%20privacy%20loss%20functions.%20The%20authors%20introduce%20%2A%2ABucketedVaR%2A%2A%2C%20a%20polynomial-time%20dynamic%20programming%20algorithm%20that%20allocates%20a%20risk%20budget%20across%20agents%20using%20a%20union%20bound%2C%20and%20prove%20it%20is%20asymptotically%20near-.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>This paper formalizes agentic workflows as directed acyclic graphs (agent graphs) and addresses the problem of selecting agent compositions that minimize tail-risk measures—value-at-risk (<span class="arithmatex">\(\text{VaR}_\alpha\)</span>) and conditional value-at-risk (<span class="arithmatex">\(\text{CVaR}_\alpha\)</span>)—over safety, fairness, and privacy loss functions. The authors introduce <strong>BucketedVaR</strong>, a polynomial-time dynamic programming algorithm that allocates a risk budget across agents using a union bound, and prove it is asymptotically near-optimal under agent independence. Experiments on compositional RL benchmarks confirm tight approximations of both risk measures.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

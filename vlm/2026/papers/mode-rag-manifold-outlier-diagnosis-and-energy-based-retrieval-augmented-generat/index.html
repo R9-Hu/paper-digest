@@ -5867,6 +5867,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ACL 2026; multimodal RAG evaluation exposing cross-modal hallucination and sycophancy failures</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22MODE-RAG%3A%20Manifold%20Outlier%20Diagnosis%20and%20Energy-based%20Retrieval-Augmented%20Generation%20Evaluation%22%20%28https%3A//arxiv.org/abs/2606.17449%29.%20TL%3BDR%3A%20MODE-RAG%20is%20a%20multi-agent%20framework%20that%20resolves%20the%20%22intervention%20paradox%22%20in%20Multimodal%20RAG%20%28M-RAG%29%20systems%E2%80%94where%20static%20correction%20rules%20either%20over-correct%20accurate%20outputs%20or%20under-correct%20hallucinated%20ones%E2%80%94by%20using%20Variational%20Free%20Energy%20%28VFE%29%20to%20gate%20interventions%20dynamically.%20A%20five-agent%20pipeline%20handles%20high-risk%20queries%20with%20MCTS-guided%20causal%20reasoning%20and%20logit%20perturbation%20to%20suppress%20sycophancy.%20The%20authors%20also%20introduce%20ModeVent%2C%20a%201%2C000-sample%20adversarial%20benchmark%20derived%20fr.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>MODE-RAG is a multi-agent framework that resolves the "intervention paradox" in Multimodal RAG (M-RAG) systems—where static correction rules either over-correct accurate outputs or under-correct hallucinated ones—by using Variational Free Energy (VFE) to gate interventions dynamically. A five-agent pipeline handles high-risk queries with MCTS-guided causal reasoning and logit perturbation to suppress sycophancy. The authors also introduce ModeVent, a 1,000-sample adversarial benchmark derived from MultiVent by selecting the 500 highest- and 500 lowest-VFE samples.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

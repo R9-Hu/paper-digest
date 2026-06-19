@@ -5849,6 +5849,11 @@
 
 <h1 id="self-taught-agentic-long-context-understanding">Self-Taught Agentic Long Context Understanding<a class="headerlink" href="#self-taught-agentic-long-context-understanding" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-02-21 20:29 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  </em><em>Venue:</em><em> ACL 2025  ·  <a href="https://arxiv.org/abs/2502.15920">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Self-Taught%20Agentic%20Long%20Context%20Understanding%22%20%28https%3A//arxiv.org/abs/2502.15920%29.%20TL%3BDR%3A%20AgenticLU%20introduces%20a%20self-taught%20agentic%20framework%20for%20long-context%20QA%20that%20generates%20Chain-of-Clarifications%20%28CoC%29%20traces%20via%20inference-time%20tree%20search%2C%20then%20distills%20those%20traces%20back%20into%20the%20base%20model%20via%20SFT%2BDPO%20%E2%80%94%20eliminating%20the%20need%20for%20human%20annotations%20or%20a%20stronger%20teacher%20model.%20The%20trained%20model%20performs%20full%20CoC%20reasoning%20in%20a%20single%20inference%20pass.%20On%207%20HELMET%20long-context%20benchmarks%20%288K%E2%80%93128K%20tokens%29%2C%20AgenticLU-8B%20outperforms%20prompting%20baselines%20and%20ProLong-8B..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>AgenticLU introduces a self-taught agentic framework for long-context QA that generates Chain-of-Clarifications (CoC) traces via inference-time tree search, then distills those traces back into the base model via SFT+DPO — eliminating the need for human annotations or a stronger teacher model. The trained model performs full CoC reasoning in a single inference pass. On 7 HELMET long-context benchmarks (8K–128K tokens), AgenticLU-8B outperforms prompting baselines and ProLong-8B.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

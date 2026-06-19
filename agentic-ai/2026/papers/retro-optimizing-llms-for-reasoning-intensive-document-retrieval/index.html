@@ -5867,6 +5867,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Optimizes LLMs for indirect reasoning-heavy retrieval required in agentic pipelines</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Retro%2A%3A%20Optimizing%20LLMs%20for%20Reasoning-Intensive%20Document%20Retrieval%22%20%28https%3A//openreview.net/forum%3Fid%3D0WGl8PNMSA%29.%20TL%3BDR%3A%20Retro%2A%20is%20a%20reasoning-intensive%20document%20retrieval%20model%20that%20introduces%20rubric-based%20pointwise%20relevance%20scoring%20%E2%80%94%20where%20an%20LLM%20reasons%20against%20explicitly%20defined%20criteria%20to%20produce%20a%200%E2%80%93100%20interpretable%20relevance%20score%20%E2%80%94%20combined%20with%20a%20two-stage%20SFT%2BRL%20training%20strategy%20using%20composite%20intra-%20and%20inter-document%20rewards.%20It%20achieves%20state-of-the-art%20nDCG%4010%20on%20the%20BRIGHT%20benchmark%2C%20outperforming%20all%20reasoning-enhanced%20baselines%20at%20both%207B%20and%2032B%20scale.%20Test-time%20scaling%20via%20score%20integration.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Retro* is a reasoning-intensive document retrieval model that introduces rubric-based pointwise relevance scoring — where an LLM reasons against explicitly defined criteria to produce a 0–100 interpretable relevance score — combined with a two-stage SFT+RL training strategy using composite intra- and inter-document rewards. It achieves state-of-the-art nDCG@10 on the BRIGHT benchmark, outperforming all reasoning-enhanced baselines at both 7B and 32B scale. Test-time scaling via score integration of multiple trajectories further improves accuracy, enabling the 7B model to exceed the standard 32B baseline.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

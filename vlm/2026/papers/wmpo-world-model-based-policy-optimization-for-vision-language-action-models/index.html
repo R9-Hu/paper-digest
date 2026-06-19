@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; world-model RL policy optimization for VLA; goes beyond demonstrations</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22WMPO%3A%20World%20Model-based%20Policy%20Optimization%20for%20Vision-Language-Action%20Models%22%20%28https%3A//openreview.net/forum%3Fid%3DqE2FyvRvuF%29.%20TL%3BDR%3A%20WMPO%20%28World%20Model-based%20Policy%20Optimization%29%20is%20a%20framework%20that%20enables%20on-policy%20reinforcement%20learning%20for%20Vision-Language-Action%20%28VLA%29%20robotic%20manipulation%20models%20entirely%20within%20a%20learned%20pixel-space%20video%20world%20model%2C%20eliminating%20the%20need%20for%20costly%20real-world%20rollouts.%20The%20world%20model%20is%20pre-trained%20on%20large-scale%20robot%20trajectories%20%28OXE%29%20and%20aligned%20to%20the%20current%20policy%27s%20behavior%20distribution%2C%20then%20used%20as%20a%20synthetic%20environment%20for%20GRPO-based%20policy%20optimization.%20This%20produces%20emerge.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>WMPO (World Model-based Policy Optimization) is a framework that enables on-policy reinforcement learning for Vision-Language-Action (VLA) robotic manipulation models entirely within a learned pixel-space video world model, eliminating the need for costly real-world rollouts. The world model is pre-trained on large-scale robot trajectories (OXE) and aligned to the current policy's behavior distribution, then used as a synthetic environment for GRPO-based policy optimization. This produces emergent self-correction behaviors not present in the demonstration data.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

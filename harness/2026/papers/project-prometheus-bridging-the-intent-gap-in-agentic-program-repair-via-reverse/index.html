@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Reverse-engineered executable specs bridge intent gap in agentic program repair</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Project%20Prometheus%3A%20Bridging%20the%20Intent%20Gap%20in%20Agentic%20Program%20Repair%20via%20Reverse-Engineered%20Executable%20Specifications%22%20%28https%3A//arxiv.org/abs/2604.17464%29.%20TL%3BDR%3A%20Prometheus%20is%20a%20multi-agent%20Automated%20Program%20Repair%20%28APR%29%20framework%20that%20inverts%20the%20standard%20repair%20workflow%3A%20instead%20of%20asking%20an%20LLM%20to%20fix%20a%20bug%20directly%2C%20it%20first%20reverse-engineers%20executable%20Behavior-Driven%20Development%20%28BDD/Gherkin%29%20specifications%20from%20runtime%20failure%20reports%2C%20validates%20them%20against%20ground-truth%20code%20via%20a%20Requirement%20Quality%20Assurance%20%28RQA%29%20Loop%2C%20then%20supplies%20these%20verified%20specs%20to%20a%20separate%20coding%20agent.%20On%20680%20Defects4J%20bugs%2C%20Prometheus%20achieves%20a%2093.97%25%20correct%20pat.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Prometheus is a multi-agent Automated Program Repair (APR) framework that inverts the standard repair workflow: instead of asking an LLM to fix a bug directly, it first reverse-engineers executable Behavior-Driven Development (BDD/Gherkin) specifications from runtime failure reports, validates them against ground-truth code via a Requirement Quality Assurance (RQA) Loop, then supplies these verified specs to a separate coding agent. On 680 Defects4J bugs, Prometheus achieves a 93.97% correct patch rate and a 74.4% rescue rate on bugs a strong blind agent could not solve.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

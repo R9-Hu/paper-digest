@@ -5860,6 +5860,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Adaptive info flow fixes VLMs that see but don't perceive; CVPR 2026</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Aligning%20What%20Vision-Language%20Models%20See%20and%20Perceive%20with%20Adaptive%20Information%20Flow%22%20%28https%3A//arxiv.org/abs/2604.15809%29.%20TL%3BDR%3A%20VLMs%20often%20%22see%22%20the%20correct%20image%20region%20via%20attention%20but%20fail%20to%20produce%20correct%20answers%20because%20text%20tokens%20spread%20attention%20across%20irrelevant%20visual%20tokens%2C%20corrupting%20the%20decoding%20path.%20This%20paper%20proposes%20AIF%2C%20a%20training-free%20method%20that%20modulates%20the%20causal%20mask%20at%20inference%20time%20to%20block%20text-to-irrelevant-visual-token%20connections%2C%20improving%20perception%20without%20retraining.%20It%20improves%20LLaVA-1.5-7B%20and%20Qwen2.5-VL-7B%20across%20VQA%2C%20OCR%2C%20grounding%2C%20counting%2C%20and%20hallucination%20benchmarks..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>VLMs often "see" the correct image region via attention but fail to produce correct answers because text tokens spread attention across irrelevant visual tokens, corrupting the decoding path. This paper proposes AIF, a training-free method that modulates the causal mask at inference time to block text-to-irrelevant-visual-token connections, improving perception without retraining. It improves LLaVA-1.5-7B and Qwen2.5-VL-7B across VQA, OCR, grounding, counting, and hallucination benchmarks.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

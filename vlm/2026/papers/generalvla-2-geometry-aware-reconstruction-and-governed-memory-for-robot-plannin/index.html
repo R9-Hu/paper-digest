@@ -5860,6 +5860,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Geometry-aware 3D reconstruction + memory for generalist VLA robot planning</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22GeneralVLA-2%3A%20Geometry-Aware%20Reconstruction%20and%20Governed%20Memory%20for%20Robot%20Planning%22%20%28https%3A//arxiv.org/abs/2606.17480%29.%20TL%3BDR%3A%20GeneralVLA-2%20extends%20the%20GeneralVLA%20hierarchical%20VLA%20framework%20with%20two%20planner-facing%20improvements%3A%20GeoFuse-MV3D%2C%20a%20conservative%20multi-view%203D%20reconstruction%20branch%20that%20fuses%20geometry-prior%20guidance%20with%20mask-verified%20soft%20visual-hull%20support%2C%20and%20a%20governed%20KnowledgeBank%20that%20replaces%20append-only%20semantic%20memory%20with%20explicit%20quality%2C%20confidence%2C%20lifecycle%2C%20and%20conflict%20metadata%20for%20precision-oriented%20retrieval.%20Together%20these%20strengthen%20the%20two%20evidence%20streams%E2%80%94object%20geometry%20and%20manipulati.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>GeneralVLA-2 extends the GeneralVLA hierarchical VLA framework with two planner-facing improvements: GeoFuse-MV3D, a conservative multi-view 3D reconstruction branch that fuses geometry-prior guidance with mask-verified soft visual-hull support, and a governed KnowledgeBank that replaces append-only semantic memory with explicit quality, confidence, lifecycle, and conflict metadata for precision-oriented retrieval. Together these strengthen the two evidence streams—object geometry and manipulation experience—fed to the 3DAgent planner. Evaluations on GSO-30, Terminal-Bench 2.0, SWE-Bench Verified, RLBench simulation, and real-world manipulation all show consistent improvements over respective baselines.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

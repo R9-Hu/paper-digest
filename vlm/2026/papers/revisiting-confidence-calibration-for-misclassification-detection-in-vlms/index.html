@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Standard calibration degrades misclassification detection in VLMs; key theoretical finding</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Revisiting%20Confidence%20Calibration%20for%20Misclassification%20Detection%20in%20VLMs%22%20%28https%3A//openreview.net/forum%3Fid%3Dd8WMoi571f%29.%20TL%3BDR%3A%20Standard%20confidence%20calibration%20for%20VLMs%20theoretically%20limits%20misclassification%20detection%20%28MisD%29%20performance%20because%20aligning%20a%20reliability%20curve%20to%20the%20diagonal%20does%20not%20maximize%20separation%20between%20correct%20and%20incorrect%20predictions.%20This%20paper%20derives%20a%20new%20MisD-oriented%20calibration%20objective%20based%20on%20a%20normalized%20sigmoid%20reliability%20curve%2C%20proves%20it%20dominates%20perfect%20calibration%20on%20MisD%20precision%2C%20and%20implements%20it%20via%20a%20lightweight%20post-hoc%20meta%20network%20that%20predicts%20per-sample%20temperature%20sc.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Standard confidence calibration for VLMs theoretically limits misclassification detection (MisD) performance because aligning a reliability curve to the diagonal does not maximize separation between correct and incorrect predictions. This paper derives a new MisD-oriented calibration objective based on a normalized sigmoid reliability curve, proves it dominates perfect calibration on MisD precision, and implements it via a lightweight post-hoc meta network that predicts per-sample temperature scaling factors.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

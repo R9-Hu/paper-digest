@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Stateful monitoring catches distributed agent attacks split across many sessions</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Stateful%20Online%20Monitoring%20Catches%20Distributed%20Agent%20Attacks%22%20%28https%3A//arxiv.org/abs/2605.31593%29.%20TL%3BDR%3A%20Standard%20LLM%20safety%20monitors%20score%20one%20agent%20transcript%20at%20a%20time%2C%20making%20them%20structurally%20blind%20to%20distributed%20attacks%20that%20split%20a%20harmful%20objective%20across%20many%20user%20accounts.%20This%20paper%20builds%20the%20first%20formal%20distributed%20agent%20attack%2C%20then%20defends%20against%20it%20with%20an%20online%20stateful%20monitor%20that%20uses%20stream%20clustering%20to%20aggregate%20weak%20suspiciousness%20signals%20across%20millions%20of%20transcripts%20and%20escalates%20only%20rarely%20to%20a%20cross-context%20LLM%20judge.%20The%20stateful%20monitor%20Pareto%20dominates%20standard%20m.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Standard LLM safety monitors score one agent transcript at a time, making them structurally blind to distributed attacks that split a harmful objective across many user accounts. This paper builds the first formal distributed agent attack, then defends against it with an online stateful monitor that uses stream clustering to aggregate weak suspiciousness signals across millions of transcripts and escalates only rarely to a cross-context LLM judge. The stateful monitor Pareto dominates standard monitors: 30% earlier detection at negligible added latency for ~99% of traffic.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

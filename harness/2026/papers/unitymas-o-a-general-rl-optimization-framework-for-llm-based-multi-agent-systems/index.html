@@ -5860,6 +5860,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Unified RL interface optimizing all roles in LLM multi-agent systems end-to-end</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22UnityMAS-O%3A%20A%20General%20RL%20Optimization%20Framework%20for%20LLM-Based%20Multi-Agent%20Systems%22%20%28https%3A//arxiv.org/abs/2605.26646%29.%20TL%3BDR%3A%20UnityMAS-O%20is%20a%20general%20RL%20optimization%20framework%20that%20extends%20the%20single-policy%20%60verl%60%20post-training%20stack%20to%20handle%20arbitrary%20LLM-based%20multi-agent%20workflows.%20It%20introduces%20four%20first-class%20abstractions%E2%80%94logical%20agent%20roles%2C%20workflow%20graphs%2C%20agent-to-model%20mappings%2C%20and%20role-specific%20reward%20functions%E2%80%94and%20backs%20them%20with%20a%20Ray%20star-topology%20runtime%20for%20distributed%20PPO-style%20training.%20Evaluated%20on%20retrieval-augmented%20QA%20%28Natural%20Questions%2C%20HotpotQA%29%20and%20reflective%20code%20generation%2C%20MARL%20training%20i.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>UnityMAS-O is a general RL optimization framework that extends the single-policy <code>verl</code> post-training stack to handle arbitrary LLM-based multi-agent workflows. It introduces four first-class abstractions—logical agent roles, workflow graphs, agent-to-model mappings, and role-specific reward functions—and backs them with a Ray star-topology runtime for distributed PPO-style training. Evaluated on retrieval-augmented QA (Natural Questions, HotpotQA) and reflective code generation, MARL training improves upon manually-specified baselines, with the largest gains on smaller models and strict all-passed code metrics.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

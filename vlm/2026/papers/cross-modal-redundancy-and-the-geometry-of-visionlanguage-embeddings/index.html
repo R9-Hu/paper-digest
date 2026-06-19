@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Geometric probe of VL joint embedding space via cross-modal redundancy</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Cross-Modal%20Redundancy%20and%20the%20Geometry%20of%20Vision%E2%80%93Language%20Embeddings%22%20%28https%3A//openreview.net/forum%3Fid%3DVYQuICALXj%29.%20TL%3BDR%3A%20This%20ICLR%202026%20paper%20introduces%20the%20%2A%2AIso-Energy%20Assumption%2A%2A%20%E2%80%94%20that%20truly%20shared%20cross-modal%20concepts%20must%20exhibit%20equal%20average%20activation%20energy%20across%20modalities%20%E2%80%94%20and%20operationalizes%20it%20with%20an%20Aligned%20Sparse%20Autoencoder%20%28SAE-A%29%20trained%20on%20VLM%20embeddings.%20Applied%20to%20six%20foundational%20dual-encoder%20models%20%28CLIP%2C%20SigLIP%20variants%29%2C%20the%20framework%20reveals%20that%20a%20sparse%20set%20of%20bimodal%20dictionary%20atoms%20carries%20the%20entire%20cross-modal%20alignment%20signal%2C%20while%20unimodal%20atoms%20are%20modality-specific%20biases.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>This ICLR 2026 paper introduces the <strong>Iso-Energy Assumption</strong> — that truly shared cross-modal concepts must exhibit equal average activation energy across modalities — and operationalizes it with an Aligned Sparse Autoencoder (SAE-A) trained on VLM embeddings. Applied to six foundational dual-encoder models (CLIP, SigLIP variants), the framework reveals that a sparse set of bimodal dictionary atoms carries the entire cross-modal alignment signal, while unimodal atoms are modality-specific biases that fully explain the modality gap. Removing unimodal atoms collapses the gap without degrading retrieval performance.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

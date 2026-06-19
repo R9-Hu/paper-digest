@@ -6006,6 +6006,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Novel prefill-time intervention eliminates LVLM hallucinations; inference-time method</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Prefill-Time%20Intervention%20for%20Mitigating%20Hallucination%20in%20Large%20Vision-Language%20Models%22%20%28https%3A//arxiv.org/abs/2604.25642%29.%20TL%3BDR%3A%20Prefill-Time%20Intervention%20%28PTI%29%20mitigates%20hallucinations%20in%20Large%20Vision-Language%20Models%20%28LVLMs%29%20by%20injecting%20modality-specific%20steering%20vectors%20into%20the%20KV%20cache%20once%20during%20the%20prefill%20stage%2C%20before%20any%20autoregressive%20error%20accumulation%20begins.%20Unlike%20decoding-time%20intervention%20%28DTI%29%20methods%20that%20continuously%20steer%20hidden%20states%20and%20inadvertently%20amplify%20residual%20%22snowball%22%20hallucinations%2C%20PTI%20corrects%20the%20initial%20representations%20at%20their%20source.%20It%20achieves%20state-of-the-art%20performance%20on%20obj.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Prefill-Time Intervention (PTI) mitigates hallucinations in Large Vision-Language Models (LVLMs) by injecting modality-specific steering vectors into the KV cache once during the prefill stage, before any autoregressive error accumulation begins. Unlike decoding-time intervention (DTI) methods that continuously steer hidden states and inadvertently amplify residual "snowball" hallucinations, PTI corrects the initial representations at their source. It achieves state-of-the-art performance on object hallucination benchmarks across multiple LVLMs and is orthogonal to existing decoding-stage methods.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

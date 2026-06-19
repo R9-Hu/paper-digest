@@ -5863,6 +5863,11 @@
 
 <h1 id="toolgrad-efficient-tool-use-dataset-generation-with-textual-gradients">ToolGrad: Efficient Tool-use Dataset Generation with Textual "Gradients"<a class="headerlink" href="#toolgrad-efficient-tool-use-dataset-generation-with-textual-gradients" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-08-06 05:04 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  </em><em>Venue:</em><em> ACL 2026  ·  <a href="https://arxiv.org/abs/2508.04086">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22ToolGrad%3A%20Efficient%20Tool-use%20Dataset%20Generation%20with%20Textual%20%22Gradients%22%22%20%28https%3A//arxiv.org/abs/2508.04086%29.%20TL%3BDR%3A%20ToolGrad%20inverts%20the%20standard%20tool-use%20dataset%20generation%20paradigm%3A%20instead%20of%20generating%20a%20user%20query%20and%20then%20searching%20for%20a%20tool-use%20solution%20via%20DFS%2C%20it%20first%20constructs%20valid%20tool-use%20chains%20iteratively%20using%20a%20TextGrad-inspired%20agentic%20loop%2C%20then%20synthesizes%20corresponding%20user%20queries.%20This%20%22answer-first%22%20approach%20achieves%20a%2099.8%25%20annotation%20pass%20rate%20%28vs.%2063.8%25%20for%20DFS%29%20while%20producing%20more%20complex%20chains%20at%20lower%20cost..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>ToolGrad inverts the standard tool-use dataset generation paradigm: instead of generating a user query and then searching for a tool-use solution via DFS, it first constructs valid tool-use chains iteratively using a TextGrad-inspired agentic loop, then synthesizes corresponding user queries. This "answer-first" approach achieves a 99.8% annotation pass rate (vs. 63.8% for DFS) while producing more complex chains at lower cost.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

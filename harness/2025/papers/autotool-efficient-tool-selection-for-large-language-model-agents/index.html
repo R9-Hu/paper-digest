@@ -5842,6 +5842,11 @@
 
 <h1 id="autotool-efficient-tool-selection-for-large-language-model-agents">AutoTool: Efficient Tool Selection for Large Language Model Agents<a class="headerlink" href="#autotool-efficient-tool-selection-for-large-language-model-agents" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-11-18 16:41 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  </em><em>Venue:</em><em> AAAI 2026  ·  <a href="https://arxiv.org/abs/2511.14650">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22AutoTool%3A%20Efficient%20Tool%20Selection%20for%20Large%20Language%20Model%20Agents%22%20%28https%3A//arxiv.org/abs/2511.14650%29.%20TL%3BDR%3A%20AutoTool%20introduces%20a%20graph-based%20pre-filter%20that%20intercepts%20each%20tool-selection%20step%20in%20LLM%20agents%20and%20bypasses%20LLM%20inference%20when%20historical%20trajectories%20predict%20the%20next%20tool%20with%20high%20confidence.%20It%20exploits%20empirically%20validated%20%22tool%20usage%20inertia%22%E2%80%94sequential%20tool%20transitions%20follow%20low-entropy%2C%20Markovian%20patterns%E2%80%94to%20reduce%20LLM%20call%20counts%20by%2015%E2%80%9325%25%20and%20token%20consumption%20by%2010%E2%80%9340%25%20with%20negligible%20accuracy%20loss..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>AutoTool introduces a graph-based pre-filter that intercepts each tool-selection step in LLM agents and bypasses LLM inference when historical trajectories predict the next tool with high confidence. It exploits empirically validated "tool usage inertia"—sequential tool transitions follow low-entropy, Markovian patterns—to reduce LLM call counts by 15–25% and token consumption by 10–40% with negligible accuracy loss.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

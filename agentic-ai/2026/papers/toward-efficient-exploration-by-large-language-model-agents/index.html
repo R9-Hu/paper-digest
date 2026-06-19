@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Griffiths (Princeton) + Arumugam; theoretical grounding for efficient LLM-agent exploration</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Toward%20Efficient%20Exploration%20by%20Large%20Language%20Model%20Agents%22%20%28https%3A//openreview.net/forum%3Fid%3DM3vwnscpL2%29.%20TL%3BDR%3A%20Current%20LLM%20agent%20designs%20lack%20principled%20exploration%20strategies%2C%20causing%20data%20inefficiency%20in%20sequential%20decision-making.%20This%20paper%20proposes%20explicitly%20implementing%20Posterior%20Sampling%20for%20Reinforcement%20Learning%20%28PSRL%29%20via%20three%20modular%20LLM%20subroutines%E2%80%94posterior%20sampler%2C%20optimal-sample%20policy%2C%20and%20posterior%20updater%E2%80%94rather%20than%20relying%20on%20in-context%20learning%20to%20implicitly%20induce%20exploratory%20behavior.%20Empirical%20results%20on%20bandits%20and%20tabular%20MDPs%20show%20this%20approach%20achieves%20exploration%20quality%20ma.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Current LLM agent designs lack principled exploration strategies, causing data inefficiency in sequential decision-making. This paper proposes explicitly implementing Posterior Sampling for Reinforcement Learning (PSRL) via three modular LLM subroutines—posterior sampler, optimal-sample policy, and posterior updater—rather than relying on in-context learning to implicitly induce exploratory behavior. Empirical results on bandits and tabular MDPs show this approach achieves exploration quality matching or exceeding both classic TS and recent LLM agent baselines.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

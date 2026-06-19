@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>CVPR 2026; predictive regularization prevents visual representation degradation during LLM training</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Predictive%20Regularization%20Against%20Visual%20Representation%20Degradation%20in%20Multimodal%20Large%20Language%20Models%22%20%28https%3A//arxiv.org/abs/2603.20808%29.%20TL%3BDR%3A%20MLLMs%20trained%20purely%20on%20next-token%20prediction%20progressively%20degrade%20their%20internal%20visual%20representations%20in%20intermediate%20LLM%20layers%20%E2%80%94%20a%20phenomenon%20the%20authors%20term%20%2Avisual%20representation%20degradation%2A.%20They%20diagnose%20it%20at%20both%20the%20global%20%28linear-probe%20classification%29%20and%20patch%20%28semantic%20boundary%20blurring%29%20level%2C%20then%20propose%20PRe%20%28Predictive%20Regularization%29%3A%20a%20lightweight%202-layer%20MLP%20that%20forces%20degraded%20intermediate%20features%20to%20predict%20the%20original%20visual%20anchor%20features%20via%20cosine%20similarity%20lo.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>MLLMs trained purely on next-token prediction progressively degrade their internal visual representations in intermediate LLM layers — a phenomenon the authors term <em>visual representation degradation</em>. They diagnose it at both the global (linear-probe classification) and patch (semantic boundary blurring) level, then propose PRe (Predictive Regularization): a lightweight 2-layer MLP that forces degraded intermediate features to predict the original visual anchor features via cosine similarity loss. Applying PRe yields consistent gains across multiple MLLM architectures and benchmarks without architectural changes.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

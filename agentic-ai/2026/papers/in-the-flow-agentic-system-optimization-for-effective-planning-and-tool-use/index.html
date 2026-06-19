@@ -5867,6 +5867,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Optimizing agentic systems in-flow with decoupled policy for planning and tool use</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22In-the-Flow%20Agentic%20System%20Optimization%20for%20Effective%20Planning%20and%20Tool%20Use%22%20%28https%3A//openreview.net/forum%3Fid%3DMf5AleTUVK%29.%20TL%3BDR%3A%20AGENTFLOW%20is%20a%20trainable%20agentic%20framework%20that%20coordinates%20four%20specialized%20modules%20%28planner%2C%20executor%2C%20verifier%2C%20generator%29%20through%20an%20evolving%20shared%20memory%20and%20trains%20its%20planner%20%2A%2Aon-policy%20inside%20the%20live%20multi-turn%20loop%2A%2A.%20Its%20core%20training%20algorithm%2C%20Flow-GRPO%2C%20resolves%20the%20long-horizon%20sparse-reward%20credit-assignment%20problem%20by%20broadcasting%20a%20single%20final-outcome%20reward%20to%20every%20turn%2C%20decomposing%20multi-turn%20RL%20into%20a%20sequence%20of%20tractable%20single-turn%20updates.%20A%207B-backbone%20instance%20outp.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>AGENTFLOW is a trainable agentic framework that coordinates four specialized modules (planner, executor, verifier, generator) through an evolving shared memory and trains its planner <strong>on-policy inside the live multi-turn loop</strong>. Its core training algorithm, Flow-GRPO, resolves the long-horizon sparse-reward credit-assignment problem by broadcasting a single final-outcome reward to every turn, decomposing multi-turn RL into a sequence of tractable single-turn updates. A 7B-backbone instance outperforms GPT-4o on ten benchmarks spanning search, agentic, math, and science tasks.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

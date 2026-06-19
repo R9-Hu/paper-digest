@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Token-level credit assignment beyond GRPO; addresses core RLVR training inefficiency</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Learning%20from%20Own%20Solutions%3A%20Self-Conditioned%20Credit%20Assignment%20for%20Reinforcement%20Learning%20with%20Verifiable%20Rewards%22%20%28https%3A//arxiv.org/abs/2606.18810%29.%20TL%3BDR%3A%20SC-GRPO%20improves%20token-level%20credit%20assignment%20in%20RLVR%20by%20conditioning%20the%20model%20on%20its%20own%20verified%20rollouts%2C%20computing%20per-token%20KL%20divergence%20between%20the%20conditioned%20and%20unconditioned%20distributions%2C%20and%20using%20that%20KL%20as%20a%20multiplicative%20weight%20on%20GRPO%20gradients%E2%80%94without%20any%20external%20teacher%20or%20privileged%20information.%20It%20improves%20Avg%408%20by%208.1%25%20over%20GRPO%20and%205.9%25%20over%20DAPO%20across%20five%20benchmarks%20including%20multi-turn%20agentic%20tasks.%20The%20paper%20also%20proves%20that%20naively%20using%20verified%20trajectories%20as.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>SC-GRPO improves token-level credit assignment in RLVR by conditioning the model on its own verified rollouts, computing per-token KL divergence between the conditioned and unconditioned distributions, and using that KL as a multiplicative weight on GRPO gradients—without any external teacher or privileged information. It improves Avg@8 by 8.1% over GRPO and 5.9% over DAPO across five benchmarks including multi-turn agentic tasks. The paper also proves that naively using verified trajectories as distillation targets produces infeasible weighted-average solutions.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

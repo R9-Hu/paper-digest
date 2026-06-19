@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Quality-aware self-distillation for GUI grounding; addresses VLM agent precision gap</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Trust%20the%20Right%20Teacher%3A%20Quality-Aware%20Self-Distillation%20for%20GUI%20Grounding%22%20%28https%3A//huggingface.co/papers/2606.18101%29.%20TL%3BDR%3A%20Naive%20on-policy%20self-distillation%20%28OPSD%29%20for%20GUI%20coordinate%20grounding%20degrades%20because%20student-generated%20prefixes%20can%20already%20encode%20wrong%20spatial%20hypotheses%20before%20the%20teacher%20conditions%20on%20them%2C%20producing%20unreliable%20coordinate-token%20signals.%20This%20paper%20introduces%20quality-aware%20self-distillation%2C%20combining%20soft%20correctness-aware%20gating%20%28does%20the%20teacher%27s%20top-1%20coordinate%20token%20still%20permit%20completion%20into%20the%20ground-truth%20box%3F%29%20with%20teacher-probability%20scaling%20to%20calibrate%20per-token%20distillati.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Naive on-policy self-distillation (OPSD) for GUI coordinate grounding degrades because student-generated prefixes can already encode wrong spatial hypotheses before the teacher conditions on them, producing unreliable coordinate-token signals. This paper introduces quality-aware self-distillation, combining soft correctness-aware gating (does the teacher's top-1 coordinate token still permit completion into the ground-truth box?) with teacher-probability scaling to calibrate per-token distillation weight. On six GUI grounding benchmarks with Qwen3.5-9B, the method achieves 72.23 macro-average accuracy, outperforming the strongest self-distillation baseline by 2.16 points.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

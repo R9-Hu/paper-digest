@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>HARBOR harness framework for robot RL; bridges sim-to-real engineering pipeline gaps</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22HARBOR%3A%20A%20Harness%20Framework%20for%20Agentic%20Robot%20Reinforcement%20Learning%22%20%28https%3A//arxiv.org/abs/2606.08610%29.%20TL%3BDR%3A%20HARBOR%20frames%20robot%20RL%20automation%20as%20a%20harness-engineering%20problem%2C%20deploying%20a%20tuple%20%24H_%7BRL%7D%20%3D%20%28H_A%2C%20C%2C%20M%2C%20G%2C%20K%29%24%20%E2%80%94%20agents%2C%20commands%2C%20mutable%20artifacts%2C%20verifiable%20gates%2C%20and%20reusable%20knowledge%20%E2%80%94%20to%20automate%20the%20full%20sim-to-real%20workflow%20from%20dependency%20setup%20through%20policy%20training.%20Given%20only%20a%20natural-language%20task%20specification%20and%20a%20simulator%20codebase%2C%20HARBOR%20orchestrates%20specialized%20subagents%20through%20gate-checked%2C%20artifact-centric%20stages%20with%20parallel%20decentralized%20tuning%20trials%20and%20cross.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>HARBOR frames robot RL automation as a harness-engineering problem, deploying a tuple <span class="arithmatex">\(H_{RL} = (H_A, C, M, G, K)\)</span> — agents, commands, mutable artifacts, verifiable gates, and reusable knowledge — to automate the full sim-to-real workflow from dependency setup through policy training. Given only a natural-language task specification and a simulator codebase, HARBOR orchestrates specialized subagents through gate-checked, artifact-centric stages with parallel decentralized tuning trials and cross-run experience accumulation. The system achieves 48/50 stage success on ablation benchmarks while being the cheapest harness configuration tested.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

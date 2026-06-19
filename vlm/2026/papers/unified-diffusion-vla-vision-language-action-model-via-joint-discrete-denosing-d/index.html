@@ -5871,6 +5871,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; unified discrete diffusion VLA with future image understanding</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Unified%20Diffusion%20VLA%3A%20Vision-Language-Action%20Model%20via%20Joint%20Discrete%20Denosing%20Diffusion%20Process%22%20%28https%3A//openreview.net/forum%3Fid%3DUvQOcw2oCD%29.%20TL%3BDR%3A%20UD-VLA%20proposes%20a%20unified%20Vision-Language-Action%20model%20where%20future%20image%20generation%20and%20action%20prediction%20are%20coupled%20through%20a%20single%20Joint%20Discrete%20Denoising%20Diffusion%20Process%20%28JD3P%29%2C%20enabling%20actions%20to%20be%20iteratively%20refined%20under%20continuous%20visual%20guidance.%20Unlike%20prior%20unified%20VLAs%20that%20decouple%20these%20decoding%20streams%2C%20JD3P%20operates%20over%20a%20shared%20masked-token%20trajectory%20so%20each%20action%20token%20attends%20causally%20to%20all%20future%20image%20tokens%20at%20every%20denoising%20step.%20The%20result%20is%20SOTA%20performance.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>UD-VLA proposes a unified Vision-Language-Action model where future image generation and action prediction are coupled through a single Joint Discrete Denoising Diffusion Process (JD3P), enabling actions to be iteratively refined under continuous visual guidance. Unlike prior unified VLAs that decouple these decoding streams, JD3P operates over a shared masked-token trajectory so each action token attends causally to all future image tokens at every denoising step. The result is SOTA performance on CALVIN, LIBERO, and SimplerEnv with 4× faster inference than autoregressive methods.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

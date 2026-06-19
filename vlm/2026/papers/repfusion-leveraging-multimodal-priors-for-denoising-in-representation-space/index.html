@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>LLM representations used as denoising priors; novel bridge between LLMs and T2I generative backbones</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22RepFusion%3A%20Leveraging%20Multimodal%20Priors%20for%20Denoising%20in%20Representation%20Space%22%20%28https%3A//huggingface.co/papers/2606.14700%29.%20TL%3BDR%3A%20RepFusion%20repurposes%20a%20frozen%20pretrained%20multimodal%20LLM%20%28MLLM%29%20as%20a%20noisy%20visual%20representation%20encoder%20within%20a%20text-to-image%20diffusion%20pipeline%2C%20feeding%20evolving%20noisy%20RAE%20latents%20into%20the%20MLLM%20at%20each%20denoising%20step%20to%20produce%20a%20dynamic%20conditioning%20signal%20for%20a%20DiT.%20This%20design%20leverages%20the%20MLLM%27s%20pretrained%20visual%20priors%20rather%20than%20training%20larger%20denoisers%20from%20scratch.%20Under%20matched%20inference%20FLOPs%2C%20RepFusion%20outperforms%20both%20static%20text-embedding%20and%20unified%20Transfusion-style%20baselines.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>RepFusion repurposes a frozen pretrained multimodal LLM (MLLM) as a noisy visual representation encoder within a text-to-image diffusion pipeline, feeding evolving noisy RAE latents into the MLLM at each denoising step to produce a dynamic conditioning signal for a DiT. This design leverages the MLLM's pretrained visual priors rather than training larger denoisers from scratch. Under matched inference FLOPs, RepFusion outperforms both static text-embedding and unified Transfusion-style baselines.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

@@ -5860,6 +5860,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>CVPR 2026; GRPO-based reinforcement learning improves MoE routing in VLMs</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22MoE-GRPO%3A%20Optimizing%20Mixture-of-Experts%20via%20Reinforcement%20Learning%20in%20Vision-Language%20Models%22%20%28https%3A//arxiv.org/abs/2603.24984%29.%20TL%3BDR%3A%20MoE-GRPO%20replaces%20the%20deterministic%20top-%24K%24%20expert%20routing%20in%20Mixture-of-Experts%20VLMs%20with%20a%20reinforcement%20learning%20framework%20built%20on%20Group%20Relative%20Policy%20Optimization%20%28GRPO%29%2C%20treating%20expert%20selection%20at%20each%20layer%20as%20a%20sequential%20decision-making%20problem.%20By%20jointly%20optimizing%20token-level%20generation%20%28Token-GRPO%29%20and%20layer-wise%20gating%20%28Gate-GRPO%29%2C%20together%20with%20a%20modality-aware%20router%20guidance%20that%20prunes%20infrequently-activated%20experts%20per%20modality%2C%20MoE-GRPO%20achieves%20consistent%20accuracy%20gains%20.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>MoE-GRPO replaces the deterministic top-<span class="arithmatex">\(K\)</span> expert routing in Mixture-of-Experts VLMs with a reinforcement learning framework built on Group Relative Policy Optimization (GRPO), treating expert selection at each layer as a sequential decision-making problem. By jointly optimizing token-level generation (Token-GRPO) and layer-wise gating (Gate-GRPO), together with a modality-aware router guidance that prunes infrequently-activated experts per modality, MoE-GRPO achieves consistent accuracy gains over deterministic and stochastic routing baselines across image and video benchmarks.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

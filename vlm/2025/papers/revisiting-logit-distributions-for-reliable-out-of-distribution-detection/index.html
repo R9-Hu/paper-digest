@@ -5849,6 +5849,11 @@
 
 <h1 id="revisiting-logit-distributions-for-reliable-out-of-distribution-detection">Revisiting Logit Distributions for Reliable Out-of-Distribution Detection<a class="headerlink" href="#revisiting-logit-distributions-for-reliable-out-of-distribution-detection" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-01-01  ·  </em><em>Source:</em><em> NeurIPS  ·  </em><em>Venue:</em><em> NeurIPS 2025  ·  <a href="https://openreview.net/forum?id=FLdLPUqnsP">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Revisiting%20Logit%20Distributions%20for%20Reliable%20Out-of-Distribution%20Detection%22%20%28https%3A//openreview.net/forum%3Fid%3DFLdLPUqnsP%29.%20TL%3BDR%3A%20LogitGap%20is%20a%20training-free%2C%20post-hoc%20OOD%20detection%20scoring%20function%20that%20replaces%20MaxLogit%20and%20MCM%20by%20explicitly%20computing%20the%20average%20gap%20between%20the%20maximum%20logit%20and%20remaining%20logits.%20It%20exploits%20the%20empirical%20observation%20that%20ID%20samples%20produce%20sharper%2C%20more%20peaked%20logit%20distributions%20while%20OOD%20samples%20produce%20flatter%20ones.%20LogitGap%20consistently%20achieves%20state-of-the-art%20OOD%20detection%20across%20CLIP-based%20and%20traditional%20vision%20models..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>LogitGap is a training-free, post-hoc OOD detection scoring function that replaces MaxLogit and MCM by explicitly computing the average gap between the maximum logit and remaining logits. It exploits the empirical observation that ID samples produce sharper, more peaked logit distributions while OOD samples produce flatter ones. LogitGap consistently achieves state-of-the-art OOD detection across CLIP-based and traditional vision models.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

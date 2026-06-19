@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>OVDs produce confident false positives on negative images; critical deployment flaw</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Fantastic%20Tractor-Dogs%20and%20How%20Not%20to%20Find%20Them%20With%20Open-Vocabulary%20Detectors%22%20%28https%3A//openreview.net/forum%3Fid%3DjUuXNrG7wh%29.%20TL%3BDR%3A%20Open-Vocabulary%20Detectors%20%28OVDs%29%20with%20early-fusion%20architectures%20generate%20confident%20false%20positives%20on%20background%20images%20%28images%20containing%20none%20of%20the%20queried%20classes%29%2C%20a%20failure%20mode%20invisible%20to%20standard%20benchmarks%20like%20COCO%20and%20LVIS.%20The%20root%20cause%20is%20cross-modal%20attention%20in%20vision-language%20fusion%20layers%2C%20which%20cannot%20output%20zero%20attention%20when%20no%20prompt%20token%20matches.%20Appending%20semantically%20neutral%20attention%20sink%20tokens%20to%20the%20prompt%2C%20requiring%20no%20retraining%2C%20redirects%20spurious%20attention%20a.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Open-Vocabulary Detectors (OVDs) with early-fusion architectures generate confident false positives on background images (images containing none of the queried classes), a failure mode invisible to standard benchmarks like COCO and LVIS. The root cause is cross-modal attention in vision-language fusion layers, which cannot output zero attention when no prompt token matches. Appending semantically neutral attention sink tokens to the prompt, requiring no retraining, redirects spurious attention and recovers up to <span class="arithmatex">\(5\times\)</span> AP at low false positive rates.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

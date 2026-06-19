@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Causal past logic for correct runtime monitoring of asynchronous distributed agent workflows</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Causal%20Past%20Logic%20for%20Runtime%20Verification%20of%20Distributed%20LLM%20Agent%20Workflows%22%20%28https%3A//arxiv.org/abs/2605.20923%29.%20TL%3BDR%3A%20Distributed%20LLM%20agent%20workflows%20execute%20asynchronously%2C%20so%20monitoring%20based%20on%20a%20sequential%20log%20is%20semantically%20wrong%3A%20a%20local%20decision%20can%20only%20depend%20on%20events%20causally%20visible%20to%20the%20deciding%20agent.%20This%20paper%20extends%20the%20ZipperGen%20choreographic-programming%20framework%20with%20Causal%20Past%20Logic%20%28CPL%29%2C%20a%20past-time%20temporal%20logic%20used%20as%20source-level%20runtime%20guards%2C%20and%20proves%20%28mechanized%20in%20Lean%204%29%20that%20a%20vector-clock%20monitor%20evaluates%20every%20guard%20correctly%20with%20respect%20to%20the%20MSC%20denotational%20sema.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Distributed LLM agent workflows execute asynchronously, so monitoring based on a sequential log is semantically wrong: a local decision can only depend on events causally visible to the deciding agent. This paper extends the ZipperGen choreographic-programming framework with Causal Past Logic (CPL), a past-time temporal logic used as source-level runtime guards, and proves (mechanized in Lean 4) that a vector-clock monitor evaluates every guard correctly with respect to the MSC denotational semantics.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

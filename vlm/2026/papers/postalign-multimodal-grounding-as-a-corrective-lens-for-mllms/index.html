@@ -5867,6 +5867,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Philip Torr/Oxford; multimodal grounding corrects MLLM fine-grained visual failures</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22PostAlign%3A%20Multimodal%20Grounding%20as%20a%20Corrective%20Lens%20for%20MLLMs%22%20%28https%3A//openreview.net/forum%3Fid%3DzJnPyb2xrp%29.%20TL%3BDR%3A%20MLLMs%20hallucinate%20partly%20because%20linguistic%20priors%20dominate%20visual%20evidence%20at%20inference%20time%20%E2%80%94%20an%2089.2%25%20overlap%20in%20hallucinated%20tokens%20persists%20even%20when%20the%20image%20is%20removed.%20MMGrounded-PostAlign%20adds%20a%20plug-in%20post-alignment%20framework%20on%20top%20of%20frozen%20MLLMs%20that%20forces%20outputs%20to%20be%20anchored%20by%20explicit%20pixel-level%20grounding%20%28mask%20%2B%20bounding%20box%29%20and%20adaptive%20textual%20rationales.%20Applied%20to%20six%20backbones%20%28LLaVA-1.5%2C%20Qwen2-VL%2C%20Qwen2.5-VL%2C%20InternVL3/3.5%29%2C%20it%20improves%20hallucination%20and%20VQA%20benchm.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>MLLMs hallucinate partly because linguistic priors dominate visual evidence at inference time — an 89.2% overlap in hallucinated tokens persists even when the image is removed. MMGrounded-PostAlign adds a plug-in post-alignment framework on top of frozen MLLMs that forces outputs to be anchored by explicit pixel-level grounding (mask + bounding box) and adaptive textual rationales. Applied to six backbones (LLaVA-1.5, Qwen2-VL, Qwen2.5-VL, InternVL3/3.5), it improves hallucination and VQA benchmarks without degrading general reasoning.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

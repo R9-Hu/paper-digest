@@ -5839,6 +5839,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Self-healing orchestrators; failure taxonomy and recovery strategies for tool-augmented LLMs</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Self-Healing%20Agentic%20Orchestrators%20for%20Reliable%20Tool-Augmented%20Large%20Language%20Model%20Systems%22%20%28https%3A//arxiv.org/abs/2606.01416%29.%20TL%3BDR%3A%20This%20paper%20proposes%20a%20self-healing%20agentic%20orchestrator%20that%20treats%20LLM%20tool-use%20reliability%20as%20a%20bounded%20runtime%20control%20problem%2C%20implementing%20a%20monitor%E2%80%93detect%E2%80%93diagnose%E2%80%93recover%E2%80%93verify%20loop.%20Rather%20than%20applying%20uniform%20retry%20or%20replanning%20to%20every%20failure%2C%20the%20orchestrator%20maps%20observable%20failure%20signals%20to%20inferred%20failure%20classes%20and%20selects%20targeted%2C%20budgeted%20recovery%20actions.%20On%20a%20100-task%20fault-injection%20benchmark%20it%20achieves%2098.8%25%20task%20success%20versus%2094.5%25%20for%20retry-only%20and%2093.8%25%20for%20ful.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>This paper proposes a self-healing agentic orchestrator that treats LLM tool-use reliability as a bounded runtime control problem, implementing a monitor–detect–diagnose–recover–verify loop. Rather than applying uniform retry or replanning to every failure, the orchestrator maps observable failure signals to inferred failure classes and selects targeted, budgeted recovery actions. On a 100-task fault-injection benchmark it achieves 98.8% task success versus 94.5% for retry-only and 93.8% for full replanning, and reduces semantic silent failures to 0.0% with verifier-guided recovery.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

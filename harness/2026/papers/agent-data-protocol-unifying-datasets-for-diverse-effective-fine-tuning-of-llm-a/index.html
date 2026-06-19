@@ -5985,6 +5985,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR OSU; Agent Data Protocol unifying diverse datasets for fine-tuning LLM agents at scale</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Agent%20Data%20Protocol%3A%20Unifying%20Datasets%20for%20Diverse%2C%20Effective%20Fine-tuning%20of%20LLM%20Agents%22%20%28https%3A//openreview.net/forum%3Fid%3DtG6301ORHd%29.%20TL%3BDR%3A%20Agent%20Data%20Protocol%20%28ADP%29%20is%20a%20lightweight%20Pydantic-schema%20interlingua%20that%20unifies%20heterogeneous%20agent%20training%20datasets%20into%20a%20single%20standardized%20format%2C%20then%20converts%20them%20to%20framework-specific%20SFT%20pipelines.%20It%20collapses%20the%20otherwise-quadratic%20%24O%28D%20%5Ctimes%20A%29%24%20dataset-to-framework%20conversion%20effort%20into%20linear%20%24O%28D%20%2B%20A%29%24%20via%20a%20hub-and-spoke%20architecture.%20Fine-tuning%20on%20the%20resulting%201.3M-trajectory%20corpus%20yields%20an%20average%20~20%25%20gain%20over%20base%20models%20across%20coding%2C%20browsing%2C%20tool%20use%2C%20and%20re.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Agent Data Protocol (ADP) is a lightweight Pydantic-schema interlingua that unifies heterogeneous agent training datasets into a single standardized format, then converts them to framework-specific SFT pipelines. It collapses the otherwise-quadratic <span class="arithmatex">\(O(D \times A)\)</span> dataset-to-framework conversion effort into linear <span class="arithmatex">\(O(D + A)\)</span> via a hub-and-spoke architecture. Fine-tuning on the resulting 1.3M-trajectory corpus yields an average ~20% gain over base models across coding, browsing, tool use, and research benchmarks.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

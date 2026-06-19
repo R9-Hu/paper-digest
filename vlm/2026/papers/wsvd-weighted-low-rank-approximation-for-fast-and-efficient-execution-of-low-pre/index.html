@@ -5839,6 +5839,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; weighted SVD for fast low-precision VLM execution</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22WSVD%3A%20Weighted%20Low-Rank%20Approximation%20for%20Fast%20and%20Efficient%20Execution%20of%20Low-Precision%20Vision-Language%20Models%22%20%28https%3A//openreview.net/forum%3Fid%3DzrmQ4koOw9%29.%20TL%3BDR%3A%20WSVD%20applies%20SVD%20at%20per-head%20granularity%20rather%20than%20across%20full%20K/V%20projection%20matrices%2C%20eliminating%20the%20memory-access%20bottleneck%20that%20makes%20conventional%20SVD-based%20compression%20counter-productive%20at%20inference%20time.%20It%20further%20incorporates%20element-wise%20Fisher-weighted%20fine-tuning%20and%20quantization-aware%20training%20%28QAT%29%20with%20Hadamard%20rotation%20for%20outlier%20smoothing.%20The%20result%20is%20%3E1.8%C3%97%20decoding%20speedup%20over%20full-precision%20baselines%20while%20preserving%20benchmark%20accuracy..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>WSVD applies SVD at per-head granularity rather than across full K/V projection matrices, eliminating the memory-access bottleneck that makes conventional SVD-based compression counter-productive at inference time. It further incorporates element-wise Fisher-weighted fine-tuning and quantization-aware training (QAT) with Hadamard rotation for outlier smoothing. The result is &gt;1.8× decoding speedup over full-precision baselines while preserving benchmark accuracy.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

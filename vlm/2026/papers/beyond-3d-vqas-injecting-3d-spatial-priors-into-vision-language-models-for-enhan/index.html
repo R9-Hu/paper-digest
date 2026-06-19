@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Yi Ma (Berkeley) + Joseph Tighe (Meta); CVPR 2026; 3D spatial priors improve VLM geometry</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Beyond%203D%20VQAs%3A%20Injecting%203D%20Spatial%20Priors%20into%20Vision-Language%20Models%20for%20Enhanced%20Geometric%20Reasoning%22%20%28https%3A//arxiv.org/abs/2605.30231%29.%20TL%3BDR%3A%20GASP%20%28Geometric-Aware%20Spatial%20Priors%29%20injects%203D%20geometric%20inductive%20biases%20directly%20into%20VLM%20transformer%20layers%20via%20a%20lightweight%20correspondence%20head%20trained%20with%20dual%20supervision%3A%20InfoNCE%20contrastive%20loss%20on%20ground-truth%20point%20correspondences%20and%20a%20depth%20consistency%20regularizer.%20The%20head%20is%20discarded%20at%20inference%2C%20leaving%20a%20standard%20VLM%20that%20nonetheless%20learns%20view-invariant%20internal%20representations%2C%20yielding%20large%20gains%20on%20out-of-domain%20spatial%20benchmarks%20without%20any%203D%20VQA%20training%20data..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>GASP (Geometric-Aware Spatial Priors) injects 3D geometric inductive biases directly into VLM transformer layers via a lightweight correspondence head trained with dual supervision: InfoNCE contrastive loss on ground-truth point correspondences and a depth consistency regularizer. The head is discarded at inference, leaving a standard VLM that nonetheless learns view-invariant internal representations, yielding large gains on out-of-domain spatial benchmarks without any 3D VQA training data.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

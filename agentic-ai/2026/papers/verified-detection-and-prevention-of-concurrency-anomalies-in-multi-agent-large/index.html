@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Formal verification of concurrency anomalies in shared-state multi-agent LLM systems</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Verified%20Detection%20and%20Prevention%20of%20Concurrency%20Anomalies%20in%20Multi-Agent%20Large%20Language%20Model%20Systems%22%20%28https%3A//huggingface.co/papers/2606.17182%29.%20TL%3BDR%3A%20This%20paper%20formalizes%20four%20concurrency%20anomalies%20specific%20to%20multi-agent%20LLM%20systems%E2%80%94stale-generation%2C%20phantom-tool%2C%20causal-cascade%2C%20and%20tool-effect%20reordering%E2%80%94as%20TLA%2B%20predicates%2C%20constructs%20a%20mechanically-verified%20consistency%20hierarchy%20L0%20%E2%8A%8A%20%C2%B7%C2%B7%C2%B7%20%E2%8A%8A%20L4%2C%20and%20deploys%20three%20Rust%20runtimes%20verified%20in%20Verus%20to%20prevent%20them.%20It%20is%20the%20first%20machine-checked%20consistency%20hierarchy%20for%20multi-agent%20LLM%20runtimes%2C%20grounded%20in%20real%20deployed%20frameworks%20%28LangGraph%2C%20AutoGen%2C%20ByteDance%20deer-flow%29..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>This paper formalizes four concurrency anomalies specific to multi-agent LLM systems—stale-generation, phantom-tool, causal-cascade, and tool-effect reordering—as TLA+ predicates, constructs a mechanically-verified consistency hierarchy L0 ⊊ ··· ⊊ L4, and deploys three Rust runtimes verified in Verus to prevent them. It is the first machine-checked consistency hierarchy for multi-agent LLM runtimes, grounded in real deployed frameworks (LangGraph, AutoGen, ByteDance deer-flow).</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

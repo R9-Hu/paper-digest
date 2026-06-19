@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; SAE-based target-aligned data filtering for VLM pretraining</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Matched%20Data%2C%20Better%20Models%3A%20Target%20Aligned%20Data%20Filtering%20with%20Sparse%20Autoencoders%22%20%28https%3A//openreview.net/forum%3Fid%3Dcgmo3v18sx%29.%20TL%3BDR%3A%20Submodular%20Distribution%20Matching%20%28SDM%29%20is%20a%20data%20filtering%20framework%20for%20VLM%20pretraining%20that%20selects%20image-caption%20subsets%20whose%20concept%20distribution%20matches%20a%20target%20dataset%2C%20rather%20than%20scoring%20samples%20independently.%20It%20trains%20a%20sparse%20autoencoder%20%28SAE%29%20on%20CLIP%20embeddings%20to%20produce%20disentangled%2C%20monotone%20features%2C%20then%20maximizes%20a%20feature-based%20submodular%20objective%20equivalent%20to%20minimizing%20KL%20divergence%20to%20a%20target%20concept%20distribution.%20On%20DataComp-medium%20%28128M%20pairs%29%2C%20SDM%20achieves%20state-of-.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Submodular Distribution Matching (SDM) is a data filtering framework for VLM pretraining that selects image-caption subsets whose concept distribution matches a target dataset, rather than scoring samples independently. It trains a sparse autoencoder (SAE) on CLIP embeddings to produce disentangled, monotone features, then maximizes a feature-based submodular objective equivalent to minimizing KL divergence to a target concept distribution. On DataComp-medium (128M pairs), SDM achieves state-of-the-art ImageNet-1K accuracy using only a single CLIP backbone and &gt;5× fewer GPU hours than the leading approach.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

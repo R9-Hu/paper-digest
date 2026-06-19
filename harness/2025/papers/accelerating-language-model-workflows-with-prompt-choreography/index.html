@@ -5842,6 +5842,11 @@
 
 <h1 id="accelerating-language-model-workflows-with-prompt-choreography">Accelerating Language Model Workflows with Prompt Choreography<a class="headerlink" href="#accelerating-language-model-workflows-with-prompt-choreography" title="Permanent link">&para;</a></h1>
 <p><em>🕒 </em><em>Published (v1):</em><em> 2025-12-28 19:21 UTC  ·  </em><em>Source:</em><em> Arxiv  ·  <a href="https://arxiv.org/abs/2512.23049">link</a></em></p>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Accelerating%20Language%20Model%20Workflows%20with%20Prompt%20Choreography%22%20%28https%3A//arxiv.org/abs/2512.23049%29.%20TL%3BDR%3A%20Prompt%20Choreography%20is%20a%20framework%20that%20replaces%20per-call%20prompt%20re-encoding%20with%20a%20shared%2C%20dynamic%20global%20KV%20cache%20across%20all%20agents%20in%20an%20LLM%20workflow.%20Agents%20select%20arbitrary%20subsets%20of%20cached%20messages%20with%20reordered%20positions%20via%20dynamic%20attention%20masking%20and%20RoPE-based%20position%20updates.%20A%20lightweight%20LoRA%20fine-tuning%20step%20mitigates%20accuracy%20degradation%20from%20modified%20attention%20semantics%2C%20yielding%202.0%E2%80%936.2%C3%97%20faster%20time-to-first-token%20and%20up%20to%202.2%C3%97%20end-to-end%20speedup..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Prompt Choreography is a framework that replaces per-call prompt re-encoding with a shared, dynamic global KV cache across all agents in an LLM workflow. Agents select arbitrary subsets of cached messages with reordered positions via dynamic attention masking and RoPE-based position updates. A lightweight LoRA fine-tuning step mitigates accuracy degradation from modified attention semantics, yielding 2.0–6.2× faster time-to-first-token and up to 2.2× end-to-end speedup.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

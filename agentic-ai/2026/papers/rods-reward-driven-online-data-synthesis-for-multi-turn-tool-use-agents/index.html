@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Solves data depletion bottleneck in multi-turn tool-use RL with online synthesis</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22RODS%3A%20Reward-Driven%20Online%20Data%20Synthesis%20for%20Multi-Turn%20Tool-Use%20Agents%22%20%28https%3A//arxiv.org/abs/2606.19047%29.%20TL%3BDR%3A%20RODS%20addresses%20gradient%20signal%20depletion%20in%20multi-turn%20tool-use%20RL%20training%20by%20dynamically%20synthesizing%20new%20training%20data%20targeted%20at%20the%20agent%27s%20evolving%20capability%20boundary.%20It%20repurposes%20GRPO%20rollout%20reward%20variance%E2%80%94already%20computed%20during%20training%E2%80%94as%20a%20zero-cost%20boundary%20detector%2C%20then%20generates%20structurally%20isomorphic%20task%20variants%20to%20maintain%20a%20saturated%20learning%20signal.%20Starting%20from%20400%20human%20seeds%2C%20RODS%20matches%20a%2017K-sample%20offline%20pipeline%20using%20~20%C3%97%20fewer%20trajectories..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>RODS addresses gradient signal depletion in multi-turn tool-use RL training by dynamically synthesizing new training data targeted at the agent's evolving capability boundary. It repurposes GRPO rollout reward variance—already computed during training—as a zero-cost boundary detector, then generates structurally isomorphic task variants to maintain a saturated learning signal. Starting from 400 human seeds, RODS matches a 17K-sample offline pipeline using ~20× fewer trajectories.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

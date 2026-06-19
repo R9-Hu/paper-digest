@@ -5867,6 +5867,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Ligeng Zhu (MIT/NVIDIA); CVPR 2026; unified 2D+3D grounding in spatial VLMs</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Grounded%203D-Aware%20Spatial%20Vision-Language%20Modeling%22%20%28https%3A//arxiv.org/abs/2605.30307%29.%20TL%3BDR%3A%20GR3D%20is%20a%20spatial%20VLM%20that%20unifies%20explicit%202D%20grounding%2C%20implicit%202D%20grounding%2C%20and%20monocular%203D%20grounding%20in%20a%20single%208B-parameter%20framework.%20The%20key%20innovation%20is%20%2Astreaming%20region%20insertion%2A%3A%20during%20chain-of-thought%20generation%2C%20the%20model%20dynamically%20predicts%202D%20bounding%20boxes%20for%20mentioned%20entities%20and%20immediately%20injects%20their%20visual%20embeddings%20back%20into%20the%20token%20stream%20before%20continuing%20reasoning.%20This%20grounding-as-inductive-bias%20approach%20achieves%20state-of-the-art%20on%20Omni3D%203D%20detection%20a.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>GR3D is a spatial VLM that unifies explicit 2D grounding, implicit 2D grounding, and monocular 3D grounding in a single 8B-parameter framework. The key innovation is <em>streaming region insertion</em>: during chain-of-thought generation, the model dynamically predicts 2D bounding boxes for mentioned entities and immediately injects their visual embeddings back into the token stream before continuing reasoning. This grounding-as-inductive-bias approach achieves state-of-the-art on Omni3D 3D detection and multiple spatial VQA benchmarks.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

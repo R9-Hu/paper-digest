@@ -80,6 +80,14 @@
 }
 .md-typeset .venue-none { color: var(--md-default-fg-color--lighter); }
 .md-typeset .reason { font-size: .78rem; color: var(--md-default-fg-color--light); font-style: italic; }
+/* "Ask ChatGPT" follow-up button */
+.md-typeset .md-button.chatgpt-btn {
+  background: #10a37f; color: #fff; border-color: #10a37f; font-weight: 600;
+}
+.md-typeset .md-button.chatgpt-btn:hover,
+.md-typeset .md-button.chatgpt-btn:focus {
+  background: #0e8e6f; border-color: #0e8e6f; color: #fff;
+}
 /* Tag chips (Material tags plugin) */
 .md-typeset .md-tag {
   border-radius: 6px; font-size: .68rem; font-weight: 600;

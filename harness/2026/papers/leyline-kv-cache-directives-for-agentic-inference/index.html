@@ -5839,6 +5839,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>KV cache directives for agentic inference; breaks chatbot-only append-only cache assumptions</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Leyline%3A%20KV%20Cache%20Directives%20for%20Agentic%20Inference%22%20%28https%3A//arxiv.org/abs/2606.01065%29.%20TL%3BDR%3A%20Leyline%20introduces%20a%20serving-side%20primitive%20for%20policy-driven%20KV%20cache%20mutation%20in%20agentic%20LLM%20inference.%20It%20exposes%20a%20declarative%20%60%28span%2C%20replacement%29%60%20directive%20that%20lets%20agent%20policies%20explicitly%20splice%20cached%20spans%20in%20place%2C%20correcting%20positional%20attention%20math%20via%20a%20closed-form%20%24%5Cdelta%24-rotation%20instead%20of%20re-prefilling%20everything%20downstream.%20This%20lifts%20replay%20cache-hit%20rate%20by%20%2B11.2%20pp%20and%20agentic%20solve%20rate%20by%20%2B14.3%20pp%20over%20baselines..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Leyline introduces a serving-side primitive for policy-driven KV cache mutation in agentic LLM inference. It exposes a declarative <code>(span, replacement)</code> directive that lets agent policies explicitly splice cached spans in place, correcting positional attention math via a closed-form <span class="arithmatex">\(\delta\)</span>-rotation instead of re-prefilling everything downstream. This lifts replay cache-hit rate by +11.2 pp and agentic solve rate by +14.3 pp over baselines.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

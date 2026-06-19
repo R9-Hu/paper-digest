@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Checkpoint/restore runtime for agent sandboxes; enables rollout branching and fault tolerance</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Crab%3A%20A%20Semantics-Aware%20Checkpoint/Restore%20Runtime%20for%20Agent%20Sandboxes%22%20%28https%3A//arxiv.org/abs/2604.28138%29.%20TL%3BDR%3A%20Crab%20is%20a%20host-side%20runtime%20that%20adds%20semantics-aware%20checkpoint/restore%20%28C/R%29%20to%20agent%20sandboxes%20%28containers/microVMs%29%20by%20bridging%20the%20agent%E2%80%93OS%20semantic%20gap%3A%20an%20eBPF%20inspector%20classifies%20per-turn%20OS-visible%20effects%20to%20decide%20checkpoint%20granularity%2C%20a%20coordinator%20overlaps%20checkpoint%20work%20with%20LLM%20wait%20time%2C%20and%20a%20host-scoped%20engine%20coordinates%20I/O%20across%20co-located%20sandboxes.%20On%20Terminal-Bench%20and%20SWE-Bench%2C%20Crab%20achieves%20100%25%20recovery%20correctness%20while%20staying%20within%201.9%25%20of%20fault-free%20executio.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Crab is a host-side runtime that adds semantics-aware checkpoint/restore (C/R) to agent sandboxes (containers/microVMs) by bridging the agent–OS semantic gap: an eBPF inspector classifies per-turn OS-visible effects to decide checkpoint granularity, a coordinator overlaps checkpoint work with LLM wait time, and a host-scoped engine coordinates I/O across co-located sandboxes. On Terminal-Bench and SWE-Bench, Crab achieves 100% recovery correctness while staying within 1.9% of fault-free execution time and cutting checkpoint traffic by up to 87%.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

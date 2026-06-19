@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Ferrari/Rupprecht (Google/Oxford); data-free localized CLIP embeddings via mask optimization</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22MaskInversion%3A%20Localized%20Embeddings%20via%20Optimization%20of%20Explainability%20Maps%22%20%28https%3A//openreview.net/forum%3Fid%3D3xyx2ncRln%29.%20TL%3BDR%3A%20MaskInversion%20generates%20a%20localized%20region%20embedding%20from%20a%20frozen%20CLIP%20model%20by%20optimizing%20a%20single%20token%E2%80%94called%20a%20Localized%20Embedding%20Token%20%28LET%29%E2%80%94so%20that%20its%20explainability%20map%20matches%20a%20binary%20query%20mask.%20The%20optimization%20runs%20at%20test%20time%20without%20modifying%20model%20weights%2C%20making%20it%20a%20drop-in%20replacement%20for%20the%20%5BCLS%5D%20token%20in%20any%20CLIP-based%20pipeline.%20It%20outperforms%20prior%20region-representation%20methods%20on%20referring%20expression%20retrieval%2C%20zero-shot%20class%20retrieval%2C%20localized%20captioning%2C%20and%20local.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>MaskInversion generates a localized region embedding from a frozen CLIP model by optimizing a single token—called a Localized Embedding Token (LET)—so that its explainability map matches a binary query mask. The optimization runs at test time without modifying model weights, making it a drop-in replacement for the [CLS] token in any CLIP-based pipeline. It outperforms prior region-representation methods on referring expression retrieval, zero-shot class retrieval, localized captioning, and localized image generation.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

@@ -5853,6 +5853,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Agentic GPU kernel optimization via data-flow invariants; closes performance gap</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22ARGUS%3A%20Agentic%20GPU%20Optimization%20Guided%20by%20Data-Flow%20Invariants%22%20%28https%3A//arxiv.org/abs/2604.18616%29.%20TL%3BDR%3A%20ARGUS%20is%20an%20agentic%20GPU%20kernel%20optimization%20framework%20that%20introduces%20compile-time%20data-flow%20invariants%E2%80%94encoded%20as%20tag%20functions%20and%20tag%20assertions%20in%20a%20tile-based%20Pythonic%20DSL%E2%80%94to%20provide%20dense%2C%20structured%20feedback%20to%20an%20LLM%20agent%20navigating%20complex%2C%20coupled%20hardware%20optimizations.%20On%20AMD%20MI300X%2C%20generated%20kernels%20for%20GEMM%2C%20flash%20attention%2C%20and%20MoE%20reach%2099%E2%80%93104%25%20of%20hand-optimized%20assembly%20library%20throughput%20and%20run%202%E2%80%931543%C3%97%20faster%20than%20existing%20agentic%20baselines..%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>ARGUS is an agentic GPU kernel optimization framework that introduces compile-time data-flow invariants—encoded as tag functions and tag assertions in a tile-based Pythonic DSL—to provide dense, structured feedback to an LLM agent navigating complex, coupled hardware optimizations. On AMD MI300X, generated kernels for GEMM, flash attention, and MoE reach 99–104% of hand-optimized assembly library throughput and run 2–1543× faster than existing agentic baselines.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

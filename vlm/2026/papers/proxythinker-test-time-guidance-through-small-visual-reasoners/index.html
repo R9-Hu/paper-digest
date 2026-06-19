@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICLR 2026; small proxy VLMs guide test-time reasoning of large VLMs cheaply</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22ProxyThinker%3A%20Test-Time%20Guidance%20through%20Small%20Visual%20Reasoners%22%20%28https%3A//openreview.net/forum%3Fid%3Ddt6fnFypEn%29.%20TL%3BDR%3A%20ProxyThinker%20is%20a%20training-free%20inference-time%20method%20that%20transfers%20slow-thinking%20reasoning%20behaviors%20from%20small%2C%20RFT-trained%20visual%20reasoners%20to%20large%20base%20VLMs%20by%20adding%20a%20logit%20delta%20%E2%80%94%20the%20difference%20between%20a%20small%20RFT%20expert%20and%20its%20base%20counterpart%20%E2%80%94%20to%20the%20large%20model%27s%20output%20distribution%20at%20each%20decoding%20step.%20This%20elicits%20self-verification%20and%20self-correction%20behaviors%20in%20models%20that%20never%20underwent%20reinforcement%20fine-tuning.%20The%20approach%20is%20implemented%20on%20vLLM%20with%20asynchronous%20tenso.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>ProxyThinker is a training-free inference-time method that transfers slow-thinking reasoning behaviors from small, RFT-trained visual reasoners to large base VLMs by adding a logit delta — the difference between a small RFT expert and its base counterpart — to the large model's output distribution at each decoding step. This elicits self-verification and self-correction behaviors in models that never underwent reinforcement fine-tuning. The approach is implemented on vLLM with asynchronous tensor-parallel scheduling, achieving a 38× speedup over prior decoding-time steering methods.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>Veritas: semantically grounded agentic framework for binary memory-corruption detection</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Veritas%3A%20A%20Semantically%20Grounded%20Agentic%20Framework%20for%20Memory%20Corruption%20Vulnerability%20Detection%20in%20Binaries%22%20%28https%3A//arxiv.org/abs/2605.15097%29.%20TL%3BDR%3A%20Veritas%20is%20a%20three-stage%20agentic%20framework%20for%20detecting%20memory%20corruption%20vulnerabilities%20in%20stripped%20binaries%20by%20grounding%20LLM%20reasoning%20in%20static%20interprocedural%20data-flow%20evidence%20and%20concrete%20runtime%20validation.%20It%20chains%20a%20deterministic%20slicer%2C%20a%20dual-view%20LLM%20detector%20%28decompiled%20C%20%2B%20selective%20LLVM%20IR%29%2C%20and%20a%20multi-agent%20debugger-based%20validator%20into%20a%20modular%20pipeline.%20On%20a%20curated%20binary%20benchmark%2C%20Veritas%20achieves%2090%25%20recall%20with%20near-zero%20false%20positives%20and%20discovered%20a%20previously%20un.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>Veritas is a three-stage agentic framework for detecting memory corruption vulnerabilities in stripped binaries by grounding LLM reasoning in static interprocedural data-flow evidence and concrete runtime validation. It chains a deterministic slicer, a dual-view LLM detector (decompiled C + selective LLVM IR), and a multi-agent debugger-based validator into a modular pipeline. On a curated binary benchmark, Veritas achieves 90% recall with near-zero false positives and discovered a previously unknown Apple 0day vulnerability assigned a CVE.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>ICML 2026; learning generalized behavioral representations for VLA distribution shift</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22From%20Abstraction%20to%20Instantiation%3A%20Learning%20Behavioral%20Representation%20for%20Vision-Language-Action%20Model%22%20%28https%3A//arxiv.org/abs/2605.22671%29.%20TL%3BDR%3A%20BehaviorVLA%20addresses%20distribution-shift%20brittleness%20in%20Vision-Language-Action%20%28VLA%29%20models%20by%20learning%20a%20low-dimensional%20behavioral%20manifold%2C%20factorized%20into%20a%20time-invariant%20global%20prototype%20and%20a%20time-variant%20phase%20state.%20A%20causal%20three-stream%20Mamba%20encoder%20%28VBE%29%20abstracts%20long-horizon%20trajectories%2C%20while%20a%20Phase-conditioned%20Behavior%20Decoder%20%28PBD%29%20instantiates%20them%20into%20precise%20actions%20via%20a%20Predictor-Corrector%20flow%20policy.%20The%20framework%20achieves%20state-of-the-art%20results%20on%20RoboTwin%202.0%2C%20LIBE.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>BehaviorVLA addresses distribution-shift brittleness in Vision-Language-Action (VLA) models by learning a low-dimensional behavioral manifold, factorized into a time-invariant global prototype and a time-variant phase state. A causal three-stream Mamba encoder (VBE) abstracts long-horizon trajectories, while a Phase-conditioned Behavior Decoder (PBD) instantiates them into precise actions via a Predictor-Corrector flow policy. The framework achieves state-of-the-art results on RoboTwin 2.0, LIBERO, and CALVIN, and matches fully fine-tuned OpenVLA-OFT in sim-to-real transfer using only 50% of real-world demonstrations.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

@@ -5999,6 +5999,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>EMNLP; trust asymmetry when tool outputs vs user instructions attack agents</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22Same%20Payload%2C%20Different%20Channel%3A%20Measuring%20Trust%20Asymmetry%20in%20Tool-Using%20Language%20Models%22%20%28https%3A//arxiv.org/abs/2606.00566%29.%20TL%3BDR%3A%20This%20paper%20introduces%20the%20Safety%20Asymmetry%20Score%20%28SAS%29%2C%20a%20metric%20that%20isolates%20how%20a%20model%27s%20susceptibility%20to%20adversarial%20content%20shifts%20depending%20on%20whether%20that%20content%20arrives%20via%20user%20messages%2C%20tool%20descriptions%2C%20or%20tool%20outputs%20%E2%80%94%20keeping%20the%20malicious%20payload%20byte-for-byte%20identical%20across%20channels.%20Evaluated%20on%206%20production%20LLMs%2C%20agent-native%20models%20are%20substantially%20more%20vulnerable%20through%20tool%20descriptions%20%28%2B24.8%20pp%20average%20SAS%29%20while%20general%20models%20show%20the%20reverse.%20A%20mechanistic%20study.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>This paper introduces the Safety Asymmetry Score (SAS), a metric that isolates how a model's susceptibility to adversarial content shifts depending on whether that content arrives via user messages, tool descriptions, or tool outputs — keeping the malicious payload byte-for-byte identical across channels. Evaluated on 6 production LLMs, agent-native models are substantially more vulnerable through tool descriptions (+24.8 pp average SAS) while general models show the reverse. A mechanistic study on Llama 3.3 70B reveals the safety-relevant signal is causally present at mid-to-late residual stream layers (48 and 64 of 80) but encoded non-linearly.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

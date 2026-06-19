@@ -5846,6 +5846,11 @@
 <p class="admonition-title">Why this paper was selected</p>
 <p>S-Bus: automatic read-set reconstruction preventing multi-agent structural race conditions</p>
 </div>
+<div class="admonition question">
+<p class="admonition-title">Ask a follow-up</p>
+<p>Open ChatGPT pre-loaded with this paper's context.</p>
+</div>
+<p><a class="md-button chatgpt-btn" href="https://chatgpt.com/?q=I%27m%20reading%20the%20paper%20%22S-Bus%3A%20Automatic%20Read-Set%20Reconstruction%20for%20Multi-Agent%20LLM%20State%20Coordination%22%20%28https%3A//huggingface.co/papers/2605.17076%29.%20TL%3BDR%3A%20S-Bus%20is%20an%20HTTP%20middleware%20that%20prevents%20Structural%20Race%20Conditions%20%28SRCs%29%20in%20concurrent%20multi-agent%20LLM%20systems%20by%20automatically%20reconstructing%20each%20agent%27s%20read%20set%20from%20ordinary%20HTTP%20GET%20traffic%20via%20a%20server-side%20DeliveryLog%2C%20requiring%20zero%20changes%20to%20agent%20SDKs.%20It%20applies%20optimistic%20concurrency%20control%20%28OCC%29%20over%20shared%20natural-language%20state%20and%20formalizes%20the%20resulting%20consistency%20property%20as%20Observable-Read%20Isolation%20%28ORI%29%2C%20a%20partial%20causal%20consistency%20restricted%20to%20the%20HTTP-observable%20.%20I%20have%20follow-up%20questions%20about%20it.%20Give%20a%20one-line%20orientation%2C%20then%20help%20me%20dig%20into%20the%20method%2C%20results%2C%20and%20limitations." rel="noopener" target="_blank">💬 Ask ChatGPT</a></p>
 <h2 id="tldr">TL;DR<a class="headerlink" href="#tldr" title="Permanent link">&para;</a></h2>
 <p>S-Bus is an HTTP middleware that prevents Structural Race Conditions (SRCs) in concurrent multi-agent LLM systems by automatically reconstructing each agent's read set from ordinary HTTP GET traffic via a server-side DeliveryLog, requiring zero changes to agent SDKs. It applies optimistic concurrency control (OCC) over shared natural-language state and formalizes the resulting consistency property as Observable-Read Isolation (ORI), a partial causal consistency restricted to the HTTP-observable fraction of reads.</p>
 <h2 id="problem">Problem<a class="headerlink" href="#problem" title="Permanent link">&para;</a></h2>

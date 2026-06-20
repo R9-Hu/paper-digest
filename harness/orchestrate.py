@@ -134,7 +134,7 @@ def main(argv=None) -> int:
                         "(use --ignore-window to force)")
         with state.connect() as conn:
             # Honor the weekly-session guard: skip past-month compaction near the limit.
-            used, budget = state.week_usage(conn), cfg.weekly_digest_budget
+            used, budget = state.week_usage(conn, cfg), cfg.weekly_digest_budget
             if (budget > 0 and not args.ignore_window
                     and used >= cfg.weekly_conserve_threshold * budget):
                 log.warning("weekly usage %d/%d (>=%.0f%%) — skipping past-month compaction until "
@@ -201,7 +201,7 @@ def main(argv=None) -> int:
         # weekly usage is below the threshold. At/above it, `conserve` digests just
         # TODAY's collection (papers fetched today) and defers the backlog until the
         # week renews.
-        used = state.week_usage(conn)
+        used = state.week_usage(conn, cfg)
         budget = cfg.weekly_digest_budget
         conserve = (budget > 0 and not args.ignore_window
                     and used >= cfg.weekly_conserve_threshold * budget)

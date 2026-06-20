@@ -20,6 +20,8 @@ global:
   rate_limit_max_wait_hours: 6         # cap on how long a single call will wait for the quota to reset
   weekly_digest_budget: 2500           # ~digests/week the WEEKLY session supports (harness-side proxy; calibrate to your plan)
   weekly_conserve_threshold: 0.8       # at >=80% of the weekly budget: daily digest only, defer past-month backfill until the week renews
+  weekly_reset_weekday: 4              # weekly session resets this weekday (Mon=0..Sun=6); 4=Friday
+  weekly_reset_hour: 4                 # ...at this local hour — matches the real Claude session reset (Fri 4am)
   monthly_keep: 100                    # 1st of month: keep top N/topic for the previous month
   yearly_keep: 400                     # 1st of year: keep top N/topic for the previous year
 

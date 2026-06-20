@@ -82,6 +82,8 @@ class Config:
     rate_limit_max_wait_sec: int
     weekly_digest_budget: int
     weekly_conserve_threshold: float
+    weekly_reset_weekday: int
+    weekly_reset_hour: int
     monthly_keep: int
     yearly_keep: int
     topics: list[Topic]
@@ -159,6 +161,8 @@ def load_config(path: Path | str = CONFIG_PATH) -> Config:
         rate_limit_max_wait_sec=int(float(g.get("rate_limit_max_wait_hours", 6)) * 3600),
         weekly_digest_budget=int(g.get("weekly_digest_budget", 2500)),
         weekly_conserve_threshold=float(g.get("weekly_conserve_threshold", 0.8)),
+        weekly_reset_weekday=int(g.get("weekly_reset_weekday", 0)),
+        weekly_reset_hour=int(g.get("weekly_reset_hour", 0)),
         monthly_keep=int(g.get("monthly_keep", 100)),
         yearly_keep=int(g.get("yearly_keep", 400)),
         topics=topics,

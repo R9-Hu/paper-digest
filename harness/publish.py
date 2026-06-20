@@ -633,7 +633,7 @@ def _review_page_lines(conn, cfg) -> list[str]:
     latest weekly review note (from meta, written by harness.review)."""
     week = state.meta_get(conn, "review:latest_week") or "—"
     body = state.meta_get(conn, "review:latest")
-    used = state.week_usage(conn)
+    used = state.week_usage(conn, cfg)
     budget = cfg.weekly_digest_budget
     pct = int(100 * used / budget) if budget else 0
     conserve = pct >= int(cfg.weekly_conserve_threshold * 100)

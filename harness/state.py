@@ -251,15 +251,28 @@ def meta_set(conn, key: str, value: str) -> None:
     conn.execute("INSERT OR REPLACE INTO meta (key, value) VALUES (?,?)", (key, value))
 
 
-def week_usage(conn) -> int:
-    """Number of papers digested since the start of the current ISO week (Mon 00:00).
+def week_anchor(cfg=None) -> dt.datetime:
+    """Start of the current weekly session: the most recent <reset_weekday> at
+    <reset_hour> (local). Defaults to Monday 00:00 (ISO week) when cfg is absent —
+    set weekly_reset_weekday/weekly_reset_hour to match your real session reset."""
+    now = dt.datetime.now()
+    wd = int(getattr(cfg, "weekly_reset_weekday", 0)) % 7 if cfg else 0
+    hr = int(getattr(cfg, "weekly_reset_hour", 0)) % 24 if cfg else 0
+    anchor = (now - dt.timedelta(days=(now.weekday() - wd) % 7)).replace(
+        hour=hr, minute=0, second=0, microsecond=0)
+    if anchor > now:
+        anchor -= dt.timedelta(days=7)
+    return anchor
+
+
+def week_usage(conn, cfg=None) -> int:
+    """Papers digested since the current weekly session started (see week_anchor).
 
     A harness-side proxy for weekly Claude usage — used to throttle the heavy
     past-month backfill as the weekly session limit approaches."""
-    today = dt.date.today()
-    monday = today - dt.timedelta(days=today.weekday())
     row = conn.execute(
-        "SELECT COUNT(*) FROM papers WHERE digested_at >= ?", (monday.isoformat(),)
+        "SELECT COUNT(*) FROM papers WHERE digested_at >= ?",
+        (week_anchor(cfg).isoformat(timespec="seconds"),),
     ).fetchone()
     return row[0] if row else 0
 

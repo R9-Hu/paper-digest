@@ -26,6 +26,18 @@ _RATE_PAT = re.compile(
     r"\b429\b|quota", re.IGNORECASE)
 _POLL_FALLBACK_SEC = 900   # if no reset time is given, poll every 15 min
 _RESET_BUFFER_SEC = 45     # wait a touch past the stated reset to be safe
+_WEEKLY_MIN_SEC = 24 * 3600  # a reset more than ~a day out is the WEEKLY limit, not the 5h one
+
+# Auto-learned weekly-session reset (epoch), captured from any rate-limit message.
+# The orchestrator persists this so the weekly-usage window self-aligns — no manual input.
+_OBSERVED_WEEKLY_RESET: float | None = None
+
+
+def pop_weekly_reset() -> float | None:
+    """Return + clear the most recently observed WEEKLY-limit reset epoch (or None)."""
+    global _OBSERVED_WEEKLY_RESET
+    r, _OBSERVED_WEEKLY_RESET = _OBSERVED_WEEKLY_RESET, None
+    return r
 
 
 class LLMError(RuntimeError):
@@ -132,19 +144,25 @@ def run_claude(prompt: str, model: str, cfg: Config,
             return out
 
         diag = f"{proc.stderr}\n{proc.stdout}".strip()
-        if max_wait > 0 and _is_rate_limited(diag):
-            remaining = wait_deadline - time.monotonic()
-            if remaining <= 0:
-                raise RateLimitError(f"usage limit; exceeded max wait ({max_wait}s)",
-                                     _parse_reset(diag))
+        if _is_rate_limited(diag):
             reset_at = _parse_reset(diag)
-            sleep = (reset_at - time.time() + _RESET_BUFFER_SEC) if reset_at else _POLL_FALLBACK_SEC
-            sleep = min(max(60.0, sleep), remaining)   # >=1min, but never past the budget deadline
-            until = dt.datetime.now() + dt.timedelta(seconds=sleep)
-            log.warning("usage/token limit reached — waiting %.0f min (until ~%s) for renewal, "
-                        "then resuming", sleep / 60, until.strftime("%H:%M"))
-            time.sleep(sleep)
-            continue
+            # Auto-learn the WEEKLY reset (a reset >~24h out is the weekly limit, not the
+            # 5-hour one), so the weekly-usage window self-aligns without manual input.
+            if reset_at and reset_at - time.time() > _WEEKLY_MIN_SEC:
+                global _OBSERVED_WEEKLY_RESET
+                _OBSERVED_WEEKLY_RESET = reset_at
+            if max_wait > 0:
+                remaining = wait_deadline - time.monotonic()
+                if remaining > 0:
+                    sleep = (reset_at - time.time() + _RESET_BUFFER_SEC) if reset_at else _POLL_FALLBACK_SEC
+                    sleep = min(max(60.0, sleep), remaining)   # >=1min, never past the deadline
+                    until = dt.datetime.now() + dt.timedelta(seconds=sleep)
+                    log.warning("usage/token limit reached — waiting %.0f min (until ~%s) for "
+                                "renewal, then resuming", sleep / 60, until.strftime("%H:%M"))
+                    time.sleep(sleep)
+                    continue
+                raise RateLimitError(f"usage limit; exceeded max wait ({max_wait}s)", reset_at)
+            raise RateLimitError("usage/rate limit reached", reset_at)
 
         if proc.returncode != 0:
             raise LLMError(f"claude exited {proc.returncode}: {proc.stderr.strip()[:500]}")

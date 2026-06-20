@@ -251,11 +251,25 @@ def meta_set(conn, key: str, value: str) -> None:
     conn.execute("INSERT OR REPLACE INTO meta (key, value) VALUES (?,?)", (key, value))
 
 
-def week_anchor(cfg=None) -> dt.datetime:
-    """Start of the current weekly session: the most recent <reset_weekday> at
-    <reset_hour> (local). Defaults to Monday 00:00 (ISO week) when cfg is absent —
-    set weekly_reset_weekday/weekly_reset_hour to match your real session reset."""
+def week_anchor(cfg=None, conn=None) -> dt.datetime:
+    """Start of the current weekly session.
+
+    Preferred: the AUTO-LEARNED reset (meta['session_reset_at'], captured from
+    claude's rate-limit messages), rolled forward in 7-day steps to the latest
+    one <= now — so the window self-aligns to the real reset with no manual input.
+    Fallback: the configured weekly_reset_weekday@weekly_reset_hour (default Mon 00:00)."""
     now = dt.datetime.now()
+    if conn is not None:
+        iso = meta_get(conn, "session_reset_at")
+        if iso:
+            try:
+                t = dt.datetime.fromisoformat(iso)
+                while t + dt.timedelta(days=7) <= now:
+                    t += dt.timedelta(days=7)
+                if t <= now:
+                    return t
+            except ValueError:
+                pass
     wd = int(getattr(cfg, "weekly_reset_weekday", 0)) % 7 if cfg else 0
     hr = int(getattr(cfg, "weekly_reset_hour", 0)) % 24 if cfg else 0
     anchor = (now - dt.timedelta(days=(now.weekday() - wd) % 7)).replace(
@@ -272,7 +286,7 @@ def week_usage(conn, cfg=None) -> int:
     past-month backfill as the weekly session limit approaches."""
     row = conn.execute(
         "SELECT COUNT(*) FROM papers WHERE digested_at >= ?",
-        (week_anchor(cfg).isoformat(timespec="seconds"),),
+        (week_anchor(cfg, conn).isoformat(timespec="seconds"),),
     ).fetchone()
     return row[0] if row else 0
 

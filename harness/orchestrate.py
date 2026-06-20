@@ -10,7 +10,7 @@ import datetime as dt
 import logging
 import sys
 
-from . import compact, config, digest, fetch, modelcheck, publish, rag, review, state, trends
+from . import compact, config, digest, fetch, llm, modelcheck, publish, rag, review, state, trends
 
 STAGES = ["fetch", "digest", "trends", "publish"]
 
@@ -251,6 +251,16 @@ def main(argv=None) -> int:
         # Skipped in conserve mode — it's past-month fetch+digest we defer near the weekly limit.
         if not args.dry_run and not args.no_compact and not args.stage and digest_ok and not conserve:
             compact.run_scheduled(conn, cfg, topics, should_continue=can_llm)
+
+        # Auto-learn the real weekly-session reset from any rate-limit hit this run, so
+        # the usage window self-aligns daily (no manual input). Distinguishes the weekly
+        # limit from the 5h one in llm.run_claude (>~24h out = weekly).
+        wr = llm.pop_weekly_reset()
+        if wr:
+            iso = dt.datetime.fromtimestamp(wr).isoformat(timespec="seconds")
+            state.meta_set(conn, "session_reset_at", iso)
+            conn.commit()
+            log.info("observed weekly reset → session_reset_at=%s", iso)
 
         # Drop the (regenerable) text-extraction cache once digesting is done.
         if not args.dry_run and digest_ok and "digest" in stages:

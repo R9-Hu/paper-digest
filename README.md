@@ -66,6 +66,12 @@ review (E) also fires automatically once per ISO week on the first in-window run
 - **`profile.md`** — your identity/needs (YAML frontmatter + notes). Layered onto each
   skill's system prompt at runtime so collection/digests/trends reflect *you*. Absent
   file → no injection (original behavior).
+- **Weekly window** — `week_usage` (the conserve gate) measures usage since the
+  current session reset. The reset **auto-learns** itself: when `claude` reports a
+  usage limit, the harness captures the reset time (a weekly reset is >24h out, vs
+  the 5-hour one) into `meta['session_reset_at']` and rolls it weekly — re-checked
+  every run, no manual input. `weekly_reset_weekday/hour` in `config.yaml` is just
+  the fallback until that's learned.
 - **Review** — `harness.review` writes `reviews/<ISO-week>.md`, stores it in the
   `meta` table, and renders the **Review** dashboard page (site + Obsidian `_Review.md`).
   Keyword suggestions default to **suggest-only**; opt in to apply them with

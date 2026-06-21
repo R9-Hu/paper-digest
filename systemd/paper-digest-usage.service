@@ -1,0 +1,11 @@
+[Unit]
+Description=Paper Digest — usage probe: record the shared weekly-quota reset (every 12h)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+WorkingDirectory=/home/renjiu/Research/code/paperDigest
+EnvironmentFile=-/home/renjiu/Research/code/paperDigest/.env
+ExecStart=/home/renjiu/Research/code/paperDigest/run.sh --probe
+TimeoutStartSec=600

@@ -72,6 +72,8 @@ def parse_args(argv=None):
                    help="run the weekly review (E) now, publish, then exit")
     p.add_argument("--apply-suggestions", action="store_true",
                    help="merge the latest review's suggested keywords into config.yaml, then exit")
+    p.add_argument("--probe", action="store_true",
+                   help="cheap usage check: record the shared weekly-quota reset if spent, then exit")
     return p.parse_args(argv)
 
 
@@ -105,6 +107,21 @@ def main(argv=None) -> int:
             ok = review.run_review(conn, cfg)
             log.info("[E] review %s", "written" if ok else "skipped (no data / failed)")
             publish.publish(conn, cfg, deploy=not args.no_deploy)
+        return 0
+
+    if args.probe:   # cheap usage check: capture the shared-quota weekly reset, if spent
+        with state.connect() as conn:
+            try:
+                llm.run_claude("ping", cfg.digest_model, cfg, allow_tools=False, wait_on_limit=False)
+            except llm.LLMError:
+                pass  # a limit hit is the signal we want; pop_weekly_reset() captured it
+            wr = llm.pop_weekly_reset()
+            if wr:
+                iso = dt.datetime.fromtimestamp(wr).isoformat(timespec="seconds")
+                state.meta_set(conn, "session_reset_at", iso)
+                conn.commit()
+                log.info("probe: observed shared weekly reset → %s", iso)
+            log.info("probe: weekly usage %d/%d", state.week_usage(conn, cfg), cfg.weekly_digest_budget)
         return 0
 
     if args.apply_suggestions:

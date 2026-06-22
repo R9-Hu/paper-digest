@@ -198,7 +198,7 @@ def _relevance(cfg: Config, topic: Topic, title: str, tldr: str) -> str:
     sk = skills.load_skill("relevance", {"system": REL_SYSTEM, "prompt": _REL_PROMPT})
     prompt = sk.prompt.format(title=title, tldr=tldr, topic=topic.name)
     return llm.strip_code_fence(llm.run_claude(
-        prompt, cfg.digest_model, cfg, system=skills.with_profile(sk.system, cfg)))
+        prompt, cfg.digest_model, cfg, system=skills.with_profile(sk.system, cfg), cache=True))
 
 
 def _produce(cfg: Config, topic: Topic, row, shared=None):
@@ -228,7 +228,7 @@ def _produce(cfg: Config, topic: Topic, row, shared=None):
                 return cid, slug, None, "no extractable text", None, None
             sk = skills.load_skill("digest", {"system": SYSTEM, "prompt": PROMPT_TMPL})
             prompt = sk.prompt.format(topic=topic.name, title=row["title"], text=text)
-            full = llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=sk.system))
+            full = llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=sk.system, cache=True))
             body, relevance = _split_relevance(full)
             tldr = _tldr_of(body)
             shared_out = body

@@ -100,7 +100,7 @@ def run_review(conn, cfg) -> bool:
     prompt = sk.prompt.format(week=week, topics=topics_str, corpus=corpus, skills=skill_names)
     try:
         body = llm.strip_code_fence(llm.run_claude(
-            prompt, cfg.trend_model, cfg, system=skills.with_profile(sk.system, cfg)))
+            prompt, cfg.trend_model, cfg, system=skills.with_profile(sk.system, cfg), cache=True))
     except llm.LLMError as e:
         log.warning("review failed: %s", e)
         return False

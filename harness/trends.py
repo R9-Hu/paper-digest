@@ -17,6 +17,8 @@ log = logging.getLogger("harness.trends")
 MAX_PAPERS = 80           # most-recent N digests fed to the analyst
 PER_PAPER_CHARS = 1400    # truncation per digest
 MAX_CORPUS_CHARS = 140000
+TREND_MIN_NEW = 5         # don't re-synthesize a year's trend for fewer than this many
+                          # new papers (a full report is the priciest call). ponytail: tune.
 
 SYSTEM = (
     "You are a senior research trend analyst. You synthesize many paper digests "
@@ -123,7 +125,7 @@ def analyze_topic_year(conn, cfg: Config, topic: Topic, year: int) -> bool:
     prompt = sk.prompt.format(topic=f"{topic.name} ({year})", n=n, corpus=corpus)
     try:
         body = llm.strip_code_fence(llm.run_claude(
-            prompt, cfg.trend_model, cfg, system=skills.with_profile(sk.system, cfg)))
+            prompt, cfg.trend_model, cfg, system=skills.with_profile(sk.system, cfg), cache=True))
     except llm.LLMError as e:
         log.warning("[%s %d] trend analysis failed: %s", topic.slug, year, e)
         return False
@@ -174,7 +176,7 @@ def summarize_today(conn, cfg: Config, topic: Topic) -> bool:
     sk = skills.load_skill("daily-brief", {"system": _BRIEF_SYSTEM, "prompt": _BRIEF_PROMPT})
     prompt = sk.prompt.format(n=len(rows), topic=topic.name, chunks="\n".join(chunks)[:60000])
     try:
-        text = llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=sk.system))
+        text = llm.strip_code_fence(llm.run_claude(prompt, cfg.digest_model, cfg, system=sk.system, cache=True))
     except llm.LLMError as e:
         log.warning("[%s] today brief failed: %s", topic.slug, e)
         return False
@@ -197,8 +199,11 @@ def analyze_topic(conn, cfg: Config, topic: Topic) -> bool:
         n = len(state.digested_for_topic_year(conn, topic.slug, year))
         key = f"trendN:{topic.slug}:{year}"
         prev = state.meta_get(conn, key)
-        if prev == str(n) and trend_path(topic, year).exists():
-            continue  # unchanged since last report
+        prev_n = int(prev) if prev and prev.lstrip("-").isdigit() else None
+        # Skip when nothing meaningful changed: a report exists and the count grew by
+        # fewer than TREND_MIN_NEW. A drop (compaction → negative delta) still regenerates.
+        if prev_n is not None and trend_path(topic, year).exists() and 0 <= n - prev_n < TREND_MIN_NEW:
+            continue
         if analyze_topic_year(conn, cfg, topic, year):
             state.meta_set(conn, key, str(n))
             conn.commit()

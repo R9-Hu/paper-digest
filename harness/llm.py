@@ -8,14 +8,42 @@ orchestrator owns all writes.
 from __future__ import annotations
 
 import datetime as dt
+import hashlib
 import logging
 import re
 import subprocess
 import time
 
+from . import config
 from .config import Config
 
 log = logging.getLogger("harness.llm")
+
+# Content-addressed local response cache: identical (model, system, prompt) →
+# identical-enough output, so re-runs / re-digests / re-publishes don't re-spend
+# tokens. The key includes the full prompt + system, so any change (skill edit,
+# model swap, grown corpus) misses automatically. ponytail: unbounded on disk —
+# a digest is a few KB, prune state/llmcache/ if it ever grows large.
+CACHE_DIR = config.STATE_DIR / "llmcache"
+
+
+def _cache_key(model: str, system: str, prompt: str) -> str:
+    return hashlib.sha256(f"{model}\0{system}\0{prompt}".encode("utf-8")).hexdigest()
+
+
+def _cache_read(key: str) -> str | None:
+    try:
+        return (CACHE_DIR / f"{key}.txt").read_text(encoding="utf-8")
+    except OSError:
+        return None
+
+
+def _cache_write(key: str, text: str) -> None:
+    try:
+        CACHE_DIR.mkdir(parents=True, exist_ok=True)
+        (CACHE_DIR / f"{key}.txt").write_text(text, encoding="utf-8")
+    except OSError:
+        pass
 
 # Tools the agents must never use (they return text; Python does the writing).
 _DISALLOWED = ["Bash", "Edit", "Write", "NotebookEdit"]
@@ -100,7 +128,12 @@ def _parse_reset(text: str) -> float | None:
 def run_claude(prompt: str, model: str, cfg: Config,
                system: str | None = None, allow_tools: bool = True,
                timeout: int | None = None, wait_on_limit: bool | None = None,
-               respect_window: bool = True) -> str:
+               respect_window: bool = True, cache: bool = False) -> str:
+    ckey = _cache_key(model, system or "", prompt) if cache else None
+    if ckey:
+        hit = _cache_read(ckey)
+        if hit is not None:
+            return hit
     cmd = [
         cfg.claude_bin, "-p",
         "--model", model,
@@ -141,6 +174,8 @@ def run_claude(prompt: str, model: str, cfg: Config,
 
         out = proc.stdout.strip()
         if proc.returncode == 0 and out:
+            if ckey:
+                _cache_write(ckey, out)
             return out
 
         diag = f"{proc.stderr}\n{proc.stdout}".strip()
@@ -180,3 +215,14 @@ def strip_code_fence(text: str) -> str:
             lines = lines[:-1]
         return "\n".join(lines).strip()
     return t
+
+
+if __name__ == "__main__":   # self-check: cache key determinism + round-trip (no claude call)
+    k1 = _cache_key("m", "sys", "hi")
+    assert k1 == _cache_key("m", "sys", "hi"), "key not stable"
+    assert k1 != _cache_key("m", "sys", "hello"), "key ignores prompt"
+    assert k1 != _cache_key("m2", "sys", "hi"), "key ignores model"
+    _cache_write(k1, "cached!")
+    assert _cache_read(k1) == "cached!", "round-trip failed"
+    assert _cache_read(_cache_key("x", "y", "z")) is None, "missing key not None"
+    print("llm cache self-check OK")

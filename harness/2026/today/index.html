@@ -4833,17 +4833,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sol-video-inference-engine-agent-native-full-stack-acceleration-framework-for-efficient-video-generation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sol Video Inference Engine: Agent-Native Full-Stack Acceleration Framework for Efficient Video Generation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#revelio-cost-efficient-agentic-memory-safety-vulnerability-detection-for-repository-scale-codebases" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6417,17 +6406,6 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#sol-video-inference-engine-agent-native-full-stack-acceleration-framework-for-efficient-video-generation" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Sol Video Inference Engine: Agent-Native Full-Stack Acceleration Framework for Efficient Video Generation
-      
-    </span>
-  </a>
-  
-</li>
-        
-          <li class="md-nav__item">
   <a href="#revelio-cost-efficient-agentic-memory-safety-vulnerability-detection-for-repository-scale-codebases" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -6496,7 +6474,7 @@
 <h1 id="todays-digest-harnesses-meta-harnesses">🆕 Today's Digest — Harnesses / Meta-Harnesses<a class="headerlink" href="#todays-digest-harnesses-meta-harnesses" title="Permanent link">&para;</a></h1>
 <p><em>New papers/posts collected 2026-06-24.</em></p>
 <div class="admonition success">
-<p class="admonition-title">12 new today</p>
+<p class="admonition-title">11 new today</p>
 </div>
 <h2 id="in-brief">📋 In brief<a class="headerlink" href="#in-brief" title="Permanent link">&para;</a></h2>
 <p>This batch is unified by a single engineering instinct: decompose hard, previously-manual tasks into structured multi-agent pipelines where each stage does exactly what it is computationally suited for — cheap models for high-recall hypothesis generation, stronger models for verification, symbolic oracles for ground-truth checks. Several papers (SHERLOC, Revelio, BIGBAG) close the loop with automated feedback — compiler errors, sanitizer traces, token budgets — turning what was once a one-shot inference call into an iterative generate-verify-repair cycle. A second thread runs through PixJail, MANGO, and LingxiDiagBench: harnesses that <em>evaluate other systems</em>, converting fuzzy human-authored criteria (T2I jailbreak papers, natural-language robot tasks, psychiatric consultation rubrics) into reproducible, auditable oracles with quantified failure modes. Across nearly all twelve, the reported gains come not from better base models but from better orchestration — structured intermediate representations, role separation, and memory banks that let agents build on prior work rather than starting from scratch each call.</p>
@@ -6524,9 +6502,6 @@
 <p>📌 <em>Why selected:</em> ACL 2026; emergent authority stratification in LLM agent societies informs multi-agent coordination design</p>
 <h3 id="semantic-browsing-controllable-diversity-for-image-generation"><a href="../papers/semantic-browsing-controllable-diversity-for-image-generation/">Semantic Browsing: Controllable Diversity for Image Generation</a><a class="headerlink" href="#semantic-browsing-controllable-diversity-for-image-generation" title="Permanent link">&para;</a></h3>
 <p>Text-to-image models collapse semantically diverse prompts into near-identical outputs; Semantic Browsing fixes this by shifting diversity generation entirely to the text level via a structured multi-agent VLM workflow. The system builds a rooted hierarchical tree of JSON scene representations, where each edge encodes an explicit, traceable semantic constraint, then renders leaf nodes with any prompt-adherent T2I backend. Users can browse or interactively extend the resulting gallery of interpretable image variants.</p>
-<h3 id="sol-video-inference-engine-agent-native-full-stack-acceleration-framework-for-efficient-video-generation"><a href="../papers/sol-video-inference-engine-agent-native-full-stack-acceleration-framework-for-ef/">Sol Video Inference Engine: Agent-Native Full-Stack Acceleration Framework for Efficient Video Generation</a><a class="headerlink" href="#sol-video-inference-engine-agent-native-full-stack-acceleration-framework-for-efficient-video-generation" title="Permanent link">&para;</a></h3>
-<p>Sol Video Inference Engine is a training-free, agent-native framework that treats video diffusion acceleration as an instance-specific tuning problem rather than a one-size-fits-all optimization. Parallel skill agents locally optimize five acceleration techniques (cache, sparse attention, token pruning, quantization, kernel fusion), an integrator agent composes them into a global stack, and a human validator closes the quality loop. Applied to 64B Cosmos3-Super, 22B LTX-2.3, and 2B SANA-Video, the framework achieves &gt;2× end-to-end speedup with near-lossless VBench quality.</p>
-<p>📌 <em>Why selected:</em> Agent-native inference acceleration framework; infrastructure design for agent-driven generation pipelines</p>
 <h3 id="revelio-cost-efficient-agentic-memory-safety-vulnerability-detection-for-repository-scale-codebases"><a href="../papers/revelio-cost-efficient-agentic-memory-safety-vulnerability-detection-for-reposit/">Revelio: Cost-Efficient Agentic Memory Safety Vulnerability Detection For Repository-Scale Codebases</a><a class="headerlink" href="#revelio-cost-efficient-agentic-memory-safety-vulnerability-detection-for-repository-scale-codebases" title="Permanent link">&para;</a></h3>
 <p>Revelio is a two-stage agentic framework for memory-safety vulnerability detection in repository-scale C/C++ codebases. It pairs cheap LLMs for high-recall hypothesis generation with stronger models plus sanitizer-backed confirmation to achieve zero false positives. On 100 CyberGym/Arvo projects it finds 175 vulnerabilities vs. 55 for Claude Code (Opus 4.7), at comparable token cost, and discovers 19 zero-days in OSS-Fuzz-hardened projects for ~$300 total.</p>
 <p>📌 <em>Why selected:</em> Cost-efficient multi-agent harness for repo-scale memory-safety detection; addresses scalability directly</p>
@@ -6583,11 +6558,6 @@
 <tr>
 <td>2026-06-22</td>
 <td><a href="../papers/semantic-browsing-controllable-diversity-for-image-generation/">Semantic Browsing: Controllable Diversity for Image Generation</a></td>
-<td><span class="venue-none">—</span></td>
-</tr>
-<tr>
-<td>2026-06-21</td>
-<td><a href="../papers/sol-video-inference-engine-agent-native-full-stack-acceleration-framework-for-ef/">Sol Video Inference Engine: Agent-Native Full-Stack Acceleration Framework for Efficient Video Generation</a></td>
 <td><span class="venue-none">—</span></td>
 </tr>
 <tr>

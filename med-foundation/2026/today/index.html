@@ -2133,10 +2133,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#jolia-concept-level-vision-language-alignment-for-3d-ct-contrastive-learning" class="md-nav__link">
+  <a href="#peft-medsam-efficient-fine-tuning-of-medical-foundation-models-for-explainable-skin-lesion-segmentation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Jolia: Concept-Level Vision-Language Alignment for 3D CT Contrastive Learning
+        PEFT-MedSAM: Efficient Fine-Tuning of Medical Foundation Models for Explainable Skin Lesion Segmentation
       
     </span>
   </a>
@@ -6208,10 +6208,10 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#jolia-concept-level-vision-language-alignment-for-3d-ct-contrastive-learning" class="md-nav__link">
+  <a href="#peft-medsam-efficient-fine-tuning-of-medical-foundation-models-for-explainable-skin-lesion-segmentation" class="md-nav__link">
     <span class="md-ellipsis">
       
-        Jolia: Concept-Level Vision-Language Alignment for 3D CT Contrastive Learning
+        PEFT-MedSAM: Efficient Fine-Tuning of Medical Foundation Models for Explainable Skin Lesion Segmentation
       
     </span>
   </a>
@@ -6252,15 +6252,15 @@
 
 
 <h1 id="todays-digest-foundation-models-in-medicine">🆕 Today's Digest — Foundation Models in Medicine<a class="headerlink" href="#todays-digest-foundation-models-in-medicine" title="Permanent link">&para;</a></h1>
-<p><em>New papers/posts collected 2026-06-24.</em></p>
+<p><em>New papers/posts collected 2026-06-17.</em></p>
 <div class="admonition success">
 <p class="admonition-title">1 new today</p>
 </div>
 <h2 id="in-brief">📋 In brief<a class="headerlink" href="#in-brief" title="Permanent link">&para;</a></h2>
-<p>This batch centers on improving vision-language alignment for 3D medical imaging, specifically addressing the coarseness of standard CLIP-style global contrastive learning when applied to CT scans. Jolia's ConQuer approach tackles the fundamental challenge that radiology reports describe findings at the organ level, not the image level — by decomposing reports anatomically and pooling organ-specific visual features via cross-attention queries, it achieves concept-level grounding without requiring expensive segmentation annotations. The dominant thread is making self-supervised pretraining more spatially and semantically precise for volumetric medical data, yielding downstream gains in classification, generalization across centers, and report generation.</p>
+<p><em>The whole-day overview is written during the overnight run.</em></p>
 <h2 id="todays-papers">📝 Today's papers<a class="headerlink" href="#todays-papers" title="Permanent link">&para;</a></h2>
-<h3 id="jolia-concept-level-vision-language-alignment-for-3d-ct-contrastive-learning"><a href="../papers/jolia-concept-level-vision-language-alignment-for-3d-ct-contrastive-learning/">Jolia: Concept-Level Vision-Language Alignment for 3D CT Contrastive Learning</a><a class="headerlink" href="#jolia-concept-level-vision-language-alignment-for-3d-ct-contrastive-learning" title="Permanent link">&para;</a></h3>
-<p>Jolia is a 3D CT foundation model trained with ConQuer (Concept Queries), a pretraining method that augments standard CLIP global alignment with per-organ contrastive objectives. Learnable cross-attention queries pool organ-specific image features from an image encoder, while an LLM decomposes paired radiology reports into anatomical sections—enabling concept-level alignment without segmentation masks. Jolia sets new state-of-the-art on findings classification, cross-center transfer, and radiology report generation across chest and abdominal CT benchmarks.</p>
+<h3 id="peft-medsam-efficient-fine-tuning-of-medical-foundation-models-for-explainable-skin-lesion-segmentation"><a href="../papers/peft-medsam-efficient-fine-tuning-of-medical-foundation-models-for-explainable-s/">PEFT-MedSAM: Efficient Fine-Tuning of Medical Foundation Models for Explainable Skin Lesion Segmentation</a><a class="headerlink" href="#peft-medsam-efficient-fine-tuning-of-medical-foundation-models-for-explainable-skin-lesion-segmentation" title="Permanent link">&para;</a></h3>
+<p>PEFT-MedSAM adapts MedSAM (a medical foundation model) to dermoscopic skin lesion segmentation by freezing the ViT-B image encoder and prompt encoder and fine-tuning only the 4M-parameter mask decoder (4.3% of total parameters). On ISIC 2018, it achieves Dice = 0.9411 / IoU = 0.8918, outperforming both a fully trained U-Net baseline and zero-shot MedSAM inference. Grad-CAM with a Pointing Game metric provides quantitative explainability evidence, a prerequisite for clinical deployment.</p>
 <h2 id="table">📄 Table<a class="headerlink" href="#table" title="Permanent link">&para;</a></h2>
 <table>
 <thead>
@@ -6272,8 +6272,8 @@
 </thead>
 <tbody>
 <tr>
-<td>2026-06-23</td>
-<td><a href="../papers/jolia-concept-level-vision-language-alignment-for-3d-ct-contrastive-learning/">Jolia: Concept-Level Vision-Language Alignment for 3D CT Contrastive Learning</a></td>
+<td>2026-06-17</td>
+<td><a href="../papers/peft-medsam-efficient-fine-tuning-of-medical-foundation-models-for-explainable-s/">PEFT-MedSAM: Efficient Fine-Tuning of Medical Foundation Models for Explainable Skin Lesion Segmentation</a></td>
 <td><span class="venue-none">—</span></td>
 </tr>
 </tbody>
